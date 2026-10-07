@@ -1,0 +1,260 @@
+# Math Refresher — Plan
+
+## Purpose
+
+Build a small, stand-alone webpage to help Jakob refresh mathematical notation and regain confidence reading mathematical expressions, derivations, and proofs—especially when notation feels compressed or unfamiliar.
+
+The central goal is **notation fluency**: learn to read notation aloud, identify what each part is doing, and expand or “compile” it into explicit arithmetic and Python. The aim is not merely to memorize formulas or rush to advanced topics. When faced with a dense expression, the learner should have a reliable way to begin unpacking it rather than freeze.
+
+The learner has encountered some mathematical terminology in Swedish and wants to learn the English names for concepts and notation. **All project content and explanations should be in English; do not use Swedish.**
+
+## Learning principles
+
+- Treat notation as a compact set of instructions that can be unpacked step by step.
+- Separate the roles of symbols: for example, an index/counter is not necessarily the value contributed to a sum.
+- Start with small, concrete examples; then show where the same notation appears in more complex subjects.
+- Avoid mixing too much at once: give each lesson one main learning goal, introduce unfamiliar ideas only as brief, clearly labeled previews, and save fuller cross-topic combinations for dedicated synthesis lessons.
+- Make the boundary between “what we know now” and “what we will learn later” explicit. A learner can recognize one part of a larger formula without understanding the whole formula yet.
+- Do not introduce unfamiliar notation or terminology without acknowledging it. Briefly explain the new piece where it appears, label it as a preview if it is not the lesson focus, and link to its guide or in-depth lesson/anchor when available. If no dedicated page exists yet, define it locally and record that a fuller explanation is planned.
+- For each key formula or new notation, show its natural spoken reading directly beside it in a clearly paired **NOTATION / READ IT ALOUD** layout. Translate the operation and full relationship into natural spoken English (including words such as “equals,” “at least,” and what the sum adds); do not merely pronounce a sequence of symbol names such as “sigma, n, k equals.” Stack the paired columns on narrow screens.
+- Make the reading visibly distinct with a calm sage panel and a lightly semibold serif body, but keep it visually attached to the formula rather than styling it like a detached editorial quote or alert. Keep expansions and explanatory text outside the read-aloud panel at normal weight. Use a separate warm sand/yellow accent for numeric substitution or “try a small value” examples.
+- Show basic Python first: explicit variables, loops, and arithmetic. Avoid `math` and shortcuts such as `sum()` in the first derivation. Introduce built-ins afterward as useful shorthand, not magic.
+- Revisit the same notation in different contexts so the learner recognizes its structure even when the application changes.
+- Focus on understanding and confidence, not on presenting a catalogue of finished formulas.
+- Teach and consistently use the English names for mathematical concepts and notation; do not use Swedish.
+
+## A short guide to mathematical letters and roles
+
+Create a brief beginner guide to how letters are commonly used in mathematical notation. The purpose is to reduce confusion while reading—not to make the learner memorize rigid naming rules.
+
+- Explain that there are **no universally forbidden letters**: a symbol's role is defined by context, and conventions vary by field and author.
+- Offer common patterns as helpful clues, not rules: `x`, `y`, `z` often denote variables or unknowns; `a`, `b`, `c` often denote constants or coefficients; `i`, `j`, `k` often denote integer indices; `m`, `n` often denote sizes or bounds; `f`, `g` often name functions.
+- Clarify collisions and context: `i` is often an index, but also commonly denotes the imaginary unit; `e` and `π` often have standard meanings, but a letter can still be used as an ordinary variable if defined that way.
+- Explain function notation with a small example: `y = f(x)` says the output `y` depends on input `x` through function `f`; for example, if `f(x) = x + 2`, then `x = 3` gives `y = f(3) = 5`.
+- Explain that math typography uses italics for many variables (including function names such as `f`), while named operators such as `sin` and `log` are conventionally upright. Typography helps, but context and definitions determine meaning.
+- Make clear that a letter alone does not guarantee an object is a scalar, vector, matrix, set, or something else. Authors define the objects; boldface or other typography may provide clues.
+
+Connect the guide to the summation example: `i` is the index, `n` is the upper bound, and the expression being summed supplies each term. Reassure the learner that one can often rename a variable consistently, but conventional names can make notation easier to recognize.
+
+## A reusable notation-decoding routine
+
+Lessons should repeatedly encourage this process:
+
+1. Find the main action (add, multiply, compare, quantify, etc.).
+2. Read the limits, conditions, and assumptions.
+3. Identify the role of each symbol (index, value, bound, label, operation).
+4. Substitute small values and expand a few steps explicitly.
+5. Say the result in plain language.
+6. Translate the steps into basic Python; only then compare with a shorter/built-in form.
+
+When reading a larger proof or formula, learners can mark which pieces they understand, decode those pieces, and leave the rest for later.
+
+## Lesson pattern
+
+A typical lesson should include:
+
+1. The notation, what the complete expression asserts, and a natural read-aloud version in plain English.
+2. A breakdown of its parts and their roles.
+3. A small numeric example, expanded fully.
+4. Basic, executable Python that follows the expansion.
+5. A trace showing the changing index/value and accumulated result.
+6. A shorter Python version using an appropriate built-in, introduced after the manual version.
+7. A small variation or challenge in the in-browser Python console.
+8. A brief “where you’ll see this later” section, where useful, without requiring the learner to understand all surrounding notation.
+
+### Progressive Python versions and the shared editor
+
+When a lesson benefits from showing several equivalent Python implementations, use a consistent progression:
+
+1. **Fully explicit / unpacked** — show the arithmetic and control flow directly so the mathematical steps are visible.
+2. **A little more idiomatic** — use a Python construct that removes some mechanical detail while keeping the main process visible (for example, replace a manually advanced `while` index with a `for` loop over `range`).
+3. **Concise idiomatic Python** — use an appropriate built-in such as `sum()` when that is the natural expression of the task.
+
+These are teaching stages, not a claim that the shortest version is always best. Explain what each step hides or makes clearer, and keep the same meaningful variables from the math where practical. Use only as many versions as genuinely help; two are enough when there is no useful middle step. The products/factorials lesson validates a useful three-step ladder: explicit `while` loop → `for`/`range` loop → standard-library helper such as `math.prod()`.
+
+Each displayed Python version should have a **Load into editor** control. All controls load their code into the same CodeMirror editor, where the learner can inspect or edit it and run it with the shared Run button. Keep the interaction predictable across lessons. Make sure each version is executable and gives the same result for the chosen example, and state what changed between versions.
+
+## First topic: summation (∑)
+
+Introduce the short guide to mathematical letters and roles before or alongside the first summation example, so the learner knows that letters are names with context-dependent roles.
+
+The first lesson should teach how to read a general sum, not begin with a long arithmetic exercise and not try to teach probability or linear algebra all at once. Clarify that `∑` is the summation sign/operator, based on the capital Greek letter Sigma `Σ`; the letter and the operator are related but are not the same glyph.
+
+Show common layout variants: in displayed equations, the upper and lower limits are often placed above and below `∑`; inline, they are often placed to its right to save space. Explain that the meaning is the same and typesetting conventions can vary.
+
+Introduce:
+
+\[
+\sum_{i=1}^{n} i
+\]
+
+Explain the parts:
+
+- `Σ` means add the terms specified by the expression to its right.
+- `i = 1` gives the starting index.
+- `n` is the upper stopping value in this example.
+- The final `i` is the expression whose value is contributed at each step.
+
+For this particular sum, the index and the contributed value happen to be the same. With `n = 4`:
+
+\[
+\sum_{i=1}^{4} i = 1 + 2 + 3 + 4 = 10
+\]
+
+Then make the distinction explicit with:
+
+\[
+\sum_{i=1}^{n} a_i = a_1 + a_2 + \cdots + a_n
+\]
+
+Here `i` is the index/position selecting an item, while `a_i` is the value contributed to the sum. The index is not necessarily the value being added.
+
+Explain that the lower bound is chosen to match the terms being asked for, not fixed universally at 1. For example, `Σ(i=0..3) a_i` includes `a₀`, while `Σ(i=2..4) a_i` starts at `a₂`. For an ordinary finite sum with integer bounds, both endpoints are included. Connect bounds to a probability question: if `X` takes integer values from 0 through `n`, “at least 2” sums `P(X=k)` for `k=2..n`, whereas “exactly 2” is just `P(X=2)`. Briefly explain that `P(A)` means the probability of event `A`, and identify `X` as a count/random variable; link to the probability preview in the letters guide and mark probability as a later topic. Read the complete equation aloud: “The probability that X is at least 2 equals the sum, as k ranges from 2 through n, of the probability that X equals k.” Then expand it as `P(X=2) + P(X=3) + ... + P(X=n)`. Contrast with “at most 2”: `P(X≤2) = Σ(k=0..2) P(X=k)`, read aloud as “The probability that X is at most 2 equals the sum, as k ranges from 0 through 2, of the probability that X equals k.” If the desired outcomes are noncontiguous, sum over a set of indices rather than an interval. Make clear that a lower bound of 2 means include every index from 2 through the upper bound, not only the single outcome 2.
+
+Explain briefly that starting at 1 is common when numbering a sequence, but is not a universal rule. Some sums start at 0; for example, a sum from `i = 0` through `n` contains `n + 1` terms. The limits tell us the actual range.
+
+Use precise beginner-friendly terminology:
+
+- **Index**: the counter or label that changes from term to term.
+- **Term / summand**: the value or expression being added on that step.
+- In common finite sums, the index is often an integer scalar, but the terms being added are not necessarily scalar numbers. More advanced sums can add vectors or matrices, and indices can be more general than a single integer.
+
+For now, work with ordinary numbers. Add a short note that vector and matrix sums, dot products, and matrix multiplication are interesting later topics, not part of the first summation walkthrough.
+
+### Quick recognition tour (do not fully unpack these yet)
+
+Show that summation appears in several contexts, while focusing only on what the sum is adding:
+
+- Sequence: `Σ(i=1..n) i` adds the integers from 1 through `n`.
+- Probability: `Σ(k=3..5) P(X = k)` adds the probabilities for `X = 3`, `X = 4`, and `X = 5`.
+- Matrix multiplication: `Σ(k=1..m) A[r,k] B[k,c]` adds the products used to calculate one output cell.
+- Dot product (a later topic): `a · b = Σ(i=1..n) a_i b_i` adds products of corresponding components.
+
+These examples are signposts for later lessons. Label the surrounding ideas as “we’ll return to this,” so the first lesson remains about reading the sum itself.
+
+### Basic Python progression
+
+Make the code reuse the notation's variables: `n` is the upper bound, `i` is the index, and `total` is the running accumulator. Start with a `while` loop that mirrors the inclusive mathematical upper bound directly:
+
+```python
+n = 4
+i = 1
+total = 0
+
+while i <= n:
+    total = total + i
+    i = i + 1
+
+print(total)
+```
+
+Explain that `i <= n` includes the final term. A condition like `i < n` would stop before adding `n`. This loop avoids hiding the index behavior inside `range` while the learner is first mapping notation to code.
+
+Afterward, show the concise, idiomatic version using the same `n` and `i` variables:
+
+```python
+n = 4
+i = 1
+total = sum(range(i, n + 1))
+print(total)
+```
+
+Explain that Python's built-in `sum()` function adds the values produced by `range`. `range` excludes its stop value, so `n + 1` is needed to include the mathematical upper bound `n`. Explicitly call `sum()` a built-in function (not a method).
+
+## Synthesis lessons: putting ideas together
+
+After a small group of related topics has been introduced, add a “put it together” lesson or practice page that combines them. These should feel like a natural next step, not a sudden jump: only rely on ideas already taught, explicitly preview and link any new notation, read the combined expression aloud, expand it in stages, and work through it in Python using the progressive-code pattern.
+
+Possible sequence:
+
+- After summation, products, and factorials: expand a small expression such as `Σ(k=1..4) k! = 1! + 2! + 3! + 4! = 33` and implement it with explicit loops.
+- After probability, counting/binomial coefficients, and factorials: calculate a small dice probability, such as the chance of at least two sixes on three dice. This can bring together `P(X ≥ 2)`, summation, combinations, powers, and multiplication.
+- After vectors and dot products: connect a dot product to one entry of a matrix product.
+
+Treat these as cumulative exercises that build confidence reading a fuller expression, not as a demand to master every connected topic at once.
+
+## Recurring application threads
+
+Use a few familiar application areas as recurring examples, alongside the notation-first exercises:
+
+- **Classic games:** dice games such as Yatzy and card games for counting outcomes, combinations, and probability.
+- **Computer science and systems:** loops, algorithm work, randomized procedures, and mathematical guarantees about system behavior. Show how data can be encoded numerically and how structures such as graphs represent entities and relationships.
+- **Graphs and databases:** nodes and edges define graph neighbors, often found by traversing adjacency lists or matrices. Keep this distinct from nearest-neighbor search in a vector space; some systems combine graph traversal with vector search, but they are different meanings of “neighbor.”
+- **AI and machine learning:** probability for uncertainty and predictions; vectors, matrices, and dot products for representing data, embeddings, and similarity/nearest-neighbor search.
+- **Computer graphics:** vectors and matrices for 2D/3D positions, transformations, and rotations.
+
+Use these as motivating contexts where they naturally fit; do not force every notation into every domain. In particular, build the required concepts before using a context-heavy example, and explicitly explain/link any notation that is only being previewed.
+
+## Possible learning roadmap
+
+The order below is provisional; add topics as the project develops and keep the initial scope small.
+
+1. **Summation and indices** — expand notation, distinguish index from summand, write the loop, then introduce `sum()`.
+2. **Products and factorials** — introduce `∏` as the multiplication counterpart to `Σ`, then show `n! = ∏(i=1..n) i` with an explicit product loop. Mention `0! = 1` as a useful edge case. Introduce Gamma only as a related future topic, not as part of the first factorial walkthrough.
+3. **Probability notation** — outcomes, events, and adding probabilities; then expected value such as `E[X] = Σ_x x P(X = x)` for finite outcomes.
+4. **Probability bounds** — for example, the union bound `P(A₁ ∪ ··· ∪ Aₙ) ≤ Σ P(Aᵢ)`, with assumptions and application explained when taught.
+5. **Counting and algorithm analysis** — sums as total work, leading toward runtime bounds such as `O(n)` and `O(n log n)`.
+6. **Vectors and dot products** — sums of products; distinguish scalar results from vector-valued sums.
+7. **Matrices and matrix multiplication** — a cell of the product is a sum of products over the shared dimension.
+8. **Program correctness** — preconditions, postconditions, loop invariants, and proof by induction.
+9. **Further topics as useful** — the Gamma function as an extension of factorials, concentration inequalities, amortized analysis, optimization/ML, cryptographic reductions, and distributed-systems reasoning.
+
+This roadmap should help connect the refresher to mathematics found in computer-science and engineering white papers, including claims about probability, algorithm performance, and system behavior. A formula is not itself a proof: later lessons should also explain how papers state a model and its assumptions, formulate a claim, and support it through definitions, lemmas, and reasoning.
+
+## Factorial and Gamma sequencing
+
+Teach the finite product notation and factorial before the Gamma function. For positive integers `n`, `Γ(n) = (n - 1)!`; the offset matters (`Γ(6) = 5!`, not `6!`). A full Gamma lesson should wait until the learner has more context for continuous functions/calculus or probability distributions. When first mentioned in the factorial lesson, label Gamma as a preview and link to its future lesson only once that lesson exists.
+
+## General terms and function-based summands/factors
+
+After the basic summation and product loops are comfortable, show that the loop structure stays the same when the expression being added or multiplied becomes more complex. In notation, generalize from `i` to a term such as `f(i)`; in Python, calculate that term directly or put it in a helper function once `def` has been introduced.
+
+For example, a product loop can keep the same bounds and accumulator while replacing `product * i` with `product * factor_for(i)`. Explain that `f(i)` is the term/function value for the current index and that the index bounds and per-step expression have separate roles. Use this as a bridge from simple sigma/product examples to more complex formulas. When showing powers, note that Python uses `**` for exponentiation (`^` means something else in Python).
+
+Add a small **math notation to Python syntax** reference for operators actually used in lessons. Treat an ASCII caret such as `x^2` in a math discussion as an exponent; translate it to Python `x ** 2`. Explicitly warn that Python `^` is bitwise XOR, not exponentiation. Distinguish bit-shift operators (`<<`, `>>`) as separate programming topics outside this math refresher, rather than mixing them into the notation lessons.
+
+## Website and Python console
+
+- Build the handbook with HTML, CSS, and plain JavaScript. Do not use TypeScript.
+- Provide a consistent way to jump between lesson pages. Recommended pattern: a left-side table-of-contents sidebar on wider screens, with a clearly labeled click/tap control to collapse or open it; use the same control as an off-canvas/drawer navigation on small screens. Do not make navigation depend on hover, so it remains discoverable and usable with touch, keyboard, and assistive technology. Include a prominent **Notation quick reference** link and organize lesson links into topic groups; clearly mark the current lesson.
+- Add previous/next page controls near both the top and bottom of each lesson so learners can move sequentially without reopening the contents. Link to adjacent available pages; at the start/end of the current sequence, show a clear non-clickable boundary state rather than a misleading link. Only present planned lessons as unavailable/coming later if that distinction is clear.
+- Include handy notation quick-reference/collection pages. Start with one all-notation index, organized into topic groups; split it into topic-specific collections later if it becomes unwieldy. Each entry should show the notation, its English name, and a brief plain-language reminder, then link to the in-depth lesson. In-depth lessons should link back to their quick-reference entry or collection. Keep these pages as fast lookup aids rather than substitutes for the expanded lessons.
+- Add the compact **Math notation → Python syntax** reminder as a clearly labeled section/box on the all-notation quick-reference page to start; it is a reference, not a sequential lesson. Keep the fold-out sidebar focused on navigation, but open the reference as a modal overlay from lesson pages so learners retain their current page and scroll position. Keep the standalone reference page available too, and add small contextual triggers beside relevant code examples. Do not add a separate Python-reference page unless this section grows. Keep the reference out of the lesson previous/next sequence.
+- It must be stand-alone and require no server: the intended experience is opening the handbook locally in a browser, with no backend or local web server. Opening the finished page should not require a build step; regenerating development bundles may use a build script.
+- The learning/code examples in the editor are Python, not JavaScript.
+- Use Pyodide, compiled to WebAssembly, to execute actual Python locally in the browser; no application backend is planned.
+- Load the Pyodide runtime only when the learner first runs code. The current prototype fetches the pinned runtime from a CDN, so first use requires an internet connection even though no server is required to open the page.
+- Run Python in a Web Worker with an execution timeout so an accidental infinite loop does not freeze the page. Treat this as a responsiveness safeguard, not a claim that arbitrary code is perfectly sandboxed.
+- Console basics: editable starter code, Run and Reset controls, readable output and errors, and small exercises tied to lesson content.
+- Clarify the offline goal later: a static site can be hosted without a backend, but a runtime fetched from a CDN would still require a network on first load. If offline use is required, include the runtime assets with the site and account for their size.
+
+## Existing material
+
+- `docs/math_proof_syntax.md` is existing exploratory material that may provide ideas and examples; review and fact-check it before adapting it into lessons.
+- `docs/math_proof_syntax.html` appears to be a generated HTML rendering. Prefer working from the Markdown source when reusing content.
+- Do not port the existing material wholesale: it mixes many topics and needs editorial review for accuracy, scope, and beginner-friendly sequencing.
+
+## Decisions still open
+
+- Whether the site must work fully offline, or whether loading Pyodide from a CDN on first run is acceptable for the stand-alone, no-server handbook.
+- Whether lesson content should live directly in HTML/JavaScript or in separate Markdown/data files.
+- Exact sidebar/drawer details, labels, and topic categories can be finalized when implementing navigation; the starting structure is an all-notation quick-reference link plus grouped lesson links.
+- The final first-release topic scope and whether code progress should be saved between visits.
+
+## Working rules
+
+- Write notation explanations, project plans, and other durable planning material in Markdown files so they can be revisited and updated.
+- Keep the project plan and agreed decisions in `PLAN.md`; use the chat to discuss ideas and then record durable agreements in the relevant Markdown file.
+- Put any helper, build, or check scripts in a `scripts/` directory.
+- Use `uv` to create and run Python scripts. Declare any third-party dependencies in the script's inline PEP 723 metadata block at the top, and run it with `uv run` so dependencies are managed in an isolated script environment. Avoid adding project-wide Python dependencies for one-off helper scripts.
+
+## Current status
+
+- Three sequential lesson pages now exist in `frontpage/`: the letters-and-notation guide (`letters.html`), summation lesson (`index.html`), and products/factorials lesson (`products.html`). A separate non-sequential quick-reference page (`quick-reference.html`) collects notation and Python syntax reminders; lesson pages open it in a modal overlay to preserve the current page and scroll position, while the standalone page remains available. The letters guide includes a probability-notation preview; the summation page explains `P(A)` before using it and links to that preview.
+- All pages share a grouped, click/tap-controlled navigation sidebar that is visible and collapsible on wider screens and becomes a drawer on small screens. Previous/next controls appear at the top and bottom of lesson pages only, with clear boundary states at the beginning/end of the sequence. Direct local-file navigation between pages and the desktop collapse/reopen interaction have been verified.
+- The summation lesson includes displayed and inline notation layouts, examples with different inclusive bounds (including a probability threshold), paired notation/read-aloud panels, a CodeMirror 6 Python editor, Run button, output/error display, Pyodide execution in a Web Worker, and a shorter `sum(range(...))` example that can be loaded into the editor.
+- The products/factorials lesson introduces `∏`, factorial notation (including `0! = 1`), an explicit multiplication loop, a `for`-loop version, and a final `math.prod()` shortcut. Each Python variant loads into the shared editor; all three product-code versions were tested to print `24`.
+- Verified that the pages, bundled editor, and Python execution work when opened directly from a local `file://` URL. Code runs in the browser; the first run downloads Pyodide from a CDN and therefore needs internet access.
+- The Python example uses `n = 4`, `i = 1`, and a running `total`; its `while i <= n` condition includes the final term. A note explains the equivalent `range(1, n + 1)` boundary.
+- CodeMirror build dependencies are in `frontpage/package.json`; the generated local bundle is `frontpage/editor.bundle.js`. Rebuild it with `scripts/build_frontpage.sh` after `npm install --prefix frontpage`.
+- Agreed direction: make notation reading and expansion the central learning outcome; start with summation, show simple and nontrivial contexts early, and explicitly defer vectors, dot products, and matrices to later lessons.

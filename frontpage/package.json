@@ -1,0 +1,10 @@
+{
+  "name": "math-refresher-frontpage",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@codemirror/lang-python": "^6.2.1",
+    "codemirror": "^6.0.2",
+    "esbuild": "^0.28.2"
+  }
+}

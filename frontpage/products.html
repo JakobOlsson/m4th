@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Learn product notation and factorials by expanding them into arithmetic and Python.">
+    <title>Products and factorials — Math Refresher</title>
+    <link rel="stylesheet" href="styles.css?v=12">
+    <script src="editor.bundle.js" defer></script>
+    <script src="run-python.js" defer></script>
+    <script src="navigation.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#top">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand-controls">
+          <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="handbook-nav" aria-expanded="true">
+            <span class="menu-icon" aria-hidden="true">☰</span><span>Contents</span>
+          </button>
+          <a class="wordmark" href="letters.html">Math, unpacked</a>
+        </div>
+        <span class="header-note">A personal math refresher</span>
+      </div>
+    </header>
+
+    <aside id="handbook-nav" class="sidebar">
+      <nav aria-label="Handbook pages">
+        <p class="sidebar-label">FOUNDATIONS</p>
+        <a class="nav-link" href="letters.html">Letters and notation</a>
+        <a class="nav-link" href="index.html">Summation (∑)</a>
+        <a class="nav-link" href="products.html" aria-current="page">Products and factorials</a>
+        <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
+        <button class="nav-link quick-reference-trigger" type="button">Notation and Python</button>
+      </nav>
+    </aside>
+    <button id="nav-scrim" class="nav-scrim" type="button" aria-label="Close navigation"></button>
+    <dialog id="quick-reference-dialog" class="quick-reference-dialog" aria-labelledby="quick-reference-dialog-title">
+      <div class="quick-reference-dialog-header">
+        <div><span class="notation-reading-label">QUICK REFERENCE</span><h2 id="quick-reference-dialog-title">Notation and Python</h2></div>
+        <div class="dialog-actions"><a href="quick-reference.html" target="_blank" rel="noopener">Open full page ↗</a><button class="dialog-close" type="button" aria-label="Close quick reference">×</button></div>
+      </div>
+      <iframe title="Notation and Python quick reference" data-src="quick-reference.html?embed=1"></iframe>
+    </dialog>
+
+    <main id="top">
+      <nav class="page-nav page-nav-top" aria-label="Previous and next pages">
+        <a class="page-nav-item" href="index.html#summation-notation"><span class="page-nav-direction">PREVIOUS</span><span>← Summation (∑)</span></a>
+        <span class="page-nav-item page-nav-disabled" aria-disabled="true"><span class="page-nav-direction">NEXT</span><span>End of current lessons</span></span>
+      </nav>
+
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">NEXT NOTATION · PRODUCT (∏)</p>
+        <h1 id="page-title">A product is a sum’s multiplication twin.</h1>
+        <p class="intro-copy">Summation tells us to add a sequence of terms. Product notation gives the parallel instruction: multiply the terms together.</p>
+      </section>
+
+      <section id="product-notation" class="lesson" aria-labelledby="lesson-title">
+        <div class="lesson-heading">
+          <h2 id="lesson-title">Read the bounds, then multiply each term.</h2>
+          <p>Just like a sum, the lower bound says where the index starts, the upper bound says where it ends, and the expression beside the operator says what to use at each step.</p>
+        </div>
+
+        <div class="notation-reading-row">
+          <div class="notation-reading-part">
+            <span class="notation-reading-label">NOTATION</span>
+            <div class="formula-card" aria-label="The displayed product of i from i equals 1 through n">
+              <span class="limits-above"><i>n</i></span>
+              <span class="operator-symbol">∏</span>
+              <span class="limits-below"><i>i</i> = 1</span>
+              <span class="summand"><i>i</i></span>
+            </div>
+          </div>
+          <div class="notation-reading-part spoken-reading">
+            <span class="notation-reading-label">READ IT ALOUD</span>
+            <p>Multiply each value of <i>i</i> from one through <i>n</i>.</p>
+          </div>
+        </div>
+
+        <div class="explain-grid">
+          <article>
+            <h3>The symbol</h3>
+            <p><i>∏</i> is the product symbol, based on the capital Greek letter Pi (<i>Π</i>). It is different from lowercase pi (<i>π</i>), the circle constant.</p>
+          </article>
+          <article>
+            <h3>Same bounds, different action</h3>
+            <p><i>∑</i> adds the terms. <i>∏</i> multiplies them. The index <i>i</i> and bounds work the same way in both.</p>
+          </article>
+        </div>
+
+        <section class="bounds-guide" aria-labelledby="product-expansion-title">
+          <h3 id="product-expansion-title">Let <i>n</i> = 4</h3>
+          <p>Now the index takes the values 1, 2, 3, and 4. Instead of adding them, multiply them:</p>
+          <div class="notation-reading-row compact-reading-row">
+            <div class="notation-reading-part"><span class="notation-reading-label">EXPANDED</span><p class="inline-math">∏<sub>i=1</sub><sup>4</sup> i = 1 × 2 × 3 × 4 = 24</p></div>
+            <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>Multiply the integers from one through four; the result is 24.</p></div>
+          </div>
+        </section>
+
+        <section class="guide-card" aria-labelledby="factorial-title">
+          <p class="eyebrow">FACTORIAL NOTATION</p>
+          <h2 id="factorial-title">The exclamation mark means “factorial.”</h2>
+          <p>For a positive whole number, the factorial multiplies every positive integer from that number down to 1. So <i>4</i>! is another way to write the product we just expanded:</p>
+          <div class="notation-reading-row compact-reading-row">
+            <div class="notation-reading-part"><span class="notation-reading-label">NOTATION</span><p class="inline-math">4! = 4 × 3 × 2 × 1 = 24</p></div>
+            <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>Four factorial equals four times three times two times one.</p></div>
+          </div>
+          <p>In general, <i>n</i>! is the product of all positive integers up to <i>n</i>. By convention, <i>0</i>! = 1; this is the multiplicative identity and makes many counting formulas work cleanly.</p>
+          <div class="notation-reading-row compact-reading-row">
+            <div class="notation-reading-part"><span class="notation-reading-label">NOTATION</span><p class="inline-math">0! = 1</p></div>
+            <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>Zero factorial equals one.</p></div>
+          </div>
+          <p class="math-note"><strong>Later connection:</strong> The Gamma function extends the factorial idea beyond whole-number inputs. We’ll return to it after the basics of factorials are familiar.</p>
+        </section>
+
+        <section class="code-section" aria-labelledby="code-title">
+          <div class="code-heading">
+            <div>
+              <p class="eyebrow">THE SAME STEPS IN PYTHON</p>
+              <h3 id="code-title">Start the product at 1</h3>
+            </div>
+            <span class="language-label">Python</span>
+          </div>
+          <p class="code-intro"><code>n</code> is the upper bound, <code>i</code> is the changing index, and <code>product</code> stores the multiplication so far. We start at 1 because multiplying by 1 leaves a value unchanged; starting at 0 would make every product zero. See the <button class="inline-reference-trigger" type="button" data-reference-target="python-reference-title">Python syntax reminder</button>.</p>
+          <template id="starter-python">n = 4
+i = 1
+product = 1
+
+while i <= n:
+    product = product * i
+    i = i + 1
+
+print(product)</template>
+          <div id="python-editor" class="editor-shell" aria-label="Editable Python example"></div>
+          <div class="run-controls">
+            <button id="run-python" type="button">Run Python</button>
+            <span id="run-status" role="status" aria-live="polite">Runs in your browser. The first run needs an internet connection to load Python.</span>
+          </div>
+          <div class="output-panel">
+            <div class="output-heading">Output</div>
+            <pre id="python-output" aria-live="polite">Click “Run Python” to run the code above.</pre>
+          </div>
+        </section>
+
+        <section class="shorter-section" aria-labelledby="shorter-title">
+          <p class="eyebrow">LESS EXPLICIT, THEN LIBRARY SHORTCUT</p>
+          <h3 id="shorter-title">Keep the same calculation; hide some mechanics</h3>
+          <p>A <code>for</code> loop handles the index update. For everyday Python, the standard library’s <code>math.prod()</code> can multiply an iterable’s values. We show both only after the explicit loop so the shortcut is not magic.</p>
+          <div class="code-variants">
+            <div class="code-variant">
+              <span class="variant-label">A little shorter · <code>for</code> loop</span>
+              <pre class="short-code"><code>n = 4
+product = 1
+
+for i in range(1, n + 1):
+    product = product * i
+
+print(product)</code></pre>
+              <p><code>range</code> stops before its end value, so <code>n + 1</code> includes <code>n</code>.</p>
+              <button class="load-version-button" data-load-code="for-loop-python" type="button">Load this version into the editor</button>
+              <template id="for-loop-python">n = 4
+product = 1
+
+for i in range(1, n + 1):
+    product = product * i
+
+print(product)</template>
+            </div>
+            <div class="code-variant">
+              <span class="variant-label">Concise · standard library</span>
+              <pre class="short-code"><code>import math
+
+n = 4
+product = math.prod(range(1, n + 1))
+print(product)</code></pre>
+              <p><code>math.prod()</code> does the repeated multiplication. It is a standard-library function, not a built-in like <code>sum()</code>.</p>
+              <button class="load-version-button" data-load-code="math-prod-python" type="button">Load this version into the editor</button>
+              <template id="math-prod-python">import math
+
+n = 4
+product = math.prod(range(1, n + 1))
+print(product)</template>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <nav class="page-nav page-nav-bottom" aria-label="Previous and next pages">
+        <a class="page-nav-item" href="index.html#summation-notation"><span class="page-nav-direction">PREVIOUS</span><span>← Summation (∑)</span></a>
+        <span class="page-nav-item page-nav-disabled" aria-disabled="true"><span class="page-nav-direction">NEXT</span><span>End of current lessons</span></span>
+      </nav>
+    </main>
+
+    <footer>Made for learning to unpack the math, one step at a time.</footer>
+  </body>
+</html>

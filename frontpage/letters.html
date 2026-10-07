@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A short guide to common mathematical letters, indices, functions, and special constants.">
+    <title>Letters and notation — Math Refresher</title>
+    <link rel="stylesheet" href="styles.css?v=12">
+    <script src="navigation.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#top">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand-controls">
+          <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="handbook-nav" aria-expanded="true">
+            <span class="menu-icon" aria-hidden="true">☰</span><span>Contents</span>
+          </button>
+          <a class="wordmark" href="index.html">Math, unpacked</a>
+        </div>
+        <span class="header-note">A personal math refresher</span>
+      </div>
+    </header>
+
+    <aside id="handbook-nav" class="sidebar">
+      <nav aria-label="Handbook pages">
+        <p class="sidebar-label">FOUNDATIONS</p>
+        <a class="nav-link" href="letters.html" aria-current="page">Letters and notation</a>
+        <a class="nav-link" href="index.html">Summation (∑)</a>
+        <a class="nav-link" href="products.html">Products and factorials</a>
+        <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
+        <button class="nav-link quick-reference-trigger" type="button">Notation and Python</button>
+      </nav>
+    </aside>
+    <button id="nav-scrim" class="nav-scrim" type="button" aria-label="Close navigation"></button>
+    <dialog id="quick-reference-dialog" class="quick-reference-dialog" aria-labelledby="quick-reference-dialog-title">
+      <div class="quick-reference-dialog-header">
+        <div><span class="notation-reading-label">QUICK REFERENCE</span><h2 id="quick-reference-dialog-title">Notation and Python</h2></div>
+        <div class="dialog-actions"><a href="quick-reference.html" target="_blank" rel="noopener">Open full page ↗</a><button class="dialog-close" type="button" aria-label="Close quick reference">×</button></div>
+      </div>
+      <iframe title="Notation and Python quick reference" data-src="quick-reference.html?embed=1"></iframe>
+    </dialog>
+
+    <main id="top" class="guide-page">
+      <nav class="page-nav page-nav-top" aria-label="Previous and next pages">
+        <span class="page-nav-item page-nav-disabled" aria-disabled="true"><span class="page-nav-direction">PREVIOUS</span><span>Start of the handbook</span></span>
+        <a class="page-nav-item page-nav-next" href="index.html#summation-notation"><span class="page-nav-direction">NEXT</span><span>Summation (∑) →</span></a>
+      </nav>
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">A QUICK GUIDE · MATHEMATICAL LETTERS</p>
+        <h1 id="page-title">Letters are names. Context gives them a job.</h1>
+        <p class="intro-copy">Math uses familiar letters as compact labels for numbers, positions, functions, and other objects. Some letter choices are common conventions—but they are clues, not unbreakable rules.</p>
+      </section>
+
+      <section class="guide-card" aria-labelledby="conventions-title">
+        <h2 id="conventions-title">Common patterns you may recognize</h2>
+        <p>These patterns can help you get oriented. Always check how the author defines the symbols.</p>
+        <div class="table-wrap">
+          <table class="letter-table">
+            <thead>
+              <tr><th scope="col">Letters</th><th scope="col">Often used for</th><th scope="col">Example role</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><i>x</i>, <i>y</i>, <i>z</i></td><td>Variables or unknown values</td><td>The value we want to find or vary</td></tr>
+              <tr><td><i>a</i>, <i>b</i>, <i>c</i></td><td>Constants, parameters, or coefficients</td><td>A value treated as fixed in a particular problem</td></tr>
+              <tr><td><i>i</i>, <i>j</i>, <i>k</i></td><td>Indices or counters</td><td>A position that changes as we move through a sequence</td></tr>
+              <tr><td><i>m</i>, <i>n</i></td><td>Sizes, counts, or bounds</td><td>The number of items or an upper limit</td></tr>
+              <tr><td><i>f</i>, <i>g</i></td><td>Functions</td><td>A rule that takes an input and produces an output</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="guide-callout">
+          <strong>No letters are off-limits.</strong>
+          <p>An author can define <i>x</i> as a vector, use <i>i</i> as an ordinary index, or give a familiar letter a different role. The definitions and surrounding expression determine what a symbol means—not the letter by itself.</p>
+        </aside>
+      </section>
+
+      <section class="guide-card" aria-labelledby="functions-title">
+        <p class="eyebrow">FUNCTION NOTATION</p>
+        <h2 id="functions-title">What does <i>f</i>(<i>x</i>) say?</h2>
+        <div class="notation-reading-row">
+          <div class="notation-reading-part">
+            <span class="notation-reading-label">NOTATION</span>
+            <div class="function-example" aria-label="y equals f of x; f of x equals x plus 2; when x is 3, y equals 5">
+              <span><i>y</i> = <i>f</i>(<i>x</i>) = <i>x</i> + 2</span>
+              <span class="function-step-label">Substitute <i>x</i> = 3</span>
+              <span><i>y</i> = <i>f</i>(3) = 3 + 2 = 5</span>
+            </div>
+          </div>
+          <div class="notation-reading-part spoken-reading">
+            <span class="notation-reading-label">READ IT ALOUD</span>
+            <p><i>y</i> equals <i>f</i> of <i>x</i>. The function adds 2 to its input. When <i>x</i> is 3, <i>y</i> is 5.</p>
+          </div>
+        </div>
+        <ul class="role-list">
+          <li><i>f</i> is the name of the function (the rule).</li>
+          <li><i>x</i> is the input given to the function.</li>
+          <li><i>y</i> names the output, so <i>y</i> = <i>f</i>(<i>x</i>) says that <i>y</i> depends on <i>x</i> through the rule <i>f</i>.</li>
+        </ul>
+        <p>In typeset math, variables and function names such as <i>x</i> and <i>f</i> are commonly italic. Names of standard operations such as <span class="upright-math">sin</span> and <span class="upright-math">log</span> are commonly upright. Typography can help, but definitions still matter.</p>
+      </section>
+
+      <section class="guide-card" aria-labelledby="special-title">
+        <p class="eyebrow">FAMILIAR LETTERS WITH SPECIAL USES</p>
+        <h2 id="special-title">Conventions can overlap</h2>
+        <p>Some letters have especially familiar meanings in particular topics:</p>
+        <ul class="role-list">
+          <li><i>i</i> often labels an index; in complex numbers, <i>i</i> is the imaginary unit.</li>
+          <li><i>e</i> often denotes the number used as the base of natural logarithms (about 2.718).</li>
+          <li><i>π</i> often denotes the circle constant (about 3.142).</li>
+        </ul>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">NOTATION</span><p class="inline-math"><i>i</i><sup>2</sup> = −1</p></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p><i>i</i> squared equals negative one.</p></div>
+        </div>
+        <p>These uses do not make the letters forbidden for other purposes. If a paper uses the same symbol in different roles, its definitions and context should make the intended meaning clear.</p>
+      </section>
+
+      <section id="probability-notation" class="guide-card" aria-labelledby="probability-title">
+        <p class="eyebrow">A PREVIEW · PROBABILITY NOTATION</p>
+        <h2 id="probability-title">Probability notation</h2>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">NOTATION</span><p class="inline-math"><span class="upright-math">P</span>(<i>X</i> = <i>k</i>)</p></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>The probability that <i>X</i> equals <i>k</i>.</p></div>
+        </div>
+        <p><span class="upright-math">P</span>(<i>A</i>) is commonly read as “the probability that event <i>A</i> happens.” An uppercase letter such as <i>X</i> often names a random variable—a value that depends on the outcome of a chance process. So <span class="upright-math">P</span>(<i>X</i> = <i>k</i>) means “the probability that <i>X</i> has the value <i>k</i>.”</p>
+        <p>This is only a quick preview; probability has its own notation and ideas to learn. In the <a href="index.html#summation-notation">summation example</a>, this notation shows what probabilities are being added.</p>
+      </section>
+
+      <section class="guide-card" aria-labelledby="objects-title">
+        <p class="eyebrow">LETTERS DO NOT TELL THE WHOLE TYPE</p>
+        <h2 id="objects-title">Scalar, vector, or matrix?</h2>
+        <p>A symbol does not tell us by itself what kind of mathematical object it represents. A scalar is a single value; a vector is a list of components; a matrix is a grid of values. Authors often use bold letters for vectors and capital letters for matrices, but conventions vary—look for the definitions.</p>
+      </section>
+
+      <aside class="back-link-card">
+        <strong>See the index in action</strong>
+        <p>In the summation <span class="inline-math">∑<sub><i>i</i>=1</sub><sup><i>n</i></sup> <i>a</i><sub><i>i</i></sub></span>, <i>i</i> is the index, <i>n</i> is the upper bound, and <i>a</i><sub>i</sub> is the term added at each step.</p>
+        <a href="index.html#summation-notation">Return to the summation lesson →</a>
+      </aside>
+      <nav class="page-nav page-nav-bottom" aria-label="Previous and next pages">
+        <span class="page-nav-item page-nav-disabled" aria-disabled="true"><span class="page-nav-direction">PREVIOUS</span><span>Start of the handbook</span></span>
+        <a class="page-nav-item page-nav-next" href="index.html#summation-notation"><span class="page-nav-direction">NEXT</span><span>Summation (∑) →</span></a>
+      </nav>
+    </main>
+
+    <footer>Made for learning to unpack the math, one step at a time.</footer>
+  </body>
+</html>

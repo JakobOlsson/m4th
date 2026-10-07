@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A personal, code-first math refresher for unpacking notation step by step.">
+    <title>Math, unpacked — Math Refresher</title>
+    <link rel="stylesheet" href="styles.css?v=12">
+    <script src="editor.bundle.js" defer></script>
+    <script src="run-python.js" defer></script>
+    <script src="navigation.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#top">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand-controls">
+          <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="handbook-nav" aria-expanded="true">
+            <span class="menu-icon" aria-hidden="true">☰</span><span>Contents</span>
+          </button>
+          <a class="wordmark" href="index.html">Math, unpacked</a>
+        </div>
+        <span class="header-note">A personal math refresher</span>
+      </div>
+    </header>
+
+    <aside id="handbook-nav" class="sidebar">
+      <nav aria-label="Handbook pages">
+        <p class="sidebar-label">FOUNDATIONS</p>
+        <a class="nav-link" href="letters.html">Letters and notation</a>
+        <a class="nav-link" href="index.html" aria-current="page">Summation (∑)</a>
+        <a class="nav-link" href="products.html">Products and factorials</a>
+        <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
+        <button class="nav-link quick-reference-trigger" type="button">Notation and Python</button>
+      </nav>
+    </aside>
+    <button id="nav-scrim" class="nav-scrim" type="button" aria-label="Close navigation"></button>
+    <dialog id="quick-reference-dialog" class="quick-reference-dialog" aria-labelledby="quick-reference-dialog-title">
+      <div class="quick-reference-dialog-header">
+        <div><span class="notation-reading-label">QUICK REFERENCE</span><h2 id="quick-reference-dialog-title">Notation and Python</h2></div>
+        <div class="dialog-actions"><a href="quick-reference.html" target="_blank" rel="noopener">Open full page ↗</a><button class="dialog-close" type="button" aria-label="Close quick reference">×</button></div>
+      </div>
+      <iframe title="Notation and Python quick reference" data-src="quick-reference.html?embed=1"></iframe>
+    </dialog>
+
+    <main id="top">
+      <nav class="page-nav page-nav-top" aria-label="Previous and next pages">
+        <a class="page-nav-item" href="letters.html"><span class="page-nav-direction">PREVIOUS</span><span>← Letters and notation</span></a>
+        <a class="page-nav-item page-nav-next" href="products.html"><span class="page-nav-direction">NEXT</span><span>Products and factorials →</span></a>
+      </nav>
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">READ IT · EXPAND IT · UNDERSTAND IT</p>
+        <h1 id="page-title">Math notation is compressed thinking.</h1>
+        <p class="intro-copy">This is a place to slow down, read the symbols aloud, and unpack them into steps you can follow—and, when useful, work through in Python.</p>
+      </section>
+
+      <section id="summation-notation" class="lesson" aria-labelledby="lesson-title">
+        <div class="lesson-heading">
+          <p class="eyebrow">FIRST NOTATION · SUMMATION SIGN (∑)</p>
+          <h2 id="lesson-title">A sum is an instruction to add terms.</h2>
+          <p>The lower limit gives the starting index; the upper limit gives the last index included. The expression beside the sum tells us what to add for each index.</p>
+        </div>
+
+        <div class="notation-reading-row">
+          <div class="notation-reading-part">
+            <span class="notation-reading-label">NOTATION</span>
+            <div class="formula-card" aria-label="The displayed form of the sum of i from i equals 1 through n">
+              <span class="limits-above"><i>n</i></span>
+              <span class="operator-symbol">∑</span>
+              <span class="limits-below"><i>i</i> = 1</span>
+              <span class="summand"><i>i</i></span>
+            </div>
+          </div>
+          <div class="notation-reading-part spoken-reading">
+            <span class="notation-reading-label">READ IT ALOUD</span>
+            <p>Add each value of <i>i</i> from one through <i>n</i>.</p>
+          </div>
+        </div>
+
+        <aside class="notation-variants">
+          <strong>Same notation, different layout</strong>
+          <p>The summation sign <i>∑</i> is based on the capital Greek letter Sigma (<i>Σ</i>). In displayed equations, its limits are commonly placed above and below. Inline, they are often placed to the right to save space:</p>
+          <p class="inline-variant"><span>Inline:</span> ∑<sub><i>i</i>=1</sub><sup><i>n</i></sup> <i>a</i><sub><i>i</i></sub></p>
+          <p class="variant-caption">Both layouts mean: add the terms <i>a</i><sub>i</sub> for indices from 1 through <i>n</i>. Typesetting conventions can vary.</p>
+        </aside>
+
+        <div class="explain-grid">
+          <article>
+            <h3>The bounds</h3>
+            <p><i>i</i> = 1 is where the index starts. <i>n</i> is where it stops. If <i>n</i> = 4, the index takes the values 1, 2, 3, and 4.</p>
+          </article>
+          <article id="sum-index-term">
+            <h3>Index vs. term</h3>
+            <p>Here, <i>i</i> is both the index and the value being added. That is not always true: in ∑<sub>i=1</sub><sup>n</sup> <i>a</i><sub>i</sub>, <i>i</i> selects a position and <i>a</i><sub>i</sub> is the term added.</p>
+          </article>
+        </div>
+
+        <section class="bounds-guide" aria-labelledby="bounds-guide-title">
+          <h3 id="bounds-guide-title">The starting bound depends on what you want to add</h3>
+          <p>The limits are part of the instruction: choose the first and last indices that belong in the sum. They are not always 1 and <i>n</i>.</p>
+          <div class="bound-examples">
+            <article>
+              <span>Start at 0:</span>
+              <p>∑<sub>i=0</sub><sup>3</sup> <i>a</i><sub>i</sub> = <i>a</i><sub>0</sub> + <i>a</i><sub>1</sub> + <i>a</i><sub>2</sub> + <i>a</i><sub>3</sub></p>
+              <p class="bound-readout">Read aloud: Add <i>a</i><sub>0</sub>, then <i>a</i><sub>1</sub>, <i>a</i><sub>2</sub>, and <i>a</i><sub>3</sub>.</p>
+            </article>
+            <article>
+              <span>Start at 2:</span>
+              <p>∑<sub>i=2</sub><sup>4</sup> <i>a</i><sub>i</sub> = <i>a</i><sub>2</sub> + <i>a</i><sub>3</sub> + <i>a</i><sub>4</sub></p>
+              <p class="bound-readout">Read aloud: Add <i>a</i><sub>2</sub>, then <i>a</i><sub>3</sub> and <i>a</i><sub>4</sub>.</p>
+            </article>
+          </div>
+          <p>Here is a probability preview: <span class="inline-math">P(A)</span> means “the probability that <i>A</i> happens.” Let <i>X</i> be a count that can be any integer from 0 through <i>n</i>; <span class="inline-math">P(X = k)</span> is the probability that the count equals <i>k</i>. For a quick guide to this notation, see <a href="letters.html#probability-notation">Probability notation</a>.</p>
+          <p>For “at least 2,” add the probabilities for outcomes 2 through <i>n</i>:</p>
+          <div class="notation-reading-row compact-reading-row">
+            <div class="notation-reading-part"><span class="notation-reading-label">NOTATION</span><p class="inline-math">P(X ≥ 2) = ∑<sub>k=2</sub><sup>n</sup> P(X = k)</p></div>
+            <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>The probability that <i>X</i> is at least 2 is the sum of the probabilities that <i>X</i> equals 2, 3, and so on through <i>n</i>.</p></div>
+          </div>
+          <p class="expansion-note">Expanded, that is <span class="inline-math">P(X=2) + P(X=3) + ⋯ + P(X=n)</span>. “Exactly 2” is just <span class="inline-math">P(X = 2)</span>.</p>
+          <p>By contrast, “at most 2” uses outcomes 0 through 2:</p>
+          <div class="notation-reading-row compact-reading-row">
+            <div class="notation-reading-part"><span class="notation-reading-label">NOTATION</span><p class="inline-math">P(X ≤ 2) = ∑<sub>k=0</sub><sup>2</sup> P(X=k)</p></div>
+            <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>The probability that <i>X</i> is at most 2 is the sum of the probabilities that <i>X</i> equals 0, 1, or 2.</p></div>
+          </div>
+          <p>For separated outcomes, sum over a set of indices rather than an interval.</p>
+        </section>
+
+        <div class="expansion">
+          <div>
+            <p class="eyebrow">TRY A SMALL VALUE</p>
+            <h3>Let <i>n</i> = 4</h3>
+          </div>
+          <p class="expanded-formula">∑<sub>i=1</sub><sup>4</sup> i = 1 + 2 + 3 + 4 = <strong>10</strong></p>
+        </div>
+
+        <section class="code-section" aria-labelledby="code-title">
+          <div class="code-heading">
+            <div>
+              <p class="eyebrow">THE SAME STEPS IN PYTHON</p>
+              <h3 id="code-title">Build the total one step at a time</h3>
+            </div>
+            <span class="language-label">Python</span>
+          </div>
+          <p class="code-intro"><code>n</code> is the upper bound, <code>i</code> is the changing index, and <code>total</code> keeps the sum so far. The condition <code>i &lt;= n</code> includes the final value, <code>n</code>. See the <button class="inline-reference-trigger" type="button" data-reference-target="python-reference-title">Python syntax reminder</button>.</p>
+          <div id="python-editor" class="editor-shell" aria-label="Editable Python example"></div>
+          <div class="run-controls">
+            <button id="run-python" type="button">Run Python</button>
+            <span id="run-status" role="status" aria-live="polite">Runs in your browser. The first run needs an internet connection to load Python.</span>
+          </div>
+          <div class="output-panel">
+            <div class="output-heading">Output</div>
+            <pre id="python-output" aria-live="polite">Click “Run Python” to run the code above.</pre>
+          </div>
+        </section>
+
+        <section class="shorter-section" aria-labelledby="shorter-title">
+          <p class="eyebrow">THE SHORTER, IDIOMATIC PYTHON VERSION</p>
+          <h3 id="shorter-title">Let Python do the repeated addition</h3>
+          <p>For a simple sum over a sequence, Python’s built-in <code>sum()</code> function is a concise way to add the values:</p>
+          <pre class="short-code"><code>n = 4
+i = 1
+total = sum(range(i, n + 1))
+print(total)</code></pre>
+          <p><code>range(i, n + 1)</code> produces the index values from <code>i</code> through <code>n</code>. Python stops before the range’s end value, so we use <code>n + 1</code> to include <code>n</code>. Then <code>sum()</code> adds those values. It’s the same calculation as the loop above, with the repeated addition tucked into a built-in function.</p>
+          <button class="load-version-button" data-load-code="shorter-python" type="button">Load this version into the editor</button>
+          <template id="shorter-python">n = 4
+i = 1
+total = sum(range(i, n + 1))
+print(total)</template>
+        </section>
+
+        <aside class="later-note">
+          <strong>Where this leads</strong>
+          <p>The same summation notation appears in probability, dot products, and matrix multiplication. We’ll return to those later; for now, we’re practicing how to read the sum itself. The handbook will use English mathematical terminology throughout.</p>
+        </aside>
+      </section>
+      <nav class="page-nav page-nav-bottom" aria-label="Previous and next pages">
+        <a class="page-nav-item" href="letters.html"><span class="page-nav-direction">PREVIOUS</span><span>← Letters and notation</span></a>
+        <a class="page-nav-item page-nav-next" href="products.html"><span class="page-nav-direction">NEXT</span><span>Products and factorials →</span></a>
+      </nav>
+    </main>
+
+    <footer>Made for learning to unpack the math, one step at a time.</footer>
+  </body>
+</html>
