@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Read expected-value notation aloud, expand a weighted sum, and calculate a die's exact expectation in Python.">
+    <title>Expected value — Math Refresher</title>
+    <link rel="stylesheet" href="styles.css?v=19">
+    <script src="editor.bundle.js?v=2" defer></script>
+    <script src="run-python.js?v=7" defer></script>
+    <script src="navigation.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#top">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand-controls">
+          <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="handbook-nav" aria-expanded="true">
+            <span class="menu-icon" aria-hidden="true">☰</span><span>Contents</span>
+          </button>
+          <a class="wordmark" href="letters.html">Math, unpacked</a>
+        </div>
+        <span class="header-note">A personal math refresher</span>
+      </div>
+    </header>
+
+    <aside id="handbook-nav" class="sidebar">
+      <nav aria-label="Handbook pages">
+        <p class="sidebar-label">FOUNDATIONS</p>
+        <a class="nav-link" href="letters.html">Letters and notation</a>
+        <a class="nav-link" href="index.html">Summation (∑)</a>
+        <a class="nav-link" href="products.html">Products and factorials</a>
+        <a class="nav-link" href="probability.html">Probability</a>
+        <a class="nav-link" href="expectation.html" aria-current="page">Expected value</a>
+        <a class="nav-link" href="probability-bounds.html">Probability bounds</a>
+        <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
+        <button class="nav-link quick-reference-trigger" type="button">Notation and Python</button>
+      </nav>
+    </aside>
+    <button id="nav-scrim" class="nav-scrim" type="button" aria-label="Close navigation"></button>
+    <dialog id="quick-reference-dialog" class="quick-reference-dialog" aria-labelledby="quick-reference-dialog-title">
+      <div class="quick-reference-dialog-header">
+        <div><span class="notation-reading-label">QUICK REFERENCE</span><h2 id="quick-reference-dialog-title">Notation and Python</h2></div>
+        <div class="dialog-actions"><a href="quick-reference.html" target="_blank" rel="noopener">Open full page ↗</a><button class="dialog-close" type="button" aria-label="Close quick reference">×</button></div>
+      </div>
+      <iframe title="Notation and Python quick reference" data-src="quick-reference.html?embed=1"></iframe>
+    </dialog>
+
+    <main id="top">
+      <nav class="page-nav page-nav-top" aria-label="Previous and next pages">
+        <a class="page-nav-item" href="probability.html"><span class="page-nav-direction">PREVIOUS</span><span>← Probability</span></a>
+        <a class="page-nav-item page-nav-next" href="probability-bounds.html"><span class="page-nav-direction">NEXT</span><span>Probability bounds →</span></a>
+      </nav>
+
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">EXPECTED VALUE · A WEIGHTED AVERAGE</p>
+        <h1 id="page-title">A likely long-run average, not a promised outcome.</h1>
+        <p class="intro-copy">Probability tells us the chance of each result. Expected value combines each result with its chance to describe the distribution’s average.</p>
+      </section>
+
+      <section id="expected-value-notation" class="lesson" aria-labelledby="lesson-title">
+        <div class="lesson-heading">
+          <h2 id="lesson-title">Weight each outcome by its probability.</h2>
+          <p>Roll one fair six-sided die. Let <i>X</i> be the number shown. Each result <i>k</i> from 1 through 6 has probability 1/6.</p>
+        </div>
+
+        <div class="notation-reading-row">
+          <div class="notation-reading-part">
+            <span class="notation-reading-label">NOTATION</span>
+            <p class="inline-math"><span class="upright-math">E</span>[<i>X</i>] = ∑<sub>k=1</sub><sup>6</sup> <i>k</i><span class="upright-math">P</span>(<i>X</i> = <i>k</i>)</p>
+            <p><span class="upright-math">E</span>[<i>X</i>] names the expected value of <i>X</i>.</p>
+          </div>
+          <div class="notation-reading-part spoken-reading">
+            <span class="notation-reading-label">READ IT ALOUD</span>
+            <p>“The expected value of X is the sum, as k goes from one through six, of k times the probability that X equals k.”</p>
+          </div>
+        </div>
+
+        <aside class="guide-callout">
+          <strong>What the instruction does</strong>
+          <p>For each possible result, multiply the result by its probability. Then add those weighted results. Because the die is fair, each weight here is 1/6.</p>
+        </aside>
+
+        <section class="summand-expansion" aria-labelledby="expectation-expansion-title">
+          <h3 id="expectation-expansion-title">Substitute each outcome into the term</h3>
+          <p>The whole summand is <span class="inline-math"><i>k</i><span class="upright-math">P</span>(<i>X</i> = <i>k</i>)</span>. Substitute each value of <i>k</i>, just as we did with the probability term in the previous lesson:</p>
+          <div class="table-wrap">
+            <table class="letter-table quick-table">
+              <thead><tr><th scope="col">Outcome k</th><th scope="col">Probability P(X = k)</th><th scope="col">Weighted term k P(X = k)</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>1/6</td><td>1 × 1/6</td></tr>
+                <tr><td>2</td><td>1/6</td><td>2 × 1/6</td></tr>
+                <tr><td>3</td><td>1/6</td><td>3 × 1/6</td></tr>
+                <tr><td>4</td><td>1/6</td><td>4 × 1/6</td></tr>
+                <tr><td>5</td><td>1/6</td><td>5 × 1/6</td></tr>
+                <tr><td>6</td><td>1/6</td><td>6 × 1/6</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part">
+            <span class="notation-reading-label">EXPANDED, THEN EVALUATED</span>
+            <p class="inline-math"><span class="upright-math">E</span>[<i>X</i>] = 1×1/6 + 2×1/6 + 3×1/6 + 4×1/6 + 5×1/6 + 6×1/6 = 21/6 = 7/2 = 3.5</p>
+          </div>
+          <div class="notation-reading-part spoken-reading">
+            <span class="notation-reading-label">READ IT ALOUD</span>
+            <p>“Add one times one sixth, two times one sixth, and so on through six times one sixth. The total is twenty-one sixths, or seven halves, which is three point five.”</p>
+          </div>
+        </div>
+
+        <section class="bounds-guide" aria-labelledby="expected-value-meaning-title">
+          <h3 id="expected-value-meaning-title">The expected value need not be a possible roll.</h3>
+          <p>A single die roll can never be 3.5. The expected value is the probability-weighted average of possible results. Over many independent rolls, the observed average tends to settle near 3.5, though any finite batch can be above or below it.</p>
+          <p class="math-note">This example does not assume a normal distribution: one die roll has six equally likely whole-number outcomes. A normal distribution is a different, continuous, bell-shaped model. Expected value applies to both, though a continuous distribution uses an integral instead of this finite sum. Why averages of many rolls can be approximately normal is a separate topic.</p>
+        </section>
+
+        <section class="code-section" aria-labelledby="code-title">
+          <div class="code-heading">
+            <div>
+              <p class="eyebrow">CALCULATE THE WEIGHTED SUM IN PYTHON</p>
+              <h3 id="code-title">Keep the fractions exact</h3>
+            </div>
+            <span class="language-label">Python</span>
+          </div>
+          <p class="code-intro">The code follows the equation’s names: <code>k</code> is a possible value of <i>X</i>, <code>p_x_equals_k</code> represents <span class="inline-math"><span class="upright-math">P</span>(<i>X</i> = <i>k</i>)</span>, and <code>weighted_term</code> is <span class="inline-math"><i>k</i><span class="upright-math">P</span>(<i>X</i> = <i>k</i>)</span>. The comment shows one full substitution. See the <button class="inline-reference-trigger" type="button" data-reference-target="python-reference-title">Python syntax reminder</button>.</p>
+          <template id="starter-python">from fractions import Fraction
+
+expected_value = Fraction(0, 1)  # E[X]
+
+for k in range(1, 7):
+    p_x_equals_k = Fraction(1, 6)  # P(X = k)
+    # Example: k = roll = 6, so X = 6.
+    weighted_term = k * p_x_equals_k  # k * P(X = k)
+    expected_value = expected_value + weighted_term
+
+print("Exact expected value:", expected_value)
+print("As a decimal:", float(expected_value))</template>
+          <div id="python-editor" class="editor-shell" aria-label="Editable Python example"></div>
+          <div class="run-controls">
+            <button id="run-python" type="button">Run Python</button>
+            <button id="reset-python" type="button">Reset to starter code</button>
+            <span id="run-status" role="status" aria-live="polite">Runs in your browser. The first run needs an internet connection to load Python.</span>
+          </div>
+          <div class="output-panel">
+            <div class="output-heading">Output</div>
+            <pre id="python-output" aria-live="polite">Click “Run Python” to run the code above.</pre>
+          </div>
+        </section>
+
+        <section class="shorter-section" aria-labelledby="fair-die-shortcut-title">
+          <p class="eyebrow">A SHORTCUT THAT DEPENDS ON THIS MODEL</p>
+          <h3 id="fair-die-shortcut-title">For a fair die, this is also the ordinary average.</h3>
+          <p>Because all six outcomes have the same probability, their expected value is their arithmetic mean. This shortcut would not work for an unfair die; the weighted-sum formula is the general instruction.</p>
+          <pre class="short-code"><code>from fractions import Fraction
+
+possible_k_values = range(1, 7)  # possible values of k
+expected_value = Fraction(sum(possible_k_values), len(possible_k_values))  # E[X] for fair die
+print(expected_value)  # 7/2</code></pre>
+          <button class="load-version-button" data-load-code="mean-shortcut-python" type="button">Load the fair-die shortcut into the editor</button>
+          <template id="mean-shortcut-python">from fractions import Fraction
+
+possible_k_values = range(1, 7)  # possible values of k
+expected_value = Fraction(sum(possible_k_values), len(possible_k_values))
+print(expected_value)  # E[X], since these outcomes are equally likely
+print(float(expected_value))</template>
+        </section>
+
+        <section class="guide-card" aria-labelledby="sample-average-title">
+          <p class="eyebrow">CHECK THE LONG-RUN AVERAGE</p>
+          <h2 id="sample-average-title">A simulation estimates the expected value too.</h2>
+          <p>The exact expected value is 3.5. Repeatedly roll the die and average the results to see the sample mean fluctuate around that theoretical value. This is a simulation check, not the derivation of the exact expectation.</p>
+          <div class="table-wrap">
+            <table class="letter-table quick-table">
+              <thead><tr><th scope="col">Rolls</th><th scope="col">Simulated average</th><th scope="col">Exact expected value</th></tr></thead>
+              <tbody>
+                <tr><td>100</td><td>3.4</td><td>3.5</td></tr>
+                <tr><td>1,000</td><td>3.575</td><td>3.5</td></tr>
+                <tr><td>10,000</td><td>3.4982</td><td>3.5</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <pre class="short-code"><code>import random
+
+rng = random.Random(2027)
+total = 0  # running sum of x values
+for trial in range(1, 10_001):
+    x = rng.randint(1, 6)  # x = observed X
+    total = total + x
+    if trial in (100, 1_000, 10_000):
+        print("Rolls:", trial, "average:", round(total / trial, 4))</code></pre>
+          <button class="load-version-button" data-load-code="sample-average-python" type="button">Load the simulation into the editor</button>
+          <template id="sample-average-python">import random
+
+rng = random.Random(2027)
+total = 0  # running sum of x values
+for trial in range(1, 10_001):
+    x = rng.randint(1, 6)  # x = observed X
+    total = total + x
+    if trial in (100, 1_000, 10_000):
+        print("Rolls:", trial, "average:", round(total / trial, 4))</template>
+          <p class="math-note"><strong>Interpretation:</strong> the observed averages need not move closer at every checkpoint. The expected value describes the distribution; it is not a promise about one short run.</p>
+        </section>
+
+        <aside class="later-note">
+          <strong>Where this leads</strong>
+          <p>Expected values appear in games, risk analysis, and machine learning. Later, we can calculate the expectation of a weighted or non-uniform distribution and study variance—the spread around the expected value.</p>
+        </aside>
+      </section>
+
+      <nav class="page-nav page-nav-bottom" aria-label="Previous and next pages">
+        <a class="page-nav-item" href="probability.html"><span class="page-nav-direction">PREVIOUS</span><span>← Probability</span></a>
+        <a class="page-nav-item page-nav-next" href="probability-bounds.html"><span class="page-nav-direction">NEXT</span><span>Probability bounds →</span></a>
+      </nav>
+    </main>
+
+    <footer>Made for learning to unpack the math, one step at a time.</footer>
+  </body>
+</html>

@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Read basic probability notation aloud, understand events and equally likely outcomes, and count an exact probability in Python.">
+    <title>Probability notation — Math Refresher</title>
+    <link rel="stylesheet" href="styles.css?v=19">
+    <script src="editor.bundle.js?v=2" defer></script>
+    <script src="run-python.js?v=7" defer></script>
+    <script src="navigation.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#top">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand-controls">
+          <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="handbook-nav" aria-expanded="true">
+            <span class="menu-icon" aria-hidden="true">☰</span><span>Contents</span>
+          </button>
+          <a class="wordmark" href="letters.html">Math, unpacked</a>
+        </div>
+        <span class="header-note">A personal math refresher</span>
+      </div>
+    </header>
+
+    <aside id="handbook-nav" class="sidebar">
+      <nav aria-label="Handbook pages">
+        <p class="sidebar-label">FOUNDATIONS</p>
+        <a class="nav-link" href="letters.html">Letters and notation</a>
+        <a class="nav-link" href="index.html">Summation (∑)</a>
+        <a class="nav-link" href="products.html">Products and factorials</a>
+        <a class="nav-link" href="probability.html" aria-current="page">Probability</a>
+        <a class="nav-link" href="expectation.html">Expected value</a>
+        <a class="nav-link" href="probability-bounds.html">Probability bounds</a>
+        <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
+        <button class="nav-link quick-reference-trigger" type="button">Notation and Python</button>
+      </nav>
+    </aside>
+    <button id="nav-scrim" class="nav-scrim" type="button" aria-label="Close navigation"></button>
+    <dialog id="quick-reference-dialog" class="quick-reference-dialog" aria-labelledby="quick-reference-dialog-title">
+      <div class="quick-reference-dialog-header">
+        <div><span class="notation-reading-label">QUICK REFERENCE</span><h2 id="quick-reference-dialog-title">Notation and Python</h2></div>
+        <div class="dialog-actions"><a href="quick-reference.html" target="_blank" rel="noopener">Open full page ↗</a><button class="dialog-close" type="button" aria-label="Close quick reference">×</button></div>
+      </div>
+      <iframe title="Notation and Python quick reference" data-src="quick-reference.html?embed=1"></iframe>
+    </dialog>
+
+    <main id="top">
+      <nav class="page-nav page-nav-top" aria-label="Previous and next pages">
+        <a class="page-nav-item" href="products.html"><span class="page-nav-direction">PREVIOUS</span><span>← Products and factorials</span></a>
+        <a class="page-nav-item page-nav-next" href="expectation.html"><span class="page-nav-direction">NEXT</span><span>Expected value →</span></a>
+      </nav>
+
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">PROBABILITY · EVENTS AND OUTCOMES</p>
+        <h1 id="page-title">Probability asks how likely an event is.</h1>
+        <p class="intro-copy">Start with a fair six-sided die. Name the outcomes we care about, compare them with all possible outcomes, and then read the probability notation aloud.</p>
+      </section>
+
+      <section id="probability-notation" class="lesson" aria-labelledby="lesson-title">
+        <div class="lesson-heading">
+          <h2 id="lesson-title">Name the event before calculating its chance.</h2>
+          <p>Suppose we roll one fair six-sided die once. Each face—1, 2, 3, 4, 5, or 6—is equally likely.</p>
+        </div>
+
+        <div class="explain-grid">
+          <article>
+            <h3>Outcome</h3>
+            <p>One possible result of the roll, such as 4.</p>
+          </article>
+          <article>
+            <h3>Event</h3>
+            <p>A result, or collection of results, we care about. Let <i>E</i> be the event “the roll is even”: its outcomes are 2, 4, and 6.</p>
+          </article>
+        </div>
+
+        <div class="notation-reading-row">
+          <div class="notation-reading-part">
+            <span class="notation-reading-label">NOTATION</span>
+            <p class="inline-math"><span class="upright-math">P</span>(<i>E</i>) = <span class="fraction-inline"><span>3</span><span>6</span></span> = <span class="fraction-inline"><span>1</span><span>2</span></span></p>
+            <p><i>E</i> is the event of rolling an even number.</p>
+          </div>
+          <div class="notation-reading-part spoken-reading">
+            <span class="notation-reading-label">READ IT ALOUD</span>
+            <p>“The probability of event E is three out of six, which is one half.”</p>
+          </div>
+        </div>
+
+        <aside class="guide-callout">
+          <strong>What the fraction means here</strong>
+          <p>There are 3 favorable outcomes (2, 4, 6) out of 6 possible outcomes. Because the die is fair, all six outcomes have the same chance, so the probability is <span class="inline-math">3/6 = 1/2</span>.</p>
+        </aside>
+
+        <section class="bounds-guide" aria-labelledby="probability-range-title">
+          <h3 id="probability-range-title">A probability is between 0 and 1</h3>
+          <p>A probability of 0 means the event cannot happen; a probability of 1 means it is certain. Here, rolling a 7 has probability 0, and rolling one of the six faces has probability 1.</p>
+          <p>Probabilities are usually written on the 0-to-1 scale; multiply by 100 to express one as a percentage. For example, <span class="inline-math">0.5 = 50%</span>, while <span class="inline-math">1/3 ≈ 0.333… ≈ 33.3%</span>. A probability can be any value in between, not just a whole percentage. Python floats approximate many such values; <code>Fraction</code> can keep rational values like <span class="inline-math">1/3</span> exact.</p>
+        </section>
+
+        <section class="guide-card" aria-labelledby="random-variable-title">
+          <p class="eyebrow">FROM AN EVENT TO PROBABILITY NOTATION</p>
+          <h2 id="random-variable-title">Use <i>X</i> to name the roll.</h2>
+          <p>Let <i>X</i> be the number shown on the die. Then the event “roll a 4” can be written <span class="inline-math"><span class="upright-math">P</span>(<i>X</i> = 4)</span>. It has one favorable outcome out of six:</p>
+          <div class="notation-reading-row compact-reading-row">
+            <div class="notation-reading-part">
+              <span class="notation-reading-label">NOTATION</span>
+              <p class="inline-math"><span class="upright-math">P</span>(<i>X</i> = 4) = 1/6</p>
+            </div>
+            <div class="notation-reading-part spoken-reading">
+              <span class="notation-reading-label">READ IT ALOUD</span>
+              <p>“The probability that X equals 4 is one out of six.”</p>
+            </div>
+          </div>
+          <p><i>X</i> is a random variable: a name for the numerical result of a chance process. Here it can take the values 1 through 6.</p>
+        </section>
+
+        <section class="guide-card" aria-labelledby="sum-probabilities-title">
+          <p class="eyebrow">CONNECT TO SUMMATION</p>
+          <h2 id="sum-probabilities-title">An event with several outcomes adds their probabilities.</h2>
+          <p>“At least 5” means that <i>X</i> is 5 or 6. The compact notation says to add the probability term for each index value:</p>
+          <div class="notation-reading-row compact-reading-row">
+            <div class="notation-reading-part">
+              <span class="notation-reading-label">NOTATION</span>
+              <p class="inline-math"><span class="upright-math">P</span>(<i>X</i> ≥ 5) = ∑<sub>k=5</sub><sup>6</sup> <span class="upright-math">P</span>(<i>X</i> = k)</p>
+            </div>
+            <div class="notation-reading-part spoken-reading">
+              <span class="notation-reading-label">READ IT ALOUD</span>
+              <p>“The probability that X is at least 5 is the sum, as k goes from 5 through 6, of the probability that X equals k.”</p>
+            </div>
+          </div>
+          <div class="summand-expansion" aria-labelledby="summand-expansion-title">
+            <h3 id="summand-expansion-title">Substitute each index into the whole term</h3>
+            <p>The <strong>summand</strong>—the full expression being added—is <span class="inline-math"><span class="upright-math">P</span>(<i>X</i> = k)</span>. The index <i>k</i> takes the values 5 and 6. Substitute each value for <i>k</i> in that entire expression:</p>
+            <div class="summand-expansion-grid">
+              <article>
+                <strong>When <i>k</i> = 5</strong>
+                <p><span class="inline-math"><span class="upright-math">P</span>(<i>X</i> = k)</span> becomes <span class="inline-math"><span class="upright-math">P</span>(<i>X</i> = 5)</span>.</p>
+                <p>For a fair die, this term is 1/6.</p>
+              </article>
+              <article>
+                <strong>When <i>k</i> = 6</strong>
+                <p><span class="inline-math"><span class="upright-math">P</span>(<i>X</i> = k)</span> becomes <span class="inline-math"><span class="upright-math">P</span>(<i>X</i> = 6)</span>.</p>
+                <p>For a fair die, this term is 1/6.</p>
+              </article>
+            </div>
+          </div>
+          <div class="notation-reading-row compact-reading-row">
+            <div class="notation-reading-part">
+              <span class="notation-reading-label">EXPANDED, THEN EVALUATED</span>
+              <p class="inline-math">∑<sub>k=5</sub><sup>6</sup> <span class="upright-math">P</span>(<i>X</i> = k) = <span class="upright-math">P</span>(<i>X</i> = 5) + <span class="upright-math">P</span>(<i>X</i> = 6) = 1/6 + 1/6 = 1/3</p>
+            </div>
+            <div class="notation-reading-part spoken-reading">
+              <span class="notation-reading-label">READ IT ALOUD</span>
+              <p>“The sum expands to the probability that X is 5 plus the probability that X is 6. That is one sixth plus one sixth, which is one third.”</p>
+            </div>
+          </div>
+          <p>This is the same bounds-and-term process as the <a href="index.html#summation-notation">summation lesson</a>, but the whole term here is an expression involving a probability—not just the index itself.</p>
+          <p class="math-note"><strong>Scope note:</strong> “favorable outcomes divided by all outcomes” works when the possible outcomes are finite and equally likely, as with a fair die. If outcomes do not have equal chances, add the probabilities of the outcomes in the event instead.</p>
+        </section>
+
+        <section class="code-section" aria-labelledby="code-title">
+          <div class="code-heading">
+            <div>
+              <p class="eyebrow">COUNT THE OUTCOMES IN PYTHON</p>
+              <h3 id="code-title">Enumerate the die faces and count the event</h3>
+            </div>
+            <span class="language-label">Python</span>
+          </div>
+          <p class="code-intro">The code follows the probability sum’s symbols: <code>k</code> is a possible value of <i>X</i>, and <code>p_x_at_least_5</code> represents <span class="inline-math"><span class="upright-math">P</span>(<i>X</i> ≥ 5)</span>. The comment shows a concrete match: <code>k = roll = 6</code>. Python’s <code>range(1, 7)</code> produces 1 through 6 because it stops before 7. The favorable/all count ratio is valid here because the die is fair. See the <button class="inline-reference-trigger" type="button" data-reference-target="python-reference-title">Python syntax reminder</button>.</p>
+          <template id="starter-python">possible_k_values = range(1, 7)
+favorable_outcomes = 0
+total_outcomes = 0
+
+for k in possible_k_values:
+    # Example: k = roll = 6, so X = 6.
+    total_outcomes = total_outcomes + 1
+    if k >= 5:  # event X >= 5
+        favorable_outcomes = favorable_outcomes + 1
+
+p_x_at_least_5 = favorable_outcomes / total_outcomes  # P(X >= 5)
+print("Favorable outcomes:", favorable_outcomes)
+print("All outcomes:", total_outcomes)
+print("P(X >= 5), as a decimal:", p_x_at_least_5)</template>
+          <div id="python-editor" class="editor-shell" aria-label="Editable Python example"></div>
+          <div class="run-controls">
+            <button id="run-python" type="button">Run Python</button>
+            <button id="reset-python" type="button">Reset to starter code</button>
+            <span id="run-status" role="status" aria-live="polite">Runs in your browser. The first run needs an internet connection to load Python.</span>
+          </div>
+          <div class="output-panel">
+            <div class="output-heading">Output</div>
+            <pre id="python-output" aria-live="polite">Click “Run Python” to run the code above.</pre>
+          </div>
+        </section>
+
+        <section class="shorter-section" aria-labelledby="exact-probability-title">
+          <p class="eyebrow">KEEP THE FRACTION EXACT</p>
+          <h3 id="exact-probability-title">Use Python’s <code>Fraction</code> for a rational answer</h3>
+          <p>Ordinary <code>/</code> produces a floating-point approximation. The standard-library <code>fractions.Fraction</code> represents this rational probability exactly and simplifies it from <code>2/6</code> to <code>1/3</code>. Convert to <code>float</code> only when a decimal approximation is useful.</p>
+          <pre class="short-code"><code>from fractions import Fraction
+
+# P(X >= 5) = P(X = 5) + P(X = 6) = 2/6
+p_x_at_least_5 = Fraction(2, 6)
+print(p_x_at_least_5)        # 1/3
+print(float(p_x_at_least_5)) # 0.3333333333333333</code></pre>
+          <button class="load-version-button" data-load-code="fraction-python" type="button">Load the exact-fraction version into the editor</button>
+          <template id="fraction-python">from fractions import Fraction
+
+possible_k_values = range(1, 7)
+favorable_outcomes = 0
+total_outcomes = 0
+
+for k in possible_k_values:
+    # Example: k = roll = 6, so X = 6.
+    total_outcomes = total_outcomes + 1
+    if k >= 5:  # event X >= 5
+        favorable_outcomes = favorable_outcomes + 1
+
+p_x_at_least_5 = Fraction(favorable_outcomes, total_outcomes)  # P(X >= 5)
+print("Favorable outcomes:", favorable_outcomes)
+print("All outcomes:", total_outcomes)
+print("Exact P(X >= 5):", p_x_at_least_5)
+print("Decimal approximation:", float(p_x_at_least_5))</template>
+          <p class="math-note">A rational number does not always have a finite decimal expansion: <span class="inline-math">1/3</span> repeats in decimal, but <code>Fraction(1, 3)</code> keeps it exact.</p>
+        </section>
+
+        <section class="guide-card" aria-labelledby="monte-carlo-title">
+          <p class="eyebrow">A PYTHON EXPERIMENT · MONTE CARLO</p>
+          <h2 id="monte-carlo-title">Simulate many rolls and compare.</h2>
+          <p>A <strong>Monte Carlo simulation</strong> estimates a probability by repeating random trials. Here one trial is one die roll, and a “hit” is a roll of 5 or 6. Assume every roll is independent—the earlier rolls do not change the chances of later rolls—and the die stays fair. After many rolls, compare the observed fraction of hits with the exact probability <span class="inline-math">1/3</span>.</p>
+          <div class="notation-reading-row compact-reading-row">
+            <div class="notation-reading-part">
+              <span class="notation-reading-label">ESTIMATE</span>
+              <p class="inline-math">estimate of <span class="upright-math">P</span>(<i>X</i> ≥ 5) = hits ÷ <i>N</i></p>
+            </div>
+            <div class="notation-reading-part spoken-reading">
+              <span class="notation-reading-label">READ IT ALOUD</span>
+              <p>“The estimated probability that X is at least 5 is the number of hits divided by N, the number of rolls.”</p>
+            </div>
+          </div>
+          <p>We use <code>random.Random(2026)</code> so the example is repeatable in this Python runtime. This is a pseudorandom sequence with a fixed seed. In the code, <code>N</code> is the number of rolls, <code>j</code> numbers the trials, and <code>x</code> is the observed value of <i>X</i> on one trial; <code>k</code> names possible outcomes in the probability sum. <code>randint(1, 6)</code> can return either endpoint, 1 or 6.</p>
+          <div class="code-variants monte-carlo-variants">
+            <div class="code-variant">
+              <span class="variant-label">One simulation · 1,000 rolls</span>
+              <p>Count hits, divide by the number of trials, and compare with the exact value.</p>
+              <pre class="short-code"><code>import random
+from fractions import Fraction
+
+rng = random.Random(2026)
+N = 1000  # sample size
+hits = 0
+
+for j in range(1, N + 1):  # trial index
+    x = rng.randint(1, 6)  # observed X
+    if x >= 5:  # event X >= 5
+        hits = hits + 1
+
+estimate = hits / N  # estimate of P(X >= 5)
+exact_probability = Fraction(1, 3)  # exact P(X >= 5)
+print("Trials (N):", N)
+print("Hits:", hits)
+print("Estimated P(X >= 5):", round(estimate, 4))
+print("Exact P(X >= 5):", exact_probability)</code></pre>
+              <button class="load-version-button" data-load-code="monte-carlo-python" type="button">Load this version into the editor</button>
+              <template id="monte-carlo-python">import random
+from fractions import Fraction
+
+rng = random.Random(2026)
+N = 1000  # sample size
+hits = 0
+
+for j in range(1, N + 1):  # trial index
+    x = rng.randint(1, 6)  # observed X
+    if x >= 5:  # event X >= 5
+        hits = hits + 1
+
+estimate = hits / N  # estimate of P(X >= 5)
+exact_probability = Fraction(1, 3)  # exact P(X >= 5)
+print("Trials (N):", N)
+print("Hits:", hits)
+print("Estimated P(X >= 5):", round(estimate, 4))
+print("Exact P(X >= 5):", exact_probability)</template>
+            </div>
+            <div class="code-variant">
+              <span class="variant-label">Watch several sample sizes</span>
+              <p>Use the same seeded rolls and report the running estimate at 10, 100, 1,000, and 10,000 rolls.</p>
+              <pre class="short-code"><code>import random
+from fractions import Fraction
+
+rng = random.Random(2026)
+checkpoints = (10, 100, 1_000, 10_000)  # sample sizes N
+hits = 0
+
+for j in range(1, checkpoints[-1] + 1):  # trial index
+    x = rng.randint(1, 6)  # observed X
+    if x >= 5:  # event X >= 5
+        hits = hits + 1
+    if j in checkpoints:
+        N = j  # current sample size
+        estimate = hits / N  # estimate of P(X >= 5)
+        print("Trials (N):", N,
+              "hits:", hits,
+              "estimate:", round(estimate, 4),
+              "exact P(X >= 5):", Fraction(1, 3))</code></pre>
+              <button class="load-version-button" data-load-code="monte-carlo-checkpoints-python" type="button">Load the longer simulation into the editor</button>
+              <template id="monte-carlo-checkpoints-python">import random
+from fractions import Fraction
+
+rng = random.Random(2026)
+checkpoints = (10, 100, 1_000, 10_000)  # sample sizes N
+hits = 0
+
+for j in range(1, checkpoints[-1] + 1):  # trial index
+    x = rng.randint(1, 6)  # observed X
+    if x >= 5:  # event X >= 5
+        hits = hits + 1
+    if j in checkpoints:
+        N = j  # current sample size
+        estimate = hits / N  # estimate of P(X >= 5)
+        print("Trials (N):", N,
+              "hits:", hits,
+              "estimate:", round(estimate, 4),
+              "exact P(X >= 5):", Fraction(1, 3))</template>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="letter-table quick-table">
+              <thead><tr><th scope="col">Rolls</th><th scope="col">Hits (5 or 6)</th><th scope="col">Simulation estimate</th><th scope="col">Exact probability</th></tr></thead>
+              <tbody>
+                <tr><td>10</td><td>6</td><td>0.6</td><td>1/3</td></tr>
+                <tr><td>100</td><td>41</td><td>0.41</td><td>1/3</td></tr>
+                <tr><td>1,000</td><td>360</td><td>0.36</td><td>1/3</td></tr>
+                <tr><td>10,000</td><td>3,211</td><td>0.3211</td><td>1/3</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="math-note"><strong>Simulation is evidence, not a proof.</strong> The exact argument is that 2 of the 6 equally likely faces are 5 or 6, so the probability is exactly <span class="inline-math">2/6 = 1/3</span>. Under this model, each roll has that exact probability; in <i>N</i> independent rolls, the expected number of hits is <i>N</i>/3, but the actual count varies. The law of large numbers says the observed fraction tends toward 1/3 as the number of rolls grows; it does not promise that each finite batch is exactly one third or that every checkpoint gets closer. This is sampling fluctuation, not a need to simulate the whole cosmos. A real die may also be slightly biased, which would be a difference between the model and reality. We can quantify typical fluctuations after learning more about averages and spread.</p>
+          <p class="math-note"><strong>Small samples can look unrepresentative.</strong> In this seeded run, 10 rolls give an estimate of 0.6, far from 1/3. With only a few rolls, some faces may not appear, or a few may show up unusually often. There is no universal cutoff for a “large enough” sample: it depends on the accuracy you need and how rare the event is.</p>
+        </section>
+
+        <section class="guide-card" aria-labelledby="sample-size-title">
+          <p class="eyebrow">OPTIONAL PREVIEW · HOW MANY TRIALS?</p>
+          <h2 id="sample-size-title">Choose a sample size from the accuracy you want.</h2>
+          <p>There is no universal minimum. For independent trials, a common rule estimates the margin of error for a 95% confidence interval (CI):</p>
+          <p>Here, <i>m</i> is the interval’s half-width. The “95%” describes the confidence level—not a 95% margin of error and not a 5% margin.</p>
+          <div class="notation-reading-row compact-reading-row">
+            <div class="notation-reading-part">
+              <span class="notation-reading-label">APPROXIMATE RULE</span>
+              <p class="inline-math"><i>m</i> ≈ <i>z</i>√(<i>p</i>(1 − <i>p</i>) / <i>N</i>)</p>
+            </div>
+            <div class="notation-reading-part spoken-reading">
+              <span class="notation-reading-label">READ IT ALOUD</span>
+              <p>“The margin is about z times the square root of the fraction with p times the quantity one minus p on top and N on the bottom.”</p>
+            </div>
+          </div>
+          <ul class="role-list">
+            <li>Lowercase <i>p</i> is the event probability used by the model (here, <span class="inline-math">1/3</span>); <span class="inline-math"><span class="upright-math">P</span>(<i>A</i>)</span> denotes the probability of a named event <i>A</i>.</li>
+            <li><i>N</i> is the number of independent trials.</li>
+            <li><i>z</i> is a multiplier chosen for the confidence level; <span class="inline-math">1.96</span> is commonly used for an approximate 95% confidence interval.</li>
+            <li><i>m</i> is the margin as a proportion: <span class="inline-math">0.01</span> means one percentage point.</li>
+          </ul>
+          <p>For this die event, the approximate margin at the 95% confidence level is <span class="inline-math">0.0924</span> (9.24 percentage points) at 100 trials, <span class="inline-math">0.0292</span> (2.92 points) at 1,000, and <span class="inline-math">0.0092</span> (0.92 points) at 10,000. To plan for a chosen margin, rearrange the rule:</p>
+          <div class="notation-reading-row compact-reading-row">
+            <div class="notation-reading-part">
+              <span class="notation-reading-label">SOLVE FOR THE TRIAL COUNT</span>
+              <p class="inline-math"><i>N</i> ≈ <i>z</i><sup>2</sup><i>p</i>(1 − <i>p</i>) / <i>m</i><sup>2</sup></p>
+            </div>
+            <div class="notation-reading-part spoken-reading">
+              <span class="notation-reading-label">READ IT ALOUD</span>
+              <p>“N is about z squared times p times the quantity one minus p, divided by m squared.”</p>
+            </div>
+          </div>
+          <p>For <i>p</i> = 1/3 and a target margin <i>m</i> = 0.01 (one percentage point), this gives about 8,537 trials.</p>
+          <p class="math-note">This is an approximation, not a guaranteed error bound. The “95%” refers to long-run coverage: across repeated samples, intervals made this way would contain the true probability about 95% of the time; it is not a guarantee about one interval. The rule assumes independent trials and uses a normal approximation. If <i>p</i> is unknown, using <span class="inline-math">p = 0.5</span> is a conservative planning fallback because <span class="inline-math"><i>p</i>(1 − <i>p</i>)</span> is largest there; it does not mean the event is actually 50% likely. Use a reasonable model estimate or pilot data when available. Very rare events and small samples need extra care.</p>
+          <h3>Put the rule in a reusable Python function</h3>
+          <p>The code uses the same symbols as the equations: <code>p</code> is the modeled event probability, uppercase <code>N</code> is the number of trials, <code>z</code> is the confidence multiplier, and <code>m</code> is the margin. The first helper computes <code>m</code> from <code>p</code> and <code>N</code>; the second computes the required <code>N</code> from <code>p</code> and a target <code>m</code>. <code>math.ceil</code> rounds that count up to a whole trial.</p>
+          <pre class="short-code"><code>import math
+from fractions import Fraction
+
+def approximate_margin(p, N, z=1.96):
+    m = z * math.sqrt(p * (1 - p) / N)
+    return m
+
+
+def trials_needed(p, m, z=1.96):
+    N = math.ceil(z**2 * p * (1 - p) / m**2)
+    return N
+
+p = Fraction(1, 3)
+for N in (100, 1_000, 10_000):
+    m = approximate_margin(p, N)
+    print("Trials (N):", N, "approximate 95% CI margin: ±",
+          round(m * 100, 2), "percentage points")
+
+m = 0.01  # target margin: one percentage point
+N = trials_needed(p, m)
+print("Trials for target m = 0.01:", N)</code></pre>
+          <button class="load-version-button" data-load-code="sample-size-python" type="button">Load the sample-size helpers into the editor</button>
+          <template id="sample-size-python">import math
+from fractions import Fraction
+
+def approximate_margin(p, N, z=1.96):
+    m = z * math.sqrt(p * (1 - p) / N)
+    return m
+
+
+def trials_needed(p, m, z=1.96):
+    N = math.ceil(z**2 * p * (1 - p) / m**2)
+    return N
+
+p = Fraction(1, 3)
+for N in (100, 1_000, 10_000):
+    m = approximate_margin(p, N)
+    print("Trials (N):", N, "approximate 95% CI margin: ±",
+          round(m * 100, 2), "percentage points")
+
+m = 0.01  # target margin: one percentage point
+N = trials_needed(p, m)
+print("Trials for target m = 0.01:", N)</template>
+          <p class="math-note"><code>Fraction</code> keeps the model probability 1/3 exact; the margin formula and its result are approximate, so Python converts to floating-point arithmetic when taking the square root.</p>
+        </section>
+
+        <aside class="later-note">
+          <strong>Where this leads</strong>
+          <p>Next, use the probabilities of outcomes to find an expected value—the distribution’s weighted average. Later, we will combine probability with counting and products, for example to find the chance of getting at least two sixes in three rolls.</p>
+        </aside>
+      </section>
+
+      <nav class="page-nav page-nav-bottom" aria-label="Previous and next pages">
+        <a class="page-nav-item" href="products.html"><span class="page-nav-direction">PREVIOUS</span><span>← Products and factorials</span></a>
+        <a class="page-nav-item page-nav-next" href="expectation.html"><span class="page-nav-direction">NEXT</span><span>Expected value →</span></a>
+      </nav>
+    </main>
+
+    <footer>Made for learning to unpack the math, one step at a time.</footer>
+  </body>
+</html>

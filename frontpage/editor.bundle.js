@@ -25569,7 +25569,7 @@ print(total)`;
   var host = document.querySelector("#python-editor");
   window.mathEditor = new EditorView({
     doc: starterCode,
-    extensions: [basicSetup, python()],
+    extensions: [basicSetup, python(), EditorView.lineWrapping],
     parent: host
   });
 })();

@@ -74,6 +74,10 @@ These are teaching stages, not a claim that the shortest version is always best.
 
 Each displayed Python version should have a **Load into editor** control. All controls load their code into the same CodeMirror editor, where the learner can inspect or edit it and run it with the shared Run button. Keep the interaction predictable across lessons. Make sure each version is executable and gives the same result for the chosen example, and state what changed between versions.
 
+### Exact rational and decimal arithmetic
+
+When a problem benefits from exact fractional results or decimal arithmetic, introduce Python's standard-library `fractions` and `decimal` modules rather than relying automatically on binary floating-point values. Use `fractions.Fraction` for exact rational arithmetic (for example, keeping a probability such as `1/3` as a fraction); use `decimal.Decimal` for base-10 decimal quantities and controlled decimal precision. Explain that `Decimal` division can still round repeating results, and construct decimal values from strings such as `Decimal("0.1")` rather than from a float such as `Decimal(0.1)`. Introduce these tools when the example makes their benefit concrete, and show a decimal approximation alongside an exact fraction when that helps interpretation.
+
 ## First topic: summation (∑)
 
 Introduce the short guide to mathematical letters and roles before or alongside the first summation example, so the learner knows that letters are names with context-dependent roles.
@@ -134,7 +138,7 @@ These examples are signposts for later lessons. Label the surrounding ideas as �
 
 ### Basic Python progression
 
-Make the code reuse the notation's variables: `n` is the upper bound, `i` is the index, and `total` is the running accumulator. Start with a `while` loop that mirrors the inclusive mathematical upper bound directly:
+Make the code reuse the notation's variables wherever practical: for example, use `i` or `k` as the loop index/outcome when the equation uses that symbol. Name helper values after the mathematical expression they represent (for example, `p_x_equals_k` for `P(X = k)`), and add `#` comments that explicitly map code to notation and concrete substitutions (for example, `# on this pass, k = roll = 6`). If code uses a distinct name such as `x` for one observed random-variable value, comment on that correspondence. Start with a `while` loop that mirrors the inclusive mathematical upper bound directly:
 
 ```python
 n = 4
@@ -171,6 +175,19 @@ Possible sequence:
 - After probability, counting/binomial coefficients, and factorials: calculate a small dice probability, such as the chance of at least two sixes on three dice. This can bring together `P(X ≥ 2)`, summation, combinations, powers, and multiplication.
 - After vectors and dot products: connect a dot product to one entry of a matrix product.
 
+### Capstone target: the polynomial form of a Bézier curve
+
+Use the polynomial form the learner shared as a longer-term synthesis target, not as a cold introductory example:
+
+\[
+\mathbf{B}(t)=\sum_{j=0}^{n} t^j\mathbf{C}_j,
+\qquad
+\mathbf{C}_j=\frac{n!}{(n-j)!}\sum_{i=0}^{j}\frac{(-1)^{i+j}\mathbf{P}_i}{i!(j-i)!}
+=\left(\prod_{m=0}^{j-1}(n-m)\right)\sum_{i=0}^{j}\frac{(-1)^{i+j}\mathbf{P}_i}{i!(j-i)!}.
+\]
+
+By then, learners should have met sums, products, factorials, powers, functions, and vectors; introduce the Bernstein basis and binomial-theorem step needed for the derivation. Unpack the separate jobs of `i`, `j`, and `m`, read the outer polynomial sum and inner coefficient sum aloud, and show why `n!/(n-j)!` equals the finite product. Make the edge case concrete: at `j = 0`, the product is empty and equals 1, and the inner sum gives `C₀ = P₀`. Start with a low-degree curve and, where useful, one coordinate before lifting the calculation to vector control points. Then implement the small case in Python, using `Fraction` when exact rational coefficients help and ordinary floating-point evaluation when discussing practical curve evaluation. Explain that the expanded power-basis form can be less numerically stable for high degrees; present de Casteljau's algorithm as a later alternative/preview rather than implying the algebraic formula is wrong.
+
 Treat these as cumulative exercises that build confidence reading a fuller expression, not as a demand to master every connected topic at once.
 
 ## Recurring application threads
@@ -201,6 +218,12 @@ The order below is provisional; add topics as the project develops and keep the 
 
 This roadmap should help connect the refresher to mathematics found in computer-science and engineering white papers, including claims about probability, algorithm performance, and system behavior. A formula is not itself a proof: later lessons should also explain how papers state a model and its assumptions, formulate a claim, and support it through definitions, lemmas, and reasoning.
 
+## Candidate topics from the math-as-code reference
+
+Use `docs/PYTHON-README.md` as a selective source of topic ideas, not as material to port wholesale. It suggests useful future reminders on: equality, definitions, and approximate equality; number sets and set membership; real and complex numbers; piecewise functions, domain/codomain, and mapping arrows; scalar/vector operations (dot, cross, and elementwise products), norms, and determinants; intervals and endpoint conventions; inequalities and logical connectives; absolute value, floor, and ceiling; and prime notation for derivatives as a later-calculus preview. Many topics overlap with the existing roadmap, so introduce them only when prerequisites and a motivating example make them useful.
+
+Fact-check and resequence any adapted example. The source contains outdated NumPy idioms and some inaccurate or overly broad statements. For example, `sum(range(100))` adds 0 through 99 and equals 4950, not 5050; rational numbers do not necessarily have terminating decimal expansions; `ℝ` is not equivalent to Python `float`; and symbol conventions such as boldface vectors are clues, not universal rules. Preserve the useful comparison-based teaching style while explaining context, boundary behavior, types, and assumptions precisely.
+
 ## Factorial and Gamma sequencing
 
 Teach the finite product notation and factorial before the Gamma function. For positive integers `n`, `Γ(n) = (n - 1)!`; the offset matters (`Γ(6) = 5!`, not `6!`). A full Gamma lesson should wait until the learner has more context for continuous functions/calculus or probability distributions. When first mentioned in the factorial lesson, label Gamma as a preview and link to its future lesson only once that lesson exists.
@@ -209,9 +232,15 @@ Teach the finite product notation and factorial before the Gamma function. For p
 
 After the basic summation and product loops are comfortable, show that the loop structure stays the same when the expression being added or multiplied becomes more complex. In notation, generalize from `i` to a term such as `f(i)`; in Python, calculate that term directly or put it in a helper function once `def` has been introduced.
 
-For example, a product loop can keep the same bounds and accumulator while replacing `product * i` with `product * factor_for(i)`. Explain that `f(i)` is the term/function value for the current index and that the index bounds and per-step expression have separate roles. Use this as a bridge from simple sigma/product examples to more complex formulas. When showing powers, note that Python uses `**` for exponentiation (`^` means something else in Python).
+When the learner first meets a sum whose summand is itself a nontrivial expression, explicitly substitute each small index value into the whole summand and show the resulting terms before evaluating. For example, expand `Σ(k=5..6) P(X = k)` as `P(X = 5) + P(X = 6)`. Do not assume that fluency with `Σ(i=1..n) i` automatically makes this generalization obvious; name the summand and make the substitution step visible.
 
-Add a small **math notation to Python syntax** reference for operators actually used in lessons. Treat an ASCII caret such as `x^2` in a math discussion as an exponent; translate it to Python `x ** 2`. Explicitly warn that Python `^` is bitwise XOR, not exponentiation. Distinguish bit-shift operators (`<<`, `>>`) as separate programming topics outside this math refresher, rather than mixing them into the notation lessons.
+For example, a product loop can keep the same bounds and accumulator while replacing `product * i` with `product * factor_for(i)`.  Explain that `f(i)` is the term/function value for the current index and that the index bounds and per-step expression have separate roles. Use this as a bridge from simple sigma/product examples to more complex formulas. When showing powers, note that Python uses `**` for exponentiation (`^` means something else in Python).
+
+Add a small **math notation to Python syntax** reference for operators and functions actually used in lessons. Treat an ASCII caret such as `x^2` in a math discussion as an exponent; translate it to Python `x ** 2`. Explicitly warn that Python `^` is bitwise XOR, not exponentiation. Explain that Python has no root operator: `math.sqrt()` handles square roots, `math.cbrt()` handles cube roots in Python 3.11+, and a general n-th root of a nonnegative value can be written as a fractional power (typically an approximation). Distinguish bit-shift operators (`<<`, `>>`) as separate programming topics outside this math refresher, rather than mixing them into the notation lessons.
+
+## Mathematical terminology glossary
+
+Build a compact, cumulative glossary as a separate quick reference, alongside the notation/Python reference. Add terms as they appear in lessons rather than presenting a large unexplained vocabulary list. Each entry should give a plain-English description of the term's job, a small notation or example, and a link to the lesson that teaches it. Where a word-part clue is genuinely useful and accurate (for example, `bi-` in *binomial*), explain it as a memory aid while keeping the formal mathematical definition clear. Mark terms from future topics as previews, and define unfamiliar terminology at first use in the lessons regardless of whether the learner has visited the glossary. Include a short entry for the Monte Carlo method/simulation: repeated sampling can estimate probabilities and other difficult quantities, but simulation is evidence about a model's behavior, not a proof that the model or its assumptions are correct. Open the glossary non-destructively from lessons, using the same contextual reference pattern, and keep a standalone lookup page available.
 
 ## Website and Python console
 
@@ -245,15 +274,20 @@ Add a small **math notation to Python syntax** reference for operators actually 
 
 - Write notation explanations, project plans, and other durable planning material in Markdown files so they can be revisited and updated.
 - Keep the project plan and agreed decisions in `PLAN.md`; use the chat to discuss ideas and then record durable agreements in the relevant Markdown file.
+- When a specific external example would help choose, explain, or fact-check a topic, ask the learner to share the relevant link or excerpt. Prefer the passage that prompted the question over an entire article, then review it selectively and verify its claims.
 - Put any helper, build, or check scripts in a `scripts/` directory.
 - Use `uv` to create and run Python scripts. Declare any third-party dependencies in the script's inline PEP 723 metadata block at the top, and run it with `uv run` so dependencies are managed in an isolated script environment. Avoid adding project-wide Python dependencies for one-off helper scripts.
 
 ## Current status
 
-- Three sequential lesson pages now exist in `frontpage/`: the letters-and-notation guide (`letters.html`), summation lesson (`index.html`), and products/factorials lesson (`products.html`). A separate non-sequential quick-reference page (`quick-reference.html`) collects notation and Python syntax reminders; lesson pages open it in a modal overlay to preserve the current page and scroll position, while the standalone page remains available. The letters guide includes a probability-notation preview; the summation page explains `P(A)` before using it and links to that preview.
+- Six sequential lesson pages now exist in `frontpage/`: the letters-and-notation guide (`letters.html`), summation lesson (`index.html`), products/factorials lesson (`products.html`), probability lesson (`probability.html`), expected-value lesson (`expectation.html`), and probability-bounds lesson (`probability-bounds.html`). A separate non-sequential quick-reference page (`quick-reference.html`) collects notation and Python syntax reminders; lesson pages open it in a modal overlay to preserve the current page and scroll position, while the standalone page remains available. The letters and summation lessons preview probability notation and link to its full lesson.
 - All pages share a grouped, click/tap-controlled navigation sidebar that is visible and collapsible on wider screens and becomes a drawer on small screens. Previous/next controls appear at the top and bottom of lesson pages only, with clear boundary states at the beginning/end of the sequence. Direct local-file navigation between pages and the desktop collapse/reopen interaction have been verified.
 - The summation lesson includes displayed and inline notation layouts, examples with different inclusive bounds (including a probability threshold), paired notation/read-aloud panels, a CodeMirror 6 Python editor, Run button, output/error display, Pyodide execution in a Web Worker, and a shorter `sum(range(...))` example that can be loaded into the editor.
 - The products/factorials lesson introduces `∏`, factorial notation (including `0! = 1`), an explicit multiplication loop, a `for`-loop version, and a final `math.prod()` shortcut. Each Python variant loads into the shared editor; all three product-code versions were tested to print `24`.
+- The probability lesson defines outcomes, events, equally likely outcomes, and a random variable using a fair-die example; it reads `P(E)` and `P(X = k)` aloud, explicitly substitutes `k = 5` and `k = 6` into the nontrivial summand `P(X = k)`, connects event probabilities to summation, and cautions that favorable/all outcomes applies only to finite equally likely outcomes. Its Python code now follows those symbols: `k` is a possible value of `X`, `p_x_at_least_5` maps to `P(X >= 5)`, and comments show the substitution `k = roll = 6`. In simulations, `x` is one observed value of `X`, `j` numbers trials, and `N` is the trial count; sample-size helpers use the equation's `p`, `N`, `z`, and `m`. The count, exact-`Fraction`, simulation, and sample-size variants were tested in Pyodide. The lesson also includes seeded Monte Carlo simulations at 1,000 and at 10/100/1,000/10,000 rolls, distinguishes simulation evidence from mathematical proof, warns that small samples can be unrepresentative, and gives an intuitive law-of-large-numbers preview while separating sampling fluctuation from real-world model mismatch. An optional sample-size preview reads the approximate margin formula aloud and includes reusable Python helpers for margin and trial-count estimates. The simulations and helpers were tested in Pyodide; their results match the displayed checkpoint table and sample-size estimates. The sample-size code reports margins as percentage points (e.g. ±9.24 points), distinct from the 95% confidence level; it clarifies that 95% is the confidence level, not the margin.
+- The expected-value lesson follows probability: it reads `E[X] = Σ k P(X = k)` aloud, substitutes every die outcome into the whole weighted term, evaluates the exact fair-die expectation as `7/2 = 3.5`, and explains why an expected value need not be a possible single outcome. Its explicit `Fraction` loop and seeded sample-average simulation were both run in Pyodide; results matched the page (`7/2`, `3.5`, and sample means 3.4, 3.575, 3.4982). The quick reference now includes `E[X]`, and probability links forward to this lesson.
+- The probability-bounds lesson introduces the union bound, expands the `i = 1, 2` case term by term, and demonstrates why overlapping events may make the bound loose without requiring independence. Its outcome table uses `A₁ = {2, 4, 6}` (even) and `A₂ = {4, 5, 6}` (greater than 3), showing `P(A₁ ∪ A₂) = 4/6 = 2/3 ≤ P(A₁) + P(A₂) = 1`; an accessible two-event proof separates `A₂ \ A₁`. The Python example maps `A_1`, `A_2`, `P_union`, and `upper_bound` to the notation and explicitly counts overlap.
+- Python worker output now preserves line breaks between separate `print()` calls for both standard output and standard error. Verified with the probability and expected-value examples. The CodeMirror editor soft-wraps long lines; keep mapping comments concise and explain the correspondence outside the editor as well. The editor has a 420-pixel minimum height. On page load, reset, and loading a prebuilt example, JavaScript estimates the wrapped line count and sets the editor height with room below the last line; adding lines during manual editing does not resize it on every keystroke, and the editor scrolls internally instead. A viewport resize recalculates the fit. Twenty pixels of padding on the shared scroller (not separate code/gutter padding) preserves line-number alignment and bottom breathing room. Loading a code variant now scrolls to and focuses the shared editor; a **Reset to starter code** control restores the page's original example.
 - Verified that the pages, bundled editor, and Python execution work when opened directly from a local `file://` URL. Code runs in the browser; the first run downloads Pyodide from a CDN and therefore needs internet access.
 - The Python example uses `n = 4`, `i = 1`, and a running `total`; its `while i <= n` condition includes the final term. A note explains the equivalent `range(1, n + 1)` boundary.
 - CodeMirror build dependencies are in `frontpage/package.json`; the generated local bundle is `frontpage/editor.bundle.js`. Rebuild it with `scripts/build_frontpage.sh` after `npm install --prefix frontpage`.

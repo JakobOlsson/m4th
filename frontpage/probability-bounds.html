@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Read the union bound aloud, understand why it is an upper bound even for dependent events, and explore a die example in Python.">
+    <title>Probability bounds — Math Refresher</title>
+    <link rel="stylesheet" href="styles.css?v=19">
+    <script src="editor.bundle.js?v=2" defer></script>
+    <script src="run-python.js?v=7" defer></script>
+    <script src="navigation.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#top">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand-controls">
+          <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="handbook-nav" aria-expanded="true">
+            <span class="menu-icon" aria-hidden="true">☰</span><span>Contents</span>
+          </button>
+          <a class="wordmark" href="letters.html">Math, unpacked</a>
+        </div>
+        <span class="header-note">A personal math refresher</span>
+      </div>
+    </header>
+
+    <aside id="handbook-nav" class="sidebar">
+      <nav aria-label="Handbook pages">
+        <p class="sidebar-label">FOUNDATIONS</p>
+        <a class="nav-link" href="letters.html">Letters and notation</a>
+        <a class="nav-link" href="index.html">Summation (∑)</a>
+        <a class="nav-link" href="products.html">Products and factorials</a>
+        <a class="nav-link" href="probability.html">Probability</a>
+        <a class="nav-link" href="expectation.html">Expected value</a>
+        <a class="nav-link" href="probability-bounds.html" aria-current="page">Probability bounds</a>
+        <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
+        <button class="nav-link quick-reference-trigger" type="button">Notation and Python</button>
+      </nav>
+    </aside>
+    <button id="nav-scrim" class="nav-scrim" type="button" aria-label="Close navigation"></button>
+    <dialog id="quick-reference-dialog" class="quick-reference-dialog" aria-labelledby="quick-reference-dialog-title">
+      <div class="quick-reference-dialog-header">
+        <div><span class="notation-reading-label">QUICK REFERENCE</span><h2 id="quick-reference-dialog-title">Notation and Python</h2></div>
+        <div class="dialog-actions"><a href="quick-reference.html" target="_blank" rel="noopener">Open full page ↗</a><button class="dialog-close" type="button" aria-label="Close quick reference">×</button></div>
+      </div>
+      <iframe title="Notation and Python quick reference" data-src="quick-reference.html?embed=1"></iframe>
+    </dialog>
+
+    <main id="top">
+      <nav class="page-nav page-nav-top" aria-label="Previous and next pages">
+        <a class="page-nav-item" href="expectation.html"><span class="page-nav-direction">PREVIOUS</span><span>← Expected value</span></a>
+        <span class="page-nav-item page-nav-disabled" aria-disabled="true"><span class="page-nav-direction">NEXT</span><span>End of current lessons</span></span>
+      </nav>
+
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">PROBABILITY BOUNDS · THE UNION BOUND</p>
+        <h1 id="page-title">Adding event chances gives an upper bound.</h1>
+        <p class="intro-copy">When we ask whether at least one of several events happens, adding their probabilities gives a safe upper bound. If events overlap, that sum can count some probability more than once.</p>
+      </section>
+
+      <section id="union-bound" class="lesson" aria-labelledby="lesson-title">
+        <div class="lesson-heading">
+          <h2 id="lesson-title">Read the union bound.</h2>
+          <p>The <strong>union</strong> of events means that at least one of them happens. For events <i>A</i><sub>1</sub> through <i>A</i><sub>n</sub>, the union bound says:</p>
+        </div>
+
+        <div class="notation-reading-row">
+          <div class="notation-reading-part">
+            <span class="notation-reading-label">NOTATION</span>
+            <p class="inline-math"><span class="upright-math">P</span>(<i>A</i><sub>1</sub> ∪ <i>A</i><sub>2</sub> ∪ ⋯ ∪ <i>A</i><sub>n</sub>) ≤ ∑<sub>i=1</sub><sup>n</sup> <span class="upright-math">P</span>(<i>A</i><sub>i</sub>)</p>
+            <p>The symbol ∪ means “or”: at least one listed event occurs.</p>
+          </div>
+          <div class="notation-reading-part spoken-reading">
+            <span class="notation-reading-label">READ IT ALOUD</span>
+            <p>“The probability that at least one of the events A one through A n happens is at most the sum, as i goes from one through n, of the probability of event A sub i.”</p>
+          </div>
+        </div>
+
+        <aside class="guide-callout">
+          <strong>No independence assumption is needed.</strong>
+          <p>The inequality holds whether or not the events are independent, and whether or not they overlap. Events are independent when learning that one occurred does not change the chance of another. Independence may help us calculate probabilities, but it is not required for this bound.</p>
+        </aside>
+
+        <section class="summand-expansion" aria-labelledby="union-expansion-title">
+          <h3 id="union-expansion-title">Expand the probability sum for two events.</h3>
+          <p>For <i>n</i> = 2, the whole summand is <span class="inline-math"><span class="upright-math">P</span>(<i>A</i><sub>i</sub>)</span>. Substitute the index values into that full term:</p>
+          <div class="summand-expansion-grid">
+            <article><strong>When i = 1</strong><p><span class="inline-math"><span class="upright-math">P</span>(<i>A</i><sub>i</sub>)</span> becomes <span class="inline-math"><span class="upright-math">P</span>(<i>A</i><sub>1</sub>)</span>.</p></article>
+            <article><strong>When i = 2</strong><p><span class="inline-math"><span class="upright-math">P</span>(<i>A</i><sub>i</sub>)</span> becomes <span class="inline-math"><span class="upright-math">P</span>(<i>A</i><sub>2</sub>)</span>.</p></article>
+          </div>
+          <div class="notation-reading-row compact-reading-row">
+            <div class="notation-reading-part">
+              <span class="notation-reading-label">EXPANDED TWO-EVENT CASE</span>
+              <p class="inline-math"><span class="upright-math">P</span>(<i>A</i><sub>1</sub> ∪ <i>A</i><sub>2</sub>) ≤ <span class="upright-math">P</span>(<i>A</i><sub>1</sub>) + <span class="upright-math">P</span>(<i>A</i><sub>2</sub>)</p>
+            </div>
+            <div class="notation-reading-part spoken-reading">
+              <span class="notation-reading-label">READ IT ALOUD</span>
+              <p>“The probability of A one or A two is at most the probability of A one plus the probability of A two.”</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="bounds-guide" aria-labelledby="die-example-title">
+          <h3 id="die-example-title">Two overlapping events on one die.</h3>
+          <p>Roll a fair six-sided die and let <i>X</i> be the result. Let <i>A</i><sub>1</sub> mean “the result is even,” and <i>A</i><sub>2</sub> mean “the result is greater than 3.” Mark a check when a die result belongs to an event:</p>
+          <div class="table-wrap">
+            <table class="letter-table quick-table">
+              <thead><tr><th scope="col">Die result X</th><th scope="col">A<sub>1</sub>: even?</th><th scope="col">A<sub>2</sub>: greater than 3?</th><th scope="col">A<sub>1</sub> ∪ A<sub>2</sub>: either?</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">1</th><td><span aria-label="No">—</span></td><td><span aria-label="No">—</span></td><td><span aria-label="No">—</span></td></tr>
+                <tr><th scope="row">2</th><td><span aria-label="Yes">✓</span></td><td><span aria-label="No">—</span></td><td><span aria-label="Yes">✓</span></td></tr>
+                <tr><th scope="row">3</th><td><span aria-label="No">—</span></td><td><span aria-label="No">—</span></td><td><span aria-label="No">—</span></td></tr>
+                <tr><th scope="row">4</th><td><span aria-label="Yes">✓</span></td><td><span aria-label="Yes">✓</span></td><td><span aria-label="Yes">✓</span></td></tr>
+                <tr><th scope="row">5</th><td><span aria-label="No">—</span></td><td><span aria-label="Yes">✓</span></td><td><span aria-label="Yes">✓</span></td></tr>
+                <tr><th scope="row">6</th><td><span aria-label="Yes">✓</span></td><td><span aria-label="Yes">✓</span></td><td><span aria-label="Yes">✓</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Read the union column: results 2, 4, 5, and 6 belong to at least one event, so <span class="inline-math"><i>A</i><sub>1</sub> ∪ <i>A</i><sub>2</sub> = {2, 4, 5, 6}</span> and its probability is <span class="inline-math">4/6 = 2/3</span>. Results 4 and 6 belong to both events, so they are counted twice in the sum on the right.</p>
+          <p>Each event has probability <span class="inline-math">3/6 = 1/2</span>, so the bound says <span class="inline-math">2/3 ≤ 1/2 + 1/2 = 1</span>. It is true, but not exact.</p>
+        </section>
+
+        <section class="guide-card" aria-labelledby="proof-sketch-title">
+          <p class="eyebrow">WHY THE TWO-EVENT BOUND HOLDS</p>
+          <h2 id="proof-sketch-title">Separate the new part of the second event.</h2>
+          <p>The set difference <span class="inline-math"><i>A</i><sub>2</sub> \ <i>A</i><sub>1</sub></span> means outcomes that are in <i>A</i><sub>2</sub> but not in <i>A</i><sub>1</sub>. These outcomes do not overlap <i>A</i><sub>1</sub>, and together the two pieces make the union:</p>
+          <div class="notation-reading-row compact-reading-row">
+            <div class="notation-reading-part">
+              <span class="notation-reading-label">DISJOINT DECOMPOSITION</span>
+              <p class="inline-math"><i>A</i><sub>1</sub> ∪ <i>A</i><sub>2</sub> = <i>A</i><sub>1</sub> ∪ (<i>A</i><sub>2</sub> \ <i>A</i><sub>1</sub>)</p>
+            </div>
+            <div class="notation-reading-part spoken-reading">
+              <span class="notation-reading-label">READ IT ALOUD</span>
+              <p>“A one or A two is A one or the part of A two that is not in A one.”</p>
+            </div>
+          </div>
+          <p>Because the two pieces on the right are disjoint, their probabilities add. Also, <span class="inline-math"><i>A</i><sub>2</sub> \ <i>A</i><sub>1</sub></span> is only part of <i>A</i><sub>2</sub>, so its probability cannot exceed <span class="inline-math"><span class="upright-math">P</span>(<i>A</i><sub>2</sub>)</span>:</p>
+          <p class="inline-math"><span class="upright-math">P</span>(<i>A</i><sub>1</sub> ∪ <i>A</i><sub>2</sub>) = <span class="upright-math">P</span>(<i>A</i><sub>1</sub>) + <span class="upright-math">P</span>(<i>A</i><sub>2</sub> \ <i>A</i><sub>1</sub>) ≤ <span class="upright-math">P</span>(<i>A</i><sub>1</sub>) + <span class="upright-math">P</span>(<i>A</i><sub>2</sub>).</p>
+          <p class="math-note">Repeat the same reasoning as each event is added to extend the result to any finite number of events. If the events are disjoint, no probability is counted twice, and the bound is an equality.</p>
+        </section>
+
+        <section class="code-section" aria-labelledby="code-title">
+          <div class="code-heading">
+            <div>
+              <p class="eyebrow">COUNT THE EVENT OUTCOMES IN PYTHON</p>
+              <h3 id="code-title">Compare the union with the sum of probabilities</h3>
+            </div>
+            <span class="language-label">Python</span>
+          </div>
+          <p class="code-intro">The Python tuples (small collections) <code>A_1</code> and <code>A_2</code> list the outcomes in each event. In the loop, <code>x</code> is the current value of <i>X</i>; <code>in_A_1</code> and <code>in_A_2</code> record whether it belongs to each event. Finally, <code>P_union</code> maps to <span class="inline-math"><span class="upright-math">P</span>(<i>A</i><sub>1</sub> ∪ <i>A</i><sub>2</sub>)</span>, while <code>upper_bound</code> maps to the sum on the right. Python’s <code>in</code> tests membership; <code>or</code> and <code>and</code> combine true/false conditions. <code>len(X_values)</code> counts the six possible outcomes, and <code>Fraction</code> keeps the probability ratios exact, as in the <a href="probability.html#exact-probability-title">Probability lesson</a>.</p>
+          <template id="starter-python">from fractions import Fraction
+
+X_values = (1, 2, 3, 4, 5, 6)
+A_1 = (2, 4, 6)  # even outcomes
+A_2 = (4, 5, 6)  # outcomes greater than 3
+
+A_1_count = 0
+A_2_count = 0
+union_count = 0
+overlap_count = 0
+
+for x in X_values:  # x is a possible value of X
+    in_A_1 = x in A_1
+    in_A_2 = x in A_2
+    in_union = in_A_1 or in_A_2  # A_1 union A_2
+
+    if in_A_1:
+        A_1_count = A_1_count + 1
+    if in_A_2:
+        A_2_count = A_2_count + 1
+    if in_union:
+        union_count = union_count + 1
+    if in_A_1 and in_A_2:
+        overlap_count = overlap_count + 1
+
+P_A_1 = Fraction(A_1_count, len(X_values))  # P(A_1)
+P_A_2 = Fraction(A_2_count, len(X_values))  # P(A_2)
+P_union = Fraction(union_count, len(X_values))  # P(A_1 union A_2)
+upper_bound = P_A_1 + P_A_2  # sum of P(A_i) for i = 1, 2
+
+print("P(A_1 union A_2):", P_union)
+print("P(A_1) + P(A_2):", upper_bound)
+print("Union bound holds:", P_union <= upper_bound)
+print("Outcomes counted in both events:", overlap_count)</template>
+          <div id="python-editor" class="editor-shell" aria-label="Editable Python example"></div>
+          <div class="run-controls">
+            <button id="run-python" type="button">Run Python</button>
+            <button id="reset-python" type="button">Reset to starter code</button>
+            <span id="run-status" role="status" aria-live="polite">Runs in your browser. The first run needs an internet connection to load Python.</span>
+          </div>
+          <div class="output-panel">
+            <div class="output-heading">Output</div>
+            <pre id="python-output" aria-live="polite">Click “Run Python” to run the code above.</pre>
+          </div>
+        </section>
+
+        <aside class="later-note">
+          <strong>Where this leads</strong>
+          <p>The union bound is a basic tool for reasoning about many possible failure events: if any one can cause a system failure, add their probabilities to get a safe upper bound. Later, we can use it in algorithm analysis and reliability examples, and compare it with tighter bounds that use more information.</p>
+        </aside>
+      </section>
+
+      <nav class="page-nav page-nav-bottom" aria-label="Previous and next pages">
+        <a class="page-nav-item" href="expectation.html"><span class="page-nav-direction">PREVIOUS</span><span>← Expected value</span></a>
+        <span class="page-nav-item page-nav-disabled" aria-disabled="true"><span class="page-nav-direction">NEXT</span><span>End of current lessons</span></span>
+      </nav>
+    </main>
+
+    <footer>Made for learning to unpack the math, one step at a time.</footer>
+  </body>
+</html>

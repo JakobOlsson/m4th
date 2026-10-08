@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A personal, code-first math refresher for unpacking notation step by step.">
     <title>Math, unpacked — Math Refresher</title>
-    <link rel="stylesheet" href="styles.css?v=12">
-    <script src="editor.bundle.js" defer></script>
-    <script src="run-python.js" defer></script>
+    <link rel="stylesheet" href="styles.css?v=19">
+    <script src="editor.bundle.js?v=2" defer></script>
+    <script src="run-python.js?v=7" defer></script>
     <script src="navigation.js" defer></script>
   </head>
   <body>
@@ -30,6 +30,9 @@
         <a class="nav-link" href="letters.html">Letters and notation</a>
         <a class="nav-link" href="index.html" aria-current="page">Summation (∑)</a>
         <a class="nav-link" href="products.html">Products and factorials</a>
+        <a class="nav-link" href="probability.html">Probability</a>
+        <a class="nav-link" href="expectation.html">Expected value</a>
+        <a class="nav-link" href="probability-bounds.html">Probability bounds</a>
         <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
         <button class="nav-link quick-reference-trigger" type="button">Notation and Python</button>
       </nav>
@@ -110,7 +113,7 @@
               <p class="bound-readout">Read aloud: Add <i>a</i><sub>2</sub>, then <i>a</i><sub>3</sub> and <i>a</i><sub>4</sub>.</p>
             </article>
           </div>
-          <p>Here is a probability preview: <span class="inline-math">P(A)</span> means “the probability that <i>A</i> happens.” Let <i>X</i> be a count that can be any integer from 0 through <i>n</i>; <span class="inline-math">P(X = k)</span> is the probability that the count equals <i>k</i>. For a quick guide to this notation, see <a href="letters.html#probability-notation">Probability notation</a>.</p>
+          <p>Here is a probability preview: <span class="inline-math">P(A)</span> means “the probability that <i>A</i> happens.” Let <i>X</i> be a count that can be any integer from 0 through <i>n</i>; <span class="inline-math">P(X = k)</span> is the probability that the count equals <i>k</i>. For a full introduction, see the <a href="probability.html#probability-notation">probability lesson</a>.</p>
           <p>For “at least 2,” add the probabilities for outcomes 2 through <i>n</i>:</p>
           <div class="notation-reading-row compact-reading-row">
             <div class="notation-reading-part"><span class="notation-reading-label">NOTATION</span><p class="inline-math">P(X ≥ 2) = ∑<sub>k=2</sub><sup>n</sup> P(X = k)</p></div>
@@ -145,6 +148,7 @@
           <div id="python-editor" class="editor-shell" aria-label="Editable Python example"></div>
           <div class="run-controls">
             <button id="run-python" type="button">Run Python</button>
+            <button id="reset-python" type="button">Reset to starter code</button>
             <span id="run-status" role="status" aria-live="polite">Runs in your browser. The first run needs an internet connection to load Python.</span>
           </div>
           <div class="output-panel">

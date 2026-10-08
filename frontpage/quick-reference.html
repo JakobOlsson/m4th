@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A quick reference for mathematical notation and its Python syntax equivalents.">
     <title>Notation and Python quick reference — Math Refresher</title>
-    <link rel="stylesheet" href="styles.css?v=12">
+    <link rel="stylesheet" href="styles.css?v=19">
     <script src="navigation.js" defer></script>
     <script src="quick-reference.js" defer></script>
   </head>
@@ -29,6 +29,9 @@
         <a class="nav-link" href="letters.html">Letters and notation</a>
         <a class="nav-link" href="index.html">Summation (∑)</a>
         <a class="nav-link" href="products.html">Products and factorials</a>
+        <a class="nav-link" href="probability.html">Probability</a>
+        <a class="nav-link" href="expectation.html">Expected value</a>
+        <a class="nav-link" href="probability-bounds.html">Probability bounds</a>
         <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
         <a class="nav-link" href="quick-reference.html" aria-current="page">Notation and Python</a>
       </nav>
@@ -78,7 +81,17 @@
               <tr>
                 <td>P(A)</td>
                 <td>The probability that event A happens.</td>
-                <td><a href="letters.html#probability-notation">Probability preview</a></td>
+                <td><a href="probability.html#probability-notation">Probability lesson</a></td>
+              </tr>
+              <tr>
+                <td>E[X]</td>
+                <td>The expected value, or probability-weighted average, of random variable X.</td>
+                <td><a href="expectation.html#expected-value-notation">Expected-value lesson</a></td>
+              </tr>
+              <tr>
+                <td>P(A ∪ B) ≤ P(A) + P(B)</td>
+                <td>Union bound: the probability that at least one event happens is at most the sum of their probabilities.</td>
+                <td><a href="probability-bounds.html#union-bound">Probability-bounds lesson</a></td>
               </tr>
               <tr>
                 <td>i, e, π</td>
@@ -104,6 +117,11 @@
                 <td>x<sup>2</sup> or x^2</td>
                 <td><code>x ** 2</code></td>
                 <td>Use <code>**</code> for powers. In Python, <code>^</code> is bitwise XOR—not exponentiation.</td>
+              </tr>
+              <tr>
+                <td>√x</td>
+                <td><code>math.sqrt(x)</code></td>
+                <td>Python has no root operator; import the standard-library <code>math</code> module and call its square-root function.</td>
               </tr>
               <tr>
                 <td>2x</td>
@@ -138,6 +156,15 @@
             </tbody>
           </table>
         </div>
+        <aside class="precedence-note" aria-labelledby="roots-title">
+          <h3 id="roots-title">Powers and roots</h3>
+          <p>Python uses <code>**</code> for powers, but roots are function calls or fractional powers. The <code>math</code> module provides square root and, in Python 3.11 and later, cube root:</p>
+          <pre class="precedence-examples"><code>import math
+
+math.sqrt(9)    # 3.0
+math.cbrt(-8)   # -2.0 (Python 3.11+)</code></pre>
+          <p>For a nonnegative <code>x</code>, a general n-th root can be written <code>x ** (1 / n)</code>; this usually gives a floating-point approximation. The <code>math</code> module has no general n-th-root function.</p>
+        </aside>
         <aside class="precedence-note" aria-labelledby="precedence-title">
           <h3 id="precedence-title">Grouping and order of operations</h3>
           <p>Python follows the familiar arithmetic order: multiplication and division before addition and subtraction. Within <code>*</code> and <code>/</code>, and within <code>+</code> and <code>-</code>, operations group left to right. Parentheses make a different grouping explicit.</p>
