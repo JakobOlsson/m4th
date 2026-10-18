@@ -32,6 +32,7 @@
         <a class="nav-link" href="expectation.html">Expected value</a>
         <a class="nav-link" href="probability-bounds.html">Probability bounds</a>
         <a class="nav-link" href="counting-work.html" aria-current="page">Counting work</a>
+        <a class="nav-link" href="vector-dot-product.html">Vectors and dot products</a>
         <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
         <button class="nav-link quick-reference-trigger" type="button">Notation and Python</button>
       </nav>
@@ -48,7 +49,7 @@
     <main id="top">
       <nav class="page-nav page-nav-top" aria-label="Previous and next pages">
         <a class="page-nav-item" href="probability-bounds.html"><span class="page-nav-direction">PREVIOUS</span><span>← Probability bounds</span></a>
-        <span class="page-nav-item page-nav-disabled" aria-disabled="true"><span class="page-nav-direction">NEXT</span><span>End of current lessons</span></span>
+        <a class="page-nav-item page-nav-next" href="vector-dot-product.html"><span class="page-nav-direction">NEXT</span><span>Vectors and dot products →</span></a>
       </nav>
       <section class="intro" aria-labelledby="page-title">
         <p class="eyebrow">COUNTING WORK · LOOP GROWTH</p>
@@ -264,11 +265,11 @@ print("constant-work steps =", count_constant_work(n))</template>
           <p class="math-note">This comparison counts high-level additions and function calls. Python integers can grow to many digits, so each addition eventually costs more than one machine-level step; that detail does not change the contrast between exponential and linear growth here. The recursive code is shorter, but it does much more repeated work.</p>
         </section>
 
-        <aside class="later-note"><strong>Where this leads</strong><p>Counting work combines loops with summation. Next, we can use sums of products to understand dot products and other vector operations.</p></aside>
+        <aside class="later-note"><strong>Where this leads</strong><p>Counting work combines loops with summation. The next lesson applies sums of products to vector dot products.</p></aside>
       </section>
       <nav class="page-nav page-nav-bottom" aria-label="Previous and next pages">
         <a class="page-nav-item" href="probability-bounds.html"><span class="page-nav-direction">PREVIOUS</span><span>← Probability bounds</span></a>
-        <span class="page-nav-item page-nav-disabled" aria-disabled="true"><span class="page-nav-direction">NEXT</span><span>End of current lessons</span></span>
+        <a class="page-nav-item page-nav-next" href="vector-dot-product.html"><span class="page-nav-direction">NEXT</span><span>Vectors and dot products →</span></a>
       </nav>
     </main>
     <footer>Made for learning to unpack the math, one step at a time.</footer>

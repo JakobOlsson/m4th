@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Read vectors and dot products by matching components, multiplying each pair, and adding the results.">
+    <title>Vectors and dot products — Math Refresher</title>
+    <link rel="stylesheet" href="styles.css?v=19">
+    <script src="editor.bundle.js?v=2" defer></script>
+    <script src="run-python.js?v=7" defer></script>
+    <script src="navigation.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#top">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand-controls">
+          <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="handbook-nav" aria-expanded="true"><span class="menu-icon" aria-hidden="true">☰</span><span>Contents</span></button>
+          <a class="wordmark" href="letters.html">Math, unpacked</a>
+        </div>
+        <span class="header-note">A personal math refresher</span>
+      </div>
+    </header>
+
+    <aside id="handbook-nav" class="sidebar">
+      <nav aria-label="Handbook pages">
+        <p class="sidebar-label">FOUNDATIONS</p>
+        <a class="nav-link" href="letters.html">Letters and notation</a>
+        <a class="nav-link" href="index.html">Summation (∑)</a>
+        <a class="nav-link" href="products.html">Products and factorials</a>
+        <a class="nav-link" href="probability.html">Probability</a>
+        <a class="nav-link" href="expectation.html">Expected value</a>
+        <a class="nav-link" href="probability-bounds.html">Probability bounds</a>
+        <a class="nav-link" href="counting-work.html">Counting work</a>
+        <a class="nav-link" href="vector-dot-product.html" aria-current="page">Vectors and dot products</a>
+        <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
+        <button class="nav-link quick-reference-trigger" type="button">Notation and Python</button>
+      </nav>
+    </aside>
+    <button id="nav-scrim" class="nav-scrim" type="button" aria-label="Close navigation"></button>
+    <dialog id="quick-reference-dialog" class="quick-reference-dialog" aria-labelledby="quick-reference-dialog-title">
+      <div class="quick-reference-dialog-header">
+        <div><span class="notation-reading-label">QUICK REFERENCE</span><h2 id="quick-reference-dialog-title">Notation and Python</h2></div>
+        <div class="dialog-actions"><a href="quick-reference.html" target="_blank" rel="noopener">Open full page ↗</a><button class="dialog-close" type="button" aria-label="Close quick reference">×</button></div>
+      </div>
+      <iframe title="Notation and Python quick reference" data-src="quick-reference.html?embed=1"></iframe>
+    </dialog>
+
+    <main id="top">
+      <nav class="page-nav page-nav-top" aria-label="Previous and next pages">
+        <a class="page-nav-item" href="counting-work.html"><span class="page-nav-direction">PREVIOUS</span><span>← Counting work</span></a>
+        <span class="page-nav-item page-nav-disabled" aria-disabled="true"><span class="page-nav-direction">NEXT</span><span>End of current lessons</span></span>
+      </nav>
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">VECTORS · DOT PRODUCTS</p>
+        <h1 id="page-title">Match, multiply, and add.</h1>
+        <p class="intro-copy">A dot product takes two same-length vectors, multiplies matching components, and adds those products to make one number.</p>
+      </section>
+
+      <section id="dot-product-lesson" class="lesson" aria-labelledby="lesson-title">
+        <div class="lesson-heading">
+          <h2 id="lesson-title">A vector is an ordered list of components.</h2>
+          <p>For this lesson, think of a vector as a list whose entries have a fixed order. The first component matches the first component of another vector, the second matches the second, and so on. We write vector names in bold here to distinguish the whole vector from one component.</p>
+        </div>
+
+        <section class="bounds-guide" aria-labelledby="example-vectors-title">
+          <h3 id="example-vectors-title">Start with two short vectors</h3>
+          <p>Let vector <strong>a</strong> have components 2 and 3, and vector <strong>b</strong> have components 4 and 5:</p>
+          <div class="notation-reading-row compact-reading-row">
+            <div class="notation-reading-part"><span class="notation-reading-label">NOTATION</span><!-- LaTeX: \mathbf{a}=(2,3),\quad\mathbf{b}=(4,5) --><math class="inline-math" aria-label="vector a equals two, three; vector b equals four, five"><mrow><mi mathvariant="bold">a</mi><mo>=</mo><mo>(</mo><mn>2</mn><mo>,</mo><mn>3</mn><mo>)</mo><mo>,</mo><mspace width="0.7em"/><mi mathvariant="bold">b</mi><mo>=</mo><mo>(</mo><mn>4</mn><mo>,</mo><mn>5</mn><mo>)</mo></mrow></math></div>
+            <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>Vector <i>a</i> has components 2 and 3; vector <i>b</i> has components 4 and 5.</p></div>
+          </div>
+          <p>Here, treat these as vectors in the same standard two-dimensional Euclidean coordinate system, with shared <i>x</i>- and <i>y</i>-axes that are perpendicular (at a right angle to each other). The first entry is the component along <i>x</i>; the second is along <i>y</i>. Each vector has two components, so each has dimension 2. The dot product pairs components along the same axis.</p>
+          <p>The sum-of-products formula here is the ordinary Euclidean dot product in those standard coordinates. The order matters: the first entries are paired, then the second entries.</p>
+        </section>
+
+        <section class="bounds-guide" aria-labelledby="displacement-vector-title">
+          <h3 id="displacement-vector-title">A vector can go from one point to another</h3>
+          <p>Yes. A vector can describe a displacement: the change from a starting point to an ending point. For example, start at coordinates <!-- LaTeX: (1,2) --><math class="inline-math" aria-label="one, two"><mrow><mo>(</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>)</mo></mrow></math> and end at <!-- LaTeX: (4,6) --><math class="inline-math" aria-label="four, six"><mrow><mo>(</mo><mn>4</mn><mo>,</mo><mn>6</mn><mo>)</mo></mrow></math>. Subtract the start coordinates from the end coordinates:</p>
+          <div class="notation-reading-row compact-reading-row">
+            <div class="notation-reading-part"><span class="notation-reading-label">DISPLACEMENT</span><!-- LaTeX: (4,6)-(1,2)=(4-1,6-2)=(3,4) --><math class="inline-math" aria-label="four, six minus one, two equals four minus one, six minus two equals three, four"><mrow><mo>(</mo><mn>4</mn><mo>,</mo><mn>6</mn><mo>)</mo><mo>−</mo><mo>(</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>)</mo><mo>=</mo><mo>(</mo><mn>4</mn><mo>−</mo><mn>1</mn><mo>,</mo><mn>6</mn><mo>−</mo><mn>2</mn><mo>)</mo><mo>=</mo><mo>(</mo><mn>3</mn><mo>,</mo><mn>4</mn><mo>)</mo></mrow></math></div>
+            <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>End coordinates minus start coordinates give a displacement of three along <i>x</i> and four along <i>y</i>.</p></div>
+          </div>
+          <p>The same vector can be drawn as an arrow from the origin to <!-- LaTeX: (3,4) --><math class="inline-math" aria-label="three, four"><mrow><mo>(</mo><mn>3</mn><mo>,</mo><mn>4</mn><mo>)</mo></mrow></math>, or from <!-- LaTeX: (1,2) --><math class="inline-math" aria-label="one, two"><mrow><mo>(</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>)</mo></mrow></math> to <!-- LaTeX: (4,6) --><math class="inline-math" aria-label="four, six"><mrow><mo>(</mo><mn>4</mn><mo>,</mo><mn>6</mn><mo>)</mo></mrow></math>. Its components describe the change, not the arrow’s location on the page.</p>
+        </section>
+
+        <section class="explain-grid" aria-label="Dot product notation and its result">
+          <article>
+            <h3>What the dot tells us to do</h3>
+            <p>The centered dot is an operation symbol, not a mark showing a point or place. It tells us to multiply matching components and add the products.</p>
+          </article>
+          <article>
+            <h3>What kind of answer comes out?</h3>
+            <p>A single number, called a scalar. The dot product combines all the component-pairs into that one result.</p>
+          </article>
+        </section>
+
+        <section class="notation-reading-row" aria-label="Dot product definition and spoken reading">
+          <div class="notation-reading-part">
+            <span class="notation-reading-label">NOTATION</span>
+            <!-- LaTeX: \mathbf{a}\cdot\mathbf{b}=\sum_{i=1}^{n}a_i \times b_i -->
+            <math class="inline-math" aria-label="vector a dot vector b equals the sum from i equals one through n of a sub i times b sub i"><mrow><mi mathvariant="bold">a</mi><mo>·</mo><mi mathvariant="bold">b</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>a</mi><mi>i</mi></msub><mo>×</mo><msub><mi>b</mi><mi>i</mi></msub></mrow></math>
+          </div>
+          <div class="notation-reading-part spoken-reading">
+            <span class="notation-reading-label">READ IT ALOUD</span>
+            <p>Vector <i>a</i> dotted with vector <i>b</i> equals the sum, from component 1 through component <i>n</i>, of each <i>a</i> component times its matching <i>b</i> component.</p>
+          </div>
+        </section>
+
+        <section class="bounds-guide" aria-labelledby="decode-dot-product-title">
+          <h3 id="decode-dot-product-title">Read each part of the formula</h3>
+          <ul class="role-list">
+            <li><i>a</i> and <i>b</i> are the names of the two vectors.</li>
+            <li><i>n</i> is the number of components in each vector; their lengths must match.</li>
+            <li><i>i</i> is the index that selects a matching pair of components.</li>
+            <li><!-- LaTeX: a_i, b_i --><math class="inline-math" aria-label="a sub i and b sub i"><msub><mi>a</mi><mi>i</mi></msub><mo>,</mo><mspace width="0.4em"/><msub><mi>b</mi><mi>i</mi></msub></math> are the components at position <i>i</i>.</li>
+            <li>The summation adds the products <!-- LaTeX: a_i \times b_i --><math class="inline-math" aria-label="a sub i times b sub i"><msub><mi>a</mi><mi>i</mi></msub><mo>×</mo><msub><mi>b</mi><mi>i</mi></msub></math>, one product for each position.</li>
+          </ul>
+          <p>The dimension <i>n</i> can be any positive whole number; mathematics sets no fixed maximum. In a computer, memory and time limit how large the vectors can be in practice. Infinite-dimensional spaces also exist, but their dot products need additional rules for infinite sums, which is a later topic.</p>
+        </section>
+
+        <section class="bounds-guide" aria-labelledby="expand-dot-product-title">
+          <h3 id="expand-dot-product-title">Expand the two-component example</h3>
+          <p>Pair the first entries, multiply them, then do the same with the second entries:</p>
+          <div class="notation-reading-row compact-reading-row">
+            <div class="notation-reading-part"><span class="notation-reading-label">EXPANDED</span><!-- LaTeX: \mathbf{a}\cdot\mathbf{b}=2\times4+3\times5=8+15=23 --><math class="inline-math" aria-label="vector a dot vector b equals two times four plus three times five equals eight plus fifteen equals twenty-three"><mrow><mi mathvariant="bold">a</mi><mo>·</mo><mi mathvariant="bold">b</mi><mo>=</mo><mn>2</mn><mo>×</mo><mn>4</mn><mo>+</mo><mn>3</mn><mo>×</mo><mn>5</mn><mo>=</mo><mn>8</mn><mo>+</mo><mn>15</mn><mo>=</mo><mn>23</mn></mrow></math></div>
+            <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>Two times four, plus three times five, equals eight plus fifteen, which is 23.</p></div>
+          </div>
+          <p>The answer 23 is one scalar. We do not keep the intermediate products 8 and 15 as a two-component vector.</p>
+          <h3>What does that number tell us?</h3>
+          <p>It summarizes how the matching components combine; it is not a position in space. In this example, both vectors have positive components along the same axes, so their dot product is positive. Move the vectors so their tails share an origin to compare their directions. For nonzero vectors, a zero dot product means a right angle. A negative result means the angle is greater than a right angle; the vectors are exactly opposite only at a straight angle. The size of the result also depends on the vectors’ lengths.</p>
+        </section>
+
+        <section class="code-section" aria-labelledby="code-title">
+          <div class="code-heading">
+            <div><p class="eyebrow">THE SAME STEPS IN PYTHON</p><h3 id="code-title">Multiply matching components and accumulate</h3></div>
+            <span class="language-label">Python</span>
+          </div>
+          <p class="code-intro">Python lists use index 0 for the first item, while the math formula starts its index at 1. The loop below uses a Python index called <code>python_index</code>; its position is one less than the math index. The examples stay visible above—you can run this code only if you want to check the arithmetic.</p>
+          <div id="python-editor" class="editor-shell" aria-label="Editable Python dot product example"></div>
+          <div class="run-controls"><button id="run-python" type="button">Run Python</button><button id="reset-python" type="button">Reset to starter code</button><span id="run-status" role="status" aria-live="polite">Runs in your browser. The first run needs an internet connection to load Python.</span></div>
+          <div class="output-panel"><div class="output-heading">Output</div><pre id="python-output" aria-live="polite">Click “Run Python” to run the code above.</pre></div>
+          <template id="starter-python">a = [2, 3]  # math components a_1, a_2
+b = [4, 5]  # math components b_1, b_2
+
+dot_product = 0
+for python_index in range(len(a)):
+    # python_index 0 pairs a_1 with b_1; index 1 pairs a_2 with b_2
+    dot_product += a[python_index] * b[python_index]
+
+print("dot product =", dot_product)</template>
+          <p class="math-note"><strong>Match positions before multiplying.</strong> The explicit loop assumes equal lengths and iterates over <code>len(a)</code>: if <code>b</code> is shorter, indexing it raises <code>IndexError</code>; if <code>b</code> is longer, its extra components are ignored. Check the lengths before computing—the mathematical dot product is defined here only for equal-length vectors.</p>
+        </section>
+
+        <section class="shorter-section" aria-labelledby="short-dot-product-title">
+          <p class="eyebrow">A SHORTER PYTHON VERSION</p>
+          <h3 id="short-dot-product-title">Use <code>map</code> with the multiplication function</h3>
+          <pre class="short-code"><code>from operator import mul
+
+a = [2, 3]  # math components a_1, a_2
+b = [4, 5]  # math components b_1, b_2
+
+dot_product = sum(map(mul, a, b))
+
+print("dot product =", dot_product)</code></pre>
+          <p><code>map(mul, a, b)</code> multiplies matching entries from the two lists; <code>sum()</code> adds those products. Unlike the explicit loop, <code>map</code> stops silently at the shorter list, ignoring unmatched entries whether <code>a</code> or <code>b</code> is shorter. Both versions need an equal-length check when used with arbitrary vectors.</p>
+          <button class="load-version-button" data-load-code="dot-product-map-python" type="button">Load concise version into editor</button>
+          <template id="dot-product-map-python">from operator import mul
+
+a = [2, 3]  # math components a_1, a_2
+b = [4, 5]  # math components b_1, b_2
+
+dot_product = sum(map(mul, a, b))
+
+print("dot product =", dot_product)</template>
+        </section>
+
+        <section class="bounds-guide" aria-labelledby="where-dot-products-appear-title">
+          <h3 id="where-dot-products-appear-title">Where dot products appear</h3>
+          <p>Dot products are used in geometry, physics, and machine learning. In those settings, they can help describe relationships between vectors; here we focus on the shared component-by-component calculation and leave the broader interpretations for later.</p>
+        </section>
+      </section>
+
+      <aside class="later-note"><strong>Next connection</strong><p>A matrix product is built from dot products: each output entry combines one row with one column. We can unpack that as a follow-up once the vector components and dot product feel familiar.</p></aside>
+      <nav class="page-nav page-nav-bottom" aria-label="Previous and next pages">
+        <a class="page-nav-item" href="counting-work.html"><span class="page-nav-direction">PREVIOUS</span><span>← Counting work</span></a>
+        <span class="page-nav-item page-nav-disabled" aria-disabled="true"><span class="page-nav-direction">NEXT</span><span>End of current lessons</span></span>
+      </nav>
+    </main>
+    <footer>Made for learning to unpack the math, one step at a time.</footer>
+  </body>
+</html>
