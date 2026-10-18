@@ -33,6 +33,7 @@
         <a class="nav-link" href="probability.html" aria-current="page">Probability</a>
         <a class="nav-link" href="expectation.html">Expected value</a>
         <a class="nav-link" href="probability-bounds.html">Probability bounds</a>
+        <a class="nav-link" href="counting-work.html">Counting work</a>
         <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
         <button class="nav-link quick-reference-trigger" type="button">Notation and Python</button>
       </nav>
@@ -78,7 +79,7 @@
         <div class="notation-reading-row">
           <div class="notation-reading-part">
             <span class="notation-reading-label">NOTATION</span>
-            <p class="inline-math"><span class="upright-math">P</span>(<i>E</i>) = <span class="fraction-inline"><span>3</span><span>6</span></span> = <span class="fraction-inline"><span>1</span><span>2</span></span></p>
+            <!-- LaTeX: \Pr(E)=\frac{3}{6}=\frac{1}{2} --><math class="inline-math" aria-label="probability of E equals three sixths equals one half"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>E</mi><mo>)</mo><mo>=</mo><mfrac><mn>3</mn><mn>6</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow></math>
             <p><i>E</i> is the event of rolling an even number.</p>
           </div>
           <div class="notation-reading-part spoken-reading">
@@ -89,23 +90,23 @@
 
         <aside class="guide-callout">
           <strong>What the fraction means here</strong>
-          <p>There are 3 favorable outcomes (2, 4, 6) out of 6 possible outcomes. Because the die is fair, all six outcomes have the same chance, so the probability is <span class="inline-math">3/6 = 1/2</span>.</p>
+          <p>There are 3 favorable outcomes (2, 4, 6) out of 6 possible outcomes. Because the die is fair, all six outcomes have the same chance, so the probability is <!-- LaTeX: \frac{3}{6}=\frac{1}{2} --><math class="inline-math" aria-label="three sixths equals one half"><mrow><mfrac><mn>3</mn><mn>6</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow></math>.</p>
         </aside>
 
         <section class="bounds-guide" aria-labelledby="probability-range-title">
           <h3 id="probability-range-title">A probability is between 0 and 1</h3>
           <p>A probability of 0 means the event cannot happen; a probability of 1 means it is certain. Here, rolling a 7 has probability 0, and rolling one of the six faces has probability 1.</p>
-          <p>Probabilities are usually written on the 0-to-1 scale; multiply by 100 to express one as a percentage. For example, <span class="inline-math">0.5 = 50%</span>, while <span class="inline-math">1/3 ≈ 0.333… ≈ 33.3%</span>. A probability can be any value in between, not just a whole percentage. Python floats approximate many such values; <code>Fraction</code> can keep rational values like <span class="inline-math">1/3</span> exact.</p>
+          <p>Probabilities are usually written on the 0-to-1 scale; multiply by 100 to express one as a percentage. For example, <!-- LaTeX: 0.5=50\\% --><math class="inline-math" aria-label="zero point five equals fifty percent"><mrow><mn>0.5</mn><mo>=</mo><mn>50</mn><mo>%</mo></mrow></math>, while <!-- LaTeX: \frac{1}{3}\approx0.333\ldots\approx33.3\\% --><math class="inline-math" aria-label="one third is approximately zero point three repeating and about thirty-three point three percent"><mrow><mfrac><mn>1</mn><mn>3</mn></mfrac><mo>≈</mo><mn>0.333</mn><mo>…</mo><mo>≈</mo><mn>33.3</mn><mo>%</mo></mrow></math>. A probability can be any value in between, not just a whole percentage. Python floats approximate many such values; <code>Fraction</code> can keep rational values like <!-- LaTeX: \frac{1}{3} --><math class="inline-math" aria-label="one third"><mfrac><mn>1</mn><mn>3</mn></mfrac></math> exact.</p>
         </section>
 
         <section class="guide-card" aria-labelledby="random-variable-title">
           <p class="eyebrow">FROM AN EVENT TO PROBABILITY NOTATION</p>
           <h2 id="random-variable-title">Use <i>X</i> to name the roll.</h2>
-          <p>Let <i>X</i> be the number shown on the die. Then the event “roll a 4” can be written <span class="inline-math"><span class="upright-math">P</span>(<i>X</i> = 4)</span>. It has one favorable outcome out of six:</p>
+          <p>Let <i>X</i> be the number shown on the die. Then the event “roll a 4” can be written <!-- LaTeX: \Pr(X=4) --><math class="inline-math" aria-label="probability that X equals four"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mn>4</mn><mo>)</mo></mrow></math>. It has one favorable outcome out of six:</p>
           <div class="notation-reading-row compact-reading-row">
             <div class="notation-reading-part">
               <span class="notation-reading-label">NOTATION</span>
-              <p class="inline-math"><span class="upright-math">P</span>(<i>X</i> = 4) = 1/6</p>
+              <!-- LaTeX: \Pr(X=4)=\frac{1}{6} --><math class="inline-math" aria-label="probability X equals four is one sixth"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mn>4</mn><mo>)</mo><mo>=</mo><mfrac><mn>1</mn><mn>6</mn></mfrac></mrow></math>
             </div>
             <div class="notation-reading-part spoken-reading">
               <span class="notation-reading-label">READ IT ALOUD</span>
@@ -122,7 +123,7 @@
           <div class="notation-reading-row compact-reading-row">
             <div class="notation-reading-part">
               <span class="notation-reading-label">NOTATION</span>
-              <p class="inline-math"><span class="upright-math">P</span>(<i>X</i> ≥ 5) = ∑<sub>k=5</sub><sup>6</sup> <span class="upright-math">P</span>(<i>X</i> = k)</p>
+              <!-- LaTeX: \Pr(X\ge5)=\sum_{k=5}^{6}\Pr(X=k) --><math class="inline-math" aria-label="probability X at least five equals the sum from k five through six of probability X equals k"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>≥</mo><mn>5</mn><mo>)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>5</mn></mrow><mn>6</mn></munderover><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo>)</mo></mrow></math>
             </div>
             <div class="notation-reading-part spoken-reading">
               <span class="notation-reading-label">READ IT ALOUD</span>
@@ -131,16 +132,16 @@
           </div>
           <div class="summand-expansion" aria-labelledby="summand-expansion-title">
             <h3 id="summand-expansion-title">Substitute each index into the whole term</h3>
-            <p>The <strong>summand</strong>—the full expression being added—is <span class="inline-math"><span class="upright-math">P</span>(<i>X</i> = k)</span>. The index <i>k</i> takes the values 5 and 6. Substitute each value for <i>k</i> in that entire expression:</p>
+            <p>The <strong>summand</strong>—the full expression being added—is <!-- LaTeX: \Pr(X=k) --><math class="inline-math" aria-label="probability X equals k"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo>)</mo></mrow></math>. The index <i>k</i> takes the values 5 and 6. Substitute each value for <i>k</i> in that entire expression:</p>
             <div class="summand-expansion-grid">
               <article>
                 <strong>When <i>k</i> = 5</strong>
-                <p><span class="inline-math"><span class="upright-math">P</span>(<i>X</i> = k)</span> becomes <span class="inline-math"><span class="upright-math">P</span>(<i>X</i> = 5)</span>.</p>
+                <p><!-- LaTeX: \Pr(X=k) --><math class="inline-math" aria-label="probability X equals k"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo>)</mo></mrow></math> becomes <!-- LaTeX: \Pr(X=5) --><math class="inline-math" aria-label="probability X equals five"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mn>5</mn><mo>)</mo></mrow></math>.</p>
                 <p>For a fair die, this term is 1/6.</p>
               </article>
               <article>
                 <strong>When <i>k</i> = 6</strong>
-                <p><span class="inline-math"><span class="upright-math">P</span>(<i>X</i> = k)</span> becomes <span class="inline-math"><span class="upright-math">P</span>(<i>X</i> = 6)</span>.</p>
+                <p><!-- LaTeX: \Pr(X=k) --><math class="inline-math" aria-label="probability X equals k"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo>)</mo></mrow></math> becomes <!-- LaTeX: \Pr(X=6) --><math class="inline-math" aria-label="probability X equals six"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mn>6</mn><mo>)</mo></mrow></math>.</p>
                 <p>For a fair die, this term is 1/6.</p>
               </article>
             </div>
@@ -148,7 +149,7 @@
           <div class="notation-reading-row compact-reading-row">
             <div class="notation-reading-part">
               <span class="notation-reading-label">EXPANDED, THEN EVALUATED</span>
-              <p class="inline-math">∑<sub>k=5</sub><sup>6</sup> <span class="upright-math">P</span>(<i>X</i> = k) = <span class="upright-math">P</span>(<i>X</i> = 5) + <span class="upright-math">P</span>(<i>X</i> = 6) = 1/6 + 1/6 = 1/3</p>
+              <!-- LaTeX: \sum_{k=5}^{6}\Pr(X=k)=\Pr(X=5)+\Pr(X=6)=\frac{1}{6}+\frac{1}{6}=\frac{1}{3} --><math class="inline-math" aria-label="sum from k five through six of probability X equals k equals probability X equals five plus probability X equals six equals one sixth plus one sixth equals one third"><mrow><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>5</mn></mrow><mn>6</mn></munderover><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo>)</mo><mo>=</mo><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mn>5</mn><mo>)</mo><mo>+</mo><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mn>6</mn><mo>)</mo><mo>=</mo><mfrac><mn>1</mn><mn>6</mn></mfrac><mo>+</mo><mfrac><mn>1</mn><mn>6</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>3</mn></mfrac></mrow></math>
             </div>
             <div class="notation-reading-part spoken-reading">
               <span class="notation-reading-label">READ IT ALOUD</span>
@@ -167,7 +168,7 @@
             </div>
             <span class="language-label">Python</span>
           </div>
-          <p class="code-intro">The code follows the probability sum’s symbols: <code>k</code> is a possible value of <i>X</i>, and <code>p_x_at_least_5</code> represents <span class="inline-math"><span class="upright-math">P</span>(<i>X</i> ≥ 5)</span>. The comment shows a concrete match: <code>k = roll = 6</code>. Python’s <code>range(1, 7)</code> produces 1 through 6 because it stops before 7. The favorable/all count ratio is valid here because the die is fair. See the <button class="inline-reference-trigger" type="button" data-reference-target="python-reference-title">Python syntax reminder</button>.</p>
+          <p class="code-intro">The code follows the probability sum’s symbols: <code>k</code> is a possible value of <i>X</i>, and <code>p_x_at_least_5</code> represents <!-- LaTeX: \Pr(X\ge5) --><math class="inline-math" aria-label="probability X is at least five"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>≥</mo><mn>5</mn><mo>)</mo></mrow></math>. The comment shows a concrete match: <code>k = roll = 6</code>. Python’s <code>range(1, 7)</code> produces 1 through 6 because it stops before 7. The favorable/all count ratio is valid here because the die is fair. See the <button class="inline-reference-trigger" type="button" data-reference-target="python-reference-title">Python syntax reminder</button>.</p>
           <template id="starter-python">possible_k_values = range(1, 7)
 favorable_outcomes = 0
 total_outcomes = 0
@@ -222,17 +223,17 @@ print("Favorable outcomes:", favorable_outcomes)
 print("All outcomes:", total_outcomes)
 print("Exact P(X >= 5):", p_x_at_least_5)
 print("Decimal approximation:", float(p_x_at_least_5))</template>
-          <p class="math-note">A rational number does not always have a finite decimal expansion: <span class="inline-math">1/3</span> repeats in decimal, but <code>Fraction(1, 3)</code> keeps it exact.</p>
+          <p class="math-note">A rational number does not always have a finite decimal expansion: <!-- LaTeX: \frac{1}{3} --><math class="inline-math" aria-label="one third"><mfrac><mn>1</mn><mn>3</mn></mfrac></math> repeats in decimal, but <code>Fraction(1, 3)</code> keeps it exact.</p>
         </section>
 
         <section class="guide-card" aria-labelledby="monte-carlo-title">
           <p class="eyebrow">A PYTHON EXPERIMENT · MONTE CARLO</p>
           <h2 id="monte-carlo-title">Simulate many rolls and compare.</h2>
-          <p>A <strong>Monte Carlo simulation</strong> estimates a probability by repeating random trials. Here one trial is one die roll, and a “hit” is a roll of 5 or 6. Assume every roll is independent—the earlier rolls do not change the chances of later rolls—and the die stays fair. After many rolls, compare the observed fraction of hits with the exact probability <span class="inline-math">1/3</span>.</p>
+          <p>A <strong>Monte Carlo simulation</strong> estimates a probability by repeating random trials. Here one trial is one die roll, and a “hit” is a roll of 5 or 6. Assume every roll is independent—the earlier rolls do not change the chances of later rolls—and the die stays fair. After many rolls, compare the observed fraction of hits with the exact probability <!-- LaTeX: \frac{1}{3} --><math class="inline-math" aria-label="one third"><mfrac><mn>1</mn><mn>3</mn></mfrac></math>.</p>
           <div class="notation-reading-row compact-reading-row">
             <div class="notation-reading-part">
               <span class="notation-reading-label">ESTIMATE</span>
-              <p class="inline-math">estimate of <span class="upright-math">P</span>(<i>X</i> ≥ 5) = hits ÷ <i>N</i></p>
+              <!-- LaTeX: \widehat{\Pr}(X\ge5)=\frac{\text{hits}}{N} --><math class="inline-math" aria-label="estimated probability X at least five equals hits divided by N"><mrow><mover><mi mathvariant="normal">P</mi><mo>^</mo></mover><mo>(</mo><mi>X</mi><mo>≥</mo><mn>5</mn><mo>)</mo><mo>=</mo><mfrac><mtext>hits</mtext><mi>N</mi></mfrac></mrow></math>
             </div>
             <div class="notation-reading-part spoken-reading">
               <span class="notation-reading-label">READ IT ALOUD</span>
@@ -335,7 +336,7 @@ for j in range(1, checkpoints[-1] + 1):  # trial index
               </tbody>
             </table>
           </div>
-          <p class="math-note"><strong>Simulation is evidence, not a proof.</strong> The exact argument is that 2 of the 6 equally likely faces are 5 or 6, so the probability is exactly <span class="inline-math">2/6 = 1/3</span>. Under this model, each roll has that exact probability; in <i>N</i> independent rolls, the expected number of hits is <i>N</i>/3, but the actual count varies. The law of large numbers says the observed fraction tends toward 1/3 as the number of rolls grows; it does not promise that each finite batch is exactly one third or that every checkpoint gets closer. This is sampling fluctuation, not a need to simulate the whole cosmos. A real die may also be slightly biased, which would be a difference between the model and reality. We can quantify typical fluctuations after learning more about averages and spread.</p>
+          <p class="math-note"><strong>Simulation is evidence, not a proof.</strong> The exact argument is that 2 of the 6 equally likely faces are 5 or 6, so the probability is exactly <!-- LaTeX: \frac{2}{6}=\frac{1}{3} --><math class="inline-math" aria-label="two sixths equals one third"><mrow><mfrac><mn>2</mn><mn>6</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>3</mn></mfrac></mrow></math>. Under this model, each roll has that exact probability; in <i>N</i> independent rolls, the expected number of hits is <!-- LaTeX: \frac{N}{3} --><math class="inline-math" aria-label="N thirds"><mfrac><mi>N</mi><mn>3</mn></mfrac></math>, but the actual count varies. The law of large numbers says the observed fraction tends toward <!-- LaTeX: \frac{1}{3} --><math class="inline-math" aria-label="one third"><mfrac><mn>1</mn><mn>3</mn></mfrac></math> as the number of rolls grows; it does not promise that each finite batch is exactly one third or that every checkpoint gets closer. This is sampling fluctuation, not a need to simulate the whole cosmos. A real die may also be slightly biased, which would be a difference between the model and reality. We can quantify typical fluctuations after learning more about averages and spread.</p>
           <p class="math-note"><strong>Small samples can look unrepresentative.</strong> In this seeded run, 10 rolls give an estimate of 0.6, far from 1/3. With only a few rolls, some faces may not appear, or a few may show up unusually often. There is no universal cutoff for a “large enough” sample: it depends on the accuracy you need and how rare the event is.</p>
         </section>
 
@@ -347,7 +348,7 @@ for j in range(1, checkpoints[-1] + 1):  # trial index
           <div class="notation-reading-row compact-reading-row">
             <div class="notation-reading-part">
               <span class="notation-reading-label">APPROXIMATE RULE</span>
-              <p class="inline-math"><i>m</i> ≈ <i>z</i>√(<i>p</i>(1 − <i>p</i>) / <i>N</i>)</p>
+              <!-- LaTeX: m \approx z\sqrt{\frac{p(1-p)}{N}} --><math class="inline-math" aria-label="m is approximately z times the square root of p times one minus p over N"><mrow><mi>m</mi><mo>≈</mo><mi>z</mi><msqrt><mfrac><mrow><mi>p</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo>)</mo></mrow><mi>N</mi></mfrac></msqrt></mrow></math>
             </div>
             <div class="notation-reading-part spoken-reading">
               <span class="notation-reading-label">READ IT ALOUD</span>
@@ -355,16 +356,16 @@ for j in range(1, checkpoints[-1] + 1):  # trial index
             </div>
           </div>
           <ul class="role-list">
-            <li>Lowercase <i>p</i> is the event probability used by the model (here, <span class="inline-math">1/3</span>); <span class="inline-math"><span class="upright-math">P</span>(<i>A</i>)</span> denotes the probability of a named event <i>A</i>.</li>
+            <li>Lowercase <i>p</i> is the event probability used by the model (here, <!-- LaTeX: \frac{1}{3} --><math class="inline-math" aria-label="one third"><mfrac><mn>1</mn><mn>3</mn></mfrac></math>); <!-- LaTeX: \Pr(A) --><math class="inline-math" aria-label="probability of event A"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>A</mi><mo>)</mo></mrow></math> denotes the probability of a named event <i>A</i>.</li>
             <li><i>N</i> is the number of independent trials.</li>
-            <li><i>z</i> is a multiplier chosen for the confidence level; <span class="inline-math">1.96</span> is commonly used for an approximate 95% confidence interval.</li>
-            <li><i>m</i> is the margin as a proportion: <span class="inline-math">0.01</span> means one percentage point.</li>
+            <li><i>z</i> is a multiplier chosen for the confidence level; <!-- LaTeX: 1.96 --><math class="inline-math" aria-label="one point nine six"><mn>1.96</mn></math> is commonly used for an approximate 95% confidence interval.</li>
+            <li><i>m</i> is the margin as a proportion: <!-- LaTeX: 0.01 --><math class="inline-math" aria-label="zero point zero one"><mn>0.01</mn></math> means one percentage point.</li>
           </ul>
-          <p>For this die event, the approximate margin at the 95% confidence level is <span class="inline-math">0.0924</span> (9.24 percentage points) at 100 trials, <span class="inline-math">0.0292</span> (2.92 points) at 1,000, and <span class="inline-math">0.0092</span> (0.92 points) at 10,000. To plan for a chosen margin, rearrange the rule:</p>
+          <p>For this die event, the approximate margin at the 95% confidence level is <!-- LaTeX: 0.0924 --><math class="inline-math" aria-label="zero point zero nine two four"><mn>0.0924</mn></math> (9.24 percentage points) at 100 trials, <!-- LaTeX: 0.0292 --><math class="inline-math" aria-label="zero point zero two nine two"><mn>0.0292</mn></math> (2.92 points) at 1,000, and <!-- LaTeX: 0.0092 --><math class="inline-math" aria-label="zero point zero zero nine two"><mn>0.0092</mn></math> (0.92 points) at 10,000. To plan for a chosen margin, rearrange the rule:</p>
           <div class="notation-reading-row compact-reading-row">
             <div class="notation-reading-part">
               <span class="notation-reading-label">SOLVE FOR THE TRIAL COUNT</span>
-              <p class="inline-math"><i>N</i> ≈ <i>z</i><sup>2</sup><i>p</i>(1 − <i>p</i>) / <i>m</i><sup>2</sup></p>
+              <!-- LaTeX: N \approx \frac{z^2p(1-p)}{m^2} --><math class="inline-math" aria-label="N is approximately z squared times p times one minus p divided by m squared"><mrow><mi>N</mi><mo>≈</mo><mfrac><mrow><msup><mi>z</mi><mn>2</mn></msup><mi>p</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo>)</mo></mrow><msup><mi>m</mi><mn>2</mn></msup></mfrac></mrow></math>
             </div>
             <div class="notation-reading-part spoken-reading">
               <span class="notation-reading-label">READ IT ALOUD</span>
@@ -372,7 +373,7 @@ for j in range(1, checkpoints[-1] + 1):  # trial index
             </div>
           </div>
           <p>For <i>p</i> = 1/3 and a target margin <i>m</i> = 0.01 (one percentage point), this gives about 8,537 trials.</p>
-          <p class="math-note">This is an approximation, not a guaranteed error bound. The “95%” refers to long-run coverage: across repeated samples, intervals made this way would contain the true probability about 95% of the time; it is not a guarantee about one interval. The rule assumes independent trials and uses a normal approximation. If <i>p</i> is unknown, using <span class="inline-math">p = 0.5</span> is a conservative planning fallback because <span class="inline-math"><i>p</i>(1 − <i>p</i>)</span> is largest there; it does not mean the event is actually 50% likely. Use a reasonable model estimate or pilot data when available. Very rare events and small samples need extra care.</p>
+          <p class="math-note">This is an approximation, not a guaranteed error bound. The “95%” refers to long-run coverage: across repeated samples, intervals made this way would contain the true probability about 95% of the time; it is not a guarantee about one interval. The rule assumes independent trials and uses a normal approximation. If <i>p</i> is unknown, using <!-- LaTeX: p=0.5 --><math class="inline-math" aria-label="p equals zero point five"><mrow><mi>p</mi><mo>=</mo><mn>0.5</mn></mrow></math> is a conservative planning fallback because <!-- LaTeX: p(1-p) --><math class="inline-math" aria-label="p times one minus p"><mrow><mi>p</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo>)</mo></mrow></math> is largest there; it does not mean the event is actually 50% likely. Use a reasonable model estimate or pilot data when available. Very rare events and small samples need extra care.</p>
           <h3>Put the rule in a reusable Python function</h3>
           <p>The code uses the same symbols as the equations: <code>p</code> is the modeled event probability, uppercase <code>N</code> is the number of trials, <code>z</code> is the confidence multiplier, and <code>m</code> is the margin. The first helper computes <code>m</code> from <code>p</code> and <code>N</code>; the second computes the required <code>N</code> from <code>p</code> and a target <code>m</code>. <code>math.ceil</code> rounds that count up to a whole trial.</p>
           <pre class="short-code"><code>import math

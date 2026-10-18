@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Count the steps in simple and nested loops, then read their growth using Big O notation.">
+    <title>Counting work — Math Refresher</title>
+    <link rel="stylesheet" href="styles.css?v=19">
+    <script src="editor.bundle.js?v=2" defer></script>
+    <script src="run-python.js?v=7" defer></script>
+    <script src="navigation.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#top">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand-controls">
+          <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="handbook-nav" aria-expanded="true"><span class="menu-icon" aria-hidden="true">☰</span><span>Contents</span></button>
+          <a class="wordmark" href="letters.html">Math, unpacked</a>
+        </div>
+        <span class="header-note">A personal math refresher</span>
+      </div>
+    </header>
+
+    <aside id="handbook-nav" class="sidebar">
+      <nav aria-label="Handbook pages">
+        <p class="sidebar-label">FOUNDATIONS</p>
+        <a class="nav-link" href="letters.html">Letters and notation</a>
+        <a class="nav-link" href="index.html">Summation (∑)</a>
+        <a class="nav-link" href="products.html">Products and factorials</a>
+        <a class="nav-link" href="probability.html">Probability</a>
+        <a class="nav-link" href="expectation.html">Expected value</a>
+        <a class="nav-link" href="probability-bounds.html">Probability bounds</a>
+        <a class="nav-link" href="counting-work.html" aria-current="page">Counting work</a>
+        <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
+        <button class="nav-link quick-reference-trigger" type="button">Notation and Python</button>
+      </nav>
+    </aside>
+    <button id="nav-scrim" class="nav-scrim" type="button" aria-label="Close navigation"></button>
+    <dialog id="quick-reference-dialog" class="quick-reference-dialog" aria-labelledby="quick-reference-dialog-title">
+      <div class="quick-reference-dialog-header">
+        <div><span class="notation-reading-label">QUICK REFERENCE</span><h2 id="quick-reference-dialog-title">Notation and Python</h2></div>
+        <div class="dialog-actions"><a href="quick-reference.html" target="_blank" rel="noopener">Open full page ↗</a><button class="dialog-close" type="button" aria-label="Close quick reference">×</button></div>
+      </div>
+      <iframe title="Notation and Python quick reference" data-src="quick-reference.html?embed=1"></iframe>
+    </dialog>
+
+    <main id="top">
+      <nav class="page-nav page-nav-top" aria-label="Previous and next pages">
+        <a class="page-nav-item" href="probability-bounds.html"><span class="page-nav-direction">PREVIOUS</span><span>← Probability bounds</span></a>
+        <span class="page-nav-item page-nav-disabled" aria-disabled="true"><span class="page-nav-direction">NEXT</span><span>End of current lessons</span></span>
+      </nav>
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">COUNTING WORK · LOOP GROWTH</p>
+        <h1 id="page-title">Count the steps before naming the growth.</h1>
+        <p class="intro-copy">A loop is a repeated instruction. By counting how many times its body runs, we can describe how an algorithm’s work grows as its input gets larger.</p>
+      </section>
+
+      <section id="counting-work" class="lesson" aria-labelledby="lesson-title">
+        <div class="lesson-heading">
+          <h2 id="lesson-title">One loop: work grows in proportion to <i>n</i>.</h2>
+          <p>Suppose the input contains <i>n</i> items and we inspect each item once. The loop body runs once per item, so it runs exactly <i>n</i> times.</p>
+        </div>
+        <div class="notation-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">COUNT</span><!-- LaTeX: \sum_{i=1}^{n}1=1+1+\cdots+1=n --><math class="inline-math" aria-label="sum from i equals one through n of one equals n"><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mn>1</mn><mo>=</mo><mn>1</mn><mo>+</mo><mn>1</mn><mo>+</mo><mo>⋯</mo><mo>+</mo><mn>1</mn><mo>=</mo><mi>n</mi></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>Add one for each index from 1 through <i>n</i>; that makes <i>n</i> total steps.</p></div>
+        </div>
+        <p>We sum 1 because each visit to the loop body contributes one counted step. For <i>n</i> = 4, the count is 1 + 1 + 1 + 1 = 4.</p>
+
+        <section class="bounds-guide" aria-labelledby="nested-title">
+          <h3 id="nested-title">Two loops: count every inner run</h3>
+          <p>Now let an outer loop run <i>n</i> times, and for each outer iteration let an inner loop also run <i>n</i> times. Each of the <i>n</i> outer passes contains <i>n</i> inner steps:</p>
+          <div class="notation-reading-row compact-reading-row">
+            <div class="notation-reading-part"><span class="notation-reading-label">COUNT</span><!-- LaTeX: \sum_{i=1}^{n}n=n+n+\cdots+n=n\times n=n^2 --><math class="inline-math" aria-label="sum from i one through n of n equals n times n equals n squared"><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mi>n</mi><mo>=</mo><mi>n</mi><mo>+</mo><mi>n</mi><mo>+</mo><mo>⋯</mo><mo>+</mo><mi>n</mi><mo>=</mo><mi>n</mi><mo>×</mo><mi>n</mi><mo>=</mo><msup><mi>n</mi><mn>2</mn></msup></mrow></math></div>
+            <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>Add <i>n</i>, once for each of the <i>n</i> outer iterations. The total is <i>n</i> squared.</p></div>
+          </div>
+          <p>With <i>n</i> = 4, the inner body runs four times on each of four outer passes: 4 + 4 + 4 + 4 = 16 steps.</p>
+        </section>
+
+        <section class="explain-grid" aria-label="Exact counts and growth descriptions">
+          <article><h3>Exact count</h3><p>For this simplified example, the inner instruction runs exactly <!-- LaTeX: n^2 --><math aria-label="n squared"><msup><mi>n</mi><mn>2</mn></msup></math> times. At <i>n</i> = 4, that is 16.</p></article>
+          <article><h3>Growth description</h3><p>Big O describes an upper bound on how work grows for large inputs. This example has <!-- LaTeX: O(n^2) --><math aria-label="big O of n squared"><mrow><mi mathvariant="normal">O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow></math> work.</p></article>
+        </section>
+        <p><strong>Big O is not an exact step count.</strong> For example, <!-- LaTeX: 3n^2+5n+2 --><math aria-label="three n squared plus five n plus two"><mrow><mn>3</mn><msup><mi>n</mi><mn>2</mn></msup><mo>+</mo><mn>5</mn><mi>n</mi><mo>+</mo><mn>2</mn></mrow></math> is <!-- LaTeX: O(n^2) --><math aria-label="big O of n squared"><mrow><mi mathvariant="normal">O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow></math>: for large <i>n</i>, the squared term determines the growth rate. The exact running time still depends on the instructions, the input, and the machine.</p>
+
+        <section class="complexity-terms" aria-labelledby="complexity-terms-title">
+          <h3 id="complexity-terms-title">Cases and bounds are different questions</h3>
+          <p>Best, worst, and average case say which inputs we are measuring. Big O gives an upper bound for the chosen case. An average case is an average over an assumed distribution of inputs—not simply the most common input.</p>
+          <p>A tight bound describes growth from both above and below. It is written with <!-- LaTeX: \Theta --><math class="inline-math" aria-label="theta"><mi mathvariant="normal">Θ</mi></math> (“theta”). You do not need that extra notation for the examples in this lesson. See the <a href="letters.html#growth-notation-title">letters and notation guide</a> for a reference.
+        </section>
+
+        <section class="bounds-guide" aria-labelledby="scale-title">
+          <h3 id="scale-title">Compare how the counts scale</h3>
+          <p>When the input size is multiplied by 10, a one-loop count is multiplied by 10. A two-loop count like <!-- LaTeX: n^2 --><math aria-label="n squared"><msup><mi>n</mi><mn>2</mn></msup></math> is multiplied by 100.</p>
+          <div class="table-wrap">
+            <table class="letter-table">
+              <thead><tr><th scope="col">Input size <i>n</i></th><th scope="col">One loop: <i>n</i></th><th scope="col">Two nested loops: <!-- LaTeX: n^2 --><math aria-label="n squared"><msup><mi>n</mi><mn>2</mn></msup></math></th></tr></thead>
+              <tbody><tr><td>10</td><td>10</td><td>100</td></tr><tr><td>100</td><td>100</td><td>10,000</td></tr><tr><td>1,000</td><td>1,000</td><td>1,000,000</td></tr></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="bounds-guide" aria-labelledby="variable-depth-title">
+          <h3 id="variable-depth-title">If the nesting depth also grows with <i>n</i></h3>
+          <p>Two fixed loops give <!-- LaTeX: n^2 --><math aria-label="n squared"><msup><mi>n</mi><mn>2</mn></msup></math> work. Now imagine building a sequence of <i>n</i> choices: there are <i>n</i> options for the first position, <i>n</i> for the second, and so on for all <i>n</i> positions. For <i>n</i> = 2, choosing 0 or 1 in each position gives 00, 01, 10, 11: <!-- LaTeX: 2^2=4 --><math aria-label="two squared equals four"><mrow><msup><mn>2</mn><mn>2</mn></msup><mo>=</mo><mn>4</mn></mrow></math> sequences. The number of complete sequences in general is:</p>
+          <p><!-- LaTeX: n\times n\times\cdots\times n=n^n \text{ (n factors)} --><math class="inline-math" aria-label="n multiplied by itself n times equals n to the n"><mrow><mi>n</mi><mo>×</mo><mi>n</mi><mo>×</mo><mo>⋯</mo><mo>×</mo><mi>n</mi><mo>=</mo><msup><mi>n</mi><mi>n</mi></msup></mrow></math> (n factors). At <i>n</i> = 4, that is <!-- LaTeX: 4^4=256 --><math aria-label="four to the fourth equals two hundred fifty-six"><mrow><msup><mn>4</mn><mn>4</mn></msup><mo>=</mo><mn>256</mn></mrow></math> complete sequences. This is <strong><!-- LaTeX: O(n^n) --><math aria-label="big O of n to the n"><mrow><mi mathvariant="normal">O</mi><mo>(</mo><msup><mi>n</mi><mi>n</mi></msup><mo>)</mo></mrow></math></strong> work. Counting all the recursive function calls gives the same growth class. Since the base also grows with <i>n</i>, <!-- LaTeX: n^n --><math aria-label="n to the n"><msup><mi>n</mi><mi>n</mi></msup></math> grows faster than standard exponential forms such as <!-- LaTeX: 2^n --><math aria-label="two to the n"><msup><mn>2</mn><mi>n</mi></msup></math>. This is not the same as merely calculating <!-- LaTeX: n^n --><math aria-label="n to the n"><msup><mi>n</mi><mi>n</mi></msup></math> once.</p>
+        </section>
+
+        <section class="code-section" aria-labelledby="code-title">
+          <div class="code-heading"><div><p class="eyebrow">READ THE CODE · RUN AS AN OPTIONAL CHECK</p><h3 id="code-title">Four functions show four growth rates</h3></div><span class="language-label">Python</span></div>
+          <p class="code-intro">You do not need to run the code to understand the comparison. Read how many times each loop or recursive branch repeats as <code>n</code> increases. The <code># PSEUDOCODE</code> comments describe useful work; <code>total_steps</code> is only a counter. In the recursive version, one counted operation stands for processing each complete sequence. The editor is optional.</p>
+          <div id="python-editor" class="editor-shell" aria-label="Editable Python example"></div>
+          <div class="run-controls"><button id="run-python" type="button">Run Python</button><button id="reset-python" type="button">Reset to starter code</button><span id="run-status" role="status" aria-live="polite">Runs in your browser. The first run needs an internet connection to load Python.</span></div>
+          <div class="output-panel"><div class="output-heading">Output</div><pre id="python-output" aria-live="polite">Click “Run Python” to run the code above.</pre></div>
+          <template id="starter-python">n = 4
+
+def count_sequences(choices_left):
+    if choices_left == 0:
+        # PSEUDOCODE: process this complete sequence.
+        return 1  # count one such operation
+
+    total_steps = 0
+    for choice in range(n):  # try every option for this position
+        total_steps += count_sequences(choices_left - 1)
+    return total_steps
+
+total_steps = count_sequences(n)
+print("n =", n)
+print("counted operations =", total_steps)</template>
+          <p class="math-note"><strong>A formula for the count is not the same as doing the work.</strong> In the simple operation-count model used here, <code>print(n * n)</code> performs a fixed number of high-level operations; it does not execute <!-- LaTeX: n^2 --><math aria-label="n squared"><msup><mi>n</mi><mn>2</mn></msup></math> loop steps. (For very large integers, multiplication itself takes longer as the numbers grow.) The recursive function actually builds the count by considering every possible sequence. Comments marked PSEUDOCODE stand in for the useful task a practical program would perform; the counter makes repeated work countable. We use this to illustrate growth, not as a recommended way to solve a practical problem.</p>
+          <section class="code-variants" aria-labelledby="growth-versions-title">
+            <h4 id="growth-versions-title">Compare four growth patterns</h4>
+            <p>Each function is shown in full so you can inspect it without compiling or running anything. The pseudocode comments name the useful operation being counted. For the recursive example, <code>choices_left</code> is the number of positions still to fill; reaching zero means one complete sequence has been processed.</p>
+            <div class="code-variant">
+              <span class="variant-label">N-to-the-n · <!-- LaTeX: O(n^n) --><math aria-label="big O of n to the n"><mrow><mi mathvariant="normal">O</mi><mo>(</mo><msup><mi>n</mi><mi>n</mi></msup><mo>)</mo></mrow></math></span>
+              <pre class="short-code"><code>def count_sequences(choices_left):
+    if choices_left == 0:
+        # PSEUDOCODE: process this complete sequence.
+        return 1  # count one such operation
+
+    total_steps = 0
+    for choice in range(n):  # try every option at this position
+        total_steps += count_sequences(choices_left - 1)
+    return total_steps
+
+n = 4
+print(count_sequences(n))  # 4**4 = 256 counted operations</code></pre>
+              <button class="load-version-button" data-load-code="recursive-work-python" type="button">Load recursive version</button>
+              <template id="recursive-work-python">n = 4
+
+def count_sequences(choices_left):
+    if choices_left == 0:
+        # PSEUDOCODE: process this complete sequence.
+        return 1  # count one such operation
+
+    total_steps = 0
+    for choice in range(n):  # try every option at this position
+        total_steps += count_sequences(choices_left - 1)
+    return total_steps
+
+total_steps = count_sequences(n)
+print("n =", n)
+print("counted operations =", total_steps)</template>
+            </div>
+            <div class="code-variant">
+              <span class="variant-label">Square · <!-- LaTeX: O(n^2) --><math aria-label="big O of n squared"><mrow><mi mathvariant="normal">O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow></math></span>
+              <pre class="short-code"><code>def count_square_work(n):
+    total_steps = 0
+    for i in range(n):              # n outer passes
+        for j in range(n):          # n inner passes per outer pass
+            # PSEUDOCODE: compare items i and j.
+            total_steps += 1        # count one comparison
+    return total_steps
+
+n = 4
+print(count_square_work(n))        # 16 counted steps</code></pre>
+              <button class="load-version-button" data-load-code="square-work-python" type="button">Load square-work version</button>
+              <template id="square-work-python">def count_square_work(n):
+    total_steps = 0
+    for i in range(n):
+        for j in range(n):
+            # PSEUDOCODE: compare items i and j.
+            total_steps += 1  # count one comparison
+    return total_steps
+
+n = 4
+print("n =", n)
+print("square-work steps =", count_square_work(n))</template>
+            </div>
+            <div class="code-variant">
+              <span class="variant-label">Linear · <!-- LaTeX: O(n) --><math aria-label="big O of n"><mrow><mi mathvariant="normal">O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow></math></span>
+              <pre class="short-code"><code>def count_linear_work(n):
+    total_steps = 0
+    for i in range(n):      # one pass for each of n items
+        # PSEUDOCODE: inspect item i.
+        total_steps += 1    # count one inspection
+    return total_steps
+
+n = 4
+print(count_linear_work(n))  # 4 counted steps</code></pre>
+              <button class="load-version-button" data-load-code="linear-work-python" type="button">Load linear-work version</button>
+              <template id="linear-work-python">def count_linear_work(n):
+    total_steps = 0
+    for i in range(n):
+        # PSEUDOCODE: inspect item i.
+        total_steps += 1  # count one inspection
+    return total_steps
+
+n = 4
+print("n =", n)
+print("linear-work steps =", count_linear_work(n))</template>
+            </div>
+            <div class="code-variant">
+              <span class="variant-label">Constant · <!-- LaTeX: O(1) --><math aria-label="big O of one"><mrow><mi mathvariant="normal">O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow></math></span>
+              <pre class="short-code"><code>def count_constant_work(n):
+    # PSEUDOCODE: read one fixed configuration setting.
+    total_steps = 1  # fixed work; does not depend on n
+    return total_steps
+
+n = 4
+print(count_constant_work(n))  # still 1 step</code></pre>
+              <button class="load-version-button" data-load-code="constant-work-python" type="button">Load constant-work version</button>
+              <template id="constant-work-python">def count_constant_work(n):
+    # PSEUDOCODE: read one fixed configuration setting.
+    total_steps = 1  # count the fixed operation
+    return total_steps
+
+n = 4
+print("n =", n)
+print("constant-work steps =", count_constant_work(n))</template>
+            </div>
+          </section>
+        </section>
+
+        <section class="bounds-guide" aria-labelledby="fibonacci-comparison-title">
+          <h3 id="fibonacci-comparison-title">Same result, different amount of work: Fibonacci</h3>
+          <p>The Fibonacci numbers start <!-- LaTeX: F_0=0, F_1=1 --><math class="inline-math" aria-label="F zero equals zero, F one equals one"><mrow><msub><mi>F</mi><mn>0</mn></msub><mo>=</mo><mn>0</mn><mo>,</mo><mspace width="0.6em"/><msub><mi>F</mi><mn>1</mn></msub><mo>=</mo><mn>1</mn></mrow></math>. Each later number adds the previous two: <!-- LaTeX: F_n=F_{n-1}+F_{n-2} --><math class="inline-math" aria-label="F n equals F n minus one plus F n minus two"><mrow><msub><mi>F</mi><mi>n</mi></msub><mo>=</mo><msub><mi>F</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>F</mi><mrow><mi>n</mi><mo>−</mo><mn>2</mn></mrow></msub></mrow></math>.</p>
+          <div class="explain-grid">
+            <article>
+              <h3>Short recursive version · exponential work</h3>
+              <pre class="short-code"><code>def fib_recursive(n):
+    if n &lt;= 1:
+        return n
+    # Recomputes earlier Fibonacci numbers.
+    return (
+        fib_recursive(n - 1)
+        + fib_recursive(n - 2)
+    )</code></pre>
+              <p>Each call branches into two more calls, and many values are recalculated. Its call count grows exponentially; a familiar upper bound is <!-- LaTeX: O(2^n) --><math class="inline-math" aria-label="big O of two to the n"><mrow><mi mathvariant="normal">O</mi><mo>(</mo><msup><mn>2</mn><mi>n</mi></msup><mo>)</mo></mrow></math>. For <i>n</i> = 40, it makes 331,160,281 function calls.</p>
+            </article>
+            <article>
+              <h3>Longer iterative version · linear work</h3>
+              <pre class="short-code"><code>def fib_iterative(n):
+    previous, current = 0, 1
+    for _ in range(n):
+        previous, current = (
+            current,
+            previous + current,
+        )
+    return previous</code></pre>
+              <p>It keeps only the last two values and advances once per number: <!-- LaTeX: O(n) --><math class="inline-math" aria-label="big O of n"><mrow><mi mathvariant="normal">O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow></math> work with <!-- LaTeX: O(1) --><math class="inline-math" aria-label="big O of one"><mrow><mi mathvariant="normal">O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow></math> extra stored numbers. For <i>n</i> = 40, it uses 40 loop passes. Both versions return <!-- LaTeX: F_{40}=102334155 --><math class="inline-math" aria-label="F forty equals one hundred two million three hundred thirty-four thousand one hundred fifty-five"><mrow><msub><mi>F</mi><mn>40</mn></msub><mo>=</mo><mn>102334155</mn></mrow></math>.</p>
+            </article>
+          </div>
+          <p class="math-note">This comparison counts high-level additions and function calls. Python integers can grow to many digits, so each addition eventually costs more than one machine-level step; that detail does not change the contrast between exponential and linear growth here. The recursive code is shorter, but it does much more repeated work.</p>
+        </section>
+
+        <aside class="later-note"><strong>Where this leads</strong><p>Counting work combines loops with summation. Next, we can use sums of products to understand dot products and other vector operations.</p></aside>
+      </section>
+      <nav class="page-nav page-nav-bottom" aria-label="Previous and next pages">
+        <a class="page-nav-item" href="probability-bounds.html"><span class="page-nav-direction">PREVIOUS</span><span>← Probability bounds</span></a>
+        <span class="page-nav-item page-nav-disabled" aria-disabled="true"><span class="page-nav-direction">NEXT</span><span>End of current lessons</span></span>
+      </nav>
+    </main>
+    <footer>Made for learning to unpack the math, one step at a time.</footer>
+  </body>
+</html>

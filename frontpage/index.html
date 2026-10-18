@@ -33,6 +33,7 @@
         <a class="nav-link" href="probability.html">Probability</a>
         <a class="nav-link" href="expectation.html">Expected value</a>
         <a class="nav-link" href="probability-bounds.html">Probability bounds</a>
+        <a class="nav-link" href="counting-work.html">Counting work</a>
         <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
         <button class="nav-link quick-reference-trigger" type="button">Notation and Python</button>
       </nav>
@@ -67,11 +68,18 @@
         <div class="notation-reading-row">
           <div class="notation-reading-part">
             <span class="notation-reading-label">NOTATION</span>
-            <div class="formula-card" aria-label="The displayed form of the sum of i from i equals 1 through n">
-              <span class="limits-above"><i>n</i></span>
-              <span class="operator-symbol">∑</span>
-              <span class="limits-below"><i>i</i> = 1</span>
-              <span class="summand"><i>i</i></span>
+            <div class="formula-card mathml-card">
+              <!-- LaTeX: \sum_{i=1}^{n} i -->
+              <math display="block" aria-label="The sum of i from i equals 1 through n">
+                <mrow>
+                  <munderover>
+                    <mo>∑</mo>
+                    <mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow>
+                    <mi>n</mi>
+                  </munderover>
+                  <mi>i</mi>
+                </mrow>
+              </math>
             </div>
           </div>
           <div class="notation-reading-part spoken-reading">
@@ -83,7 +91,7 @@
         <aside class="notation-variants">
           <strong>Same notation, different layout</strong>
           <p>The summation sign <i>∑</i> is based on the capital Greek letter Sigma (<i>Σ</i>). In displayed equations, its limits are commonly placed above and below. Inline, they are often placed to the right to save space:</p>
-          <p class="inline-variant"><span>Inline:</span> ∑<sub><i>i</i>=1</sub><sup><i>n</i></sup> <i>a</i><sub><i>i</i></sub></p>
+          <p class="inline-variant"><span>Inline:</span><!-- LaTeX: \sum_{i=1}^{n} a_i --><math class="inline-math" aria-label="sum from i equals one through n of a sub i"><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><msub><mi>a</mi><mi>i</mi></msub></mrow></math></p>
           <p class="variant-caption">Both layouts mean: add the terms <i>a</i><sub>i</sub> for indices from 1 through <i>n</i>. Typesetting conventions can vary.</p>
         </aside>
 
@@ -94,7 +102,7 @@
           </article>
           <article id="sum-index-term">
             <h3>Index vs. term</h3>
-            <p>Here, <i>i</i> is both the index and the value being added. That is not always true: in ∑<sub>i=1</sub><sup>n</sup> <i>a</i><sub>i</sub>, <i>i</i> selects a position and <i>a</i><sub>i</sub> is the term added.</p>
+            <p>Here, <i>i</i> is both the index and the value being added. That is not always true: <!-- LaTeX: \sum_{i=1}^{n} a_i --><math class="inline-math" aria-label="sum from i equals one through n of a sub i"><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><msub><mi>a</mi><mi>i</mi></msub></mrow></math>, where <i>i</i> selects a position and <i>a</i><sub>i</sub> is the term added.</p>
           </article>
         </div>
 
@@ -104,25 +112,25 @@
           <div class="bound-examples">
             <article>
               <span>Start at 0:</span>
-              <p>∑<sub>i=0</sub><sup>3</sup> <i>a</i><sub>i</sub> = <i>a</i><sub>0</sub> + <i>a</i><sub>1</sub> + <i>a</i><sub>2</sub> + <i>a</i><sub>3</sub></p>
+              <p><!-- LaTeX: \sum_{i=0}^{3} a_i = a_0 + a_1 + a_2 + a_3 --><math class="inline-math" aria-label="sum from i equals zero through three of a sub i equals a zero plus a one plus a two plus a three"><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mn>3</mn></munderover><msub><mi>a</mi><mi>i</mi></msub><mo>=</mo><msub><mi>a</mi><mn>0</mn></msub><mo>+</mo><msub><mi>a</mi><mn>1</mn></msub><mo>+</mo><msub><mi>a</mi><mn>2</mn></msub><mo>+</mo><msub><mi>a</mi><mn>3</mn></msub></mrow></math></p>
               <p class="bound-readout">Read aloud: Add <i>a</i><sub>0</sub>, then <i>a</i><sub>1</sub>, <i>a</i><sub>2</sub>, and <i>a</i><sub>3</sub>.</p>
             </article>
             <article>
               <span>Start at 2:</span>
-              <p>∑<sub>i=2</sub><sup>4</sup> <i>a</i><sub>i</sub> = <i>a</i><sub>2</sub> + <i>a</i><sub>3</sub> + <i>a</i><sub>4</sub></p>
+              <p><!-- LaTeX: \sum_{i=2}^{4} a_i = a_2 + a_3 + a_4 --><math class="inline-math" aria-label="sum from i equals two through four of a sub i equals a two plus a three plus a four"><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>2</mn></mrow><mn>4</mn></munderover><msub><mi>a</mi><mi>i</mi></msub><mo>=</mo><msub><mi>a</mi><mn>2</mn></msub><mo>+</mo><msub><mi>a</mi><mn>3</mn></msub><mo>+</mo><msub><mi>a</mi><mn>4</mn></msub></mrow></math></p>
               <p class="bound-readout">Read aloud: Add <i>a</i><sub>2</sub>, then <i>a</i><sub>3</sub> and <i>a</i><sub>4</sub>.</p>
             </article>
           </div>
-          <p>Here is a probability preview: <span class="inline-math">P(A)</span> means “the probability that <i>A</i> happens.” Let <i>X</i> be a count that can be any integer from 0 through <i>n</i>; <span class="inline-math">P(X = k)</span> is the probability that the count equals <i>k</i>. For a full introduction, see the <a href="probability.html#probability-notation">probability lesson</a>.</p>
+          <p>Here is a probability preview: <!-- LaTeX: \Pr(A) --><math class="inline-math" aria-label="probability of A"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>A</mi><mo>)</mo></mrow></math> means “the probability that <i>A</i> happens.” Let <i>X</i> be a count that can be any integer from 0 through <i>n</i>; <!-- LaTeX: \Pr(X=k) --><math class="inline-math" aria-label="probability that X equals k"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo>)</mo></mrow></math> is the probability that the count equals <i>k</i>. For a full introduction, see the <a href="probability.html#probability-notation">probability lesson</a>.</p>
           <p>For “at least 2,” add the probabilities for outcomes 2 through <i>n</i>:</p>
           <div class="notation-reading-row compact-reading-row">
-            <div class="notation-reading-part"><span class="notation-reading-label">NOTATION</span><p class="inline-math">P(X ≥ 2) = ∑<sub>k=2</sub><sup>n</sup> P(X = k)</p></div>
+            <div class="notation-reading-part"><span class="notation-reading-label">NOTATION</span><p><!-- LaTeX: \Pr(X \ge 2) = \sum_{k=2}^{n} \Pr(X=k) --><math class="inline-math" aria-label="probability of X at least two equals the sum from k equals two through n of the probability X equals k"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>≥</mo><mn>2</mn><mo>)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>2</mn></mrow><mi>n</mi></munderover><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo>)</mo></mrow></math></p></div>
             <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>The probability that <i>X</i> is at least 2 is the sum of the probabilities that <i>X</i> equals 2, 3, and so on through <i>n</i>.</p></div>
           </div>
-          <p class="expansion-note">Expanded, that is <span class="inline-math">P(X=2) + P(X=3) + ⋯ + P(X=n)</span>. “Exactly 2” is just <span class="inline-math">P(X = 2)</span>.</p>
+          <p class="expansion-note">Expanded, that is <!-- LaTeX: \Pr(X=2) + \Pr(X=3) + \cdots + \Pr(X=n) --><math class="inline-math" aria-label="probability X equals two plus probability X equals three and so on through probability X equals n"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mn>2</mn><mo>)</mo><mo>+</mo><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mn>3</mn><mo>)</mo><mo>+</mo><mo>⋯</mo><mo>+</mo><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mi>n</mi><mo>)</mo></mrow></math>. “Exactly 2” is just <!-- LaTeX: \Pr(X=2) --><math class="inline-math" aria-label="probability that X equals two"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mn>2</mn><mo>)</mo></mrow></math>.</p>
           <p>By contrast, “at most 2” uses outcomes 0 through 2:</p>
           <div class="notation-reading-row compact-reading-row">
-            <div class="notation-reading-part"><span class="notation-reading-label">NOTATION</span><p class="inline-math">P(X ≤ 2) = ∑<sub>k=0</sub><sup>2</sup> P(X=k)</p></div>
+            <div class="notation-reading-part"><span class="notation-reading-label">NOTATION</span><p><!-- LaTeX: \Pr(X \le 2) = \sum_{k=0}^{2} \Pr(X=k) --><math class="inline-math" aria-label="probability of X at most two equals the sum from k equals zero through two of the probability X equals k"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>≤</mo><mn>2</mn><mo>)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mn>2</mn></munderover><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo>)</mo></mrow></math></p></div>
             <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>The probability that <i>X</i> is at most 2 is the sum of the probabilities that <i>X</i> equals 0, 1, or 2.</p></div>
           </div>
           <p>For separated outcomes, sum over a set of indices rather than an interval.</p>
@@ -133,7 +141,14 @@
             <p class="eyebrow">TRY A SMALL VALUE</p>
             <h3>Let <i>n</i> = 4</h3>
           </div>
-          <p class="expanded-formula">∑<sub>i=1</sub><sup>4</sup> i = 1 + 2 + 3 + 4 = <strong>10</strong></p>
+          <p class="expanded-formula"><!-- LaTeX: \sum_{i=1}^{4} i = 1 + 2 + 3 + 4 = 10 -->
+            <math display="inline" aria-label="sum from i equals one through four of i equals one plus two plus three plus four equals ten">
+              <mrow>
+                <munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mn>4</mn></munderover>
+                <mi>i</mi><mo>=</mo><mn>1</mn><mo>+</mo><mn>2</mn><mo>+</mo><mn>3</mn><mo>+</mo><mn>4</mn><mo>=</mo><mn class="math-answer">10</mn>
+              </mrow>
+            </math>
+          </p>
         </div>
 
         <section class="code-section" aria-labelledby="code-title">

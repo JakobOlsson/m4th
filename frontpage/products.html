@@ -33,6 +33,7 @@
         <a class="nav-link" href="probability.html">Probability</a>
         <a class="nav-link" href="expectation.html">Expected value</a>
         <a class="nav-link" href="probability-bounds.html">Probability bounds</a>
+        <a class="nav-link" href="counting-work.html">Counting work</a>
         <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
         <button class="nav-link quick-reference-trigger" type="button">Notation and Python</button>
       </nav>
@@ -67,11 +68,9 @@
         <div class="notation-reading-row">
           <div class="notation-reading-part">
             <span class="notation-reading-label">NOTATION</span>
-            <div class="formula-card" aria-label="The displayed product of i from i equals 1 through n">
-              <span class="limits-above"><i>n</i></span>
-              <span class="operator-symbol">∏</span>
-              <span class="limits-below"><i>i</i> = 1</span>
-              <span class="summand"><i>i</i></span>
+            <div class="formula-card mathml-card">
+              <!-- LaTeX: \prod_{i=1}^{n} i -->
+              <math display="block" aria-label="product of i from i equals one through n"><mrow><munderover><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mi>i</mi></mrow></math>
             </div>
           </div>
           <div class="notation-reading-part spoken-reading">
@@ -83,11 +82,11 @@
         <div class="explain-grid">
           <article>
             <h3>The symbol</h3>
-            <p><i>∏</i> is the product symbol, based on the capital Greek letter Pi (<i>Π</i>). It is different from lowercase pi (<i>π</i>), the circle constant.</p>
+            <p><!-- LaTeX: \prod --><math aria-label="product symbol"><mo>∏</mo></math> is the product symbol, based on the capital Greek letter Pi (<!-- LaTeX: \Pi --><math aria-label="capital Greek Pi"><mi>Π</mi></math>). It is different from lowercase pi (<!-- LaTeX: \pi --><math aria-label="lowercase Greek pi"><mi>π</mi></math>), the circle constant.</p>
           </article>
           <article>
             <h3>Same bounds, different action</h3>
-            <p><i>∑</i> adds the terms. <i>∏</i> multiplies them. The index <i>i</i> and bounds work the same way in both.</p>
+            <p><!-- LaTeX: \sum --><math aria-label="summation symbol"><mo>∑</mo></math> adds the terms. <!-- LaTeX: \prod --><math aria-label="product symbol"><mo>∏</mo></math> multiplies them. The index <i>i</i> and bounds work the same way in both.</p>
           </article>
         </div>
 
@@ -95,7 +94,7 @@
           <h3 id="product-expansion-title">Let <i>n</i> = 4</h3>
           <p>Now the index takes the values 1, 2, 3, and 4. Instead of adding them, multiply them:</p>
           <div class="notation-reading-row compact-reading-row">
-            <div class="notation-reading-part"><span class="notation-reading-label">EXPANDED</span><p class="inline-math">∏<sub>i=1</sub><sup>4</sup> i = 1 × 2 × 3 × 4 = 24</p></div>
+            <div class="notation-reading-part"><span class="notation-reading-label">EXPANDED</span><!-- LaTeX: \prod_{i=1}^{4} i = 1 \times 2 \times 3 \times 4 = 24 --><math class="inline-math" aria-label="product from i one through four equals one times two times three times four equals twenty-four"><mrow><munderover><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mn>4</mn></munderover><mi>i</mi><mo>=</mo><mn>1</mn><mo>×</mo><mn>2</mn><mo>×</mo><mn>3</mn><mo>×</mo><mn>4</mn><mo>=</mo><mn>24</mn></mrow></math></div>
             <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>Multiply the integers from one through four; the result is 24.</p></div>
           </div>
         </section>
@@ -103,14 +102,14 @@
         <section class="guide-card" aria-labelledby="factorial-title">
           <p class="eyebrow">FACTORIAL NOTATION</p>
           <h2 id="factorial-title">The exclamation mark means “factorial.”</h2>
-          <p>For a positive whole number, the factorial multiplies every positive integer from that number down to 1. So <i>4</i>! is another way to write the product we just expanded:</p>
+          <p>For a positive whole number, the factorial multiplies every positive integer from that number down to 1. So <!-- LaTeX: 4! --><math aria-label="four factorial"><mn>4</mn><mo>!</mo></math> is another way to write the product we just expanded:</p>
           <div class="notation-reading-row compact-reading-row">
-            <div class="notation-reading-part"><span class="notation-reading-label">NOTATION</span><p class="inline-math">4! = 4 × 3 × 2 × 1 = 24</p></div>
+            <div class="notation-reading-part"><span class="notation-reading-label">NOTATION</span><!-- LaTeX: 4! = 4 \times 3 \times 2 \times 1 = 24 --><math class="inline-math" aria-label="four factorial equals four times three times two times one equals twenty-four"><mrow><mn>4</mn><mo>!</mo><mo>=</mo><mn>4</mn><mo>×</mo><mn>3</mn><mo>×</mo><mn>2</mn><mo>×</mo><mn>1</mn><mo>=</mo><mn>24</mn></mrow></math></div>
             <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>Four factorial equals four times three times two times one.</p></div>
           </div>
-          <p>In general, <i>n</i>! is the product of all positive integers up to <i>n</i>. By convention, <i>0</i>! = 1; this is the multiplicative identity and makes many counting formulas work cleanly.</p>
+          <p>In general, <!-- LaTeX: n! --><math aria-label="n factorial"><mi>n</mi><mo>!</mo></math> is the product of all positive integers up to <i>n</i>. By convention, <!-- LaTeX: 0! = 1 --><math aria-label="zero factorial equals one"><mrow><mn>0</mn><mo>!</mo><mo>=</mo><mn>1</mn></mrow></math>; this is the multiplicative identity and makes many counting formulas work cleanly.</p>
           <div class="notation-reading-row compact-reading-row">
-            <div class="notation-reading-part"><span class="notation-reading-label">NOTATION</span><p class="inline-math">0! = 1</p></div>
+            <div class="notation-reading-part"><span class="notation-reading-label">NOTATION</span><!-- LaTeX: 0! = 1 --><math class="inline-math" aria-label="zero factorial equals one"><mrow><mn>0</mn><mo>!</mo><mo>=</mo><mn>1</mn></mrow></math></div>
             <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>Zero factorial equals one.</p></div>
           </div>
           <p class="math-note"><strong>Later connection:</strong> The Gamma function extends the factorial idea beyond whole-number inputs. We’ll return to it after the basics of factorials are familiar.</p>

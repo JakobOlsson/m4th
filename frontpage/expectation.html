@@ -33,6 +33,7 @@
         <a class="nav-link" href="probability.html">Probability</a>
         <a class="nav-link" href="expectation.html" aria-current="page">Expected value</a>
         <a class="nav-link" href="probability-bounds.html">Probability bounds</a>
+        <a class="nav-link" href="counting-work.html">Counting work</a>
         <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
         <button class="nav-link quick-reference-trigger" type="button">Notation and Python</button>
       </nav>
@@ -67,8 +68,8 @@
         <div class="notation-reading-row">
           <div class="notation-reading-part">
             <span class="notation-reading-label">NOTATION</span>
-            <p class="inline-math"><span class="upright-math">E</span>[<i>X</i>] = ∑<sub>k=1</sub><sup>6</sup> <i>k</i><span class="upright-math">P</span>(<i>X</i> = <i>k</i>)</p>
-            <p><span class="upright-math">E</span>[<i>X</i>] names the expected value of <i>X</i>.</p>
+            <!-- LaTeX: \mathbb{E}[X] = \sum_{k=1}^{6} k\Pr(X=k) --><math class="inline-math" aria-label="expected value of X equals the sum from k one through six of k times the probability X equals k"><mrow><mi mathvariant="double-struck">E</mi><mo>[</mo><mi>X</mi><mo>]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mn>6</mn></munderover><mi>k</mi><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo>)</mo></mrow></math>
+            <p><!-- LaTeX: \mathbb{E}[X] --><math aria-label="expected value of X"><mrow><mi mathvariant="double-struck">E</mi><mo>[</mo><mi>X</mi><mo>]</mo></mrow></math> names the expected value of <i>X</i>.</p>
           </div>
           <div class="notation-reading-part spoken-reading">
             <span class="notation-reading-label">READ IT ALOUD</span>
@@ -83,7 +84,7 @@
 
         <section class="summand-expansion" aria-labelledby="expectation-expansion-title">
           <h3 id="expectation-expansion-title">Substitute each outcome into the term</h3>
-          <p>The whole summand is <span class="inline-math"><i>k</i><span class="upright-math">P</span>(<i>X</i> = <i>k</i>)</span>. Substitute each value of <i>k</i>, just as we did with the probability term in the previous lesson:</p>
+          <p>The whole summand is <!-- LaTeX: k\Pr(X=k) --><math class="inline-math" aria-label="k times the probability that X equals k"><mrow><mi>k</mi><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo>)</mo></mrow></math>. Substitute each value of <i>k</i>, just as we did with the probability term in the previous lesson:</p>
           <div class="table-wrap">
             <table class="letter-table quick-table">
               <thead><tr><th scope="col">Outcome k</th><th scope="col">Probability P(X = k)</th><th scope="col">Weighted term k P(X = k)</th></tr></thead>
@@ -102,7 +103,7 @@
         <div class="notation-reading-row compact-reading-row">
           <div class="notation-reading-part">
             <span class="notation-reading-label">EXPANDED, THEN EVALUATED</span>
-            <p class="inline-math"><span class="upright-math">E</span>[<i>X</i>] = 1×1/6 + 2×1/6 + 3×1/6 + 4×1/6 + 5×1/6 + 6×1/6 = 21/6 = 7/2 = 3.5</p>
+            <!-- LaTeX: \mathbb{E}[X] = 1\cdot\frac{1}{6}+2\cdot\frac{1}{6}+3\cdot\frac{1}{6}+4\cdot\frac{1}{6}+5\cdot\frac{1}{6}+6\cdot\frac{1}{6}=\frac{21}{6}=\frac{7}{2}=3.5 --><math class="inline-math" aria-label="expected value X equals the weighted sum one times one sixth through six times one sixth equals twenty-one sixths equals seven halves equals three point five"><mrow><mi mathvariant="double-struck">E</mi><mo>[</mo><mi>X</mi><mo>]</mo><mo>=</mo><mn>1</mn><mo>×</mo><mfrac><mn>1</mn><mn>6</mn></mfrac><mo>+</mo><mn>2</mn><mo>×</mo><mfrac><mn>1</mn><mn>6</mn></mfrac><mo>+</mo><mn>3</mn><mo>×</mo><mfrac><mn>1</mn><mn>6</mn></mfrac><mo>+</mo><mn>4</mn><mo>×</mo><mfrac><mn>1</mn><mn>6</mn></mfrac><mo>+</mo><mn>5</mn><mo>×</mo><mfrac><mn>1</mn><mn>6</mn></mfrac><mo>+</mo><mn>6</mn><mo>×</mo><mfrac><mn>1</mn><mn>6</mn></mfrac><mo>=</mo><mfrac><mn>21</mn><mn>6</mn></mfrac><mo>=</mo><mfrac><mn>7</mn><mn>2</mn></mfrac><mo>=</mo><mn>3.5</mn></mrow></math>
           </div>
           <div class="notation-reading-part spoken-reading">
             <span class="notation-reading-label">READ IT ALOUD</span>
@@ -124,7 +125,7 @@
             </div>
             <span class="language-label">Python</span>
           </div>
-          <p class="code-intro">The code follows the equation’s names: <code>k</code> is a possible value of <i>X</i>, <code>p_x_equals_k</code> represents <span class="inline-math"><span class="upright-math">P</span>(<i>X</i> = <i>k</i>)</span>, and <code>weighted_term</code> is <span class="inline-math"><i>k</i><span class="upright-math">P</span>(<i>X</i> = <i>k</i>)</span>. The comment shows one full substitution. See the <button class="inline-reference-trigger" type="button" data-reference-target="python-reference-title">Python syntax reminder</button>.</p>
+          <p class="code-intro">The code follows the equation’s names: <code>k</code> is a possible value of <i>X</i>, <code>p_x_equals_k</code> represents <!-- LaTeX: \Pr(X=k) --><math class="inline-math" aria-label="probability that X equals k"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo>)</mo></mrow></math>, and <code>weighted_term</code> is <!-- LaTeX: k\Pr(X=k) --><math class="inline-math" aria-label="k times probability that X equals k"><mrow><mi>k</mi><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo>)</mo></mrow></math>. The comment shows one full substitution. See the <button class="inline-reference-trigger" type="button" data-reference-target="python-reference-title">Python syntax reminder</button>.</p>
           <template id="starter-python">from fractions import Fraction
 
 expected_value = Fraction(0, 1)  # E[X]
