@@ -202,8 +202,19 @@ h2 { margin-bottom: 12px; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.
 /* Shared scroller padding keeps line numbers aligned and breathing room after the last line. */
 .editor-shell .cm-scroller { overflow: auto; padding-block: 20px; font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; }
 .editor-shell .cm-gutters { border: 0; background: #17231f; color: #82958a; }
-.editor-shell .cm-activeLineGutter, .editor-shell .cm-activeLine { background: #22332d; }
-.editor-shell .cm-cursor { border-left-color: #f4ad77; }
+.editor-shell .cm-activeLineGutter, .editor-shell .cm-activeLine { background: #263a33; }
+.editor-shell .cm-cursor { border-left-color: #ffd18c; border-left-width: 2px; }
+.editor-shell .cm-editor.cm-focused { outline: 2px solid #639b82; outline-offset: -2px; }
+.editor-shell .cm-editor .cm-selectionBackground { background-color: #315f7d !important; }
+.editor-shell .cm-editor.cm-focused .cm-selectionBackground { background-color: #397ba4 !important; }
+.editor-shell .cm-editor .cm-line::selection,
+.editor-shell .cm-editor .cm-line ::selection,
+.editor-shell .cm-editor .cm-content::selection,
+.editor-shell .cm-editor .cm-content ::selection { background-color: #397ba4 !important; color: #fff !important; }
+.editor-shell .cm-editor .cm-line::-moz-selection,
+.editor-shell .cm-editor .cm-line ::-moz-selection { background-color: #397ba4 !important; color: #fff !important; }
+.editor-shell .cm-selectionMatch { background: #715a32; outline: 1px solid #e6c477; }
+.editor-shell .cm-matchingBracket { background: #315b4e; outline: 1px solid #a6c4ae; color: #fff; }
 .run-controls { display: flex; align-items: center; gap: 14px; padding: 17px 22px; border-bottom: 1px solid #34443e; }
 #run-python, #reset-python { padding: 9px 15px; border-radius: 7px; font: inherit; font-size: 0.86rem; font-weight: 700; cursor: pointer; }
 #run-python { border: 0; background: #b6dbab; color: #17231f; }
@@ -225,7 +236,7 @@ h2 { margin-bottom: 12px; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.
 .shorter-section > p:not(.eyebrow) { max-width: 690px; color: var(--muted); font-size: 0.92rem; }
 .shorter-section code { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; }
 .short-code { margin: 14px 0; padding: 16px 18px; overflow-x: auto; border-radius: 8px; background: #17231f; color: #e0eee2; font-size: 0.88rem; line-height: 1.6; }
-.math-note { padding: 13px 16px; border-left: 3px solid #8caa96; background: #f0f5ef; font-size: 0.9rem; }
+.math-note { padding: 13px 16px; border-left: 3px solid #8caa96; background: #f0f5ef; color: var(--ink); font-size: 0.9rem; }
 .code-variants { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .monte-carlo-variants { grid-template-columns: 1fr; }
 .code-variant { min-width: 0; padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); }
@@ -244,6 +255,7 @@ h2 { margin-bottom: 12px; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.
 .guide-card { margin: 0 0 18px; padding: 30px; border: 1px solid var(--line); border-radius: 14px; background: var(--card); }
 .guide-card h2 { margin-bottom: 12px; }
 .guide-card > p { color: var(--muted); }
+.guide-card > .math-note { color: var(--ink); }
 .guide-card a { color: var(--green); font-weight: 600; }
 .table-wrap { overflow-x: auto; margin: 18px 0; }
 .letter-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; }

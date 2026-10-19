@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A quick reference for mathematical notation and its Python syntax equivalents.">
     <title>Notation and Python quick reference — Math Refresher</title>
-    <link rel="stylesheet" href="styles.css?v=19">
+    <link rel="stylesheet" href="styles.css?v=24">
     <script src="navigation.js" defer></script>
     <script src="quick-reference.js" defer></script>
   </head>
@@ -56,52 +56,52 @@
             </thead>
             <tbody>
               <tr>
-                <td>∑<sub>i=1</sub><sup>n</sup> a<sub>i</sub></td>
-                <td>Add each a<sub>i</sub> from index 1 through n.</td>
+                <td><!-- LaTeX: \sum_{i=1}^{n}a_i --><math class="inline-math" aria-label="sum from i equals one through n of a sub i"><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>a</mi><mi>i</mi></msub></mrow></math></td>
+                <td>Add each <!-- LaTeX: a_i --><math class="inline-math" aria-label="a sub i"><msub><mi>a</mi><mi>i</mi></msub></math> from index 1 through <i>n</i>.</td>
                 <td><a href="index.html#summation-notation">Summation lesson</a></td>
               </tr>
               <tr>
-                <td>∏<sub>i=1</sub><sup>n</sup> i</td>
-                <td>Multiply each value of i from 1 through n.</td>
+                <td><!-- LaTeX: \prod_{i=1}^{n}i --><math class="inline-math" aria-label="product from i equals one through n of i"><mrow><munderover><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mi>i</mi></mrow></math></td>
+                <td>Multiply each value of <i>i</i> from 1 through <i>n</i>.</td>
                 <td><a href="products.html#product-notation">Product lesson</a></td>
               </tr>
               <tr>
-                <td>n!</td>
-                <td>“n factorial”: multiply the positive integers up to n.</td>
+                <td><!-- LaTeX: n! --><math class="inline-math" aria-label="n factorial"><mi>n</mi><mo>!</mo></math></td>
+                <td>“<i>n</i> factorial”: multiply the positive integers up to <i>n</i>.</td>
                 <td><a href="products.html#factorial-title">Factorials</a></td>
               </tr>
               <tr>
-                <td>a<sub>i</sub></td>
-                <td>The value at position i; the subscript labels which value.</td>
+                <td><!-- LaTeX: a_i --><math class="inline-math" aria-label="a sub i"><msub><mi>a</mi><mi>i</mi></msub></math></td>
+                <td>The value at position <i>i</i>; the subscript labels which value.</td>
                 <td><a href="index.html#sum-index-term">Indices and terms</a></td>
               </tr>
               <tr>
-                <td>f(x)</td>
-                <td>The output of function f when its input is x.</td>
+                <td><!-- LaTeX: f(x) --><math class="inline-math" aria-label="f of x"><mrow><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo></mrow></math></td>
+                <td>The output of function <i>f</i> when its input is <i>x</i>.</td>
                 <td><a href="letters.html#functions-title">Function notation</a></td>
               </tr>
               <tr>
-                <td>P(A)</td>
-                <td>The probability that event A happens.</td>
+                <td><!-- LaTeX: P(A) --><math class="inline-math" aria-label="probability of A"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>A</mi><mo>)</mo></mrow></math></td>
+                <td>The probability that event <i>A</i> happens.</td>
                 <td><a href="probability.html#probability-notation">Probability lesson</a></td>
               </tr>
               <tr>
-                <td>E[X]</td>
-                <td>The expected value, or probability-weighted average, of random variable X.</td>
+                <td><!-- LaTeX: E[X] --><math class="inline-math" aria-label="expected value of X"><mrow><mi mathvariant="normal">E</mi><mo>[</mo><mi>X</mi><mo>]</mo></mrow></math></td>
+                <td>The expected value, or probability-weighted average, of random variable <i>X</i>.</td>
                 <td><a href="expectation.html#expected-value-notation">Expected-value lesson</a></td>
               </tr>
               <tr>
-                <td>P(A ∪ B) ≤ P(A) + P(B)</td>
+                <td><!-- LaTeX: P(A\cup B)\le P(A)+P(B) --><math class="inline-math" aria-label="probability of A union B is at most probability of A plus probability of B"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>A</mi><mo>∪</mo><mi>B</mi><mo>)</mo><mo>≤</mo><mi mathvariant="normal">P</mi><mo>(</mo><mi>A</mi><mo>)</mo><mo>+</mo><mi mathvariant="normal">P</mi><mo>(</mo><mi>B</mi><mo>)</mo></mrow></math></td>
                 <td>Union bound: the probability that at least one event happens is at most the sum of their probabilities.</td>
                 <td><a href="probability-bounds.html#union-bound">Probability-bounds lesson</a></td>
               </tr>
               <tr>
-                <td>O(n), O(n<sup>2</sup>)</td>
+                <td><!-- LaTeX: O(n), O(n^2) --><math class="inline-math" aria-label="big O of n and big O of n squared"><mrow><mi mathvariant="normal">O</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>,</mo><mspace width="0.3em"/><mi mathvariant="normal">O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow></math></td>
                 <td>Upper-bound growth classes for work as input size increases.</td>
                 <td><a href="counting-work.html#counting-work">Counting-work lesson</a></td>
               </tr>
               <tr>
-                <td>i, e, π</td>
+                <td><!-- LaTeX: i,e,\pi --><math class="inline-math" aria-label="i, e, pi"><mrow><mi>i</mi><mo>,</mo><mi>e</mi><mo>,</mo><mi>π</mi></mrow></math></td>
                 <td>Letters with common special uses; context tells you which meaning applies.</td>
                 <td><a href="letters.html#special-title">Letter conventions</a></td>
               </tr>
@@ -121,42 +121,42 @@
             </thead>
             <tbody>
               <tr>
-                <td>x<sup>2</sup> or x^2</td>
+                <td><!-- LaTeX: x^2 --><math class="inline-math" aria-label="x squared"><msup><mi>x</mi><mn>2</mn></msup></math></td>
                 <td><code>x ** 2</code></td>
                 <td>Use <code>**</code> for powers. In Python, <code>^</code> is bitwise XOR—not exponentiation.</td>
               </tr>
               <tr>
-                <td>√x</td>
+                <td><!-- LaTeX: \sqrt{x} --><math class="inline-math" aria-label="square root of x"><msqrt><mi>x</mi></msqrt></math></td>
                 <td><code>math.sqrt(x)</code></td>
                 <td>Python has no root operator; import the standard-library <code>math</code> module and call its square-root function.</td>
               </tr>
               <tr>
-                <td>2x</td>
+                <td><!-- LaTeX: 2x --><math class="inline-math" aria-label="two times x"><mn>2</mn><mi>x</mi></math></td>
                 <td><code>2 * x</code></td>
                 <td>Write the multiplication sign explicitly.</td>
               </tr>
               <tr>
-                <td>a × b</td>
+                <td><!-- LaTeX: a\times b --><math class="inline-math" aria-label="a times b"><mrow><mi>a</mi><mo>×</mo><mi>b</mi></mrow></math></td>
                 <td><code>a * b</code></td>
                 <td>Python uses <code>*</code> for multiplication.</td>
               </tr>
               <tr>
-                <td>a<sub>i</sub></td>
+                <td><!-- LaTeX: a_i --><math class="inline-math" aria-label="a sub i"><msub><mi>a</mi><mi>i</mi></msub></math></td>
                 <td><code>a_i</code> or <code>a[i]</code></td>
-                <td><code>a_i</code> can be a variable name; <code>a[i]</code> selects item i from a sequence.</td>
+                <td><code>a_i</code> can be a variable name; <code>a[i]</code> selects item <i>i</i> from a sequence.</td>
               </tr>
               <tr>
-                <td>x = 2</td>
+                <td><!-- LaTeX: x=2 --><math class="inline-math" aria-label="x equals two"><mrow><mi>x</mi><mo>=</mo><mn>2</mn></mrow></math></td>
                 <td><code>x = 2</code> or <code>x == 2</code></td>
                 <td><code>=</code> evaluates the right-hand side, then assigns its value to the name on the left. <code>==</code> tests whether the values on the two sides are equal and produces <code>True</code> or <code>False</code>.</td>
               </tr>
               <tr>
-                <td>∑ terms</td>
+                <td><!-- LaTeX: \sum --><math class="inline-math" aria-label="summation symbol"><mo>∑</mo></math> terms</td>
                 <td>A loop, then <code>sum(...)</code></td>
                 <td>First write out the accumulation; use <code>sum()</code> once the pattern is clear.</td>
               </tr>
               <tr>
-                <td>∏ factors</td>
+                <td><!-- LaTeX: \prod --><math class="inline-math" aria-label="product symbol"><mo>∏</mo></math> factors</td>
                 <td>A product loop, then <code>math.prod(...)</code></td>
                 <td><code>math.prod()</code> is in the standard-library <code>math</code> module.</td>
               </tr>
