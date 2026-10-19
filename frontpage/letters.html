@@ -24,17 +24,18 @@
 
     <aside id="handbook-nav" class="sidebar">
       <nav aria-label="Handbook pages">
-        <p class="sidebar-label">FOUNDATIONS</p>
+        <p class="sidebar-label">CORE NOTATION</p>
         <a class="nav-link" href="letters.html" aria-current="page">Letters and notation</a>
         <a class="nav-link" href="index.html">Summation (∑)</a>
         <a class="nav-link" href="products.html">Products and factorials</a>
-        <a class="nav-link" href="probability.html">Probability</a>
+        <p class="sidebar-label">PROBABILITY AND COUNTING</p><a class="nav-link" href="probability.html">Probability</a>
         <a class="nav-link" href="expectation.html">Expected value</a>
         <a class="nav-link" href="probability-bounds.html">Probability bounds</a>
         <a class="nav-link" href="counting-work.html">Counting work</a>
-        <a class="nav-link" href="vector-dot-product.html">Vectors and dot products</a>
+        <p class="sidebar-label">LINEAR ALGEBRA</p><a class="nav-link" href="vector-dot-product.html">Vectors and dot products</a>
         <a class="nav-link" href="matrix-multiplication.html">Matrix multiplication</a>
-        <a class="nav-link" href="program-correctness.html">Program correctness</a>
+        <p class="sidebar-label">PROOFS AND ALGORITHMS</p><a class="nav-link" href="program-correctness.html">Program correctness</a>
+        <a class="nav-link" href="induction.html">Proof by induction</a>
         <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
         <button class="nav-link quick-reference-trigger" type="button">Notation and Python</button>
       </nav>
@@ -137,6 +138,7 @@
         <p class="eyebrow">PROGRAM CORRECTNESS TERMS</p>
         <h2 id="correctness-terms-title">Promises about a loop</h2>
         <p>A <strong>precondition</strong> is an assumption about the input before a program runs. A <strong>postcondition</strong> is the result promised when it finishes. A <strong>loop invariant</strong> is a statement true before every pass; proving it starts true and remains true is an induction-style argument. You also need to explain why the loop stops. The <a href="program-correctness.html#program-correctness">program-correctness lesson</a> works through all three using the summation loop. Its <i>k</i> is just an index naming the terms in a sum, even though the Python loop calls its counter <code>i</code>.</p>
+        <p>In a <a href="induction.html#induction">proof by induction</a>, <i>k</i> can instead stand for any one nonnegative integer. An <strong>induction hypothesis</strong> temporarily assumes a claim holds for that <i>k</i>, to show it also holds for <i>k</i> + 1. Together with a proven starting case, this proves the claim for all nonnegative integers. The job of <i>k</i> depends on its context.</p>
       </section>
 
       <section id="probability-notation" class="guide-card" aria-labelledby="probability-title">
