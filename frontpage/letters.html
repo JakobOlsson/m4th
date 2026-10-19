@@ -34,6 +34,7 @@
         <a class="nav-link" href="counting-work.html">Counting work</a>
         <a class="nav-link" href="vector-dot-product.html">Vectors and dot products</a>
         <a class="nav-link" href="matrix-multiplication.html">Matrix multiplication</a>
+        <a class="nav-link" href="program-correctness.html">Program correctness</a>
         <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
         <button class="nav-link quick-reference-trigger" type="button">Notation and Python</button>
       </nav>
@@ -130,6 +131,12 @@
         <h2 id="growth-notation-title">Big O, theta, and cases</h2>
         <p>In the counting-work lesson, Big O describes an upper bound on how an algorithm’s work grows. For a loop that makes <i>n</i> passes, <!-- LaTeX: O(n) --><math class="inline-math" aria-label="big O of n"><mrow><mi mathvariant="normal">O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow></math> is an upper bound. The symbol <!-- LaTeX: \Theta(n) --><math class="inline-math" aria-label="theta of n"><mrow><mi mathvariant="normal">Θ</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow></math> (“theta”) says the growth is tightly bounded by <i>n</i> from above and below.</p>
         <p>Best case, worst case, and average case describe which inputs are being measured; they are not alternative Big O symbols. An average case is based on an assumed distribution of inputs, not just the most common input. The <a href="counting-work.html#complexity-terms-title">counting-work lesson</a> gives a fuller explanation.</p>
+      </section>
+
+      <section class="guide-card" aria-labelledby="correctness-terms-title">
+        <p class="eyebrow">PROGRAM CORRECTNESS TERMS</p>
+        <h2 id="correctness-terms-title">Promises about a loop</h2>
+        <p>A <strong>precondition</strong> is an assumption about the input before a program runs. A <strong>postcondition</strong> is the result promised when it finishes. A <strong>loop invariant</strong> is a statement true before every pass; proving it starts true and remains true is an induction-style argument. You also need to explain why the loop stops. The <a href="program-correctness.html#program-correctness">program-correctness lesson</a> works through all three using the summation loop. Its <i>k</i> is just an index naming the terms in a sum, even though the Python loop calls its counter <code>i</code>.</p>
       </section>
 
       <section id="probability-notation" class="guide-card" aria-labelledby="probability-title">
