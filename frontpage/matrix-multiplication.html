@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Unpack matrix multiplication as one row-column dot product per output cell.">
+    <title>Matrix multiplication — Math Refresher</title>
+    <link rel="stylesheet" href="styles.css?v=24">
+    <script src="editor.bundle.js?v=3" defer></script>
+    <script src="run-python.js?v=7" defer></script>
+    <script src="navigation.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#top">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner"><div class="brand-controls"><button id="nav-toggle" class="nav-toggle" type="button" aria-controls="handbook-nav" aria-expanded="true"><span class="menu-icon" aria-hidden="true">☰</span><span>Contents</span></button><a class="wordmark" href="letters.html">Math, unpacked</a></div><span class="header-note">A personal math refresher</span></div>
+    </header>
+    <aside id="handbook-nav" class="sidebar"><nav aria-label="Handbook pages">
+      <p class="sidebar-label">FOUNDATIONS</p>
+      <a class="nav-link" href="letters.html">Letters and notation</a>
+      <a class="nav-link" href="index.html">Summation (∑)</a>
+      <a class="nav-link" href="products.html">Products and factorials</a>
+      <a class="nav-link" href="probability.html">Probability</a>
+      <a class="nav-link" href="expectation.html">Expected value</a>
+      <a class="nav-link" href="probability-bounds.html">Probability bounds</a>
+      <a class="nav-link" href="counting-work.html">Counting work</a>
+      <a class="nav-link" href="vector-dot-product.html">Vectors and dot products</a>
+      <a class="nav-link" href="matrix-multiplication.html" aria-current="page">Matrix multiplication</a>
+      <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p><button class="nav-link quick-reference-trigger" type="button">Notation and Python</button>
+    </nav></aside>
+    <button id="nav-scrim" class="nav-scrim" type="button" aria-label="Close navigation"></button>
+    <dialog id="quick-reference-dialog" class="quick-reference-dialog" aria-labelledby="quick-reference-dialog-title"><div class="quick-reference-dialog-header"><div><span class="notation-reading-label">QUICK REFERENCE</span><h2 id="quick-reference-dialog-title">Notation and Python</h2></div><div class="dialog-actions"><a href="quick-reference.html" target="_blank" rel="noopener">Open full page ↗</a><button class="dialog-close" type="button" aria-label="Close quick reference">×</button></div></div><iframe title="Notation and Python quick reference" data-src="quick-reference.html?embed=1"></iframe></dialog>
+    <main id="top">
+      <nav class="page-nav page-nav-top" aria-label="Previous and next pages"><a class="page-nav-item" href="vector-dot-product.html"><span class="page-nav-direction">PREVIOUS</span><span>← Vectors and dot products</span></a><span class="page-nav-item page-nav-disabled" aria-disabled="true"><span class="page-nav-direction">NEXT</span><span>End of current lessons</span></span></nav>
+      <section class="intro" aria-labelledby="page-title"><p class="eyebrow">MATRICES · ROWS AND COLUMNS</p><h1 id="page-title">One dot product per cell.</h1><p class="intro-copy">A matrix is a rectangular grid of numbers. Matrix multiplication combines a row from the first grid with a column from the second to make each entry of a new grid.</p></section>
+      <section id="matrix-multiplication" class="lesson" aria-labelledby="lesson-title">
+        <div class="lesson-heading"><h2 id="lesson-title">Read a matrix by row, then column.</h2><p>We use capital letters for whole matrices. A subscript gives an entry’s position: first its row, then its column. The first row and first column have position 1 in the math notation.</p></div>
+        <div class="notation-reading-row compact-reading-row"><div class="notation-reading-part"><span class="notation-reading-label">NOTATION</span><!-- LaTeX: A=\begin{bmatrix}1&2\\3&4\end{bmatrix},\quad B=\begin{bmatrix}5&6\\7&8\end{bmatrix} --><math class="inline-math" aria-label="A is the matrix with rows one two and three four; B has rows five six and seven eight"><mrow><mi>A</mi><mo>=</mo><mo>[</mo><mtable><mtr><mtd><mn>1</mn></mtd><mtd><mn>2</mn></mtd></mtr><mtr><mtd><mn>3</mn></mtd><mtd><mn>4</mn></mtd></mtr></mtable><mo>]</mo><mo>,</mo><mspace width="0.6em"/><mi>B</mi><mo>=</mo><mo>[</mo><mtable><mtr><mtd><mn>5</mn></mtd><mtd><mn>6</mn></mtd></mtr><mtr><mtd><mn>7</mn></mtd><mtd><mn>8</mn></mtd></mtr></mtable><mo>]</mo></mrow></math></div><div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>Matrix A has rows one, two and three, four. Matrix B has rows five, six and seven, eight.</p></div></div>
+        <p>Matrix shapes are written <strong>rows by columns</strong>: vertical count first (how many horizontal rows are stacked), horizontal count second (how many entries are in each row). This describes the grid’s entry counts, not its physical height and width on a screen. Each matrix here has two rows and two columns: its shape is “two by two.” For example, <!-- LaTeX: A_{2,1}=3 --><math class="inline-math" aria-label="A at row two column one equals three"><mrow><msub><mi>A</mi><mrow><mn>2</mn><mo>,</mo><mn>1</mn></mrow></msub><mo>=</mo><mn>3</mn></mrow></math> selects row 2, column 1 of A.</p>
+        <section class="complexity-terms" aria-labelledby="define-product-title"><h3 id="define-product-title">First name the result</h3><p>We want to <strong>multiply A by B</strong>. Call the resulting matrix C:</p><div class="notation-reading-row compact-reading-row"><div class="notation-reading-part"><span class="notation-reading-label">RELATIONSHIP</span><!-- LaTeX: C=AB --><math class="inline-math" aria-label="C equals A times B"><mrow><mi>C</mi><mo>=</mo><mi>A</mi><mi>B</mi></mrow></math></div><div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>C equals A multiplied by B. A and B are the inputs; C is the new matrix we are building.</p></div></div><p>Next we define what “A times B” means for matrices: <strong>each cell of C</strong> comes from one row of A dotted with one column of B. C does not already have values; we calculate them one cell at a time. This rule is different from multiplying entries at the same row and column.</p></section>
+        <section class="bounds-guide" aria-labelledby="first-cell-title"><h3 id="first-cell-title">Calculate just the top-left cell of C</h3><p>Take row 1 of A (1, 2) and column 1 of B (5, 7). Match positions, multiply, then add—just as in the <a href="vector-dot-product.html#dot-product-lesson">dot-product lesson</a>. Using the row and column positions, this is <!-- LaTeX: C_{1,1}=A_{1,1}B_{1,1}+A_{1,2}B_{2,1} --><math class="inline-math" aria-label="C row one column one equals A row one column one times B row one column one plus A row one column two times B row two column one"><mrow><msub><mi>C</mi><mrow><mn>1</mn><mo>,</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>A</mi><mrow><mn>1</mn><mo>,</mo><mn>1</mn></mrow></msub><mo>×</mo><msub><mi>B</mi><mrow><mn>1</mn><mo>,</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>A</mi><mrow><mn>1</mn><mo>,</mo><mn>2</mn></mrow></msub><mo>×</mo><msub><mi>B</mi><mrow><mn>2</mn><mo>,</mo><mn>1</mn></mrow></msub></mrow></math>. Now substitute the entries:</p><div class="notation-reading-row compact-reading-row"><div class="notation-reading-part"><span class="notation-reading-label">ONE CELL</span><!-- LaTeX: C_{1,1}=1\times5+2\times7=19 --><math class="inline-math" aria-label="C at row one column one equals one times five plus two times seven equals nineteen"><mrow><msub><mi>C</mi><mrow><mn>1</mn><mo>,</mo><mn>1</mn></mrow></msub><mo>=</mo><mn>1</mn><mo>×</mo><mn>5</mn><mo>+</mo><mn>2</mn><mo>×</mo><mn>7</mn><mo>=</mo><mn>19</mn></mrow></math></div><div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>Cell one, one of C is the dot product of A’s first row and B’s first column: one times five plus two times seven equals nineteen.</p></div></div><p>The dot product gives a <em>single number</em> for this cell of C, not a new row or column.</p></section>
+        <section class="bounds-guide" aria-labelledby="all-cells-title"><h3 id="all-cells-title">Repeat for the other three cells</h3><p>Keep the row fixed while moving to the next column; then move to the next row. Every cell uses a row of A and a column of B:</p><ul class="role-list"><li>Top right: <!-- LaTeX: C_{1,2}=1\times6+2\times8=22 --><math class="inline-math" aria-label="C one two equals one times six plus two times eight equals twenty-two"><mrow><msub><mi>C</mi><mrow><mn>1</mn><mo>,</mo><mn>2</mn></mrow></msub><mo>=</mo><mn>1</mn><mo>×</mo><mn>6</mn><mo>+</mo><mn>2</mn><mo>×</mo><mn>8</mn><mo>=</mo><mn>22</mn></mrow></math>.</li><li>Bottom left: <!-- LaTeX: C_{2,1}=3\times5+4\times7=43 --><math class="inline-math" aria-label="C two one equals three times five plus four times seven equals forty-three"><mrow><msub><mi>C</mi><mrow><mn>2</mn><mo>,</mo><mn>1</mn></mrow></msub><mo>=</mo><mn>3</mn><mo>×</mo><mn>5</mn><mo>+</mo><mn>4</mn><mo>×</mo><mn>7</mn><mo>=</mo><mn>43</mn></mrow></math>.</li><li>Bottom right: <!-- LaTeX: C_{2,2}=3\times6+4\times8=50 --><math class="inline-math" aria-label="C two two equals three times six plus four times eight equals fifty"><mrow><msub><mi>C</mi><mrow><mn>2</mn><mo>,</mo><mn>2</mn></mrow></msub><mo>=</mo><mn>3</mn><mo>×</mo><mn>6</mn><mo>+</mo><mn>4</mn><mo>×</mo><mn>8</mn><mo>=</mo><mn>50</mn></mrow></math>.</li></ul><div class="notation-reading-row compact-reading-row"><div class="notation-reading-part"><span class="notation-reading-label">RESULT</span><!-- LaTeX: C=AB=\begin{bmatrix}19&22\\43&50\end{bmatrix} --><math class="inline-math" aria-label="C equals A times B equals the matrix with rows nineteen twenty-two and forty-three fifty"><mrow><mi>C</mi><mo>=</mo><mi>A</mi><mi>B</mi><mo>=</mo><mo>[</mo><mtable><mtr><mtd><mn>19</mn></mtd><mtd><mn>22</mn></mtd></mtr><mtr><mtd><mn>43</mn></mtd><mtd><mn>50</mn></mtd></mtr></mtable><mo>]</mo></mrow></math></div><div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>A times B gives C, whose first row is nineteen, twenty-two and second row is forty-three, fifty.</p></div></div><p>Writing AB here means <strong>matrix multiplication</strong>, not multiplying entries in the same positions.</p></section>
+        <section class="bounds-guide" aria-labelledby="matrix-rule-title"><h3 id="matrix-rule-title">The general rule and when shapes fit</h3><p>The next formula is the same row–column calculation written for <em>any</em> cell of <!-- LaTeX: C=AB --><math class="inline-math" aria-label="C equals A times B"><mrow><mi>C</mi><mo>=</mo><mi>A</mi><mi>B</mi></mrow></math>, not a separate operation. Let A have <i>m</i> rows and <i>p</i> columns. Let B have <i>p</i> rows and <i>n</i> columns. For A times B to be defined, <strong>the number of columns in A must equal the number of rows in B</strong>. Here both counts are <i>p</i>: every row of A has <i>p</i> entries to pair with the <i>p</i> entries in a column of B. The result C has <i>m</i> rows and <i>n</i> columns. This works for rectangular matrices too, not just squares.</p><div class="notation-reading-row compact-reading-row"><div class="notation-reading-part"><span class="notation-reading-label">NOTATION</span><!-- LaTeX: C_{r,c}=\sum_{k=1}^{p} A_{r,k}B_{k,c} --><math class="inline-math" aria-label="C at row r column c equals the sum from k one through p of A at row r column k times B at row k column c"><mrow><msub><mi>C</mi><mrow><mi>r</mi><mo>,</mo><mi>c</mi></mrow></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></munderover><msub><mi>A</mi><mrow><mi>r</mi><mo>,</mo><mi>k</mi></mrow></msub><mo>×</mo><msub><mi>B</mi><mrow><mi>k</mi><mo>,</mo><mi>c</mi></mrow></msub></mrow></math></div><div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>For output row r and column c, add the products as k goes from 1 through p: A at row r, column k times B at row k, column c.</p></div></div><p>The letters <i>r</i> and <i>c</i> choose the output row and column. The index <i>k</i> moves along that row of A and down that column of B; it does not choose a new output cell. In our two-by-two example, <i>p</i> is 2, so each cell adds two products. If A’s column count and B’s row count differ, this matrix product is not defined.</p></section>
+        <section class="complexity-terms" aria-labelledby="shape-shortcut-title">
+          <h3 id="shape-shortcut-title">Quick shape check: A’s columns must equal B’s rows</h3>
+          <p>Write each shape as rows by columns. Compare the <strong>second number of A</strong> (its columns) with the <strong>first number of B</strong> (its rows). They must be equal. The result uses A’s row count and B’s column count:</p>
+          <div class="notation-reading-row compact-reading-row"><div class="notation-reading-part"><span class="notation-reading-label">SHAPES</span><!-- LaTeX: (m\times p)(p\times n)\longrightarrow m\times n --><math class="inline-math" aria-label="m by p times p by n produces m by n"><mrow><mo>(</mo><mi>m</mi><mo>×</mo><mi>p</mi><mo>)</mo><mo>(</mo><mi>p</mi><mo>×</mo><mi>n</mi><mo>)</mo><mo>→</mo><mi>m</mi><mo>×</mo><mi>n</mi></mrow></math></div><div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>A has m rows and p columns. B has p rows and n columns. Because A’s p columns match B’s p rows, the result has m rows and n columns.</p></div></div>
+          <p>For example, if A is two-by-three and B is three-by-four, A has <strong>3 columns</strong> and B has <strong>3 rows</strong>: they match, so the result is two-by-four. If B were two-by-four instead, its <strong>2 rows</strong> would not match A’s <strong>3 columns</strong>, so A times B would not be defined. The check predicts only the <em>shape</em>, not the numbers in the result. Reversing the order to B times A would require its own shape check.</p>
+        </section>
+        <section class="bounds-guide" aria-labelledby="rectangular-title">
+          <h3 id="rectangular-title">A wider row times a taller column</h3>
+          <p>New example: redefine A as two rows by three columns and B as three rows by two columns. The shared size is 3, so <strong>each cell adds three products</strong>; C has two rows and two columns.</p>
+          <div class="notation-reading-row compact-reading-row"><div class="notation-reading-part"><span class="notation-reading-label">INPUTS</span><!-- LaTeX: A=\begin{bmatrix}1&2&3\\4&5&6\end{bmatrix},\quad B=\begin{bmatrix}7&8\\9&10\\11&12\end{bmatrix} --><math class="inline-math" aria-label="A has rows one two three and four five six; B has rows seven eight, nine ten, eleven twelve"><mrow><mi>A</mi><mo>=</mo><mo>[</mo><mtable><mtr><mtd><mn>1</mn></mtd><mtd><mn>2</mn></mtd><mtd><mn>3</mn></mtd></mtr><mtr><mtd><mn>4</mn></mtd><mtd><mn>5</mn></mtd><mtd><mn>6</mn></mtd></mtr></mtable><mo>]</mo><mo>,</mo><mspace width="0.5em"/><mi>B</mi><mo>=</mo><mo>[</mo><mtable><mtr><mtd><mn>7</mn></mtd><mtd><mn>8</mn></mtd></mtr><mtr><mtd><mn>9</mn></mtd><mtd><mn>10</mn></mtd></mtr><mtr><mtd><mn>11</mn></mtd><mtd><mn>12</mn></mtd></mtr></mtable><mo>]</mo></mrow></math></div><div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>A has two rows of three; B has three rows of two. A’s three columns match B’s three rows, so we can multiply them.</p></div></div>
+          <p>Take A’s first row (1, 2, 3) and B’s first column (7, 9, 11):</p>
+          <div class="notation-reading-row compact-reading-row"><div class="notation-reading-part"><span class="notation-reading-label">TOP-LEFT CELL</span><!-- LaTeX: C_{1,1}=1\times7+2\times9+3\times11=58 --><math class="inline-math" aria-label="C row one column one equals one times seven plus two times nine plus three times eleven equals fifty-eight"><mrow><msub><mi>C</mi><mrow><mn>1</mn><mo>,</mo><mn>1</mn></mrow></msub><mo>=</mo><mn>1</mn><mo>×</mo><mn>7</mn><mo>+</mo><mn>2</mn><mo>×</mo><mn>9</mn><mo>+</mo><mn>3</mn><mo>×</mo><mn>11</mn><mo>=</mo><mn>58</mn></mrow></math></div><div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>One times seven plus two times nine plus three times eleven gives fifty-eight for the top-left cell.</p></div></div>
+          <p>For each remaining cell, choose its row of A and column of B:</p>
+          <ul class="role-list"><li>Top right: <!-- LaTeX: C_{1,2}=1\times8+2\times10+3\times12=64 --><math class="inline-math" aria-label="C one two equals one times eight plus two times ten plus three times twelve equals sixty-four"><mrow><msub><mi>C</mi><mrow><mn>1</mn><mo>,</mo><mn>2</mn></mrow></msub><mo>=</mo><mn>1</mn><mo>×</mo><mn>8</mn><mo>+</mo><mn>2</mn><mo>×</mo><mn>10</mn><mo>+</mo><mn>3</mn><mo>×</mo><mn>12</mn><mo>=</mo><mn>64</mn></mrow></math>.</li><li>Bottom left: <!-- LaTeX: C_{2,1}=4\times7+5\times9+6\times11=139 --><math class="inline-math" aria-label="C two one equals four times seven plus five times nine plus six times eleven equals one hundred thirty-nine"><mrow><msub><mi>C</mi><mrow><mn>2</mn><mo>,</mo><mn>1</mn></mrow></msub><mo>=</mo><mn>4</mn><mo>×</mo><mn>7</mn><mo>+</mo><mn>5</mn><mo>×</mo><mn>9</mn><mo>+</mo><mn>6</mn><mo>×</mo><mn>11</mn><mo>=</mo><mn>139</mn></mrow></math>.</li><li>Bottom right: <!-- LaTeX: C_{2,2}=4\times8+5\times10+6\times12=154 --><math class="inline-math" aria-label="C two two equals four times eight plus five times ten plus six times twelve equals one hundred fifty-four"><mrow><msub><mi>C</mi><mrow><mn>2</mn><mo>,</mo><mn>2</mn></mrow></msub><mo>=</mo><mn>4</mn><mo>×</mo><mn>8</mn><mo>+</mo><mn>5</mn><mo>×</mo><mn>10</mn><mo>+</mo><mn>6</mn><mo>×</mo><mn>12</mn><mo>=</mo><mn>154</mn></mrow></math>.</li></ul>
+          <div class="notation-reading-row compact-reading-row"><div class="notation-reading-part"><span class="notation-reading-label">RESULT</span><!-- LaTeX: C=AB=\begin{bmatrix}58&64\\139&154\end{bmatrix} --><math class="inline-math" aria-label="C equals A times B, with rows fifty-eight sixty-four and one hundred thirty-nine one hundred fifty-four"><mrow><mi>C</mi><mo>=</mo><mi>A</mi><mi>B</mi><mo>=</mo><mo>[</mo><mtable><mtr><mtd><mn>58</mn></mtd><mtd><mn>64</mn></mtd></mtr><mtr><mtd><mn>139</mn></mtd><mtd><mn>154</mn></mtd></mtr></mtable><mo>]</mo></mrow></math></div><div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>A times B gives a two-by-two C with rows fifty-eight, sixty-four and one hundred thirty-nine, one hundred fifty-four.</p></div></div>
+        </section>
+        <section class="bounds-guide" aria-labelledby="column-result-title">
+          <h3 id="column-result-title">A different output shape: one column</h3>
+          <p>Start a separate example with new A and B: A has three rows by two columns, B has two rows by one column. A’s two columns match B’s two rows, so C has <strong>three rows by one column</strong>.</p>
+          <div class="notation-reading-row compact-reading-row"><div class="notation-reading-part"><span class="notation-reading-label">INPUTS</span><!-- LaTeX: A=\begin{bmatrix}1&2\\3&4\\5&6\end{bmatrix},\quad B=\begin{bmatrix}2\\3\end{bmatrix} --><math class="inline-math" aria-label="A has rows one two, three four, five six; B is the column two three"><mrow><mi>A</mi><mo>=</mo><mo>[</mo><mtable><mtr><mtd><mn>1</mn></mtd><mtd><mn>2</mn></mtd></mtr><mtr><mtd><mn>3</mn></mtd><mtd><mn>4</mn></mtd></mtr><mtr><mtd><mn>5</mn></mtd><mtd><mn>6</mn></mtd></mtr></mtable><mo>]</mo><mo>,</mo><mspace width="0.5em"/><mi>B</mi><mo>=</mo><mo>[</mo><mtable><mtr><mtd><mn>2</mn></mtd></mtr><mtr><mtd><mn>3</mn></mtd></mtr></mtable><mo>]</mo></mrow></math></div><div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>Each of A’s three rows is paired with the single column of B, so C has three entries in one column.</p></div></div>
+          <p>Pair each row of A with the one column of B:</p><ul class="role-list"><li>First row: <!-- LaTeX: C_{1,1}=1\times2+2\times3=8 --><math class="inline-math" aria-label="C one one equals one times two plus two times three equals eight"><mrow><msub><mi>C</mi><mrow><mn>1</mn><mo>,</mo><mn>1</mn></mrow></msub><mo>=</mo><mn>1</mn><mo>×</mo><mn>2</mn><mo>+</mo><mn>2</mn><mo>×</mo><mn>3</mn><mo>=</mo><mn>8</mn></mrow></math>.</li><li>Second row: <!-- LaTeX: C_{2,1}=3\times2+4\times3=18 --><math class="inline-math" aria-label="C two one equals three times two plus four times three equals eighteen"><mrow><msub><mi>C</mi><mrow><mn>2</mn><mo>,</mo><mn>1</mn></mrow></msub><mo>=</mo><mn>3</mn><mo>×</mo><mn>2</mn><mo>+</mo><mn>4</mn><mo>×</mo><mn>3</mn><mo>=</mo><mn>18</mn></mrow></math>.</li><li>Third row: <!-- LaTeX: C_{3,1}=5\times2+6\times3=28 --><math class="inline-math" aria-label="C three one equals five times two plus six times three equals twenty-eight"><mrow><msub><mi>C</mi><mrow><mn>3</mn><mo>,</mo><mn>1</mn></mrow></msub><mo>=</mo><mn>5</mn><mo>×</mo><mn>2</mn><mo>+</mo><mn>6</mn><mo>×</mo><mn>3</mn><mo>=</mo><mn>28</mn></mrow></math>.</li></ul><p>All three results belong in the same output column:</p>
+          <div class="notation-reading-row compact-reading-row"><div class="notation-reading-part"><span class="notation-reading-label">RESULT</span><!-- LaTeX: C=AB=\begin{bmatrix}8\\18\\28\end{bmatrix} --><math class="inline-math" aria-label="C equals A times B equals the column eight eighteen twenty-eight"><mrow><mi>C</mi><mo>=</mo><mi>A</mi><mi>B</mi><mo>=</mo><mo>[</mo><mtable><mtr><mtd><mn>8</mn></mtd></mtr><mtr><mtd><mn>18</mn></mtd></mtr><mtr><mtd><mn>28</mn></mtd></mtr></mtable><mo>]</mo></mrow></math></div><div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>A times B produces a column with entries eight, eighteen, and twenty-eight.</p></div></div><p>The same rule works in every example; changing the outer sizes changes the shape of C, and changing the shared size changes how many products go into each cell.</p>
+        </section>
+        <section class="code-section" aria-labelledby="code-title"><div class="code-heading"><div><p class="eyebrow">THE SAME STEPS IN PYTHON</p><h3 id="code-title">Build each cell from a row and a column</h3></div><span class="language-label">Python</span></div><p class="code-intro">The outer loops choose a row and column of C; the inner loop adds the matching products. Python starts its list indices at 0, while the math above starts at 1. Read the comments before running—the editor is an optional check.</p><div id="python-editor" class="editor-shell" aria-label="Editable Python matrix multiplication example"></div><div class="run-controls"><button id="run-python" type="button">Run Python</button><button id="reset-python" type="button">Reset to starter code</button><span id="run-status" role="status" aria-live="polite">Runs in your browser. The first run needs an internet connection to load Python.</span></div><div class="output-panel"><div class="output-heading">Output</div><pre id="python-output" aria-live="polite">Click “Run Python” to run the code above.</pre></div><template id="starter-python">A = [[1, 2], [3, 4]]
+B = [[5, 6], [7, 8]]
+
+C = []
+for row in range(len(A)):  # choose an output row
+    output_row = []
+    for col in range(len(B[0])):  # choose an output column
+        cell = 0
+        for k in range(len(B)):  # walk along A's row, down B's column
+            cell += A[row][k] * B[k][col]
+        output_row.append(cell)
+    C.append(output_row)
+
+for output_row in C:
+    print(output_row)</template><p class="math-note"><strong>For this example:</strong> A and B are both two-by-two, so the loops produce [19, 22] and [43, 50]. For other inputs, check that rows are consistent lengths and A’s column count equals B’s row count before using this code.</p></section>
+        <section class="shorter-section" aria-labelledby="functional-matmul-title">
+          <p class="eyebrow">ALTERNATIVE PYTHON VERSION · AFTER THE EXPLICIT LOOPS</p>
+          <h3 id="functional-matmul-title">Pair rows and columns with standard-library helpers</h3>
+          <p>This version performs the same row–column dot products, but hides the loops inside Python functions. Read the explicit version first; fewer lines do not guarantee faster execution, and this is not a different multiplication rule. It requires Python 3.12 or later for <code>batched</code> and <code>sumprod</code>.</p>
+          <pre class="short-code"><code>from itertools import batched, product, starmap
+from math import sumprod
+
+
+def transpose(matrix):
+    "Swap rows and columns of a 2-D matrix."
+    return zip(*matrix, strict=True)
+
+
+def matmul(m1, m2):
+    "Multiply two matrices."
+    columns_count = len(m2[0])  # columns of m2 = columns of C
+    pairs = product(m1, transpose(m2))
+    cells = starmap(sumprod, pairs)
+    return batched(cells, columns_count)
+
+
+A = [[1, 2], [3, 4]]
+B = [[5, 6], [7, 8]]
+C = list(matmul(A, B))
+
+for output_row in C:
+    print(output_row)  # (19, 22), then (43, 50)</code></pre>
+          <p><code>transpose(m2)</code> supplies B’s columns as sequences. <code>product</code> pairs <em>each</em> row of A with <em>each</em> column of B; <code>starmap(sumprod, pairs)</code> computes one dot product per pair. Finally, <code>batched</code> groups consecutive cells into output rows of <code>columns_count</code> cells each.</p>
+          <p>Unlike the loop’s lists, <code>batched</code> yields <strong>tuples</strong>, so the printed rows have parentheses rather than square brackets. The numeric matrix is the same. This example assumes nonempty rectangular inputs with A’s column count equal to B’s row count; check those shapes before using it for arbitrary data. <code>sumprod</code> rejects pairs whose lengths differ.</p>
+          <button class="load-version-button" data-load-code="functional-matmul-python" type="button">Load functional version into editor</button>
+          <template id="functional-matmul-python">from itertools import batched, product, starmap
+from math import sumprod
+
+
+def transpose(matrix):
+    "Swap rows and columns of a 2-D matrix."
+    return zip(*matrix, strict=True)
+
+
+def matmul(m1, m2):
+    "Multiply two matrices."
+    columns_count = len(m2[0])  # columns of m2 = columns of C
+    pairs = product(m1, transpose(m2))
+    cells = starmap(sumprod, pairs)
+    return batched(cells, columns_count)
+
+
+A = [[1, 2], [3, 4]]
+B = [[5, 6], [7, 8]]
+C = list(matmul(A, B))
+
+for output_row in C:
+    print(output_row)  # (19, 22), then (43, 50)</template>
+        </section>
+      </section>
+      <aside class="later-note"><strong>Where this leads</strong><p>Matrix multiplication appears in coordinate transformations and machine learning. Each cell still follows the row–column rule; those applications can come later.</p></aside>
+      <nav class="page-nav page-nav-bottom" aria-label="Previous and next pages"><a class="page-nav-item" href="vector-dot-product.html"><span class="page-nav-direction">PREVIOUS</span><span>← Vectors and dot products</span></a><span class="page-nav-item page-nav-disabled" aria-disabled="true"><span class="page-nav-direction">NEXT</span><span>End of current lessons</span></span></nav>
+    </main><footer>Made for learning to unpack the math, one step at a time.</footer>
+  </body>
+</html>
