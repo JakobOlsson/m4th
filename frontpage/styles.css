@@ -257,6 +257,15 @@ h2 { margin-bottom: 12px; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.
 .guide-card > p { color: var(--muted); }
 .guide-card > .math-note { color: var(--ink); }
 .guide-card a { color: var(--green); font-weight: 600; }
+.glossary-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+.glossary-entry { min-width: 0; padding: 16px; border: 1px solid var(--line); border-radius: 9px; background: #f7f9f5; }
+.glossary-entry h3 { margin: 0 0 7px; color: var(--green); font-size: 1rem; }
+.glossary-entry p { margin: 6px 0; color: var(--muted); font-size: 0.9rem; }
+.glossary-entry .glossary-example { color: var(--ink); }
+.glossary-entry a { display: inline-block; margin-top: 4px; font-size: 0.84rem; }
+.pascal-triangle { display: flex; width: max-content; max-width: 100%; flex-direction: column; align-items: center; gap: 7px; margin: 20px auto; }
+.pascal-row { display: flex; justify-content: center; gap: 10px; }
+.pascal-row span { display: grid; width: 42px; height: 36px; place-items: center; border: 1px solid var(--line); border-radius: 7px; background: var(--card); color: var(--green); font-family: ui-serif, Georgia, "Times New Roman", serif; font-size: 1.1rem; font-weight: 700; }
 .table-wrap { overflow-x: auto; margin: 18px 0; }
 .letter-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; }
 .letter-table th, .letter-table td { padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
@@ -352,6 +361,9 @@ body.reference-embed .guide-card { margin-bottom: 12px; padding: 22px; }
   .explain-grid { grid-template-columns: 1fr; gap: 12px; }
   .summand-expansion-grid { grid-template-columns: 1fr; }
   .bound-examples { grid-template-columns: 1fr; }
+  .glossary-grid { grid-template-columns: 1fr; }
+  .pascal-row { gap: 6px; }
+  .pascal-row span { width: 38px; height: 34px; }
   .notation-reading-row { grid-template-columns: 1fr; }
   .notation-reading-part + .notation-reading-part { border-top: 1px solid var(--line); border-left: 0; }
   .code-variants { grid-template-columns: 1fr; }

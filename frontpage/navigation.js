@@ -4,7 +4,7 @@ const navScrim = document.querySelector("#nav-scrim");
 const mobileViewport = window.matchMedia("(max-width: 800px)");
 const quickReferenceDialog = document.querySelector("#quick-reference-dialog");
 const quickReferenceFrame = quickReferenceDialog?.querySelector("iframe");
-const referenceTriggers = document.querySelectorAll(".quick-reference-trigger, .inline-reference-trigger");
+const referenceTriggers = document.querySelectorAll(".quick-reference-trigger, .inline-reference-trigger, .glossary-trigger");
 let activeReferenceTrigger = null;
 
 function setInitialNavigationState() {
@@ -48,11 +48,18 @@ if (quickReferenceDialog && quickReferenceFrame) {
         navToggle.setAttribute("aria-expanded", "false");
       }
 
+      const source = trigger.dataset.referenceSrc || quickReferenceFrame.dataset.src;
+      const title = trigger.dataset.referenceTitle || "Notation and Python";
+      const fullPage = trigger.dataset.referenceLink || "quick-reference.html";
       const section = trigger.dataset.referenceTarget || "";
-      const currentSection = quickReferenceFrame.dataset.currentSection || "";
-      if (quickReferenceFrame.dataset.loaded !== "true" || section !== currentSection) {
-        quickReferenceFrame.src = `${quickReferenceFrame.dataset.src}${section ? `#${section}` : ""}`;
-        quickReferenceFrame.dataset.currentSection = section;
+      const destination = `${source}${section ? `#${section}` : ""}`;
+      const currentDestination = quickReferenceFrame.dataset.currentDestination || "";
+      quickReferenceDialog.querySelector("#quick-reference-dialog-title").textContent = title;
+      quickReferenceDialog.querySelector(".dialog-actions a").href = fullPage;
+      quickReferenceFrame.title = title;
+      if (quickReferenceFrame.dataset.loaded !== "true" || destination !== currentDestination) {
+        quickReferenceFrame.src = destination;
+        quickReferenceFrame.dataset.currentDestination = destination;
         quickReferenceFrame.dataset.loaded = "true";
       }
 
