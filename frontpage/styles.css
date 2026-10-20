@@ -257,6 +257,9 @@ h2 { margin-bottom: 12px; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.
 .guide-card h2 { margin-bottom: 12px; }
 .guide-card > p { color: var(--muted); }
 .guide-card > .math-note { color: var(--ink); }
+.formula-roadmap > .math-note { margin: 14px 0 0; }
+.formula-roadmap .math-note ul { margin: 8px 0 0; padding-left: 22px; }
+.formula-roadmap .math-note li + li { margin-top: 6px; }
 .guide-card a { color: var(--green); font-weight: 600; }
 .overview-page .guide-card > p { max-width: 720px; line-height: 1.6; }
 .overview-page .journey-stage { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 20px; margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--line); }
@@ -274,8 +277,18 @@ h2 { margin-bottom: 12px; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.
 .overview-page .application-status { display: inline-block; margin-bottom: 9px; color: var(--green); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.11em; }
 .overview-page .application-grid h3 { font-size: 1.2rem; }
 .overview-page .application-grid h3 a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.glossary-search-panel { margin: 0 0 22px; padding: 18px 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+.glossary-search-panel label { display: block; margin-bottom: 7px; color: var(--green); font-size: 0.9rem; font-weight: 700; }
+.glossary-search-row { display: flex; gap: 8px; }
+.glossary-search-row input { flex: 1; min-width: 0; padding: 10px 12px; border: 1px solid #aebbb0; border-radius: 7px; background: #fff; color: var(--ink); font: inherit; }
+.glossary-search-row input:focus-visible, .glossary-search-row button:focus-visible { outline: 3px solid #8caa96; outline-offset: 2px; }
+.glossary-search-row button { padding: 9px 13px; border: 1px solid var(--green); border-radius: 7px; background: transparent; color: var(--green); font: inherit; font-size: 0.84rem; font-weight: 700; cursor: pointer; }
+.glossary-search-row button:disabled { border-color: var(--line); color: var(--muted); cursor: default; }
+.glossary-search-help, .glossary-search-status { margin: 7px 0 0; color: var(--muted); font-size: 0.82rem; }
+.glossary-entry[hidden], .guide-card[hidden] { display: none; }
 .glossary-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
 .glossary-entry { min-width: 0; padding: 16px; border: 1px solid var(--line); border-radius: 9px; background: #f7f9f5; }
+.glossary-entry h3:focus { outline: 3px solid #8caa96; outline-offset: 3px; border-radius: 2px; }
 .glossary-entry h3 { margin: 0 0 7px; color: var(--green); font-size: 1rem; }
 .glossary-entry p { margin: 6px 0; color: var(--muted); font-size: 0.9rem; }
 .glossary-entry .glossary-example { color: var(--ink); }
@@ -310,6 +323,10 @@ h2 { margin-bottom: 12px; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.
 .function-example { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; margin: 20px 0; padding: 18px; border-radius: 10px; background: var(--pale-green); font-family: ui-serif, Georgia, "Times New Roman", serif; font-size: 1.2rem; }
 .notation-reading-part .function-example { margin: 8px 0 0; }
 .function-step-label { width: 100%; margin-top: 4px; padding-top: 9px; border-top: 1px solid #d2dfd3; color: var(--green); font-family: ui-sans-serif, system-ui, sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+.bezier-figure { margin: 24px 0; padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+.bezier-figure svg { display: block; width: min(100%, 720px); height: auto; margin: 0 auto; }
+.bezier-figure figcaption { max-width: 680px; margin: 8px auto 0; color: var(--muted); font-size: 0.9rem; }
+.code-formula-row { color: var(--ink); }
 .role-list { padding-left: 22px; color: var(--muted); }
 .role-list li { margin: 7px 0; }
 .upright-math { color: var(--ink); font-family: ui-serif, Georgia, "Times New Roman", serif; font-style: normal; }

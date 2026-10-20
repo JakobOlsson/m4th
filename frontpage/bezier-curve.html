@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Unpack a quadratic Bézier curve from its control points into a power-basis polynomial.">
+    <title>A Bézier curve, expanded — Math Refresher</title>
+    <link rel="stylesheet" href="styles.css?v=25">
+    <script src="editor.bundle.js?v=3" defer></script>
+    <script src="run-python.js?v=7" defer></script>
+    <script src="navigation.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#top">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand-controls">
+          <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="handbook-nav" aria-expanded="true"><span class="menu-icon" aria-hidden="true">☰</span><span>Contents</span></button>
+          <a class="wordmark" href="index.html">Math, unpacked</a>
+        </div>
+        <span class="header-note">A personal math refresher</span>
+      </div>
+    </header>
+
+    <aside id="handbook-nav" class="sidebar">
+      <nav aria-label="Handbook pages">
+        <p class="sidebar-label">START HERE</p><a class="nav-link" href="index.html">Handbook overview</a>
+        <p class="sidebar-label">CORE NOTATION</p>
+        <a class="nav-link" href="letters.html">Letters and notation</a>
+        <a class="nav-link" href="summation.html">Summation (∑)</a>
+        <a class="nav-link" href="products.html">Products and factorials</a>
+        <p class="sidebar-label">PROBABILITY AND COUNTING</p><a class="nav-link" href="probability.html">Probability</a>
+        <a class="nav-link" href="expectation.html">Expected value</a>
+        <a class="nav-link" href="probability-bounds.html">Probability bounds</a>
+        <a class="nav-link" href="counting-work.html">Counting work</a>
+        <a class="nav-link" href="combinations.html">Combinations</a>
+        <p class="sidebar-label">LINEAR ALGEBRA</p><a class="nav-link" href="vector-dot-product.html">Vectors and dot products</a>
+        <a class="nav-link" href="matrix-multiplication.html">Matrix multiplication</a>
+        <p class="sidebar-label">PROOFS AND ALGORITHMS</p><a class="nav-link" href="program-correctness.html">Program correctness</a>
+        <a class="nav-link" href="induction.html">Proof by induction</a>
+        <p class="sidebar-label">SYNTHESIS AND APPLICATIONS</p><a class="nav-link" href="sum-of-factorials.html">A sum of factorials</a><a class="nav-link" href="dice-probability.html">At least two sixes</a><a class="nav-link" href="matrix-product-application.html">Dot products in a matrix product</a><a class="nav-link" href="bezier-curve.html" aria-current="page">A Bézier curve</a>
+        <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
+        <button class="nav-link quick-reference-trigger" type="button">Notation and Python</button><button class="nav-link glossary-trigger" type="button" data-reference-src="glossary.html?embed=1" data-reference-title="Math terms glossary" data-reference-link="glossary.html">Math terms glossary</button>
+      </nav>
+    </aside>
+    <button id="nav-scrim" class="nav-scrim" type="button" aria-label="Close navigation"></button>
+    <dialog id="quick-reference-dialog" class="quick-reference-dialog" aria-labelledby="quick-reference-dialog-title">
+      <div class="quick-reference-dialog-header">
+        <div><span class="notation-reading-label">QUICK REFERENCE</span><h2 id="quick-reference-dialog-title">Notation and Python</h2></div>
+        <div class="dialog-actions"><a href="quick-reference.html" target="_blank" rel="noopener">Open full page ↗</a><button class="dialog-close" type="button" aria-label="Close quick reference">×</button></div>
+      </div>
+      <iframe title="Notation and Python quick reference" data-src="quick-reference.html?embed=1"></iframe>
+    </dialog>
+
+    <main id="top">
+      <nav class="page-nav page-nav-top" aria-label="Previous and next pages">
+        <a class="page-nav-item" href="matrix-product-application.html"><span class="page-nav-direction">PREVIOUS</span><span>← Dot products in a matrix product</span></a>
+        <span class="page-nav-item page-nav-disabled" aria-disabled="true"><span class="page-nav-direction">NEXT</span><span>End of current lessons</span></span>
+      </nav>
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">CAPSTONE · VECTORS · CURVES</p>
+        <h1 id="page-title">Follow a control point through a curve.</h1>
+        <p class="intro-copy">A Bézier curve turns a small set of control points into a smooth path. We will use three points to read the curve in two ways: first as a weighted blend, then as an algebraic expression. The small example shows what the larger formula is doing.</p>
+      </section>
+
+      <section id="bezier-intro" class="lesson" aria-labelledby="curve-title">
+        <div class="lesson-heading">
+          <h2 id="curve-title">A quadratic curve needs three control points.</h2>
+          <p>A <strong>control point</strong> is a point that helps shape a curve. A <strong>quadratic</strong> curve has <a href="glossary.html#polynomial-degree">polynomial degree</a> 2—the highest exponent in its polynomial—and uses 3 control points. Here, “degree” counts powers, not angles. In computer graphics and vector drawing, a designer can move these points to adjust the path.</p>
+        </div>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">OUR CONTROL POINTS</span><!-- LaTeX: \mathbf{P}_0=(0,0),\quad \mathbf{P}_1=(2,2),\quad \mathbf{P}_2=(4,0) --><math class="inline-math" aria-label="P zero is the point zero zero; P one is two two; P two is four zero"><mrow><msub><mi mathvariant="bold">P</mi><mn>0</mn></msub><mo>=</mo><mo>(</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>)</mo><mo>,</mo><mspace width="0.5em"/><msub><mi mathvariant="bold">P</mi><mn>1</mn></msub><mo>=</mo><mo>(</mo><mn>2</mn><mo>,</mo><mn>2</mn><mo>)</mo><mo>,</mo><mspace width="0.5em"/><msub><mi mathvariant="bold">P</mi><mn>2</mn></msub><mo>=</mo><mo>(</mo><mn>4</mn><mo>,</mo><mn>0</mn><mo>)</mo></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>The first point P zero is at zero, zero. P one is at two, two. The last point P two is at four, zero.</p></div>
+        </div>
+        <p>The curve starts at <!-- LaTeX: \mathbf{P}_0 --><math class="inline-math" aria-label="P zero"><msub><mi mathvariant="bold">P</mi><mn>0</mn></msub></math> and ends at <!-- LaTeX: \mathbf{P}_2 --><math class="inline-math" aria-label="P two"><msub><mi mathvariant="bold">P</mi><mn>2</mn></msub></math>. The middle point <!-- LaTeX: \mathbf{P}_1 --><math class="inline-math" aria-label="P one"><msub><mi mathvariant="bold">P</mi><mn>1</mn></msub></math> pulls the path upward, but the curve does not generally pass through that middle control point.</p>
+        <figure id="curve-visual" class="bezier-figure">
+          <svg viewBox="0 0 520 320" role="img" aria-labelledby="bezier-figure-title bezier-figure-description">
+            <title id="bezier-figure-title">Quadratic Bézier curve and its three control points</title>
+            <desc id="bezier-figure-description">A coordinate graph shows the solid curve from P zero at zero, zero to P two at four, zero. A dashed control polygon passes through P one at two, two. The halfway curve point B of one half is at two, one, below P one.</desc>
+            <g stroke="#dce2d9" stroke-width="1">
+              <path d="M74 225H434 M74 155H434 M74 85H434" />
+              <path d="M74 85V225 M164 85V225 M254 85V225 M344 85V225 M434 85V225" />
+            </g>
+            <g stroke="#596863" stroke-width="2" fill="none">
+              <path d="M74 225H452 M74 240V72" />
+            </g>
+            <g fill="#596863" font-family="system-ui, sans-serif" font-size="15" text-anchor="middle">
+              <text x="74" y="248">0</text><text x="164" y="248">1</text><text x="254" y="248">2</text><text x="344" y="248">3</text><text x="434" y="248">4</text>
+              <text x="58" y="230">0</text><text x="58" y="160">1</text><text x="58" y="90">2</text>
+            </g>
+            <text x="458" y="231" fill="#182321" font-family="system-ui, sans-serif" font-size="17">x</text>
+            <text x="72" y="68" fill="#182321" font-family="system-ui, sans-serif" font-size="17">y</text>
+            <path d="M74 225L254 85L434 225" fill="none" stroke="#92735e" stroke-width="2.5" stroke-dasharray="8 6" />
+            <path d="M254 85V155" fill="none" stroke="#92735e" stroke-width="1.5" stroke-dasharray="3 5" />
+            <path d="M74 225 Q254 85 434 225" fill="none" stroke="#286252" stroke-width="4" />
+            <g font-family="system-ui, sans-serif" font-size="16" fill="#182321">
+              <circle cx="74" cy="225" r="6" fill="#286252" /><text x="81" y="216">P₀ (0, 0)</text>
+              <circle cx="254" cy="85" r="7" fill="#fffefa" stroke="#d17745" stroke-width="3" /><text x="266" y="77">P₁ (2, 2)</text>
+              <circle cx="434" cy="225" r="6" fill="#286252" /><text x="365" y="216">P₂ (4, 0)</text>
+              <circle cx="254" cy="155" r="6" fill="#d17745" stroke="#fffefa" stroke-width="2" /><text x="266" y="151">B(½) (2, 1)</text>
+            </g>
+            <g font-family="system-ui, sans-serif" font-size="14" fill="#596863">
+              <path d="M70 282H112" stroke="#92735e" stroke-width="2.5" stroke-dasharray="8 6" /><text x="120" y="287">control polygon</text>
+              <path d="M275 282H317" stroke="#286252" stroke-width="4" /><text x="325" y="287">curve</text>
+              <circle cx="420" cy="282" r="5" fill="#d17745" /><text x="432" y="287">t = ½</text>
+            </g>
+          </svg>
+          <figcaption>
+            <p>The dashed lines connect control points; the solid curve follows the power formula <!-- LaTeX: \mathbf{B}(t)=(4t,4t-4t^2) --><math class="inline-math" aria-label="B of t equals the point four t, four t minus four t squared"><mrow><mi mathvariant="bold">B</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mo>(</mo><mn>4</mn><mi>t</mi><mo>,</mo><mn>4</mn><mi>t</mi><mo>−</mo><mn>4</mn><msup><mi>t</mi><mn>2</mn></msup><mo>)</mo></mrow></math>.</p>
+            <p>The orange point is <!-- LaTeX: \mathbf{B}(\frac12)=(2,1) --><math class="inline-math" aria-label="B of one half equals the point two, one"><mrow><mi mathvariant="bold">B</mi><mo>(</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>)</mo><mo>=</mo><mo>(</mo><mn>2</mn><mo>,</mo><mn>1</mn><mo>)</mo></mrow></math>. The Bernstein weighted blend below gives this same point. The middle control point <i>P</i><sub>1</sub> guides the curve but does not lie on it.</p>
+          </figcaption>
+        </figure>
+        <p>The parameter <i>t</i> tells us where we are as we move along the curve. We use values from 0 to 1: at 0 we are at the start, and at 1 we are at the end.</p>
+        <p>A <strong>polynomial</strong> is a finite sum or difference of terms. A term is one piece: a coefficient times a variable raised to a nonnegative whole-number power (0, 1, 2, and so on). For the curve above, the y-coordinate <!-- LaTeX: 4t-4t^2 --><math class="inline-math" aria-label="four t minus four t squared"><mrow><mn>4</mn><mi>t</mi><mo>−</mo><mn>4</mn><msup><mi>t</mi><mn>2</mn></msup></mrow></math> has two terms: <!-- LaTeX: 4t --><math class="inline-math" aria-label="four t"><mrow><mn>4</mn><mi>t</mi></mrow></math> and <!-- LaTeX: -4t^2 --><math class="inline-math" aria-label="negative four t squared"><mrow><mo>−</mo><mn>4</mn><msup><mi>t</mi><mn>2</mn></msup></mrow></math>. A one-term polynomial is a <a href="glossary.html#monomial">monomial</a>, a two-term polynomial is a <a href="glossary.html#binomial">binomial</a>, and a three-term polynomial is a <a href="glossary.html#trinomial">trinomial</a>. These are all polynomials; the names distinguish their term counts. Expressions with more terms are still called polynomials. This example uses polynomial expressions, not trigonometric functions such as sine or cosine; <i>t</i> is a parameter from 0 to 1, not an angle.</p>
+      </section>
+
+      <section class="guide-card formula-roadmap" aria-labelledby="formula-roadmap-title">
+        <h2 id="formula-roadmap-title">How the formulas fit together</h2>
+        <p>Now that we have named the control points and the parameter that moves along the curve, here is how the formulas relate. There are two equivalent ways to calculate a point: Bernstein form and power form. The coefficient formula converts between them; the quadratic equation and sample calculations are particular cases; pixel mapping is separate. This is a map of relationships, not a sequence to perform. For rendering, the example uses Bernstein form to calculate points, then maps them to screen coordinates.</p>
+        <ul class="role-list">
+          <li><strong>Two equivalent ways to calculate a curve point:</strong>
+            <ul>
+              <li><strong>Bernstein form</strong> combines the control points using weights, so their contributions are easy to see. The quadratic formula below is this same form with the degree set to 2. The sampling code uses Bernstein form directly.</li>
+              <li><strong>Power form</strong> expands the same curve into ordinary powers of its parameter, with a vector coefficient (the vector multiplied by each power). Its familiar polynomial shape is useful for algebraic work, such as finding how steep the curve is at a point. The halfway point can be calculated with either form.</li>
+            </ul>
+          </li>
+          <li><strong>Converting Bernstein to power form:</strong>
+            <ul>
+              <li>The <strong>coefficient formula</strong> calculates the vector values that multiply each power, using the control points. Its derivation is the algebraic proof that the forms agree, and the formula itself is a conversion recipe—not a third curve.</li>
+              <li>The <strong>factorial ratio and finite product</strong> are equivalent ways to write one factor in that recipe; the product writes out the consecutive factors being multiplied.</li>
+              <li>The worked coefficient values show the conversion applied to this quadratic example.</li>
+            </ul>
+          </li>
+          <li><strong>Pixel mapping</strong> is a separate graphics step, after calculating a curve point, that converts its coordinates to a screen column and row.</li>
+        </ul>
+        <div class="math-note"><strong>When is each useful?</strong>
+          <ul>
+            <li>Use Bernstein form to understand how control points contribute and to generate points for this rendering example.</li>
+            <li>Use power form when polynomial algebra is useful, for example when studying the curve's slope or area.</li>
+            <li>Use the coefficient formula only when you need to convert control points into power coefficients. Its derivation explains why the forms agree; you do not need it just to draw the curve.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="bounds-guide" aria-labelledby="bernstein-title">
+        <h2 id="bernstein-title">Bernstein form: blend the control points.</h2>
+        <p>The <strong>Bézier formula</strong> combines the control points. The index <i>i</i> visits them one at a time; <i>n</i> is the degree. The combination number <!-- LaTeX: \binom{n}{i} --><math class="inline-math" aria-label="n choose i"><mrow><mo>(</mo><mfrac linethickness="0"><mi>n</mi><mi>i</mi></mfrac><mo>)</mo></mrow></math> is a <a href="combinations.html#notation-title">binomial coefficient</a> from the combinations lesson.</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">BERNSTEIN FORM</span><!-- LaTeX: \mathbf{B}(t)=\sum_{i=0}^{n}\binom{n}{i}(1-t)^{n-i}t^i\mathbf{P}_i --><math class="inline-math" aria-label="B of t equals the sum from i zero through n of n choose i times one minus t to the n minus i times t to the i times P i"><mrow><mi mathvariant="bold">B</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover><mrow><mo>(</mo><mfrac linethickness="0"><mi>n</mi><mi>i</mi></mfrac><mo>)</mo></mrow><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>t</mi><mo>)</mo></mrow><mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow></msup><msup><mi>t</mi><mi>i</mi></msup><msub><mi mathvariant="bold">P</mi><mi>i</mi></msub></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>The point B of t is the sum, as i goes from zero through n, of n choose i times one minus t to the n minus i, times t to the i, times control point P i.</p></div>
+        </div>
+        <p>The factors multiplying each control point are called <strong>Bernstein weights</strong>. When <i>t</i> is strictly between 0 and 1, each weight is nonnegative. The binomial theorem shows that all the weights add to 1:</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">THE WEIGHTS ADD TO ONE</span><!-- LaTeX: \sum_{i=0}^{n}\binom{n}{i}(1-t)^{n-i}t^i=((1-t)+t)^n=1 --><math class="inline-math" aria-label="the sum of the Bernstein weights equals the quantity one minus t plus t, all to the n, which equals one"><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover><mrow><mo>(</mo><mfrac linethickness="0"><mi>n</mi><mi>i</mi></mfrac><mo>)</mo></mrow><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>t</mi><mo>)</mo></mrow><mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow></msup><msup><mi>t</mi><mi>i</mi></msup><mo>=</mo><msup><mrow><mo>(</mo><mo>(</mo><mn>1</mn><mo>−</mo><mi>t</mi><mo>)</mo><mo>+</mo><mi>t</mi><mo>)</mo></mrow><mi>n</mi></msup><mo>=</mo><mn>1</mn></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>The sum of the Bernstein weights, as i goes from zero to n, equals one: one minus t plus t, all to the n, equals one.</p></div>
+        </div>
+        <p>So for a parameter strictly between 0 and 1, the curve point is a blend of the control points whose weights total one. For our degree-2 curve, <i>n</i> is 2 and there are 3 control points. Setting <i>n</i> to 2 in the general Bernstein form gives this quadratic case; its combination numbers are 1, 2, and 1:</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">QUADRATIC CASE</span><!-- LaTeX: \mathbf{B}(t)=(1-t)^2\mathbf{P}_0+2(1-t)t\mathbf{P}_1+t^2\mathbf{P}_2 --><math class="inline-math" aria-label="B of t equals one minus t squared times P zero plus two times one minus t times t times P one plus t squared times P two"><mrow><mi mathvariant="bold">B</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>t</mi><mo>)</mo></mrow><mn>2</mn></msup><msub><mi mathvariant="bold">P</mi><mn>0</mn></msub><mo>+</mo><mn>2</mn><mo>(</mo><mn>1</mn><mo>−</mo><mi>t</mi><mo>)</mo><mi>t</mi><msub><mi mathvariant="bold">P</mi><mn>1</mn></msub><mo>+</mo><msup><mi>t</mi><mn>2</mn></msup><msub><mi mathvariant="bold">P</mi><mn>2</mn></msub></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>B of t equals one minus t squared times P zero, plus two times one minus t times t times P one, plus t squared times P two.</p></div>
+        </div>
+        <p>At <!-- LaTeX: t=\frac12 --><math class="inline-math" aria-label="t equals one half"><mrow><mi>t</mi><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow></math>, the three weights are one quarter, one half, and one quarter. They add to 1, so the curve point is a weighted blend of the three control points:</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">HALFWAY POINT</span><!-- LaTeX: \mathbf{B}(\frac12)=\frac14\mathbf{P}_0+\frac12\mathbf{P}_1+\frac14\mathbf{P}_2=(2,1) --><math class="inline-math" aria-label="B of one half equals one quarter P zero plus one half P one plus one quarter P two equals the point two one"><mrow><mi mathvariant="bold">B</mi><mo>(</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>)</mo><mo>=</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><msub><mi mathvariant="bold">P</mi><mn>0</mn></msub><mo>+</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mi mathvariant="bold">P</mi><mn>1</mn></msub><mo>+</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><msub><mi mathvariant="bold">P</mi><mn>2</mn></msub><mo>=</mo><mo>(</mo><mn>2</mn><mo>,</mo><mn>1</mn><mo>)</mo></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>Halfway along, the curve point is one quarter of P zero, plus one half of P one, plus one quarter of P two. The result is the point two, one.</p></div>
+        </div>
+        <p>So at the halfway parameter the curve is at <!-- LaTeX: (2,1) --><math class="inline-math" aria-label="the point two, one"><mrow><mo>(</mo><mn>2</mn><mo>,</mo><mn>1</mn><mo>)</mo></mrow></math>, while the middle control point is <!-- LaTeX: (2,2) --><math class="inline-math" aria-label="the point two, two"><mrow><mo>(</mo><mn>2</mn><mo>,</mo><mn>2</mn><mo>)</mo></mrow></math>. This illustrates the difference between a control point and a point on the curve.</p>
+      </section>
+
+      <section class="bounds-guide" aria-labelledby="expand-title">
+        <h2 id="expand-title">Power form: expand the same curve into powers of <i>t</i>.</h2>
+        <p>Now expand that same quadratic Bernstein formula to get the equivalent power form for our example. Substitute the control points and work with the x- and y-coordinates separately, since adding and scaling vectors means doing the same arithmetic to each coordinate:</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">SUBSTITUTE THE POINTS</span><!-- LaTeX: \mathbf{B}(t)=(1-t)^2(0,0)+2(1-t)t(2,2)+t^2(4,0) --><math class="inline-math" aria-label="B of t equals one minus t squared times zero zero, plus two times one minus t times t times two two, plus t squared times four zero"><mrow><mi mathvariant="bold">B</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>t</mi><mo>)</mo></mrow><mn>2</mn></msup><mo>(</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>)</mo><mo>+</mo><mn>2</mn><mo>(</mo><mn>1</mn><mo>−</mo><mi>t</mi><mo>)</mo><mi>t</mi><mo>(</mo><mn>2</mn><mo>,</mo><mn>2</mn><mo>)</mo><mo>+</mo><msup><mi>t</mi><mn>2</mn></msup><mo>(</mo><mn>4</mn><mo>,</mo><mn>0</mn><mo>)</mo></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>B of t is one minus t squared times the point zero, zero; plus two times one minus t times t times the point two, two; plus t squared times the point four, zero.</p></div>
+        </div>
+        <p>Expand the x-coordinate: the first point contributes 0, the middle point contributes <!-- LaTeX: 4(1-t)t --><math class="inline-math" aria-label="four times one minus t times t"><mrow><mn>4</mn><mo>(</mo><mn>1</mn><mo>−</mo><mi>t</mi><mo>)</mo><mi>t</mi></mrow></math>, and the last contributes <!-- LaTeX: 4t^2 --><math class="inline-math" aria-label="four t squared"><mrow><mn>4</mn><msup><mi>t</mi><mn>2</mn></msup></mrow></math>. For the y-coordinate, the middle point contributes <!-- LaTeX: 4(1-t)t --><math class="inline-math" aria-label="four times one minus t times t"><mrow><mn>4</mn><mo>(</mo><mn>1</mn><mo>−</mo><mi>t</mi><mo>)</mo><mi>t</mi></mrow></math> and the other two contribute 0. Simplifying gives:</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">POWER FORM</span><!-- LaTeX: \mathbf{B}(t)=(4t,4t-4t^2) --><math class="inline-math" aria-label="B of t equals the point four t, four t minus four t squared"><mrow><mi mathvariant="bold">B</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mo>(</mo><mn>4</mn><mi>t</mi><mo>,</mo><mn>4</mn><mi>t</mi><mo>−</mo><mn>4</mn><msup><mi>t</mi><mn>2</mn></msup><mo>)</mo></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>B of t has x-coordinate four t and y-coordinate four t minus four t squared.</p></div>
+        </div>
+        <p>The same point is now described by ordinary powers of <i>t</i>. At <!-- LaTeX: t=\frac12 --><math class="inline-math" aria-label="t equals one half"><mrow><mi>t</mi><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow></math>, this gives <!-- LaTeX: (2,1) --><math class="inline-math" aria-label="the point two, one"><mrow><mo>(</mo><mn>2</mn><mo>,</mo><mn>1</mn><mo>)</mo></mrow></math>, matching the weighted-blend calculation above.</p>
+      </section>
+
+      <section class="bounds-guide" aria-labelledby="general-title">
+        <h2 id="general-title">The coefficient formula converts between the forms.</h2>
+        <p>The example's power form above came from directly expanding its quadratic Bernstein formula. For any degree, the coefficient formula below gives this same conversion from control points to the power form; its derivation shows why the conversion works. In the power form, the outer index <i>j</i> chooses the power of <i>t</i>, and <!-- LaTeX: \mathbf{C}_j --><math class="inline-math" aria-label="C sub j"><msub><mi mathvariant="bold">C</mi><mi>j</mi></msub></math> is the <a href="glossary.html#vector-coefficient">vector coefficient</a> attached to that power. A coefficient is a multiplier; here, the coefficient itself is a vector. The scalar <!-- LaTeX: t^j --><math class="inline-math" aria-label="t to the j"><msup><mi>t</mi><mi>j</mi></msup></math> scales each coordinate of that vector, and the resulting vectors are added coordinate by coordinate. This is scalar-times-vector scaling, not vector-times-vector multiplication.</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">POWER-BASIS FORM</span><!-- LaTeX: \mathbf{B}(t)=\sum_{j=0}^{n}t^j\mathbf{C}_j --><math class="inline-math" aria-label="B of t equals the sum from j zero through n of t to the j times C j"><mrow><mi mathvariant="bold">B</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover><msup><mi>t</mi><mi>j</mi></msup><msub><mi mathvariant="bold">C</mi><mi>j</mi></msub></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>B of t is the sum, as j goes from zero to n, of t to the j times coefficient vector C j.</p></div>
+        </div>
+        <p>To find <!-- LaTeX: \mathbf{C}_j --><math class="inline-math" aria-label="C sub j"><msub><mi mathvariant="bold">C</mi><mi>j</mi></msub></math>, expand the factor <!-- LaTeX: (1-t)^{n-i} --><math class="inline-math" aria-label="one minus t to the n minus i"><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>t</mi><mo>)</mo></mrow><mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow></msup></math> using the binomial theorem. In that expansion, <i>r</i> counts how many factors contribute a <!-- LaTeX: -t --><math class="inline-math" aria-label="negative t"><mrow><mo>−</mo><mi>t</mi></mrow></math>:</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">BINOMIAL THEOREM STEP</span><!-- LaTeX: (1-t)^{n-i}=\sum_{r=0}^{n-i}\binom{n-i}{r}(-1)^r t^r --><math class="inline-math" aria-label="one minus t to the n minus i equals the sum from r zero to n minus i of n minus i choose r times negative one to the r times t to the r"><mrow><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>t</mi><mo>)</mo></mrow><mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow></msup><mo>=</mo><munderover><mo>∑</mo><mrow><mi>r</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow></munderover><mrow><mo>(</mo><mfrac linethickness="0"><mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow><mi>r</mi></mfrac><mo>)</mo></mrow><msup><mrow><mo>(</mo><mo>−</mo><mn>1</mn><mo>)</mo></mrow><mi>r</mi></msup><msup><mi>t</mi><mi>r</mi></msup></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>One minus t to the n minus i equals the sum, as r goes from zero to n minus i, of n minus i choose r times negative one to the r times t to the r.</p></div>
+        </div>
+        <p>The original term also contains <!-- LaTeX: t^i --><math class="inline-math" aria-label="t to the i"><msup><mi>t</mi><mi>i</mi></msup></math>. Multiplying powers adds their exponents, so a term contributes to the coefficient of <!-- LaTeX: t^j --><math class="inline-math" aria-label="t to the j"><msup><mi>t</mi><mi>j</mi></msup></math> when <!-- LaTeX: i+r=j --><math class="inline-math" aria-label="i plus r equals j"><mrow><mi>i</mi><mo>+</mo><mi>r</mi><mo>=</mo><mi>j</mi></mrow></math>, meaning <i>r</i> is <i>j</i> minus <i>i</i>. Thus, for a fixed <i>j</i>, add the contributions from control points <!-- LaTeX: i=0,1,\ldots,j --><math class="inline-math" aria-label="i equals zero through j"><mrow><mi>i</mi><mo>=</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mo>…</mo><mo>,</mo><mi>j</mi></mrow></math>:</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">COEFFICIENT AS A SUM</span><!-- LaTeX: \mathbf{C}_j=\sum_{i=0}^{j}\binom{n}{i}\binom{n-i}{j-i}(-1)^{j-i}\mathbf{P}_i --><math class="inline-math" aria-label="C j equals the sum from i zero through j of n choose i times n minus i choose j minus i times negative one to the j minus i times P i"><mrow><msub><mi mathvariant="bold">C</mi><mi>j</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi>j</mi></munderover><mrow><mo>(</mo><mfrac linethickness="0"><mi>n</mi><mi>i</mi></mfrac><mo>)</mo></mrow><mrow><mo>(</mo><mfrac linethickness="0"><mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow><mrow><mi>j</mi><mo>−</mo><mi>i</mi></mrow></mfrac><mo>)</mo></mrow><msup><mrow><mo>(</mo><mo>−</mo><mn>1</mn><mo>)</mo></mrow><mrow><mi>j</mi><mo>−</mo><mi>i</mi></mrow></msup><msub><mi mathvariant="bold">P</mi><mi>i</mi></msub></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>C j is the sum, as i goes from zero through j, of n choose i times n minus i choose j minus i, times negative one to the j minus i, times P i.</p></div>
+        </div>
+        <p>Use the factorial definition of each combination coefficient. The shared <!-- LaTeX: (n-i)! --><math class="inline-math" aria-label="n minus i factorial"><mrow><mo>(</mo><mi>n</mi><mo>−</mo><mi>i</mi><mo>)</mo><mo>!</mo></mrow></math> cancels:</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">CANCEL THE SHARED FACTORIAL</span><!-- LaTeX: \binom{n}{i}\binom{n-i}{j-i}=\frac{n!}{i!(n-i)!}\frac{(n-i)!}{(j-i)!(n-j)!}=\frac{n!}{i!(j-i)!(n-j)!} --><math class="inline-math" aria-label="n choose i times n minus i choose j minus i equals n factorial over i factorial times n minus i factorial, times n minus i factorial over j minus i factorial times n minus j factorial, which simplifies to n factorial over i factorial times j minus i factorial times n minus j factorial"><mrow><mrow><mo>(</mo><mfrac linethickness="0"><mi>n</mi><mi>i</mi></mfrac><mo>)</mo></mrow><mrow><mo>(</mo><mfrac linethickness="0"><mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow><mrow><mi>j</mi><mo>−</mo><mi>i</mi></mrow></mfrac><mo>)</mo></mrow><mo>=</mo><mfrac><mrow><mi>n</mi><mo>!</mo></mrow><mrow><mi>i</mi><mo>!</mo><mo>(</mo><mi>n</mi><mo>−</mo><mi>i</mi><mo>)</mo><mo>!</mo></mrow></mfrac><mfrac><mrow><mo>(</mo><mi>n</mi><mo>−</mo><mi>i</mi><mo>)</mo><mo>!</mo></mrow><mrow><mo>(</mo><mi>j</mi><mo>−</mo><mi>i</mi><mo>)</mo><mo>!</mo><mo>(</mo><mi>n</mi><mo>−</mo><mi>j</mi><mo>)</mo><mo>!</mo></mrow></mfrac><mo>=</mo><mfrac><mrow><mi>n</mi><mo>!</mo></mrow><mrow><mi>i</mi><mo>!</mo><mo>(</mo><mi>j</mi><mo>−</mo><mi>i</mi><mo>)</mo><mo>!</mo><mo>(</mo><mi>n</mi><mo>−</mo><mi>j</mi><mo>)</mo><mo>!</mo></mrow></mfrac></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>The two combination coefficients equal n factorial divided by i factorial times n minus i factorial, multiplied by n minus i factorial divided by j minus i factorial times n minus j factorial. The shared n minus i factorial cancels.</p></div>
+        </div>
+        <p>This leaves the common factor <i>n</i> factorial over <i>n</i> minus <i>j</i> factorial, along with <i>i</i> factorial and <i>j</i> minus <i>i</i> factorial in the summand. Also, <i>j</i> minus <i>i</i> and <i>i</i> plus <i>j</i> differ by an even number, so their powers of negative one agree:</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">SIMPLIFIED COEFFICIENT</span><!-- LaTeX: \mathbf{C}_j=\frac{n!}{(n-j)!}\sum_{i=0}^{j}\frac{(-1)^{i+j}\mathbf{P}_i}{i!(j-i)!} --><math class="inline-math" aria-label="C j equals n factorial over n minus j factorial times the sum from i zero through j of negative one to i plus j times P i over i factorial times j minus i factorial"><mrow><msub><mi mathvariant="bold">C</mi><mi>j</mi></msub><mo>=</mo><mfrac><mrow><mi>n</mi><mo>!</mo></mrow><mrow><mo>(</mo><mi>n</mi><mo>−</mo><mi>j</mi><mo>)</mo><mo>!</mo></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi>j</mi></munderover><mfrac><mrow><msup><mrow><mo>(</mo><mo>−</mo><mn>1</mn><mo>)</mo></mrow><mrow><mi>i</mi><mo>+</mo><mi>j</mi></mrow></msup><msub><mi mathvariant="bold">P</mi><mi>i</mi></msub></mrow><mrow><mi>i</mi><mo>!</mo><mo>(</mo><mi>j</mi><mo>−</mo><mi>i</mi><mo>)</mo><mo>!</mo></mrow></mfrac></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>C j equals n factorial divided by n minus j factorial, times the sum from i zero through j of negative one to i plus j times P i, divided by i factorial times j minus i factorial.</p></div>
+        </div>
+        <p>The factor <!-- LaTeX: \frac{n!}{(n-j)!} --><math class="inline-math" aria-label="n factorial divided by n minus j factorial"><mfrac><mrow><mi>n</mi><mo>!</mo></mrow><mrow><mo>(</mo><mi>n</mi><mo>−</mo><mi>j</mi><mo>)</mo><mo>!</mo></mrow></mfrac></math> is a shortened product: cancel the factorials from <!-- LaTeX: (n-j)! --><math class="inline-math" aria-label="n minus j factorial"><mrow><mo>(</mo><mi>n</mi><mo>−</mo><mi>j</mi><mo>)</mo><mo>!</mo></mrow></math> in <i>n</i> factorial, leaving <i>j</i> descending factors.</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">FACTORIAL RATIO AS A PRODUCT</span><!-- LaTeX: \frac{n!}{(n-j)!}=\prod_{m=0}^{j-1}(n-m) --><math class="inline-math" aria-label="n factorial over n minus j factorial equals the product from m zero to j minus one of n minus m"><mrow><mfrac><mrow><mi>n</mi><mo>!</mo></mrow><mrow><mo>(</mo><mi>n</mi><mo>−</mo><mi>j</mi><mo>)</mo><mo>!</mo></mrow></mfrac><mo>=</mo><munderover><mo>∏</mo><mrow><mi>m</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>j</mi><mo>−</mo><mn>1</mn></mrow></munderover><mo>(</mo><mi>n</mi><mo>−</mo><mi>m</mi><mo>)</mo></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>N factorial over n minus j factorial equals the product, as m goes from zero to j minus one, of n minus m.</p></div>
+        </div>
+        <p>Replace the factorial ratio in the coefficient formula with its product form to get the full expression:</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">COEFFICIENT WITH A FINITE PRODUCT</span><!-- LaTeX: \mathbf{C}_j=\left(\prod_{m=0}^{j-1}(n-m)\right)\sum_{i=0}^{j}\frac{(-1)^{i+j}\mathbf{P}_i}{i!(j-i)!} --><math class="inline-math" aria-label="C j equals the product from m zero to j minus one of n minus m, times the sum from i zero through j of negative one to i plus j times P i over i factorial times j minus i factorial"><mrow><msub><mi mathvariant="bold">C</mi><mi>j</mi></msub><mo>=</mo><mrow><mo>(</mo><munderover><mo>∏</mo><mrow><mi>m</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>j</mi><mo>−</mo><mn>1</mn></mrow></munderover><mo>(</mo><mi>n</mi><mo>−</mo><mi>m</mi><mo>)</mo><mo>)</mo></mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi>j</mi></munderover><mfrac><mrow><msup><mrow><mo>(</mo><mo>−</mo><mn>1</mn><mo>)</mo></mrow><mrow><mi>i</mi><mo>+</mo><mi>j</mi></mrow></msup><msub><mi mathvariant="bold">P</mi><mi>i</mi></msub></mrow><mrow><mi>i</mi><mo>!</mo><mo>(</mo><mi>j</mi><mo>−</mo><mi>i</mi><mo>)</mo><mo>!</mo></mrow></mfrac></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>C j equals the product, as m goes from zero to j minus one, of n minus m, times the sum, as i goes from zero through j, of negative one to i plus j times P i divided by i factorial times j minus i factorial.</p></div>
+        </div>
+        <p>At <i>j</i> = 0, there are no factors to multiply. This is an <strong>empty product</strong>, defined to equal 1, just as an empty sum is defined to equal 0. The coefficient then simplifies to <!-- LaTeX: \mathbf{C}_0=\mathbf{P}_0 --><math class="inline-math" aria-label="C zero equals P zero"><mrow><msub><mi mathvariant="bold">C</mi><mn>0</mn></msub><mo>=</mo><msub><mi mathvariant="bold">P</mi><mn>0</mn></msub></mrow></math>, so the curve's constant term is its starting control point.</p>
+      </section>
+
+      <section class="bounds-guide" aria-labelledby="quadratic-coefficients-title">
+        <h2 id="quadratic-coefficients-title">Use the conversion formula for this quadratic curve.</h2>
+        <p>Here <i>n</i> is 2, so the power index <i>j</i> takes the values 0, 1, and 2. The inner index <i>i</i> selects which of the first <i>j</i> control points contributes to that coefficient.</p>
+        <ul class="role-list">
+          <li><!-- LaTeX: j=0 --><math class="inline-math" aria-label="j equals zero"><mrow><mi>j</mi><mo>=</mo><mn>0</mn></mrow></math>: <!-- LaTeX: \mathbf{C}_0=\mathbf{P}_0=(0,0) --><math class="inline-math" aria-label="C zero equals P zero equals the point zero, zero"><mrow><msub><mi mathvariant="bold">C</mi><mn>0</mn></msub><mo>=</mo><msub><mi mathvariant="bold">P</mi><mn>0</mn></msub><mo>=</mo><mo>(</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>)</mo></mrow></math>.</li>
+          <li><!-- LaTeX: j=1 --><math class="inline-math" aria-label="j equals one"><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow></math>: <!-- LaTeX: \mathbf{C}_1=2(\mathbf{P}_1-\mathbf{P}_0)=(4,4) --><math class="inline-math" aria-label="C one equals two times P one minus P zero equals the point four, four"><mrow><msub><mi mathvariant="bold">C</mi><mn>1</mn></msub><mo>=</mo><mn>2</mn><mo>(</mo><msub><mi mathvariant="bold">P</mi><mn>1</mn></msub><mo>−</mo><msub><mi mathvariant="bold">P</mi><mn>0</mn></msub><mo>)</mo><mo>=</mo><mo>(</mo><mn>4</mn><mo>,</mo><mn>4</mn><mo>)</mo></mrow></math>.</li>
+          <li><!-- LaTeX: j=2 --><math class="inline-math" aria-label="j equals two"><mrow><mi>j</mi><mo>=</mo><mn>2</mn></mrow></math>: <!-- LaTeX: \mathbf{C}_2=\mathbf{P}_0-2\mathbf{P}_1+\mathbf{P}_2=(0,-4) --><math class="inline-math" aria-label="C two equals P zero minus two P one plus P two equals the point zero, negative four"><mrow><msub><mi mathvariant="bold">C</mi><mn>2</mn></msub><mo>=</mo><msub><mi mathvariant="bold">P</mi><mn>0</mn></msub><mo>−</mo><mn>2</mn><msub><mi mathvariant="bold">P</mi><mn>1</mn></msub><mo>+</mo><msub><mi mathvariant="bold">P</mi><mn>2</mn></msub><mo>=</mo><mo>(</mo><mn>0</mn><mo>,</mo><mo>−</mo><mn>4</mn><mo>)</mo></mrow></math>.</li>
+        </ul>
+        <p>Put these coefficient vectors back into the polynomial:</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">POLYNOMIAL FROM ITS COEFFICIENTS</span><!-- LaTeX: \mathbf{B}(t)=\mathbf{C}_0+t\mathbf{C}_1+t^2\mathbf{C}_2=(4t,4t-4t^2) --><math class="inline-math" aria-label="B of t equals C zero plus t C one plus t squared C two equals four t, four t minus four t squared"><mrow><mi mathvariant="bold">B</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><msub><mi mathvariant="bold">C</mi><mn>0</mn></msub><mo>+</mo><mi>t</mi><msub><mi mathvariant="bold">C</mi><mn>1</mn></msub><mo>+</mo><msup><mi>t</mi><mn>2</mn></msup><msub><mi mathvariant="bold">C</mi><mn>2</mn></msub><mo>=</mo><mo>(</mo><mn>4</mn><mi>t</mi><mo>,</mo><mn>4</mn><mi>t</mi><mo>−</mo><mn>4</mn><msup><mi>t</mi><mn>2</mn></msup><mo>)</mo></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>B of t equals C zero plus t times C one plus t squared times C two. For these points, that is four t in the x-coordinate and four t minus four t squared in the y-coordinate.</p></div>
+        </div>
+        <p>For example, <!-- LaTeX: \mathbf{C}_1=(4,4) --><math class="inline-math" aria-label="C one equals four, four"><mrow><msub><mi mathvariant="bold">C</mi><mn>1</mn></msub><mo>=</mo><mo>(</mo><mn>4</mn><mo>,</mo><mn>4</mn><mo>)</mo></mrow></math>, so <!-- LaTeX: t\mathbf{C}_1=(4t,4t) --><math class="inline-math" aria-label="t C one equals four t, four t"><mrow><mi>t</mi><msub><mi mathvariant="bold">C</mi><mn>1</mn></msub><mo>=</mo><mo>(</mo><mn>4</mn><mi>t</mi><mo>,</mo><mn>4</mn><mi>t</mi><mo>)</mo></mrow></math>: the scalar <i>t</i> multiplies each component. Similarly, <!-- LaTeX: \mathbf{C}_2=(0,-4) --><math class="inline-math" aria-label="C two equals zero, negative four"><mrow><msub><mi mathvariant="bold">C</mi><mn>2</mn></msub><mo>=</mo><mo>(</mo><mn>0</mn><mo>,</mo><mo>−</mo><mn>4</mn><mo>)</mo></mrow></math> gives <!-- LaTeX: t^2\mathbf{C}_2=(0,-4t^2) --><math class="inline-math" aria-label="t squared C two equals zero, negative four t squared"><mrow><msup><mi>t</mi><mn>2</mn></msup><msub><mi mathvariant="bold">C</mi><mn>2</mn></msub><mo>=</mo><mo>(</mo><mn>0</mn><mo>,</mo><mo>−</mo><mn>4</mn><msup><mi>t</mi><mn>2</mn></msup><mo>)</mo></mrow></math>. These scaled vectors are added component by component to give the displayed power form; no vector is multiplied by another vector. The coefficient formula is longer because it works for any degree and any list of control points.</p>
+      </section>
+
+      <section class="bounds-guide" aria-labelledby="sampling-title">
+        <h2 id="sampling-title">Walk the curve, then map its points to pixels.</h2>
+        <p>The polynomial gives a point for every parameter value from 0 to 1. A computer display has finitely many pixels, so a simple renderer samples a sequence of <i>t</i> values, calculates each point, and connects neighboring samples with short line segments.</p>
+        <p>Use four equal parameter steps for this small demonstration. That gives five samples, including the start and end. For example, at <i>t</i> = one quarter, substitute into both coordinates:</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">ONE CURVE SAMPLE</span><!-- LaTeX: \mathbf{B}(\frac14)=(4\cdot\frac14,4\cdot\frac14-4\cdot(\frac14)^2)=(1,\frac34) --><math class="inline-math" aria-label="B of one quarter equals four times one quarter, four times one quarter minus four times one quarter squared, which equals one, three quarters"><mrow><mi mathvariant="bold">B</mi><mo>(</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><mo>)</mo><mo>=</mo><mo>(</mo><mn>4</mn><mo>·</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><mo>,</mo><mn>4</mn><mo>·</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><mo>−</mo><mn>4</mn><mo>·</mo><msup><mrow><mo>(</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><mo>)</mo></mrow><mn>2</mn></msup><mo>)</mo><mo>=</mo><mo>(</mo><mn>1</mn><mo>,</mo><mfrac><mn>3</mn><mn>4</mn></mfrac><mo>)</mo></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>At t equals one quarter, the curve point has x-coordinate one and y-coordinate three quarters.</p></div>
+        </div>
+        <p>Next map mathematical coordinates to a small pixel canvas. Put the mathematical origin at pixel (20, 100), and use 40 pixels for each coordinate unit. Screen y-values increase downward, so subtract the mathematical y-coordinate from the baseline:</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">COORDINATES TO PIXELS</span><!-- LaTeX: (x_{\rm pixel},y_{\rm pixel})=(20+40x,100-40y) --><math class="inline-math" aria-label="pixel x, pixel y equals twenty plus forty x, one hundred minus forty y"><mrow><mo>(</mo><msub><mi>x</mi><mtext>pixel</mtext></msub><mo>,</mo><msub><mi>y</mi><mtext>pixel</mtext></msub><mo>)</mo><mo>=</mo><mo>(</mo><mn>20</mn><mo>+</mo><mn>40</mn><mi>x</mi><mo>,</mo><mn>100</mn><mo>−</mo><mn>40</mn><mi>y</mi><mo>)</mo></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>The horizontal pixel coordinate is twenty plus forty times x. The vertical pixel coordinate is one hundred minus forty times y.</p></div>
+        </div>
+        <p>These coordinates fit in a 200-by-120-pixel canvas. The curve spans pixel columns 20 to 180 and rows 60 to 100; the control point <i>P</i><sub>1</sub> maps to row 20.</p>
+        <div class="table-wrap"><table class="letter-table quick-table"><caption>Four steps give five points on this curve</caption><thead><tr><th scope="col"><i>t</i></th><th scope="col">Curve x</th><th scope="col">Curve y</th><th scope="col">Pixel x</th><th scope="col">Pixel y</th></tr></thead><tbody><tr><th scope="row">0</th><td>0</td><td>0</td><td>20</td><td>100</td></tr><tr><th scope="row"><!-- LaTeX: \frac14 --><math class="inline-math" aria-label="one quarter"><mfrac><mn>1</mn><mn>4</mn></mfrac></math></th><td>1</td><td><!-- LaTeX: \frac34 --><math class="inline-math" aria-label="three quarters"><mfrac><mn>3</mn><mn>4</mn></mfrac></math></td><td>60</td><td>70</td></tr><tr><th scope="row"><!-- LaTeX: \frac12 --><math class="inline-math" aria-label="one half"><mfrac><mn>1</mn><mn>2</mn></mfrac></math></th><td>2</td><td>1</td><td>100</td><td>60</td></tr><tr><th scope="row"><!-- LaTeX: \frac34 --><math class="inline-math" aria-label="three quarters"><mfrac><mn>3</mn><mn>4</mn></mfrac></math></th><td>3</td><td><!-- LaTeX: \frac34 --><math class="inline-math" aria-label="three quarters"><mfrac><mn>3</mn><mn>4</mn></mfrac></math></td><td>140</td><td>70</td></tr><tr><th scope="row">1</th><td>4</td><td>0</td><td>180</td><td>100</td></tr></tbody></table></div>
+        <figure class="bezier-figure pixel-figure">
+          <svg viewBox="0 0 285 155" role="img" aria-labelledby="pixel-figure-title pixel-figure-description">
+            <title id="pixel-figure-title">Five sampled Bézier points on a pixel canvas</title>
+            <desc id="pixel-figure-description">A 200 by 120 pixel canvas shows a polyline through five orange sample pixels from left to right. A hollow control point P one is at pixel column 100, row 20, above the curve's halfway sample at column 100, row 60.</desc>
+            <rect x="0" y="0" width="200" height="120" rx="2" fill="#fffefa" stroke="#596863" stroke-width="2" />
+            <g stroke="#dce2d9" stroke-width="1">
+              <path d="M20 0V120 M60 0V120 M100 0V120 M140 0V120 M180 0V120" />
+              <path d="M0 20H200 M0 60H200 M0 70H200 M0 100H200" />
+            </g>
+            <path d="M20 100L60 70L100 60L140 70L180 100" fill="none" stroke="#286252" stroke-width="3" />
+            <path d="M100 20V60" fill="none" stroke="#92735e" stroke-width="1.5" stroke-dasharray="3 4" />
+            <g fill="#d17745" stroke="#fffefa" stroke-width="1.5">
+              <rect x="16" y="96" width="8" height="8" /><rect x="56" y="66" width="8" height="8" /><rect x="96" y="56" width="8" height="8" /><rect x="136" y="66" width="8" height="8" /><rect x="176" y="96" width="8" height="8" />
+            </g>
+            <circle cx="100" cy="20" r="5" fill="#fffefa" stroke="#92735e" stroke-width="2" />
+            <g fill="#182321" font-family="system-ui, sans-serif" font-size="12">
+              <text x="107" y="17">P₁ guide (100, 20)</text>
+              <text x="106" y="57">t = 1/2 (100, 60)</text>
+              <text x="7" y="119">t = 0</text><text x="166" y="119">t = 1</text>
+              <text x="207" y="17">pixel row 0</text><text x="207" y="104">pixel row 100</text>
+            </g>
+          </svg>
+          <figcaption>Each orange square is a sampled curve point mapped to a pixel. The polyline connects the samples. The hollow control point is a guide; the halfway curve pixel is below it.</figcaption>
+        </figure>
+        <p>The table's pixel x and pixel y columns mean canvas column and row. Screen columns increase to the right, while screen rows increase downward. The origin and scale are choices for this small example; a real drawing area can use different offsets and scale.</p>
+        <p>Connecting these five pixel positions gives a rough drawing of the path. Real renderers use more samples or a dedicated curve algorithm, then choose nearby pixels (often with anti-aliasing). Equal steps in <i>t</i> do not always mean equal distances along the curve.</p>
+      </section>
+
+      <aside class="later-note"><strong>A useful numerical caution</strong><p>The algebraic power form is correct, but for very high degrees its terms can be large and cancel when added. That can reduce numerical accuracy in ordinary floating-point computing. The Bernstein form or de Casteljau's algorithm is often preferred for practical curve evaluation; de Casteljau is a later topic, not a different definition of the curve.</p></aside>
+
+      <section class="code-section" aria-labelledby="code-title">
+        <div class="code-heading">
+          <div><p class="eyebrow">PYTHON · OPTIONAL CHECK</p><h2 id="code-title">Sample the curve and convert the points to pixels</h2></div>
+          <span class="language-label">Python</span>
+        </div>
+        <p class="code-intro">This Python example uses the <strong>Bernstein form</strong> directly. It does not use the coefficient formula or the expanded power form to calculate the curve point. First it evaluates the weighted sum below; then it converts the resulting x- and y-coordinates to pixels.</p>
+        <div class="notation-reading-row compact-reading-row code-formula-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">FORM USED BY THIS CODE</span><!-- LaTeX: \mathbf{B}(t)=\sum_{i=0}^{n}\binom{n}{i}(1-t)^{n-i}t^i\mathbf{P}_i --><math class="inline-math" aria-label="B of t equals the sum from i zero through n of n choose i times one minus t to the n minus i times t to the i times P i"><mrow><mi mathvariant="bold">B</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover><mrow><mo>(</mo><mfrac linethickness="0"><mi>n</mi><mi>i</mi></mfrac><mo>)</mo></mrow><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>t</mi><mo>)</mo></mrow><mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow></msup><msup><mi>t</mi><mi>i</mi></msup><msub><mi mathvariant="bold">P</mi><mi>i</mi></msub></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>The code sums each control point P i multiplied by its Bernstein weight to get B of t.</p></div>
+        </div>
+        <p class="code-intro">In the code, <code>curve_degree</code> is the mathematical <i>n</i>: the curve's polynomial degree (the highest power in its power form), not an angle measure. It is calculated as the number of control points minus one. Thus these three control points give a degree of 2. <code>comb(curve_degree, i)</code> is the coefficient “n choose i”; <code>control_point</code> is the current point <!-- LaTeX: \mathbf{P}_i --><math class="inline-math" aria-label="P sub i"><msub><mi mathvariant="bold">P</mi><mi>i</mi></msub></math>; and <code>weight</code> is <!-- LaTeX: \binom{n}{i}(1-t)^{n-i}t^i --><math class="inline-math" aria-label="n choose i times one minus t to the n minus i times t to the i"><mrow><mrow><mo>(</mo><mfrac linethickness="0"><mi>n</mi><mi>i</mi></mfrac><mo>)</mo></mrow><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>t</mi><mo>)</mo></mrow><mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow></msup><msup><mi>t</mi><mi>i</mi></msup></mrow></math>. The loop multiplies that weight by the point and adds the result. <code>Fraction</code> keeps the quarter-step values exact. The later pixel conversion is a separate step.</p>
+        <div id="python-editor" class="editor-shell" aria-label="Editable Python curve-sampling and pixel-mapping example"></div>
+        <div class="run-controls"><button id="run-python" type="button">Run Python</button><button id="reset-python" type="button">Reset to starter code</button><span id="run-status" role="status" aria-live="polite">Runs in your browser. The first run needs an internet connection to load Python.</span></div>
+        <div class="output-panel"><div class="output-heading">Output</div><pre id="python-output" aria-live="polite">Click “Run Python” to run the code above.</pre></div>
+        <template id="starter-python">from fractions import Fraction
+from math import comb
+
+control_points = [(0, 0), (2, 2), (4, 0)]
+curve_degree = len(control_points) - 1
+steps = 4
+origin_x = 20
+baseline_y = 100
+pixels_per_unit = 40
+
+print("t | x | y | pixel x | pixel y")
+for sample_index in range(steps + 1):
+    t = Fraction(sample_index, steps)
+    curve_point = [Fraction(0), Fraction(0)]
+
+    for i, control_point in enumerate(control_points):
+        weight = (comb(curve_degree, i) * (1 - t) ** (curve_degree - i)
+                  * t ** i)
+        for coordinate_index in range(2):
+            curve_point[coordinate_index] += (
+                weight * control_point[coordinate_index]
+            )
+
+    x, y = curve_point
+    pixel_x = int(origin_x + pixels_per_unit * x)
+    pixel_y = int(baseline_y - pixels_per_unit * y)
+    print(t, x, y, pixel_x, pixel_y, sep=" | ")</template>
+        <p class="math-note"><strong>Read the sampling loop's bounds and weights.</strong> Python's <code>range</code> stops before its endpoint, so <code>range(steps + 1)</code> visits sample indices 0 through 4 and includes both endpoints of the parameter interval. Four intervals therefore produce five points. <code>control_points[i]</code> is <!-- LaTeX: \mathbf{P}_i --><math class="inline-math" aria-label="P sub i"><msub><mi mathvariant="bold">P</mi><mi>i</mi></msub></math>; <code>curve_degree</code> is <i>n</i>, computed as <code>len(control_points) - 1</code>; and <code>weight</code> is the Bernstein factor for that point. Python's <code>comb(n, i)</code> supplies the same binomial coefficient as “n choose i.” The chosen scale makes these sample positions exact whole-pixel coordinates, so <code>int()</code> leaves them unchanged while ensuring the pixel coordinates are integers. For other values, Python's <code>int()</code> truncates toward zero rather than rounding to the nearest pixel; a real renderer needs an appropriate rounding or pixel-coverage rule.</p>
+      </section>
+
+      <nav class="page-nav page-nav-bottom" aria-label="Previous and next pages">
+        <a class="page-nav-item" href="matrix-product-application.html"><span class="page-nav-direction">PREVIOUS</span><span>← Dot products in a matrix product</span></a>
+        <span class="page-nav-item page-nav-disabled" aria-disabled="true"><span class="page-nav-direction">NEXT</span><span>End of current lessons</span></span>
+      </nav>
+    </main>
+    <footer>Made for learning to unpack the math, one step at a time.</footer>
+  </body>
+</html>
