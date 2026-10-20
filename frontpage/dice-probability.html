@@ -35,14 +35,15 @@
         <section class="bounds-guide" aria-labelledby="exact-three-title"><h3 id="exact-three-title">Case 2: exactly three sixes</h3><p>All three positions must show six. There is one way to choose all three positions, and only one sequence fits: (6, 6, 6).</p><div class="notation-reading-row compact-reading-row"><div class="notation-reading-part"><span class="notation-reading-label">COUNT THIS CASE</span><!-- LaTeX: \binom{3}{3}=1 --><math class="inline-math" aria-label="three choose three equals one"><mrow><mo>(</mo><mfrac linethickness="0"><mn>3</mn><mn>3</mn></mfrac><mo>)</mo><mo>=</mo><mn>1</mn></mrow></math></div><div class="notation-reading-part spoken-reading"><span class="notation-reading-label">WHAT IT COUNTS</span><p>One ordered sequence, namely six, six, six.</p></div></div></section>
         <section class="bounds-guide" aria-labelledby="count-result-title"><h3 id="count-result-title">Combine the disjoint cases</h3><p>The cases “exactly two sixes” and “exactly three sixes” cannot happen at the same time. Together they contain <!-- LaTeX: 15+1=16 --><math class="inline-math" aria-label="fifteen plus one equals sixteen"><mrow><mn>15</mn><mo>+</mo><mn>1</mn><mo>=</mo><mn>16</mn></mrow></math> favorable sequences. Since all 216 sequences were equally likely, the probability is the favorable count divided by the total count.</p><div class="notation-reading-row compact-reading-row"><div class="notation-reading-part"><span class="notation-reading-label">COUNTING RESULT</span><!-- LaTeX: \frac{15+1}{216}=\frac{16}{216}=\frac{2}{27} --><math class="inline-math" aria-label="fifteen plus one over two hundred sixteen equals sixteen over two hundred sixteen equals two over twenty-seven"><mrow><mfrac><mrow><mn>15</mn><mo>+</mo><mn>1</mn></mrow><mn>216</mn></mfrac><mo>=</mo><mfrac><mn>16</mn><mn>216</mn></mfrac><mo>=</mo><mfrac><mn>2</mn><mn>27</mn></mfrac></mrow></math></div><div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>Sixteen of the 216 equally likely sequences have at least two sixes. The probability is sixteen over 216, which simplifies to two twenty-sevenths.</p></div></div><p>As a decimal, this is about <!-- LaTeX: 0.0741\approx7.41\% --><math class="inline-math" aria-label="zero point zero seven four one is approximately seven point four one percent"><mrow><mn>0.0741</mn><mo>≈</mo><mn>7.41</mn><mo>%</mo></mrow></math>. This is a probability for the stated model—a fair die and three independent rolls—not a guarantee about any particular set of three rolls.</p></section>
         <section class="bounds-guide" aria-labelledby="probability-sum-title"><h3 id="probability-sum-title">Now express the same count as a sum of probabilities</h3><p>Let <i>k</i> be the number of sixes. For a fixed value of <i>k</i>, choose which <i>k</i> positions show six. The chosen rolls each contribute a factor of one sixth; <!-- LaTeX: 3-k --><math class="inline-math" aria-label="three minus k"><mrow><mn>3</mn><mo>−</mo><mi>k</mi></mrow></math> other rolls each contribute five sixths. Independence lets us multiply these probabilities for one pattern. The combination coefficient counts how many patterns there are. A <a href="glossary.html#power">power</a> is repeated multiplication: for example, one sixth squared means one sixth times one sixth.</p><p>“At least two” includes the values <!-- LaTeX: k=2 --><math class="inline-math" aria-label="k equals two"><mrow><mi>k</mi><mo>=</mo><mn>2</mn></mrow></math> and <!-- LaTeX: k=3 --><math class="inline-math" aria-label="k equals three"><mrow><mi>k</mi><mo>=</mo><mn>3</mn></mrow></math>, so we add the probability for each value:</p><div class="notation-reading-row compact-reading-row"><div class="notation-reading-part"><span class="notation-reading-label">GENERAL CASES</span><!-- LaTeX: P(X\ge2)=\sum_{k=2}^{3}\binom{3}{k}\left(\frac16\right)^k\left(\frac56\right)^{3-k} --><math class="inline-math" aria-label="the probability that X is at least two equals the sum from k equals two through three of three choose k times one sixth to the k times five sixths to the three minus k"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>≥</mo><mn>2</mn><mo>)</mo><mo>=</mo><mrow><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>2</mn></mrow><mn>3</mn></munderover><mrow><mo>(</mo><mfrac linethickness="0"><mn>3</mn><mi>k</mi></mfrac><mo>)</mo><msup><mrow><mo>(</mo><mfrac><mn>1</mn><mn>6</mn></mfrac><mo>)</mo></mrow><mi>k</mi></msup><msup><mrow><mo>(</mo><mfrac><mn>5</mn><mn>6</mn></mfrac><mo>)</mo></mrow><mrow><mn>3</mn><mo>−</mo><mi>k</mi></mrow></msup></mrow></mrow></math></div><div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>The probability that X is at least two equals the sum, as k goes from two through three, of three choose k times one sixth to the k times five sixths to the three minus k.</p></div></div><p>Substitute the two possible values of <i>k</i> into the whole term. The first term is the exactly-two case; the second is the exactly-three case. When <i>k</i> is 3, there are no remaining non-six rolls, so there is no five-sixths factor to multiply (equivalently, that factor would be raised to the zero power and equal one).</p><div class="notation-reading-row compact-reading-row"><div class="notation-reading-part"><span class="notation-reading-label">EXPAND THE SUM</span><!-- LaTeX: P(X\ge2)=\binom{3}{2}\left(\frac16\right)^2\left(\frac56\right)+\binom{3}{3}\left(\frac16\right)^3=\frac{15}{216}+\frac{1}{216}=\frac{16}{216} --><math class="inline-math" aria-label="P of X at least two equals three choose two times one sixth squared times five sixths plus three choose three times one sixth cubed equals fifteen over two hundred sixteen plus one over two hundred sixteen equals sixteen over two hundred sixteen"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>≥</mo><mn>2</mn><mo>)</mo><mo>=</mo><mrow><mo>(</mo><mfrac linethickness="0"><mn>3</mn><mn>2</mn></mfrac><mo>)</mo><msup><mrow><mo>(</mo><mfrac><mn>1</mn><mn>6</mn></mfrac><mo>)</mo></mrow><mn>2</mn></msup><mrow><mo>(</mo><mfrac><mn>5</mn><mn>6</mn></mfrac><mo>)</mo></mrow></mrow><mo>+</mo><mrow><mo>(</mo><mfrac linethickness="0"><mn>3</mn><mn>3</mn></mfrac><mo>)</mo><msup><mrow><mo>(</mo><mfrac><mn>1</mn><mn>6</mn></mfrac><mo>)</mo></mrow><mn>3</mn></msup></mrow><mo>=</mo><mfrac><mn>15</mn><mn>216</mn></mfrac><mo>+</mo><mfrac><mn>1</mn><mn>216</mn></mfrac><mo>=</mo><mfrac><mn>16</mn><mn>216</mn></mfrac></mrow></math></div><div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>The exactly-two term is fifteen over 216; the exactly-three term is one over 216. Add them to get sixteen over 216.</p></div></div><p>The count and probability-sum methods agree: both give 16 favorable sequences out of 216. The combination counts the positions; the probability factors account for the die faces in those positions.</p></section>
-        <section class="code-section" aria-labelledby="code-title"><div class="code-heading"><div><p class="eyebrow">PYTHON · OPTIONAL CHECK</p><h3 id="code-title">Count outcomes and form the exact probability</h3></div><span class="language-label">Python</span></div><p class="code-intro">These nested loops visit each ordered outcome once and count the successes. <code>Fraction(favorable_outcomes, total_outcomes)</code> turns those exact integer counts into a reduced rational number, so Python prints <code>2/27</code> rather than a rounded decimal. The final <code>float()</code> is only an optional decimal approximation for comparison with the percentage above.</p><div id="python-editor" class="editor-shell" aria-label="Editable Python enumeration of three die rolls"></div><div class="run-controls"><button id="run-python" type="button">Run Python</button><button id="reset-python" type="button">Reset to starter code</button><span id="run-status" role="status" aria-live="polite">Runs in your browser. The first run needs an internet connection to load Python.</span></div><div class="output-panel"><div class="output-heading">Output</div><pre id="python-output" aria-live="polite">Click “Run Python” to run the code above.</pre></div><template id="starter-python">from fractions import Fraction
+        <section class="code-section" aria-labelledby="code-title"><div class="code-heading"><div><p class="eyebrow">PYTHON · OPTIONAL CHECK</p><h3 id="code-title">Count outcomes and form the exact probability</h3></div><span class="language-label">Python</span></div><p class="code-intro">The code sets <code>dice_sides = 6</code> to match the die described above. Python's <code>range</code> stops before its endpoint, so <code>range(1, dice_sides + 1)</code> visits face labels 1 through 6. The nested loops visit every ordered outcome once and count the successes. <code>Fraction(favorable_outcomes, total_outcomes)</code> turns those exact integer counts into a reduced rational number, so Python prints <code>2/27</code> rather than a rounded decimal. The final <code>float()</code> is only an optional decimal approximation.</p><div id="python-editor" class="editor-shell" aria-label="Editable Python enumeration of three die rolls"></div><div class="run-controls"><button id="run-python" type="button">Run Python</button><button id="reset-python" type="button">Reset to starter code</button><span id="run-status" role="status" aria-live="polite">Runs in your browser. The first run needs an internet connection to load Python.</span></div><div class="output-panel"><div class="output-heading">Output</div><pre id="python-output" aria-live="polite">Click “Run Python” to run the code above.</pre></div><template id="starter-python">from fractions import Fraction
 
+dice_sides = 6  # a standard die has six faces
 total_outcomes = 0
 favorable_outcomes = 0
 
-for first in range(1, 7):
-    for second in range(1, 7):
-        for third in range(1, 7):
+for first in range(1, dice_sides + 1):
+    for second in range(1, dice_sides + 1):
+        for third in range(1, dice_sides + 1):
             total_outcomes = total_outcomes + 1
             sixes = 0
             if first == 6:
@@ -60,6 +61,91 @@ print("all outcomes =", total_outcomes)
 print("at least two sixes =", favorable_outcomes)
 print("exact probability =", probability)
 print("decimal approximation =", float(probability))</template></section>
+        <section class="bounds-guide" aria-labelledby="simulation-title"><p class="eyebrow">PYTHON EXPERIMENT · MONTE CARLO</p><h3 id="simulation-title">Simulate many groups of three rolls.</h3><p>One simulation trial is a complete group of three rolls. A trial is a “hit” if at least two rolls show six. Count hits, then divide by the number of trials to estimate the probability. The exact probability from the derivation above is <!-- LaTeX: \frac{2}{27} --><math class="inline-math" aria-label="two twenty-sevenths"><mfrac><mn>2</mn><mn>27</mn></mfrac></math>.</p><div class="notation-reading-row compact-reading-row"><div class="notation-reading-part"><span class="notation-reading-label">SIMULATION ESTIMATE</span><!-- LaTeX: \widehat{P}(X\ge2)=\frac{\text{hits}}{N} --><math class="inline-math" aria-label="estimated probability X is at least two equals hits divided by N"><mrow><mover><mi mathvariant="normal">P</mi><mo>^</mo></mover><mo>(</mo><mi>X</mi><mo>≥</mo><mn>2</mn><mo>)</mo><mo>=</mo><mfrac><mtext>hits</mtext><mi>N</mi></mfrac></mrow></math></div><div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>The estimated probability that a trial has at least two sixes is the number of hits divided by N, the number of simulated trials.</p></div></div><p>We use <code>random.Random(2026)</code> so the pseudorandom sequence is repeatable in this Python runtime. The code sets <code>dice_sides = 6</code> to match the six-faced die; <code>randint(1, dice_sides)</code> can return each face label from 1 through 6, including both endpoints. <code>N</code> counts three-roll trials and <code>j</code> labels one trial. The inner loop repeats the die roll three times; <code>_</code> is a throwaway loop variable because its value is not needed. <code>Fraction(hits, N)</code> gives the exact ratio for the simulated sample; that sample ratio is still only an estimate of the model’s true probability.</p><div class="code-variants monte-carlo-variants"><div class="code-variant"><span class="variant-label">One simulation · 100,000 trials</span><p>Run many three-roll trials and compare the sample estimate with the exact fraction.</p><pre class="short-code"><code>import random
+from fractions import Fraction
+
+dice_sides = 6
+rng = random.Random(2026)
+N = 100_000
+hits = 0
+
+for j in range(1, N + 1):
+    sixes = 0
+    for _ in range(3):
+        roll = rng.randint(1, dice_sides)
+        if roll == 6:
+            sixes = sixes + 1
+    if sixes >= 2:
+        hits = hits + 1
+
+estimate = Fraction(hits, N)
+exact_probability = Fraction(2, 27)
+print("Trials:", N)
+print("Hits:", hits)
+print("Simulation estimate:", estimate, "≈", round(float(estimate), 5))
+print("Exact probability:", exact_probability)</code></pre><button class="load-version-button" data-load-code="dice-monte-carlo-python" type="button">Load this simulation into the editor</button><template id="dice-monte-carlo-python">import random
+from fractions import Fraction
+
+dice_sides = 6
+rng = random.Random(2026)
+N = 100_000
+hits = 0
+
+for j in range(1, N + 1):
+    sixes = 0
+    for _ in range(3):
+        roll = rng.randint(1, dice_sides)
+        if roll == 6:
+            sixes = sixes + 1
+    if sixes >= 2:
+        hits = hits + 1
+
+estimate = Fraction(hits, N)
+exact_probability = Fraction(2, 27)
+print("Trials:", N)
+print("Hits:", hits)
+print("Simulation estimate:", estimate, "≈", round(float(estimate), 5))
+print("Exact probability:", exact_probability)</template></div><div class="code-variant"><span class="variant-label">Watch the estimate at several sample sizes</span><p>Use one seeded sequence of trials and report the running estimate at each checkpoint.</p><pre class="short-code"><code>import random
+from fractions import Fraction
+
+dice_sides = 6
+rng = random.Random(2026)
+checkpoints = (10, 100, 1_000, 10_000, 100_000)
+hits = 0
+
+for j in range(1, checkpoints[-1] + 1):
+    sixes = 0
+    for _ in range(3):
+        roll = rng.randint(1, dice_sides)
+        if roll == 6:
+            sixes = sixes + 1
+    if sixes >= 2:
+        hits = hits + 1
+    if j in checkpoints:
+        estimate = Fraction(hits, j)
+        print("Trials:", j, "hits:", hits,
+              "estimate:", round(float(estimate), 5),
+              "exact:", Fraction(2, 27))</code></pre><button class="load-version-button" data-load-code="dice-monte-carlo-checkpoints-python" type="button">Load the checkpoint simulation into the editor</button><template id="dice-monte-carlo-checkpoints-python">import random
+from fractions import Fraction
+
+dice_sides = 6
+rng = random.Random(2026)
+checkpoints = (10, 100, 1_000, 10_000, 100_000)
+hits = 0
+
+for j in range(1, checkpoints[-1] + 1):
+    sixes = 0
+    for _ in range(3):
+        roll = rng.randint(1, dice_sides)
+        if roll == 6:
+            sixes = sixes + 1
+    if sixes >= 2:
+        hits = hits + 1
+    if j in checkpoints:
+        estimate = Fraction(hits, j)
+        print("Trials:", j, "hits:", hits,
+              "estimate:", round(float(estimate), 5),
+              "exact:", Fraction(2, 27))</template></div></div><div class="table-wrap"><table class="letter-table quick-table"><thead><tr><th scope="col">Trials</th><th scope="col">Hits</th><th scope="col">Simulation estimate</th><th scope="col">Exact probability</th></tr></thead><tbody><tr><td>10</td><td>0</td><td>0.0</td><td>2/27</td></tr><tr><td>100</td><td>8</td><td>0.08</td><td>2/27</td></tr><tr><td>1,000</td><td>71</td><td>0.071</td><td>2/27</td></tr><tr><td>10,000</td><td>727</td><td>0.0727</td><td>2/27</td></tr><tr><td>100,000</td><td>7,418</td><td>0.07418</td><td>2/27</td></tr></tbody></table></div><p class="math-note"><strong>Interpret the simulation carefully.</strong> In this run the estimate gets close to <!-- LaTeX: \frac{2}{27} --><math class="inline-math" aria-label="two twenty-sevenths"><mfrac><mn>2</mn><mn>27</mn></mfrac></math>, but it does not need to move closer at every checkpoint. A simulation illustrates the long-run behavior of the model; it does not prove the probability or guarantee what happens in the next three rolls.</p></section>
         <section class="complexity-terms" aria-labelledby="takeaway-title"><h3 id="takeaway-title">A reusable way to combine counting and probability</h3><ol class="role-list"><li>Translate “at least” into the exact counts that qualify.</li><li>Use combinations to count which positions meet the condition.</li><li>Account for the possible outcomes in the remaining positions.</li><li>Add the probabilities of the separate cases.</li></ol><p>Here, the number of sixes could be 2 or 3. The same pattern works for other numbers of rolls and other target outcomes, provided the probability model and independence assumptions are stated.</p></section>
       </section>
       <aside class="later-note"><strong>Keep the two counts distinct</strong><p>“Three choose two” is 3 position-patterns, not 3 complete roll sequences. Each pattern has five possible faces for the remaining roll, giving 15 sequences with exactly two sixes. Counting what each number represents is what keeps the probability calculation honest.</p></aside>
