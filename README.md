@@ -4,18 +4,18 @@ A personal, English-language handbook for rebuilding fluency with mathematical n
 
 ## How it is made
 
-The handbook is developed collaboratively with an AI assistant. The maintainer chooses topics, guides and edits the explanations, and reviews the mathematics and code; the assistant helps draft, refine, and check content. The site itself is a static collection of HTML, CSS, and JavaScript.
+The handbook is developed collaboratively with an AI assistant. The maintainer chooses topics, guides and edits the explanations, and reviews the mathematics and code; the assistant helps draft, refine, and check content. The site is a static collection of HTML, CSS, and JavaScript.
 
 ## Access and build
 
-The handbook starts at [`frontpage/index.html`](frontpage/index.html). It can be hosted with GitHub Pages; configure Pages to publish the repository root, then open `/frontpage/` under the repository's Pages URL.
+The handbook starts at [`docs/index.html`](docs/index.html). To host it with GitHub Pages, configure the repository to publish the `main` branch's `/docs` folder. Then open the repository's GitHub Pages URL.
 
 To build and serve it locally:
 
 ```sh
-npm ci --prefix frontpage
-bash scripts/build_frontpage.sh
-python3 -m http.server 8000 --directory frontpage
+npm ci --prefix docs
+bash scripts/build_site.sh
+python3 -m http.server 8000 --directory docs
 ```
 
 Then visit <http://localhost:8000>. The build script bundles the editable Python editor. Running Python examples in the browser may require an internet connection the first time.

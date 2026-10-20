@@ -1,5 +1,5 @@
 (() => {
-  // frontpage/node_modules/@marijn/find-cluster-break/src/index.js
+  // docs/node_modules/@marijn/find-cluster-break/src/index.js
   var rangeFrom = [];
   var rangeTo = [];
   (() => {
@@ -73,7 +73,7 @@
     return code2 < 65536 ? 1 : 2;
   }
 
-  // frontpage/node_modules/@codemirror/state/dist/index.js
+  // docs/node_modules/@codemirror/state/dist/index.js
   var Text = class _Text {
     /**
     Get the line description around the given position.
@@ -3485,7 +3485,7 @@
     return strict === true ? -1 : string2.length;
   }
 
-  // frontpage/node_modules/style-mod/src/style-mod.js
+  // docs/node_modules/style-mod/src/style-mod.js
   var C = "\u037C";
   var COUNT = typeof Symbol == "undefined" ? "__" + C : Symbol.for(C);
   var SET = typeof Symbol == "undefined" ? "__styleSet" + Math.floor(Math.random() * 1e8) : /* @__PURE__ */ Symbol("styleSet");
@@ -3621,7 +3621,7 @@
     }
   };
 
-  // frontpage/node_modules/w3c-keyname/index.js
+  // docs/node_modules/w3c-keyname/index.js
   var base = {
     8: "Backspace",
     9: "Tab",
@@ -3727,7 +3727,7 @@
     return name2;
   }
 
-  // frontpage/node_modules/crelt/index.js
+  // docs/node_modules/crelt/index.js
   function crelt() {
     var elt = arguments[0];
     if (typeof elt == "string") elt = document.createElement(elt);
@@ -3756,7 +3756,7 @@
     }
   }
 
-  // frontpage/node_modules/@codemirror/view/dist/index.js
+  // docs/node_modules/@codemirror/view/dist/index.js
   var nav = typeof navigator != "undefined" ? navigator : { userAgent: "", vendor: "", platform: "" };
   var doc = typeof document != "undefined" ? document : { documentElement: { style: {} } };
   var ie_edge = /* @__PURE__ */ /Edge\/(\d+)/.exec(nav.userAgent);
@@ -14424,7 +14424,7 @@
     return activeLineGutterHighlighter;
   }
 
-  // frontpage/node_modules/@lezer/common/dist/index.js
+  // docs/node_modules/@lezer/common/dist/index.js
   var DefaultBufferLength = 1024;
   var nextPropID = 0;
   var Range2 = class {
@@ -16094,7 +16094,7 @@
   };
   var stoppedInner = new NodeProp({ perNode: true });
 
-  // frontpage/node_modules/@lezer/highlight/dist/index.js
+  // docs/node_modules/@lezer/highlight/dist/index.js
   var nextTagID = 0;
   var Tag = class _Tag {
     /**
@@ -16818,7 +16818,7 @@
     { tag: tags.punctuation, class: "tok-punctuation" }
   ]);
 
-  // frontpage/node_modules/@codemirror/language/dist/index.js
+  // docs/node_modules/@codemirror/language/dist/index.js
   var _a;
   var languageDataProp = /* @__PURE__ */ new NodeProp();
   function defineLanguageFacet(baseData) {
@@ -18381,7 +18381,7 @@
     auto: /* @__PURE__ */ Decoration.mark({ class: "cm-iso", inclusive: true, attributes: { dir: "auto" }, bidiIsolate: null })
   };
 
-  // frontpage/node_modules/@codemirror/commands/dist/index.js
+  // docs/node_modules/@codemirror/commands/dist/index.js
   var toggleComment = (target) => {
     let { state } = target, line = state.doc.lineAt(state.selection.main.from), config2 = getConfig(target.state, line.from);
     return config2.line ? toggleLineComment(target) : config2.block ? toggleBlockCommentByLine(target) : false;
@@ -19475,7 +19475,7 @@
     { key: "Ctrl-m", mac: "Shift-Alt-m", run: toggleTabFocusMode }
   ].concat(standardKeymap);
 
-  // frontpage/node_modules/@codemirror/search/dist/index.js
+  // docs/node_modules/@codemirror/search/dist/index.js
   var basicNormalize = typeof String.prototype.normalize == "function" ? (x) => x.normalize("NFKD") : (x) => x;
   var SearchCursor = class {
     /**
@@ -20565,7 +20565,7 @@
     baseTheme3
   ];
 
-  // frontpage/node_modules/@codemirror/autocomplete/dist/index.js
+  // docs/node_modules/@codemirror/autocomplete/dist/index.js
   var CompletionContext = class {
     /**
     Create a new completion context. (Mostly useful for testing
@@ -22382,7 +22382,7 @@
   ];
   var completionKeymapExt = /* @__PURE__ */ Prec.highest(/* @__PURE__ */ keymap.computeN([completionConfig], (state) => state.facet(completionConfig).defaultKeymap ? [completionKeymap] : []));
 
-  // frontpage/node_modules/@codemirror/lint/dist/index.js
+  // docs/node_modules/@codemirror/lint/dist/index.js
   var SelectedDiagnostic = class {
     constructor(from, to, diagnostic) {
       this.from = from;
@@ -22991,7 +22991,7 @@
     baseTheme5
   ];
 
-  // frontpage/node_modules/codemirror/dist/index.js
+  // docs/node_modules/codemirror/dist/index.js
   var basicSetup = /* @__PURE__ */ (() => [
     lineNumbers(),
     highlightActiveLineGutter(),
@@ -23021,7 +23021,7 @@
     ])
   ])();
 
-  // frontpage/node_modules/@lezer/lr/dist/index.js
+  // docs/node_modules/@lezer/lr/dist/index.js
   var Stack = class _Stack {
     /**
     @internal
@@ -24799,7 +24799,7 @@
     return spec.get;
   }
 
-  // frontpage/node_modules/@lezer/python/dist/index.js
+  // docs/node_modules/@lezer/python/dist/index.js
   var printKeyword = 1;
   var indent = 194;
   var dedent = 195;
@@ -25135,7 +25135,7 @@
     tokenPrec: 7668
   });
 
-  // frontpage/node_modules/@codemirror/lang-python/dist/index.js
+  // docs/node_modules/@codemirror/lang-python/dist/index.js
   var cache = /* @__PURE__ */ new NodeWeakMap();
   var ScopeNodes = /* @__PURE__ */ new Set([
     "Script",
@@ -25555,7 +25555,7 @@
     ]);
   }
 
-  // frontpage/editor.js
+  // docs/editor.js
   var pythonHighlighting2 = HighlightStyle.define([
     { tag: tags.keyword, color: "#cba6f7", fontWeight: "600" },
     { tag: tags.definition(tags.variableName), color: "#f9e2af" },
