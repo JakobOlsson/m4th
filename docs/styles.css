@@ -79,8 +79,9 @@ body.nav-collapsed .sidebar { display: none; }
   border-right: 1px solid var(--line);
   background: var(--paper);
 }
-.sidebar-label { margin: 0 0 10px 10px; color: var(--muted); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; }
-.reference-nav-label { margin-top: 28px; }
+.sidebar-label { margin: 18px 0 5px 5px; padding: 11px 0 0 8px; border-top: 1px solid var(--line); border-left: 3px solid #c99369; color: var(--green); font-size: 0.66rem; font-weight: 800; letter-spacing: 0.12em; }
+.sidebar nav > .sidebar-label:first-of-type { margin-top: 0; padding-top: 0; border-top: 0; }
+.reference-nav-label { margin-top: 18px; }
 .nav-link { display: block; margin: 3px 0; padding: 9px 10px; border-radius: 7px; color: var(--muted); font-size: 0.9rem; text-decoration: none; }
 button.nav-link { width: 100%; border: 0; background: transparent; font-family: inherit; font-size: 0.9rem; text-align: left; cursor: pointer; }
 .nav-link:hover { background: #e9eee7; color: var(--ink); }
@@ -351,6 +352,71 @@ body.reference-embed .intro { padding: 20px 0 18px; }
 body.reference-embed h1 { font-size: clamp(2rem, 5vw, 2.8rem); }
 body.reference-embed .guide-card { margin-bottom: 12px; padding: 22px; }
 
+/* Practice pages use a workbook-like visual language while sharing the handbook shell. */
+.practice-page { background: var(--paper); }
+.practice-page .eyebrow { color: #8b4c2d; }
+.practice-page .practice-intro { max-width: 760px; padding: 54px 0 28px; }
+.practice-page .practice-intro h1 { max-width: 720px; }
+.practice-breadcrumb { display: flex; justify-content: space-between; gap: 12px; padding-top: 18px; color: var(--muted); font-size: 0.82rem; }
+.practice-breadcrumb a, .practice-bottom-nav a { color: #754024; font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.practice-breadcrumb a:focus-visible, .practice-bottom-nav a:focus-visible, .session-card:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+.practice-rules, .practice-note, .practice-hub-note { margin: 0 0 18px; padding: 22px 26px; border: 1px solid #dfd2bc; border-radius: 13px; background: #fffaf1; }
+.practice-rule-heading { display: flex; align-items: center; gap: 12px; }
+.practice-rule-heading h2, .practice-note h2, .practice-hub-note h2 { margin: 0; font-family: inherit; font-size: 1.15rem; font-weight: 750; letter-spacing: 0; }
+.practice-rules ul { margin: 14px 0 10px; padding-left: 1.25rem; }
+.practice-rules li + li { margin-top: 5px; }
+.practice-rules > p, .practice-note p:last-child, .practice-hub-note p:last-child { margin-bottom: 0; color: var(--muted); }
+.challenge-card { margin: 20px 0; padding: 24px 28px 27px; border: 1px solid #e4d8c4; border-left: 5px solid #c77647; border-radius: 12px; background: #fffefa; box-shadow: 0 8px 24px rgb(73 50 28 / 5%); }
+.challenge-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.challenge-tag { display: inline-flex; align-items: center; width: fit-content; padding: 4px 9px; border-radius: 999px; background: #f4e3d4; color: #713d23; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em; line-height: 1.4; }
+.challenge-number { color: #a28d76; font-family: ui-serif, Georgia, serif; font-size: 1.15rem; }
+.practice-page .challenge-card h2 { margin: 0 0 12px; font-family: ui-serif, Georgia, serif; font-size: clamp(1.55rem, 3vw, 2rem); }
+.task-prompt { padding: 12px 15px; border-left: 3px solid #d2a16c; background: #fbf5e9; font-weight: 600; }
+.practice-reveal { margin: 10px 0; border: 1px solid #e5dccd; border-radius: 8px; background: #fcfaf5; }
+.practice-reveal summary { min-height: 44px; padding: 9px 13px; color: #754024; font-weight: 750; cursor: pointer; }
+.practice-reveal summary:hover { background: #f8efe1; }
+.practice-reveal summary:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; border-radius: 7px; }
+.practice-reveal > div { padding: 2px 14px 13px; }
+.practice-reveal > div > :last-child { margin-bottom: 0; }
+.practice-reveal.worked { border-color: #c9d9cb; background: #f7fbf6; }
+.practice-reveal.worked summary { color: #285544; }
+.formula-line { overflow-x: auto; padding: 12px 15px; border-radius: 8px; background: #edf3e9; text-align: center; font-size: 1.2rem; }
+.formula-line math { font-size: 1.2em; }
+.outcome-grid-wrap { overflow-x: auto; margin: 18px auto 8px; padding: 4px; }
+.outcome-grid { width: min(100%, 540px); margin: auto; border-collapse: separate; border-spacing: 5px; text-align: center; }
+.outcome-grid caption { margin-bottom: 8px; color: var(--muted); font-size: 0.82rem; }
+.outcome-grid th { min-width: 38px; padding: 5px; color: #554a3a; font-size: 0.82rem; font-weight: 750; }
+.outcome-grid td { width: 50px; height: 42px; border: 1px solid #e4ddcf; border-radius: 6px; background: #f5f1e9; color: #777064; font-size: 0.95rem; }
+.outcome-grid td.favorable { border-color: #86a88e; background: #dcecdf; color: #214e35; font-weight: 800; }
+.grid-legend { color: var(--muted); font-size: 0.82rem; text-align: center; }
+.pattern-count-bridge { display: grid; grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr); align-items: center; gap: 18px; margin: 14px 0 20px; padding: 15px; border: 1px solid #e4d8c4; border-radius: 9px; background: #fcfaf5; }
+.pattern-count-table { width: 100%; max-width: 360px; margin: 0; border-collapse: collapse; text-align: center; }
+.pattern-count-key p:last-child { margin-bottom: 0; }
+.pattern-count-table caption { margin-bottom: 7px; color: var(--muted); font-size: 0.82rem; }
+.pattern-count-table th, .pattern-count-table td { padding: 5px 12px; border: 1px solid #ded6c8; }
+.pattern-count-table thead th { background: #f5f1e9; color: #554a3a; }
+.legend-mark { display: inline-block; margin-left: 4px; padding: 0 5px; border-radius: 4px; background: #dcecdf; color: #214e35; font-weight: 800; }
+.dice-hand { display: flex; justify-content: center; gap: 10px; margin: 20px auto 8px; }
+.dice-hand span { display: grid; width: 54px; height: 54px; place-items: center; border: 2px solid #6e786f; border-radius: 10px; background: #fff; box-shadow: 0 3px 0 #d4d0c6; font-size: 1.35rem; font-weight: 800; }
+.dice-hand .reroll-die { border: 2px dashed #aa5a37; background: #fff2e8; color: #813f22; }
+.dice-caption { display: flex; align-items: center; justify-content: center; gap: 9px; flex-wrap: wrap; color: var(--muted); font-size: 0.82rem; text-align: center; }
+.keep-label, .reroll-label { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.07em; }
+.keep-label { color: #285544; }
+.reroll-label { margin-left: 9px; color: #813f22; }
+.practice-note { margin-top: 24px; border-left: 5px solid #8b9f76; }
+.practice-note h2, .practice-hub-note h2 { margin-bottom: 10px; }
+.practice-bottom-nav { display: flex; justify-content: space-between; gap: 16px; margin: 26px 0 10px; }
+.practice-hub { max-width: 840px; }
+.practice-hub-note { margin-bottom: 18px; }
+.practice-status { display: flex; align-items: center; gap: 10px; margin-top: 18px; color: var(--ink); font-weight: 650; }
+.session-card { display: flex; flex-direction: column; gap: 9px; margin: 18px 0; padding: 23px 25px; border: 1px solid #d8c7af; border-left: 5px solid #c77647; border-radius: 12px; background: #fffefa; color: var(--ink); text-decoration: none; box-shadow: 0 8px 24px rgb(73 50 28 / 5%); transition: transform 120ms ease, box-shadow 120ms ease; }
+.session-card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgb(73 50 28 / 10%); }
+.session-card-kicker, .session-card-footer { color: #754024; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.07em; }
+.session-card-title { font-family: ui-serif, Georgia, serif; font-size: 1.7rem; font-weight: 650; }
+.session-card-copy { max-width: 650px; color: var(--muted); }
+.session-card-footer { display: flex; justify-content: space-between; margin-top: 6px; color: var(--muted); letter-spacing: 0; }
+.practice-hub-footnote { color: var(--muted); font-size: 0.88rem; }
+
 @media (max-width: 800px) {
   body { display: block; }
   body.nav-collapsed { display: block; }
@@ -392,6 +458,19 @@ body.reference-embed .guide-card { margin-bottom: 12px; padding: 22px; }
   .overview-page .journey-connections, .overview-page .application-grid { grid-template-columns: 1fr; }
   .overview-page .journey-connections article, .overview-page .application-grid article { padding: 17px; }
   .letter-table { min-width: 590px; }
+  .practice-page .practice-intro { padding: 42px 4px 24px; }
+  .challenge-card { padding: 20px 17px 22px; }
+  .practice-rules, .practice-note, .practice-hub-note { padding: 19px 17px; }
+  .practice-breadcrumb { align-items: flex-start; flex-direction: column; }
+  .practice-status { align-items: flex-start; flex-direction: column; }
+  .session-card { padding: 20px 17px; }
+  .pattern-count-bridge { grid-template-columns: 1fr; }
+  .pattern-count-table { max-width: none; }
+  .outcome-grid { border-spacing: 3px; }
+  .outcome-grid td { min-width: 38px; height: 38px; }
+  .dice-hand { gap: 6px; }
+  .dice-hand span { width: 46px; height: 46px; }
+  .practice-bottom-nav { flex-direction: column; }
   .intro { padding: 50px 4px 34px; }
   .lesson { padding: 22px 16px; }
   .explain-grid { grid-template-columns: 1fr; gap: 12px; }

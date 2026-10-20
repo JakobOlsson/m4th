@@ -11,7 +11,8 @@ The learner has encountered some mathematical terminology in Swedish and wants t
 ## Learning principles
 
 - Treat notation as a compact set of instructions that can be unpacked step by step.
-- Separate the roles of symbols: for example, an index/counter is not necessarily the value contributed to a sum.
+- Separate the roles of symbols: for example, an index/counter is not necessarily the value contributed to a sum. When introducing a subscripted family such as `c_f`, explicitly state what the index selects, its range, and how to construct each entry; summation notation alone does not define the indexed values.
+- Do not present a formula as a “magic step.” Before using it, state the question it answers, define every symbol and its range/type, identify the inputs or data it summarizes, and list the assumptions it needs. Show the bridge from a concrete example (raw outcomes or data) to a table/list of defined quantities, then to the notation and general rule. Derive the rule or explain its counting/logic; do not rely on readers to recognize unstated conventions. If a convention is standard but has not been taught here, name and explain it briefly or link to its introduction.
 - Start with small, concrete examples; then show where the same notation appears in more complex subjects.
 - Avoid mixing too much at once: give each lesson one main learning goal, introduce unfamiliar ideas only as brief, clearly labeled previews, and save fuller cross-topic combinations for dedicated synthesis lessons.
 - Make the boundary between “what we know now” and “what we will learn later” explicit. A learner can recognize one part of a larger formula without understanding the whole formula yet.
@@ -193,6 +194,134 @@ The completed lesson uses a quadratic curve with three two-dimensional control p
 
 Treat these as cumulative exercises that build confidence reading a fuller expression, not as a demand to master every connected topic at once.
 
+### Optional practice sessions (proposed)
+
+Keep practice sessions playful and separate from the core lesson sequence. Give the learner a short scenario, the formulas and assumptions that may be useful, then space to try the problem before revealing a worked breakdown in a native `<details>` accordion. Invite learners to read notation aloud, explain why each step follows, and write a mathematical solution or proof on paper. Some sessions should be purely mathematical, with no code; where code adds value, put it in a separate optional accordion. Model proofs as written mathematical arguments; code can check examples but must not replace the reasoning. These pages should emphasize trying examples rather than introducing long explanations; link to core lessons when a reminder is needed.
+
+Candidate sessions:
+
+- **Nordic/European Yatzy:** explicitly name and explain the chosen regional scorecard and reroll rules; do not silently import American Yahtzee rules. Practice first-roll chances for straights or a full house, then compare keeping/rerolling choices over the remaining throws. Call out regional variations in scoring.
+- **A standard 52-card deck:** state the deck assumptions (including jokers and ace conventions), distinguish an unordered hand from the order cards are dealt, and practice counts/probabilities for pairs, straights, flushes, and full houses, including drawing replacements.
+- **Hypothetical infection and immunity:** use clearly invented rates to practice conditional probability, test results, and how prior immunity changes a modeled risk. Distinguish the incubation-time distribution (infection to symptom onset) from the infectious period. Their overlap depends on the disease: infectiousness may occur before symptoms, overlap them, or continue after them; in some diseases, it can end before symptoms begin. State the timeline explicitly rather than assuming a COVID-like pattern. Model transmission risk by day, including hypothetical presymptomatic contacts where appropriate. Let learners combine per-contact risks to find the chance of at least one transmission, estimate expected case counts, and—under stated equal-risk and independence assumptions—use a binomial model for the number infected. Show how the law of total probability combines conditional risks across mutually exclusive groups or pathways, and distinguish it from joint probability. Present all values as a toy model, not as epidemiological estimates or health .
+- **Larger vector and matrix examples:** use small but substantial data tables, such as several projects by criteria or factories by products multiplied by products by ingredients. Trace one row-by-column calculation by hand, then let Python calculate the full result. Also consider a tiny pixel-pattern classifier as a neural-network preview: encode a 2×2 or 4×4 grayscale image as a vector, apply a small illustrative weight matrix to produce class scores, and show how a batch of images can be processed with one matrix multiplication. Clearly distinguish hand-chosen toy weights from a trained network; explain that real networks learn weights and use nonlinear activations, without trying to teach model training here. A separate feature-vector similarity exercise could represent objects using normalized measurements, compare distances, and classify by the nearest labeled example. State that closeness depends on the chosen features, scales, and distance rule; learned embedding axes may not have simple human-readable meanings. A housing-price preview could progress from a few hand-chosen feature weights to supervised learning on historical house features and sale prices. Distinguish input features from learned model parameters: a simple model learns weights on the chosen features, while a neural network may also learn internal feature representations. Treat predictions as estimates of patterns in historical data, not guaranteed accepted prices or causal measures of what buyers value.
+
+Proof-focused candidates that need no Python include proving the symmetry of combinations by pairing each chosen group with its complement; using 14 cards and 13 ranks to prove that two cards must share a rank; deriving the sum of the first `n` odd numbers as `n²`; and deriving the law of total probability from a partition of the possible cases.
+
+### Practice implementation plan
+
+The proposal is a balanced extension of the current handbook: games supply exact counting, infection scenarios supply conditional reasoning, data tables supply vector/matrix interpretation, and short proofs supply general arguments. The main risks are overloaded pages and prerequisites not yet taught. Split the material into the eight sessions below, with 3–4 core challenges per page and at most one optional stretch problem. ML pages are conceptual previews, not model-training tutorials. The eight sessions are a bounded next phase, not requirements for completing the existing core handbook.
+
+#### Practice visual style
+
+Give examples/practice pages a distinct visual identity from the explanatory core lessons, while retaining the shared site header, navigation, typography, and accessibility conventions. The maintainer wants them to feel different, not like another long lesson.
+
+- Use a scoped `.practice-page` style, with a warmer accent and a workbook/challenge-card layout. Keep core lesson styling unchanged.
+- Lead with the scenario, a compact rules/data panel, and a clear question rather than a long introductory explanation. Use simple dice/card visuals or small tables where they help; avoid decorative clutter.
+- Mark challenges with short titles and difficulty labels such as Warm-up, Try it, and Stretch. These are difficulty cues, not exam scores or required progression.
+- Separate the learner's task from the answer visually. Use clearly labeled Hint, Worked reasoning, and Python check accordions, with strong visible focus states and comfortable click/tap targets. Do not rely on color alone to distinguish them.
+- Allow a light graph-paper/grid motif in the practice area if it does not compete with formulas or reduce contrast. Keep tables responsive and diagrams understandable without color.
+- Prototype the practice overview and first Yatzy page for visual review before applying the design to the remaining sessions. No timers, grading, or gamification infrastructure is required.
+
+#### Shared page contract
+
+- Start with a goal, prerequisites linked to core lessons, and an explicit model/rules box. Use small, deterministic datasets printed in full; do not require downloads or a backend.
+- Each challenge states exactly what to find or justify. Supply a compact formula/read-aloud reminder, define all new symbols locally, and identify the job of each formula. Do not expose the answer before the learner tries it.
+- Use separate native `<details>` panels for an optional hint, the worked reasoning/answer, and optional Python. Keep them closed initially. Proof challenges can first ask learners to choose an approach before opening the formula hint.
+- Worked reasoning follows: define quantities → state assumptions → derive the result → interpret it and its limits. Read the important formula aloud. Distinguish a numerical calculation, a model-based estimate, a general proof, and a counterexample.
+- Ask at least one “why?” question per page: explain why cases can be added, why a product applies, why matrix dimensions match, or why a general claim follows. Not every page needs executable code.
+- Keep code out of the paper-first path. Where useful, place one runnable check in a code accordion using the existing shared editor, not a new editor per challenge. Ensure its layout initializes correctly when revealed from a closed panel. State what the check establishes and what it does not prove.
+- Continue native MathML with adjacent LaTeX comments. Add genuinely new terminology to the glossary and notation to the reference/letters guide where appropriate; avoid turning a practice page into another long foundational lesson.
+- Create a practice overview at `docs/practice.html`, linked from the handbook overview and a stable Practice sidebar group on every page. Keep these sessions outside the 16-lesson previous/next sequence; use links to the practice overview and related sessions instead.
+
+#### A. Nordic Yatzy — `docs/practice-yatzy.html`
+
+- Prerequisites: combinations, factorials, dice probability, and independent rolls.
+- Maintainer-confirmed rules: five dice, one initial throw and up to two rerolls per turn; unused throws cannot be saved for later turns. Two straights: exactly 1–2–3–4–5 and exactly 2–3–4–5–6. Categories include pairs, three of a kind, four of a kind, and Yatzy (five of a kind). Assume fair independent six-sided dice for the probability exercises and allow the player to choose which dice to reroll. Do not import American four-die “small straight” rules. Omit scores/bonuses unless needed; distinguish completing a category from maximizing expected score. For each exercise, explicitly distinguish exactly a pair/triple from at least that many matching dice. Maintainer-confirmed house category: exactly a triple of one face value and a pair of a different face value; the triple may be lower or higher than the pair. There is one house category, with no small/large distinction. Use the maintainer-supplied scorecard translated into English below, not American Yahtzee scoring.
+- Confirmed scorecard (English):
+
+  | Category | Scoring | Maximum |
+  | --- | --- | ---: |
+  | Ones through sixes | Sum only dice showing that category's face value | 5, 10, 15, 20, 25, 30 |
+  | Upper-section bonus | 50 points when the upper-section subtotal is at least 63 | 50 |
+  | One pair | Sum of the two matching dice | 12 |
+  | Two pairs | Sum of two pairs of different face values | 22 |
+  | Three of a kind | Sum of the three matching dice | 18 |
+  | Four of a kind | Sum of the four matching dice | 24 |
+  | Small straight | Exactly 1–2–3–4–5; fixed score | 15 |
+  | Large straight | Exactly 2–3–4–5–6; fixed score | 20 |
+  | House (full house) | Triple plus pair of different values; sum all five dice | 28 |
+  | Chance | Sum all five dice | 30 |
+  | Yatzy | Five matching dice; fixed score | 50 |
+
+  The scorecard's category maxima sum to 105 + 50 + 219 = 374. The supplied text ends in “37,” apparently a truncated total. Keep scoring categories distinct from mutually exclusive probability events: for example, “exactly one pair” is narrower than “contains a pair.” State any additional category-selection or zero-score rules explicitly if an exercise needs them; do not infer unprovided special bonuses or joker rules.
+
+- Use a visual-to-symbolic bridge: one die has 6 outcomes; two dice form a 6×6 outcome grid; three dice can be shown as six 6×6 slices of a cube. Each axis represents a die/throw, not spatial movement. Highlight success cells and explain the counting rule before extending to five dice without asking learners to imagine a five-dimensional cube. Justify the general product rule by unique ordered outcomes: appending one independent six-way result to each existing sequence multiplies its count by six. A picture motivates the rule; the counting argument explains why it continues to hold beyond what can be visualized. Use a small probability tree for conditional reroll decisions rather than forcing every problem into a cube. Explicitly connect checked grid cells to favorable ordered outcomes: probability is checked cells divided by all cells, not checked divided by unchecked (which gives odds in favor). Generalize to `n` independent fair dice with `m` faces each: `m^n` equally likely ordered outcomes and `P(E) = favorable_count / m^n`. Define both symbols locally, and state that only the denominator generalizes automatically; the favorable count depends on the event. For example, all dice showing one specified face has favorable count 1, while at least one showing that face has count `m^n - (m-1)^n`. Derive these counts from the same grid/complement argument before using general notation.
+- Focus on probabilities and which dice to hold/reroll, not score optimization; keep the scorecard as a rules reference. First clarify that an independent die has chance 1/6 of showing six on each throw, including after a failure. Distinguish both throws being six (1/36), the first six occurring on the second throw (5/36), and at least one six in two throws (11/36). Use a small outcome tree to show multiplication along a path and addition across disjoint success paths; the second throw's own chance is not reduced by the first throw.
+- Challenges: count a specified straight on the first throw; for a three-die example, count how many ordered rolls match a face pattern such as 2, 3, 3 using `n!/(c₁!…cₘ!)`, where each `cᵢ` is that face's multiplicity; count a full house without double-counting; from a displayed hand one die short of a straight, calculate the chance on one final reroll; extend to two remaining rerolls with the same stated holding policy and use the complement of repeated failure. Contrast independent rolls made together with sequential rolls: timing alone changes nothing, but keeping successful dice and changing the next action makes the remaining problem conditional on the current hand.
+- Stretch: compare two explicitly specified holding policies for a full-house attempt. State the hand, target, throws remaining, and exactly what is kept after each result. Never call a policy optimal without proving optimality over the allowed choices.
+- Check first-throw counts against all `6**5` ordered outcomes. Check rerolls against enumeration or a small exact decision tree; simulations are optional illustrations only.
+
+#### B. A 52-card deck — `docs/practice-cards.html`
+
+- Model: 13 ranks, 4 suits, no jokers; unordered five-card hands drawn uniformly without replacement. For straights, allow ace-low or ace-high but no wraparound. Keep this separate from Yatzy rules.
+- Challenges: a specified card or suit in a small draw; exactly one pair in a five-card hand; a full house; a flush or straight with category-overlap conventions stated explicitly (say whether straight flushes are included).
+- Stretch: show four cards to a flush, discard the fifth, and calculate the chance that one replacement completes the flush. The discarded card is not returned; the known five-card hand leaves 47 drawable cards. Distinguish this from an entirely new hand.
+- Build counts from rank choices and suit choices over the common denominator `C(52, 5)`. Explain exclusions such as “exactly one pair.” Verify with independent combinatorial calculations; exhaustive five-card enumeration is optional and not needed in the browser.
+
+#### C. Infection pathways — `docs/practice-infection.html`
+
+- Provide a tiny hypothetical population table with two disjoint groups (“prior immunity” and “no prior immunity”), fixed group proportions, and conditional risks for one specified exposure scenario. “Prior immunity” means the model's reduced risk, not guaranteed protection. All rates are invented, not estimates for influenza, COVID, or any other real disease.
+- Briefly introduce conditional probability, the joint-probability chain rule, and the law of total probability before using them. Link the partition argument to the proof session. Prior immunity, exposure, infection, infectiousness, and symptoms are different events/states.
+- Challenges: calculate a joint event such as prior immunity AND infection; combine group-specific risks into the total infection probability; read an explicit day-by-day infectiousness/symptom timeline and identify contacts that carry risk; calculate an expected infection count for a specified exposed cohort.
+- Stretch: under explicitly equal and independent infection risks, calculate a probability for the number infected using the binomial model (define that model locally). Explain that expectation can be a non-integer and does not require independence, whereas this binomial calculation does. Repeated exposures of one person are not automatically independent; any product-of-failure calculation must state its conditional-risk/independence assumptions. Avoid modeling an uncontrolled epidemic or cascading infections in this first page.
+- Use a stated incubation time for the core timeline; a random incubation distribution and positive-test interpretation can be later extensions rather than overloading this page. Distinguish latent period (infection to infectiousness) from incubation period (infection to symptoms) if that term is used. Specify whether later-day risks are conditional on remaining uninfected.
+- Check all probability-tree leaves sum to one, group proportions sum to one, and totals agree with the corresponding hypothetical frequency table. Optional Python calculates the same tree, not a replacement epidemiological simulation.
+
+#### D. Factories, products, and ingredients — `docs/practice-production.html`
+
+- Supply a fully printed 6×4 production matrix (factories by products) and a 4×3 recipe matrix (products by ingredients). Use fictional product names, small nonnegative quantities, and compatible units (product units/day and kg/product unit).
+- Challenges: predict the result shape and units; calculate one selected factory/ingredient cell; calculate an entire factory row; derive total daily ingredient requirements across factories.
+- The result is a 6×3 matrix in kg/day. Add a short argument explaining why summing factory requirements gives the same totals as first summing production by product and then applying the recipes. This connects matrix calculation to a reusable distributive-law argument.
+- Python may calculate the full table after the hand calculation. Validate both routes to the ingredient totals and show that a zero-production row gives zero requirements.
+
+#### E. Feature vectors and similarity — `docs/practice-features.html`
+
+- Use a printed table of 6–8 fictional fruits, labeled by type, with three interpretable features. Supply fixed feature scales and a separate query fruit; do not derive changing scales from the query.
+- Briefly define coordinate-wise difference and squared Euclidean distance. Explain that squared distance preserves nearest-neighbor ordering without requiring a square root.
+- Challenges: encode a fruit as a vector; calculate differences and distances to two labeled examples; choose the nearest label using a declared tie rule; change one feature scale and explain how the classification can change.
+- Do not confuse distance with dot product, a class label with a probability, or a feature representation with a classifier. Closeness is determined by the chosen representation and metric, not universal similarity.
+- Optional Python processes all examples. Check self-distance is zero and reversing the comparison gives the same distance. A counterexample with altered scaling should demonstrate the limitation rather than claiming the nearest label is necessarily correct.
+
+#### F. Tiny image scores — `docs/practice-pixels.html`
+
+- Use 2×2 binary images, flattened in top-left, top-right, bottom-left, bottom-right order (1 = ink, 0 = background). Use the hand-designed 4×2 weight matrix with rows `[1, 1]`, `[-1, 1]`, `[1, -1]`, `[-1, -1]`. Label its two columns as left-vertical/top-horizontal pattern detectors; vectors `[1, 0, 1, 0]` and `[1, 1, 0, 0]` should give scores `[2, 0]` and `[0, 2]`, respectively.
+- Challenges: encode two pictures; calculate both detector scores for one picture; stack several images in an input matrix and predict/compute the result shape; examine an blank or ambiguous image that ties the detectors.
+- Scores are not probabilities and a tie need not choose a class. State a tie rule or return “undecided.” Show a fixed small batch rather than teaching image recognition generally.
+- Explain that this is one linear scoring operation, not a trained neural network. Real networks can learn weights and internal representations and use nonlinear operations. Learning does not guarantee better features for every task or dataset.
+- Check batch results equal separately computed vector scores. Optional Python is a matrix calculation, not training code.
+
+#### G. Housing-price estimates — `docs/practice-housing.html`
+
+- Use a fictional table of 8–10 houses with three features: floor area in a stated unit, bathroom count, and distance to a named amenity. Print invented sale prices and clearly separate illustrative hand-chosen coefficients from fitted coefficients.
+- Introduce a base-price term (intercept) plus a weighted sum; show coefficient units so the contributions are in the same currency. Do not suggest summing raw measurements without dimensional explanation.
+- Challenges: construct a feature vector and calculate one predicted price; read what changing one input does while holding the others fixed in this model; calculate prediction errors for a small table; compare two supplied candidate models on held-out examples not used to choose their weights.
+- Explain supervised learning as adjusting parameters against known targets. Distinguish fitting from testing on unseen examples, correlation from causation, and estimated sale prices from guaranteed accepted prices. Feature count and parameter count are different; a simple weighted model learns weights on supplied features, not new axes automatically.
+- Stop before optimization/training algorithms. An optional sum-of-squared-errors calculation can compare the supplied models; code need not fit a network. Introduce any error formula in words before notation.
+
+#### H. Short proofs to write on paper — `docs/practice-proofs.html`
+
+- Prerequisites: combinations, induction, sums, and the infection session's short probability reminder for the final challenge. The infection page links only to that challenge's explanation; avoid a circular requirement to complete both pages first.
+- Challenges: justify combination symmetry using complementary subsets; prove 14 distinct cards must include two of the same rank using 13 rank groups; prove the first `n` odd positive integers sum to `n²` for nonnegative integer `n`; derive total probability by splitting an event into disjoint intersections with groups that cover the sample space.
+- Supply optional hints (complement pairing, pigeonhole argument, induction or a square diagram, disjoint cases) without revealing the full argument initially. Define the pigeonhole principle locally and in the glossary.
+- Worked answers state a claim, assumptions/domain, and a complete argument ending with a conclusion. Distinguish a proof of a model identity from evidence that the model describes reality. No Python required.
+
+#### Build order and completion checks
+
+- Initial prototype complete: `docs/practice.html` and `docs/practice-yatzy.html` establish the distinct workbook style and paper-first format. Review this prototype before building more sessions. Proposed next order: cards and short proofs; production and feature vectors; infection pathways; pixel and housing previews. Adjust complexity rather than producing eight long lessons at once.
+- Before publishing each session, verify every answer independently, its assumptions and units, formula/LaTeX-comment agreement, glossary/anchor links, and any executable code. Keep exact counts/fractions where possible and label decimal approximations.
+- Test `<details>` panels with keyboard and touch, hidden-editor initialization, narrow-screen tables, readable MathML/contrast, and the persistent sidebar order across all pages. Rebuild the editor bundle only when relevant source changes require it.
+- Practice navigation must not change the current core-lesson sequence. Do not add incomplete placeholders to the reader-facing site. Once a page is finished, add it to the practice overview, overview entry, and shared sidebar consistently.
+
 ## Recurring application threads
 
 Use a few familiar application areas as recurring examples, alongside the notation-first exercises:
@@ -285,6 +414,7 @@ Build a compact, cumulative glossary as a separate quick reference, alongside th
 
 ## Current status
 
+- The first optional practice prototype is live in `docs/practice.html` and `docs/practice-yatzy.html`. The Yatzy page uses the maintainer-confirmed five-dice, initial-roll-plus-two-rerolls rules; focuses on fair independent outcomes, the 6×6 two-dice grid, favorable/all outcomes versus odds in favor, a complement count, generalization to `n` dice with `m` faces, counting ordered arrangements of a repeated face pattern (`2, 3, 3`) with `n!/(c₁!…cₘ!)`, and the chance of completing 1–2–3–4–5 when one die is rerolled up to twice. It uses a distinct workbook-style design, closed hint/worked-reasoning panels, and no required code. Linked from the overview and a stable Practice group in every page sidebar. `bash scripts/build_site.sh`, `git diff --check`, and local-link/anchor checks pass; browser review confirms the hub and activity render.
 - Sixteen sequential lesson pages now exist in `docs/`, the GitHub Pages publishing folder: the letters-and-notation guide (`letters.html`), summation lesson (`summation.html`), products/factorials lesson (`products.html`), probability lesson (`probability.html`), expected-value lesson (`expectation.html`), probability-bounds lesson (`probability-bounds.html`), counting-work lesson (`counting-work.html`), vectors/dot-products lesson (`vector-dot-product.html`), matrix-multiplication lesson (`matrix-multiplication.html`), program-correctness lesson (`program-correctness.html`), proof-by-induction lesson (`induction.html`), factorial-sum synthesis lesson (`sum-of-factorials.html`), combinations lesson (`combinations.html`), dice-probability synthesis lesson (`dice-probability.html`), dot-product/matrix-product synthesis lesson (`matrix-product-application.html`), and Bézier-curve capstone lesson (`bezier-curve.html`). `index.html` is now the handbook overview and learning path, linking the foundations, their connections, and synthesis/application examples. Separate non-sequential reference pages include `quick-reference.html` for notation and Python syntax and `glossary.html` for plain-language mathematical terms; both are available as standalone pages and open in a modal overlay from lesson sidebars to preserve the current page and scroll position. The letters and summation lessons preview probability notation and link to its full lesson.
 - MathML Core migration is underway: `letters.html`, `products.html`, `probability.html`, `expectation.html`, `counting-work.html`, `vector-dot-product.html`, `matrix-multiplication.html`, `program-correctness.html`, `induction.html`, `sum-of-factorials.html`, `combinations.html`, `dice-probability.html`, `matrix-product-application.html`, `bezier-curve.html`, `glossary.html`, `quick-reference.html`, and the new overview `index.html` render their marked-up expressions with native MathML and adjacent LaTeX comments. The relocated `summation.html` remains partially migrated; other pages and remaining plain-text mathematical notation still need an audit. Keep tracking this as incomplete until all mathematical expressions are checked.
 - The sidebar groups pages by topic: core notation, probability and counting (including combinations), linear algebra, proofs and algorithms, synthesis and applications (factorial sum, dice probability, dot products inside a matrix product, and the Bézier-curve capstone), and quick references. Each page has a distinct Start here link to the handbook overview; the wordmark also returns there. Both notation/Python and glossary references open non-destructively in the shared modal; contextual triggers can open a glossary section directly. Program correctness is an applied reasoning lesson; induction is a general proof technique, so the grouping presents them as related proof topics rather than calling them basic notation foundations.

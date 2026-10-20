@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Optional paper-first mathematical practice sessions, with hints, worked reasoning, and Python checks where useful.">
+    <title>Practice sessions — Math Refresher</title>
+    <link rel="stylesheet" href="styles.css?v=30">
+    <script src="navigation.js" defer></script>
+  </head>
+  <body class="practice-page">
+    <a class="skip-link" href="#top">Skip to content</a>
+    <header class="site-header"><div class="header-inner"><div class="brand-controls"><button id="nav-toggle" class="nav-toggle" type="button" aria-controls="handbook-nav" aria-expanded="true"><span class="menu-icon" aria-hidden="true">☰</span><span>Contents</span></button><a class="wordmark" href="index.html">Math, unpacked</a></div><span class="header-note">A personal math refresher</span></div></header>
+    <aside id="handbook-nav" class="sidebar"><nav aria-label="Handbook pages">
+      <p class="sidebar-label">START HERE</p><a class="nav-link" href="index.html">Handbook overview</a>
+      <p class="sidebar-label">CORE NOTATION</p><a class="nav-link" href="letters.html">Letters and notation</a><a class="nav-link" href="summation.html">Summation (∑)</a><a class="nav-link" href="products.html">Products and factorials</a>
+      <p class="sidebar-label">PROBABILITY AND COUNTING</p><a class="nav-link" href="probability.html">Probability</a><a class="nav-link" href="expectation.html">Expected value</a><a class="nav-link" href="probability-bounds.html">Probability bounds</a><a class="nav-link" href="counting-work.html">Counting work</a><a class="nav-link" href="combinations.html">Combinations</a>
+      <p class="sidebar-label">LINEAR ALGEBRA</p><a class="nav-link" href="vector-dot-product.html">Vectors and dot products</a><a class="nav-link" href="matrix-multiplication.html">Matrix multiplication</a>
+      <p class="sidebar-label">PROOFS AND ALGORITHMS</p><a class="nav-link" href="program-correctness.html">Program correctness</a><a class="nav-link" href="induction.html">Proof by induction</a>
+      <p class="sidebar-label">SYNTHESIS AND APPLICATIONS</p><a class="nav-link" href="sum-of-factorials.html">A sum of factorials</a><a class="nav-link" href="dice-probability.html">At least two sixes</a><a class="nav-link" href="matrix-product-application.html">Dot products in a matrix product</a><a class="nav-link" href="bezier-curve.html">A Bézier curve</a>
+      <p class="sidebar-label">PRACTICE</p><a class="nav-link" href="practice.html" aria-current="page">Practice sessions</a><a class="nav-link" href="practice-yatzy.html">Yatzy: keep or reroll?</a>
+      <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p><button class="nav-link quick-reference-trigger" type="button">Notation and Python</button><button class="nav-link glossary-trigger" type="button" data-reference-src="glossary.html?embed=1" data-reference-title="Math terms glossary" data-reference-link="glossary.html">Math terms glossary</button>
+    </nav></aside>
+    <button id="nav-scrim" class="nav-scrim" type="button" aria-label="Close navigation"></button>
+    <dialog id="quick-reference-dialog" class="quick-reference-dialog" aria-labelledby="quick-reference-dialog-title"><div class="quick-reference-dialog-header"><div><span class="notation-reading-label">QUICK REFERENCE</span><h2 id="quick-reference-dialog-title">Notation and Python</h2></div><div class="dialog-actions"><a href="quick-reference.html" target="_blank" rel="noopener">Open full page ↗</a><button class="dialog-close" type="button" aria-label="Close quick reference">×</button></div></div><iframe title="Notation and Python quick reference" data-src="quick-reference.html?embed=1"></iframe></dialog>
+    <main id="top" class="practice-hub">
+      <section class="practice-intro" aria-labelledby="page-title"><p class="eyebrow">OPTIONAL · TRY IT YOURSELF</p><h1 id="page-title">Practice sessions</h1><p class="intro-copy">These short activities are separate from the core lesson sequence. Try the problem on paper first; open a hint or worked explanation when you want one. Python checks appear only when they add something useful.</p></section>
+      <section class="practice-hub-note"><h2>A different way to learn</h2><p>Some sessions use familiar settings such as dice or cards; others ask you to prove a mathematical claim. The goal is not to rush to code, but to explain why each step follows. Visuals can help with small cases, and a counting argument can carry the idea beyond what is easy to picture.</p><p class="practice-status"><span class="challenge-tag">AVAILABLE NOW</span> Yatzy probability and reroll choices</p></section>
+      <a class="session-card" href="practice-yatzy.html"><span class="session-card-kicker">PROBABILITY · COUNTING · DECISIONS</span><span class="session-card-title">Keep, reroll, and count <span aria-hidden="true">→</span></span><span class="session-card-copy">Use a two-dice outcome grid, extend the counting rule, and work out the chance of completing a small straight with two rerolls.</span><span class="session-card-footer">Paper first · worked reasoning · no code required <span aria-hidden="true">↗</span></span></a>
+      <p class="practice-hub-footnote">More practice sessions will be added after this first format has been reviewed.</p>
+    </main>
+    <footer>Made for learning to unpack the math, one step at a time.</footer>
+  </body>
+</html>
