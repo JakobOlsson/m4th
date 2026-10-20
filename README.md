@@ -8,7 +8,7 @@ The handbook is developed collaboratively with an AI assistant. The maintainer c
 
 ## Access and build
 
-The handbook starts at [`docs/index.html`](docs/index.html). To host it with GitHub Pages, configure the repository to publish the `main` branch's `/docs` folder. Then open the repository's GitHub Pages URL.
+Read the current main-branch GitHub Pages publication: [Math Refresher](https://jakobolsson.github.io/m4th/). The source entry point is [`docs/index.html`](docs/index.html). GitHub Pages publishes the `main` branch's `/docs` folder.
 
 To build and serve it locally:
 
