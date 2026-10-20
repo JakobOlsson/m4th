@@ -1,11 +1,21 @@
 # Math Refresher
 
-A small, personal project to help me refresh my math and get comfortable reading mathematical notation and proofs again.
+A personal, English-language handbook for rebuilding fluency with mathematical notation, proofs, and the ideas behind formulas. Lessons use step-by-step explanations, worked examples, and optional Python checks.
 
-After time away from math, I sometimes find myself skipping over formulas in white papers—not because I don’t want to understand them, but because I’ve lost the habit of reading them fluently. I want to get better at slowing down, reading notation aloud, and “compiling” it: breaking a compact expression into the steps and ideas it represents.
+## How it is made
 
-The aim is to make that process approachable and enjoyable. I want to work through examples, expand notation into ordinary arithmetic, and use Python as a practical aid when I get stuck. Each symbol or formula should feel less like something to pass over and more like something I can take apart, understand, and perhaps eventually use to make my own mathematical arguments.
+The handbook is developed collaboratively with an AI assistant. The maintainer chooses topics, guides and edits the explanations, and reviews the mathematics and code; the assistant helps draft, refine, and check content. The site itself is a static collection of HTML, CSS, and JavaScript.
 
-I learned some mathematical terminology in Swedish, so I also want to learn the English names for concepts and notation. The project and its learning materials should be in English only; do not use Swedish.
+## Access and build
 
-This is a learning aid for me—not a formal textbook or a replacement for mathematical rigor. The goal is to build enough fluency and confidence that I can engage with the math in papers, explore the ideas behind it, and start enjoying the process of working things out.
+The handbook starts at [`frontpage/index.html`](frontpage/index.html). It can be hosted with GitHub Pages; configure Pages to publish the repository root, then open `/frontpage/` under the repository's Pages URL.
+
+To build and serve it locally:
+
+```sh
+npm ci --prefix frontpage
+bash scripts/build_frontpage.sh
+python3 -m http.server 8000 --directory frontpage
+```
+
+Then visit <http://localhost:8000>. The build script bundles the editable Python editor. Running Python examples in the browser may require an internet connection the first time.
