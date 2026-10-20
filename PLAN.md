@@ -207,6 +207,19 @@ Candidate sessions:
 
 Proof-focused candidates that need no Python include proving the symmetry of combinations by pairing each chosen group with its complement; using 14 cards and 13 ranks to prove that two cards must share a rank; deriving the sum of the first `n` odd numbers as `n²`; and deriving the law of total probability from a partition of the possible cases.
 
+### Worked examples (distinct from practice challenges)
+
+A worked example is a guided, fully explained application: show the data/question, make the mathematical representation, derive the answer step by step, and interpret its limits. It is not a quiz with the solution withheld. The overview should offer these examples as browseable applications, while the numbered core lesson sequence and its navigation remain stable.
+
+Current synthesis/application examples to link under **Worked examples**:
+
+- `docs/sum-of-factorials.html` — substitute each index into a factorial summand, calculate the terms, and add them.
+- `docs/dice-probability.html` — count patterns for at least two sixes in three rolls, then relate the favorable count to all outcomes and to a sum of probabilities.
+- `docs/matrix-product-application.html` — turn proposal ratings and criterion weights into matrix/dot-product scores, with caveats about the chosen ratings and weights.
+- `docs/bezier-curve.html` — follow control points through the Bernstein and polynomial forms of a curve, then sample and map points to pixels.
+
+Keep these distinct from **optional practice sessions**: practice prompts invite the learner to attempt a challenge first, reveal hints/solutions on request, and may be tried in any order. Yatzy, card-drawing problems, the hypothetical infection model, and paper-only proof exercises belong to that track. Larger production matrices, feature similarity, pixel classifiers, and housing-price prediction are proposed practice/application ideas, not additional finished worked-example pages; if one is later authored as a guided exposition, link it in both the appropriate context and the overview without mislabeling it as complete.
+
 ### Practice implementation plan
 
 The proposal is a balanced extension of the current handbook: games supply exact counting, infection scenarios supply conditional reasoning, data tables supply vector/matrix interpretation, and short proofs supply general arguments. The main risks are overloaded pages and prerequisites not yet taught. Split the material into the eight sessions below, with 3–4 core challenges per page and at most one optional stretch problem. ML pages are conceptual previews, not model-training tutorials. The eight sessions are a bounded next phase, not requirements for completing the existing core handbook.

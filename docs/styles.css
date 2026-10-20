@@ -119,6 +119,13 @@ h1, h2, h3, p { margin-top: 0; }
 h1, h2 { font-family: ui-serif, Georgia, "Times New Roman", serif; font-weight: 500; letter-spacing: -0.035em; }
 h1 { max-width: 680px; margin-bottom: 18px; font-size: clamp(2.7rem, 7vw, 4.8rem); line-height: 1.03; }
 .intro-copy { max-width: 630px; color: var(--muted); font-size: 1.12rem; }
+.topic-tags { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-top: 20px; }
+.topic-tags-label { margin-right: 3px; color: var(--muted); font-size: 0.66rem; font-weight: 800; letter-spacing: 0.1em; }
+.topic-tag { display: inline-flex; min-height: 30px; align-items: center; padding: 3px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); color: var(--green); font-size: 0.78rem; font-weight: 650; line-height: 1.35; text-decoration: none; }
+.topic-tag:hover { border-color: #9db9a5; background: var(--pale-green); }
+.topic-tag:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+.practice-page .topic-tag { border-color: #e4d2bd; background: #fffaf1; color: #754024; }
+.practice-page .topic-tag:hover { border-color: #c77647; background: #f8efe1; }
 
 .lesson { padding: 38px; border: 1px solid var(--line); border-radius: 18px; background: var(--card); box-shadow: 0 16px 40px rgb(25 45 35 / 5%); }
 .lesson-heading { max-width: 680px; }
