@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="See how dot products and matrix multiplication can compare project proposals using weighted impact and feasibility ratings.">
+    <title>Dot products inside a matrix product — Math Refresher</title>
+    <link rel="stylesheet" href="styles.css?v=24">
+    <script src="editor.bundle.js?v=3" defer></script>
+    <script src="run-python.js?v=7" defer></script>
+    <script src="navigation.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#top">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand-controls">
+          <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="handbook-nav" aria-expanded="true"><span class="menu-icon" aria-hidden="true">☰</span><span>Contents</span></button>
+          <a class="wordmark" href="index.html">Math, unpacked</a>
+        </div>
+        <span class="header-note">A personal math refresher</span>
+      </div>
+    </header>
+
+    <aside id="handbook-nav" class="sidebar">
+      <nav aria-label="Handbook pages">
+        <p class="sidebar-label">START HERE</p><a class="nav-link" href="index.html">Handbook overview</a>
+        <p class="sidebar-label">CORE NOTATION</p>
+        <a class="nav-link" href="letters.html">Letters and notation</a>
+        <a class="nav-link" href="summation.html">Summation (∑)</a>
+        <a class="nav-link" href="products.html">Products and factorials</a>
+        <p class="sidebar-label">PROBABILITY AND COUNTING</p><a class="nav-link" href="probability.html">Probability</a>
+        <a class="nav-link" href="expectation.html">Expected value</a>
+        <a class="nav-link" href="probability-bounds.html">Probability bounds</a>
+        <a class="nav-link" href="counting-work.html">Counting work</a>
+        <a class="nav-link" href="combinations.html">Combinations</a>
+        <p class="sidebar-label">LINEAR ALGEBRA</p><a class="nav-link" href="vector-dot-product.html">Vectors and dot products</a>
+        <a class="nav-link" href="matrix-multiplication.html">Matrix multiplication</a>
+        <p class="sidebar-label">PROOFS AND ALGORITHMS</p><a class="nav-link" href="program-correctness.html">Program correctness</a>
+        <a class="nav-link" href="induction.html">Proof by induction</a>
+        <p class="sidebar-label">SYNTHESIS AND APPLICATIONS</p><a class="nav-link" href="sum-of-factorials.html">A sum of factorials</a><a class="nav-link" href="dice-probability.html">At least two sixes</a><a class="nav-link" href="matrix-product-application.html" aria-current="page">Dot products in a matrix product</a>
+        <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
+        <button class="nav-link quick-reference-trigger" type="button">Notation and Python</button><button class="nav-link glossary-trigger" type="button" data-reference-src="glossary.html?embed=1" data-reference-title="Math terms glossary" data-reference-link="glossary.html">Math terms glossary</button>
+      </nav>
+    </aside>
+    <button id="nav-scrim" class="nav-scrim" type="button" aria-label="Close navigation"></button>
+    <dialog id="quick-reference-dialog" class="quick-reference-dialog" aria-labelledby="quick-reference-dialog-title">
+      <div class="quick-reference-dialog-header">
+        <div><span class="notation-reading-label">QUICK REFERENCE</span><h2 id="quick-reference-dialog-title">Notation and Python</h2></div>
+        <div class="dialog-actions"><a href="quick-reference.html" target="_blank" rel="noopener">Open full page ↗</a><button class="dialog-close" type="button" aria-label="Close quick reference">×</button></div>
+      </div>
+      <iframe title="Notation and Python quick reference" data-src="quick-reference.html?embed=1"></iframe>
+    </dialog>
+
+    <main id="top">
+      <nav class="page-nav page-nav-top" aria-label="Previous and next pages">
+        <a class="page-nav-item" href="dice-probability.html"><span class="page-nav-direction">PREVIOUS</span><span>← At least two sixes</span></a>
+        <span class="page-nav-item page-nav-disabled" aria-disabled="true"><span class="page-nav-direction">NEXT</span><span>End of current lessons</span></span>
+      </nav>
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">SYNTHESIS · DOT PRODUCTS · MATRICES</p>
+        <h1 id="page-title">One row, one dot product, one output.</h1>
+        <p class="intro-copy">How can a company compare two project proposals? First, it records ratings and chooses which criteria matter most. Then a matrix product turns that information into one comparable score per proposal.</p>
+      </section>
+
+      <section id="weighted-model" class="lesson" aria-labelledby="model-title">
+        <div class="lesson-heading">
+          <h2 id="model-title">Start with the company's assessment</h2>
+          <p>A company has limited funding or staff time. It needs to decide which of two projects to prioritize. Its team examines each proposal and gives it a rating for:</p>
+          <ul class="role-list"><li><strong>Impact:</strong> the expected benefit.</li><li><strong>Feasibility:</strong> how practical it is to carry out.</li></ul>
+          <p>For this example, ratings use a scale from 1 (low) to 5 (high). The team's assessment gives these numbers:</p>
+          <div class="table-wrap"><table class="letter-table quick-table"><caption>Project ratings: impact and feasibility</caption><thead><tr><th scope="col">Proposal</th><th scope="col">Impact</th><th scope="col">Feasibility</th></tr></thead><tbody><tr><th scope="row">Proposal A</th><td>4</td><td>2</td></tr><tr><th scope="row">Proposal B</th><td>3</td><td>4</td></tr></tbody></table></div>
+          <p>These are project-specific ratings, based on the team's observations; the calculation will not verify whether the ratings are accurate.</p>
+          <p>Separately, the company decides how much each criterion matters. It gives impact weight 3 and feasibility weight 4. These are <strong>shared weights</strong>: both proposals will be evaluated with the same values. Feasibility matters slightly more in this example.</p>
+          <div class="table-wrap"><table class="letter-table quick-table"><caption>Shared criterion weights</caption><thead><tr><th scope="col">Criterion</th><th scope="col">Weight</th></tr></thead><tbody><tr><th scope="row">Impact</th><td>3</td></tr><tr><th scope="row">Feasibility</th><td>4</td></tr></tbody></table></div>
+          <p>A <strong>weight</strong> says how much a criterion matters in the total. A <a href="glossary.html#weighted-sum"><strong>weighted sum</strong></a> multiplies each rating by its shared criterion weight, then adds the products. Teams use this kind of scoring to compare options, for example when prioritizing projects or selecting vendors. It helps organize a decision; it does not make the decision for them.</p>
+        </div>
+        <p>Now encode the two tables as mathematical objects. Matrix <i>R</i> stores project ratings, one proposal per row. The vector <i>w</i> stores the shared criterion weights in the same column order: impact, then feasibility.</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">RATINGS AND CRITERION WEIGHTS</span><!-- LaTeX: R=\begin{bmatrix}4&2\\3&4\end{bmatrix},\quad \mathbf{w}=\begin{bmatrix}3\\4\end{bmatrix} --><math class="inline-math" aria-label="R has rows four, two and three, four; w is the column vector three, four"><mrow><mi>R</mi><mo>=</mo><mo>[</mo><mtable><mtr><mtd><mn>4</mn></mtd><mtd><mn>2</mn></mtd></mtr><mtr><mtd><mn>3</mn></mtd><mtd><mn>4</mn></mtd></mtr></mtable><mo>]</mo><mo>,</mo><mspace width="0.6em"/><mi mathvariant="bold">w</mi><mo>=</mo><mo>[</mo><mtable><mtr><mtd><mn>3</mn></mtd></mtr><mtr><mtd><mn>4</mn></mtd></mtr></mtable><mo>]</mo></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>R contains the ratings: proposal A has impact four and feasibility two; proposal B has impact three and feasibility four. The weight vector w assigns weight three to impact and four to feasibility.</p></div>
+        </div>
+        <p>Each row of <i>R</i> belongs to one proposal: the first row is proposal A, the second is proposal B. The columns are the criteria, in order: impact first, feasibility second. The vector <i>w</i> lists the corresponding criterion weights in that same order. We write the two resulting proposal scores as a column vector <i>s</i>.</p>
+        <p><strong>Important:</strong> both proposals use the same shared weight vector <i>w</i>. Only the ratings row changes. We do not adjust the weights separately for A and B; using one common scoring rule is what makes their scores comparable.</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">SHAPES</span><!-- LaTeX: (2\times2)(2\times1)=2\times1 --><math class="inline-math" aria-label="two by two times two by one gives a two by one result"><mrow><mo>(</mo><mn>2</mn><mo>×</mo><mn>2</mn><mo>)</mo><mo>(</mo><mn>2</mn><mo>×</mo><mn>1</mn><mo>)</mo><mo>=</mo><mn>2</mn><mo>×</mo><mn>1</mn></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>R has two rows and two columns; w has two rows and one column. The shared size of two fits, so the result has two rows and one column: one score for each proposal row.</p></div>
+        </div>
+        <p>This is a matrix times a column vector. It follows the same shape rule as the <a href="matrix-multiplication.html#matrix-multiplication">matrix multiplication lesson</a>: the columns of the first matrix must match the rows of the second. Here, each rating row pairs with the two criterion weights to produce that proposal's score.</p>
+      </section>
+
+      <section class="bounds-guide" aria-labelledby="first-score-title">
+        <h2 id="first-score-title">Proposal A: one row, one dot product</h2>
+        <p>Proposal A's first row in <i>R</i> is <!-- LaTeX: (4,2) --><math class="inline-math" aria-label="the row vector four, two"><mrow><mo>(</mo><mn>4</mn><mo>,</mo><mn>2</mn><mo>)</mo></mrow></math>: impact is rated 4 and feasibility is rated 2. Match that row with the criterion-weight vector <!-- LaTeX: (3,4) --><math class="inline-math" aria-label="the vector three, four"><mrow><mo>(</mo><mn>3</mn><mo>,</mo><mn>4</mn><mo>)</mo></mrow></math>. Multiply matching entries and add, just as in the <a href="vector-dot-product.html#dot-product-lesson">dot-product lesson</a>.</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">PROPOSAL A SCORE</span><!-- LaTeX: s_A=4\times3+2\times4=12+8=20 --><math class="inline-math" aria-label="s A equals four times three plus two times four equals twelve plus eight equals twenty"><mrow><msub><mi>s</mi><mi>A</mi></msub><mo>=</mo><mn>4</mn><mo>×</mo><mn>3</mn><mo>+</mo><mn>2</mn><mo>×</mo><mn>4</mn><mo>=</mo><mn>12</mn><mo>+</mo><mn>8</mn><mo>=</mo><mn>20</mn></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>Proposal A's score is its impact rating, four, times the impact weight, three, plus its feasibility rating, two, times the feasibility weight, four. That is twelve plus eight, or twenty.</p></div>
+        </div>
+        <p>The proposal's rating row and the column of criterion weights make a dot product: pair impact rating 4 with impact weight 3, and feasibility rating 2 with feasibility weight 4, then add. This one dot product produces one number—the score for proposal A.</p>
+      </section>
+
+      <section class="bounds-guide" aria-labelledby="second-score-title">
+        <h2 id="second-score-title">Proposal B: repeat with its ratings</h2>
+        <p>Proposal B's row in <i>R</i> is <!-- LaTeX: (3,4) --><math class="inline-math" aria-label="the row vector three, four"><mrow><mo>(</mo><mn>3</mn><mo>,</mo><mn>4</mn><mo>)</mo></mrow></math>: impact is rated 3 and feasibility is rated 4. The criterion weights stay the same, so pair this row with <!-- LaTeX: (3,4) --><math class="inline-math" aria-label="the vector three, four"><mrow><mo>(</mo><mn>3</mn><mo>,</mo><mn>4</mn><mo>)</mo></mrow></math> again:</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">PROPOSAL B SCORE</span><!-- LaTeX: s_B=3\times3+4\times4=9+16=25 --><math class="inline-math" aria-label="s B equals three times three plus four times four equals nine plus sixteen equals twenty-five"><mrow><msub><mi>s</mi><mi>B</mi></msub><mo>=</mo><mn>3</mn><mo>×</mo><mn>3</mn><mo>+</mo><mn>4</mn><mo>×</mo><mn>4</mn><mo>=</mo><mn>9</mn><mo>+</mo><mn>16</mn><mo>=</mo><mn>25</mn></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>Proposal B's score is its impact rating, three, times the impact weight, three, plus its feasibility rating, four, times the feasibility weight, four. That is nine plus sixteen, or twenty-five.</p></div>
+        </div>
+        <p>Put the two scalar scores into a column, in the same order as the proposal rows:</p>
+        <div class="notation-reading-row compact-reading-row">
+          <div class="notation-reading-part"><span class="notation-reading-label">MATRIX PRODUCT</span><!-- LaTeX: \mathbf{s}=R\mathbf{w}=\begin{bmatrix}20\\25\end{bmatrix} --><math class="inline-math" aria-label="s equals R times w equals the column vector twenty, twenty-five"><mrow><mi mathvariant="bold">s</mi><mo>=</mo><mi>R</mi><mi mathvariant="bold">w</mi><mo>=</mo><mo>[</mo><mtable><mtr><mtd><mn>20</mn></mtd></mtr><mtr><mtd><mn>25</mn></mtd></mtr></mtable><mo>]</mo></mrow></math></div>
+          <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>The score vector s is R multiplied by w. Proposal A scores twenty and proposal B scores twenty-five.</p></div>
+        </div>
+        <p>Each row of <i>R</i> produces one output: the number of proposal rows tells us how many scores we get. Under these chosen ratings and weights, proposal B leads proposal A by five points. This is exactly the row-by-column rule for matrix multiplication, with a single column on the right.</p>
+      </section>
+
+      <aside class="later-note"><strong>What does the score tell us—and not tell us?</strong><p>For this particular scoring model, 25 is higher than 20, so proposal B ranks above proposal A: its stronger feasibility rating more than offsets its lower impact rating when feasibility has the larger weight. The scores are weighted points, not percentages or ratings out of 5; with both criteria rated 5, the maximum would be <!-- LaTeX: 5\times3+5\times4=35 --><math class="inline-math" aria-label="five times three plus five times four equals thirty-five"><mrow><mn>5</mn><mo>×</mo><mn>3</mn><mo>+</mo><mn>5</mn><mo>×</mo><mn>4</mn><mo>=</mo><mn>35</mn></mrow></math> weighted points. They are not probabilities, and they do not prove that proposal B is objectively better. A different rating scale or different weights could change the ranking; the numbers make the team's assumptions visible, but do not choose those assumptions for it.</p></aside>
+
+      <section class="code-section" aria-labelledby="code-title">
+        <div class="code-heading">
+          <div><p class="eyebrow">PYTHON · OPTIONAL CHECK</p><h2 id="code-title">Compute one score per proposal</h2></div>
+          <span class="language-label">Python</span>
+        </div>
+        <p class="code-intro">The names in the code match the model: <code>ratings</code> stores R, <code>criterion_weights</code> stores the two weights in impact-then-feasibility order, and <code>proposal_scores</code> stores the result vector s. The outer loop handles one proposal; the inner loop multiplies each of its ratings by the matching criterion weight and adds the products. Python lists start counting positions at zero, and <code>range</code> stops before its endpoint. So <code>range(len(criterion_weights))</code> visits indices 0 and 1—the impact and feasibility positions.</p>
+        <div id="python-editor" class="editor-shell" aria-label="Editable Python weighted scoring example"></div>
+        <div class="run-controls"><button id="run-python" type="button">Run Python</button><button id="reset-python" type="button">Reset to starter code</button><span id="run-status" role="status" aria-live="polite">Runs in your browser. The first run needs an internet connection to load Python.</span></div>
+        <div class="output-panel"><div class="output-heading">Output</div><pre id="python-output" aria-live="polite">Click “Run Python” to run the code above.</pre></div>
+        <template id="starter-python">ratings = [[4, 2],
+           [3, 4]]
+criterion_weights = [3, 4]
+
+proposal_scores = []
+for proposal_ratings in ratings:
+    score = 0
+    for criterion_index in range(len(criterion_weights)):
+        score += (proposal_ratings[criterion_index]
+                  * criterion_weights[criterion_index])
+    proposal_scores.append(score)
+
+print("Proposal scores:", proposal_scores)</template>
+        <p class="math-note"><strong>Check the matching lengths.</strong> Each proposal row in <code>ratings</code> must contain one rating for every entry in <code>criterion_weights</code>. Here both counts are two: impact and feasibility, matching the matrix-product shape rule.</p>
+      </section>
+
+      <section class="shorter-section" aria-labelledby="takeaway-title">
+        <p class="eyebrow">THE CONNECTION</p>
+        <h2 id="takeaway-title">Why use a matrix product here?</h2>
+        <p>The project-prioritization example has two proposals and two criteria. Each row of the ratings matrix describes one proposal; the weight vector describes how important each criterion is. A row-by-column dot product turns each proposal's two ratings into one weighted score, and matrix multiplication repeats that calculation for all proposals at once.</p>
+        <p>This pattern is useful whenever several options are evaluated with the same criteria and weights. The score helps compare options under the stated model; it does not replace judgment about whether the ratings and weights make sense. For a fuller matrix-by-matrix example, revisit <a href="matrix-multiplication.html">matrix multiplication</a>. For the matching-and-adding operation itself, revisit <a href="vector-dot-product.html">vectors and dot products</a>.</p>
+      </section>
+
+      <nav class="page-nav page-nav-bottom" aria-label="Previous and next pages">
+        <a class="page-nav-item" href="dice-probability.html"><span class="page-nav-direction">PREVIOUS</span><span>← At least two sixes</span></a>
+        <span class="page-nav-item page-nav-disabled" aria-disabled="true"><span class="page-nav-direction">NEXT</span><span>End of current lessons</span></span>
+      </nav>
+    </main>
+    <footer>Made for learning to unpack the math, one step at a time.</footer>
+  </body>
+</html>
