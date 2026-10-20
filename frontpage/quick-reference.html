@@ -17,7 +17,7 @@
           <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="handbook-nav" aria-expanded="true">
             <span class="menu-icon" aria-hidden="true">☰</span><span>Contents</span>
           </button>
-          <a class="wordmark" href="letters.html">Math, unpacked</a>
+          <a class="wordmark" href="index.html">Math, unpacked</a>
         </div>
         <span class="header-note">A personal math refresher</span>
       </div>
@@ -25,9 +25,10 @@
 
     <aside id="handbook-nav" class="sidebar">
       <nav aria-label="Handbook pages">
+        <p class="sidebar-label">START HERE</p><a class="nav-link" href="index.html">Handbook overview</a>
         <p class="sidebar-label">CORE NOTATION</p>
         <a class="nav-link" href="letters.html">Letters and notation</a>
-        <a class="nav-link" href="index.html">Summation (∑)</a>
+        <a class="nav-link" href="summation.html">Summation (∑)</a>
         <a class="nav-link" href="products.html">Products and factorials</a>
         <p class="sidebar-label">PROBABILITY AND COUNTING</p><a class="nav-link" href="probability.html">Probability</a>
         <a class="nav-link" href="expectation.html">Expected value</a>
@@ -38,7 +39,7 @@
         <a class="nav-link" href="matrix-multiplication.html">Matrix multiplication</a>
         <p class="sidebar-label">PROOFS AND ALGORITHMS</p><a class="nav-link" href="program-correctness.html">Program correctness</a>
         <a class="nav-link" href="induction.html">Proof by induction</a>
-        <p class="sidebar-label">SYNTHESIS</p><a class="nav-link" href="sum-of-factorials.html">A sum of factorials</a>
+        <p class="sidebar-label">SYNTHESIS AND APPLICATIONS</p><a class="nav-link" href="sum-of-factorials.html">A sum of factorials</a><a class="nav-link" href="dice-probability.html">At least two sixes</a>
         <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
         <a class="nav-link" href="quick-reference.html" aria-current="page">Notation and Python</a>
         <a class="nav-link" href="glossary.html">Math terms glossary</a>
@@ -64,7 +65,7 @@
               <tr>
                 <td><!-- LaTeX: \sum_{i=1}^{n}a_i --><math class="inline-math" aria-label="sum from i equals one through n of a sub i"><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>a</mi><mi>i</mi></msub></mrow></math></td>
                 <td>Add each <!-- LaTeX: a_i --><math class="inline-math" aria-label="a sub i"><msub><mi>a</mi><mi>i</mi></msub></math> from index 1 through <i>n</i>.</td>
-                <td><a href="index.html#summation-notation">Summation lesson</a></td>
+                <td><a href="summation.html#summation-notation">Summation lesson</a></td>
               </tr>
               <tr>
                 <td><!-- LaTeX: \prod_{i=1}^{n}i --><math class="inline-math" aria-label="product from i equals one through n of i"><mrow><munderover><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mi>i</mi></mrow></math></td>
@@ -79,12 +80,27 @@
               <tr>
                 <td><!-- LaTeX: a_i --><math class="inline-math" aria-label="a sub i"><msub><mi>a</mi><mi>i</mi></msub></math></td>
                 <td>The value at position <i>i</i>; the subscript labels which value.</td>
-                <td><a href="index.html#sum-index-term">Indices and terms</a></td>
+                <td><a href="summation.html#sum-index-term">Indices and terms</a></td>
               </tr>
               <tr>
                 <td><!-- LaTeX: \{A,B,C\} --><math class="inline-math" aria-label="the set containing A, B, and C"><mrow><mo>{</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo>,</mo><mi>C</mi><mo>}</mo></mrow></math></td>
                 <td>A set: a collection of distinct items; a subset contains some or all of them.</td>
-                <td><a href="combinations.html#combinations">Combinations lesson</a></td>
+                <td><a href="letters.html#combinatorics-terms-title">Set notation</a></td>
+              </tr>
+              <tr>
+                <td><!-- LaTeX: x\in S,\;A\subseteq S,\;x\notin S --><math class="inline-math" aria-label="x belongs to S; A is a subset of S; x does not belong to S"><mrow><mi>x</mi><mo>∈</mo><mi>S</mi><mo>,</mo><mspace width="0.3em"/><mi>A</mi><mo>⊆</mo><mi>S</mi><mo>,</mo><mspace width="0.3em"/><mi>x</mi><mo>∉</mo><mi>S</mi></mrow></math></td>
+                <td><i>x</i> belongs to <i>S</i>; <i>A</i> is contained in <i>S</i>; <i>x</i> is not in <i>S</i>.</td>
+                <td><a href="letters.html#combinatorics-terms-title">Membership and subsets</a></td>
+              </tr>
+              <tr>
+                <td><!-- LaTeX: A\cup B,\;A\cap B,\;\emptyset,\;|S| --><math class="inline-math" aria-label="A union B; A intersection B; empty set; size of S"><mrow><mi>A</mi><mo>∪</mo><mi>B</mi><mo>,</mo><mspace width="0.3em"/><mi>A</mi><mo>∩</mo><mi>B</mi><mo>,</mo><mspace width="0.3em"/><mo>∅</mo><mo>,</mo><mspace width="0.3em"/><mo>|</mo><mi>S</mi><mo>|</mo></mrow></math></td>
+                <td>Union, intersection, the empty set, and the number of members in <i>S</i>.</td>
+                <td><a href="letters.html#combinatorics-terms-title">Set operations</a></td>
+              </tr>
+              <tr>
+                <td><!-- LaTeX: \mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R},\mathbb{C} --><math class="inline-math" aria-label="natural, integer, rational, real, and complex number sets"><mrow><mi>ℕ</mi><mo>,</mo><mi>ℤ</mi><mo>,</mo><mi>ℚ</mi><mo>,</mo><mi>ℝ</mi><mo>,</mo><mi>ℂ</mi></mrow></math></td>
+                <td>Natural numbers, integers, rational numbers, real numbers, and complex numbers.</td>
+                <td><a href="letters.html#number-sets-title">Number sets</a></td>
               </tr>
               <tr>
                 <td><!-- LaTeX: \binom{n}{r} --><math class="inline-math" aria-label="n choose r"><mrow><mo>(</mo><mfrac linethickness="0"><mi>n</mi><mi>r</mi></mfrac><mo>)</mo></mrow></math></td>
@@ -208,7 +224,7 @@ math.cbrt(-8)   # -2.0 (Python 3.11+)</code></pre>
       <aside class="back-link-card">
         <strong>Use this as a lookup, not a shortcut around the lesson</strong>
         <p>When a symbol feels unfamiliar, use the linked lesson to read it aloud, expand it, and work through it in Python.</p>
-        <a href="index.html#summation-notation">Start with the summation lesson →</a>
+        <a href="summation.html#summation-notation">Start with the summation lesson →</a>
       </aside>
     </main>
 

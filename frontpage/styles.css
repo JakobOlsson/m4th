@@ -156,6 +156,7 @@ h2 { margin-bottom: 12px; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.
 
 .explain-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .explain-grid article { min-width: 0; padding: 20px; border: 1px solid var(--line); border-radius: 12px; }
+.set-space-heading { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
 .explain-grid .short-code { max-width: 100%; min-width: 0; }
 .explain-grid h3, .expansion h3, .code-heading h3 { margin-bottom: 8px; font-size: 1rem; }
 .explain-grid p { margin-bottom: 0; color: var(--muted); font-size: 0.94rem; }
@@ -257,6 +258,22 @@ h2 { margin-bottom: 12px; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.
 .guide-card > p { color: var(--muted); }
 .guide-card > .math-note { color: var(--ink); }
 .guide-card a { color: var(--green); font-weight: 600; }
+.overview-page .guide-card > p { max-width: 720px; line-height: 1.6; }
+.overview-page .journey-stage { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 20px; margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--line); }
+.overview-page .journey-number { display: inline-flex; align-items: center; justify-content: center; align-self: start; min-height: 30px; padding: 0 9px; border-radius: 999px; background: var(--pale-green); color: var(--green); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.08em; white-space: nowrap; }
+.overview-page .journey-stage-content h3, .overview-page .journey-connections h3, .overview-page .application-grid h3 { margin: 0 0 8px; font-family: ui-serif, Georgia, "Times New Roman", serif; font-size: 1.28rem; font-weight: 500; letter-spacing: -0.015em; line-height: 1.25; }
+.overview-page .journey-stage-content > p, .overview-page .journey-connections p, .overview-page .application-grid p { color: var(--muted); line-height: 1.6; }
+.overview-page .journey-stage-content > p { margin-bottom: 13px; }
+.overview-page .journey-stage-content ul { margin: 0; padding-left: 20px; }
+.overview-page .journey-stage-content li { margin: 7px 0; padding-left: 2px; line-height: 1.55; }
+.overview-page .journey-stage-content li span { color: var(--muted); }
+.overview-page .journey-connections, .overview-page .application-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+.overview-page .journey-connections article, .overview-page .application-grid article { min-width: 0; padding: 20px; border: 1px solid var(--line); border-radius: 10px; background: #f7f8f4; }
+.overview-page .journey-connections article > *:last-child, .overview-page .application-grid article > *:last-child { margin-bottom: 0; }
+.overview-page .journey-connections p, .overview-page .application-grid p { margin-bottom: 12px; font-size: 0.92rem; }
+.overview-page .application-status { display: inline-block; margin-bottom: 9px; color: var(--green); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.11em; }
+.overview-page .application-grid h3 { font-size: 1.2rem; }
+.overview-page .application-grid h3 a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .glossary-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
 .glossary-entry { min-width: 0; padding: 16px; border: 1px solid var(--line); border-radius: 9px; background: #f7f9f5; }
 .glossary-entry h3 { margin: 0 0 7px; color: var(--green); font-size: 1rem; }
@@ -355,6 +372,9 @@ body.reference-embed .guide-card { margin-bottom: 12px; padding: 22px; }
   .page-nav-item { min-height: 58px; padding: 9px 10px; font-size: 0.78rem; }
   .page-nav-direction { font-size: 0.6rem; }
   .guide-card { padding: 22px 17px; }
+  .overview-page .journey-stage { grid-template-columns: 1fr; gap: 10px; }
+  .overview-page .journey-connections, .overview-page .application-grid { grid-template-columns: 1fr; }
+  .overview-page .journey-connections article, .overview-page .application-grid article { padding: 17px; }
   .letter-table { min-width: 590px; }
   .intro { padding: 50px 4px 34px; }
   .lesson { padding: 22px 16px; }

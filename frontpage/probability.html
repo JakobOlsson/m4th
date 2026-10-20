@@ -18,7 +18,7 @@
           <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="handbook-nav" aria-expanded="true">
             <span class="menu-icon" aria-hidden="true">☰</span><span>Contents</span>
           </button>
-          <a class="wordmark" href="letters.html">Math, unpacked</a>
+          <a class="wordmark" href="index.html">Math, unpacked</a>
         </div>
         <span class="header-note">A personal math refresher</span>
       </div>
@@ -26,9 +26,10 @@
 
     <aside id="handbook-nav" class="sidebar">
       <nav aria-label="Handbook pages">
+        <p class="sidebar-label">START HERE</p><a class="nav-link" href="index.html">Handbook overview</a>
         <p class="sidebar-label">CORE NOTATION</p>
         <a class="nav-link" href="letters.html">Letters and notation</a>
-        <a class="nav-link" href="index.html">Summation (∑)</a>
+        <a class="nav-link" href="summation.html">Summation (∑)</a>
         <a class="nav-link" href="products.html">Products and factorials</a>
         <p class="sidebar-label">PROBABILITY AND COUNTING</p><a class="nav-link" href="probability.html" aria-current="page">Probability</a>
         <a class="nav-link" href="expectation.html">Expected value</a>
@@ -39,7 +40,7 @@
         <a class="nav-link" href="matrix-multiplication.html">Matrix multiplication</a>
         <p class="sidebar-label">PROOFS AND ALGORITHMS</p><a class="nav-link" href="program-correctness.html">Program correctness</a>
         <a class="nav-link" href="induction.html">Proof by induction</a>
-        <p class="sidebar-label">SYNTHESIS</p><a class="nav-link" href="sum-of-factorials.html">A sum of factorials</a>
+        <p class="sidebar-label">SYNTHESIS AND APPLICATIONS</p><a class="nav-link" href="sum-of-factorials.html">A sum of factorials</a><a class="nav-link" href="dice-probability.html">At least two sixes</a>
         <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
         <button class="nav-link quick-reference-trigger" type="button">Notation and Python</button><button class="nav-link glossary-trigger" type="button" data-reference-src="glossary.html?embed=1" data-reference-title="Math terms glossary" data-reference-link="glossary.html">Math terms glossary</button>
       </nav>
@@ -162,7 +163,7 @@
               <p>“The sum expands to the probability that X is 5 plus the probability that X is 6. That is one sixth plus one sixth, which is one third.”</p>
             </div>
           </div>
-          <p>This is the same bounds-and-term process as the <a href="index.html#summation-notation">summation lesson</a>, but the whole term here is an expression involving a probability—not just the index itself.</p>
+          <p>This is the same bounds-and-term process as the <a href="summation.html#summation-notation">summation lesson</a>, but the whole term here is an expression involving a probability—not just the index itself.</p>
           <p class="math-note"><strong>Scope note:</strong> “favorable outcomes divided by all outcomes” works when the possible outcomes are finite and equally likely, as with a fair die. If outcomes do not have equal chances, add the probabilities of the outcomes in the event instead.</p>
         </section>
 

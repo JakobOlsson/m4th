@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A personal, code-first math refresher for unpacking notation step by step.">
+    <title>Math, unpacked — Math Refresher</title>
+    <link rel="stylesheet" href="styles.css?v=24">
+    <script src="editor.bundle.js?v=3" defer></script>
+    <script src="run-python.js?v=7" defer></script>
+    <script src="navigation.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#top">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand-controls">
+          <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="handbook-nav" aria-expanded="true">
+            <span class="menu-icon" aria-hidden="true">☰</span><span>Contents</span>
+          </button>
+          <a class="wordmark" href="index.html">Math, unpacked</a>
+        </div>
+        <span class="header-note">A personal math refresher</span>
+      </div>
+    </header>
+
+    <aside id="handbook-nav" class="sidebar">
+      <nav aria-label="Handbook pages">
+        <p class="sidebar-label">START HERE</p><a class="nav-link" href="index.html">Handbook overview</a>
+        <p class="sidebar-label">CORE NOTATION</p>
+        <a class="nav-link" href="letters.html">Letters and notation</a>
+        <a class="nav-link" href="summation.html" aria-current="page">Summation (∑)</a>
+        <a class="nav-link" href="products.html">Products and factorials</a>
+        <p class="sidebar-label">PROBABILITY AND COUNTING</p><a class="nav-link" href="probability.html">Probability</a>
+        <a class="nav-link" href="expectation.html">Expected value</a>
+        <a class="nav-link" href="probability-bounds.html">Probability bounds</a>
+        <a class="nav-link" href="counting-work.html">Counting work</a>
+        <a class="nav-link" href="combinations.html">Combinations</a>
+        <p class="sidebar-label">LINEAR ALGEBRA</p><a class="nav-link" href="vector-dot-product.html">Vectors and dot products</a>
+        <a class="nav-link" href="matrix-multiplication.html">Matrix multiplication</a>
+        <p class="sidebar-label">PROOFS AND ALGORITHMS</p><a class="nav-link" href="program-correctness.html">Program correctness</a>
+        <a class="nav-link" href="induction.html">Proof by induction</a>
+        <p class="sidebar-label">SYNTHESIS AND APPLICATIONS</p><a class="nav-link" href="sum-of-factorials.html">A sum of factorials</a><a class="nav-link" href="dice-probability.html">At least two sixes</a>
+        <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
+        <button class="nav-link quick-reference-trigger" type="button">Notation and Python</button><button class="nav-link glossary-trigger" type="button" data-reference-src="glossary.html?embed=1" data-reference-title="Math terms glossary" data-reference-link="glossary.html">Math terms glossary</button>
+      </nav>
+    </aside>
+    <button id="nav-scrim" class="nav-scrim" type="button" aria-label="Close navigation"></button>
+    <dialog id="quick-reference-dialog" class="quick-reference-dialog" aria-labelledby="quick-reference-dialog-title">
+      <div class="quick-reference-dialog-header">
+        <div><span class="notation-reading-label">QUICK REFERENCE</span><h2 id="quick-reference-dialog-title">Notation and Python</h2></div>
+        <div class="dialog-actions"><a href="quick-reference.html" target="_blank" rel="noopener">Open full page ↗</a><button class="dialog-close" type="button" aria-label="Close quick reference">×</button></div>
+      </div>
+      <iframe title="Notation and Python quick reference" data-src="quick-reference.html?embed=1"></iframe>
+    </dialog>
+
+    <main id="top">
+      <nav class="page-nav page-nav-top" aria-label="Previous and next pages">
+        <a class="page-nav-item" href="letters.html"><span class="page-nav-direction">PREVIOUS</span><span>← Letters and notation</span></a>
+        <a class="page-nav-item page-nav-next" href="products.html"><span class="page-nav-direction">NEXT</span><span>Products and factorials →</span></a>
+      </nav>
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">READ IT · EXPAND IT · UNDERSTAND IT</p>
+        <h1 id="page-title">Math notation is compressed thinking.</h1>
+        <p class="intro-copy">This is a place to slow down, read the symbols aloud, and unpack them into steps you can follow—and, when useful, work through in Python.</p>
+      </section>
+
+      <section id="summation-notation" class="lesson" aria-labelledby="lesson-title">
+        <div class="lesson-heading">
+          <p class="eyebrow">FIRST NOTATION · SUMMATION SIGN (∑)</p>
+          <h2 id="lesson-title">A sum is an instruction to add terms.</h2>
+          <p>The lower limit gives the starting index; the upper limit gives the last index included. The expression beside the sum tells us what to add for each index.</p>
+        </div>
+
+        <div class="notation-reading-row">
+          <div class="notation-reading-part">
+            <span class="notation-reading-label">NOTATION</span>
+            <div class="formula-card mathml-card">
+              <!-- LaTeX: \sum_{i=1}^{n} i -->
+              <math display="block" aria-label="The sum of i from i equals 1 through n">
+                <mrow>
+                  <munderover>
+                    <mo>∑</mo>
+                    <mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow>
+                    <mi>n</mi>
+                  </munderover>
+                  <mi>i</mi>
+                </mrow>
+              </math>
+            </div>
+          </div>
+          <div class="notation-reading-part spoken-reading">
+            <span class="notation-reading-label">READ IT ALOUD</span>
+            <p>Add each value of <i>i</i> from one through <i>n</i>.</p>
+          </div>
+        </div>
+
+        <aside class="notation-variants">
+          <strong>Same notation, different layout</strong>
+          <p>The summation sign <i>∑</i> is based on the capital Greek letter Sigma (<i>Σ</i>). In displayed equations, its limits are commonly placed above and below. Inline, they are often placed to the right to save space:</p>
+          <p class="inline-variant"><span>Inline:</span><!-- LaTeX: \sum_{i=1}^{n} a_i --><math class="inline-math" aria-label="sum from i equals one through n of a sub i"><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><msub><mi>a</mi><mi>i</mi></msub></mrow></math></p>
+          <p class="variant-caption">Both layouts mean: add the terms <i>a</i><sub>i</sub> for indices from 1 through <i>n</i>. Typesetting conventions can vary.</p>
+        </aside>
+
+        <div class="explain-grid">
+          <article>
+            <h3>The bounds</h3>
+            <p><i>i</i> = 1 is where the index starts. <i>n</i> is where it stops. If <i>n</i> = 4, the index takes the values 1, 2, 3, and 4.</p>
+          </article>
+          <article id="sum-index-term">
+            <h3>Index vs. term</h3>
+            <p>Here, <i>i</i> is both the index and the value being added. That is not always true: <!-- LaTeX: \sum_{i=1}^{n} a_i --><math class="inline-math" aria-label="sum from i equals one through n of a sub i"><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><msub><mi>a</mi><mi>i</mi></msub></mrow></math>, where <i>i</i> selects a position and <i>a</i><sub>i</sub> is the term added.</p>
+          </article>
+        </div>
+
+        <section class="bounds-guide" aria-labelledby="bounds-guide-title">
+          <h3 id="bounds-guide-title">The starting bound depends on what you want to add</h3>
+          <p>The limits are part of the instruction: choose the first and last indices that belong in the sum. They are not always 1 and <i>n</i>.</p>
+          <div class="bound-examples">
+            <article>
+              <span>Start at 0:</span>
+              <p><!-- LaTeX: \sum_{i=0}^{3} a_i = a_0 + a_1 + a_2 + a_3 --><math class="inline-math" aria-label="sum from i equals zero through three of a sub i equals a zero plus a one plus a two plus a three"><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mn>3</mn></munderover><msub><mi>a</mi><mi>i</mi></msub><mo>=</mo><msub><mi>a</mi><mn>0</mn></msub><mo>+</mo><msub><mi>a</mi><mn>1</mn></msub><mo>+</mo><msub><mi>a</mi><mn>2</mn></msub><mo>+</mo><msub><mi>a</mi><mn>3</mn></msub></mrow></math></p>
+              <p class="bound-readout">Read aloud: Add <i>a</i><sub>0</sub>, then <i>a</i><sub>1</sub>, <i>a</i><sub>2</sub>, and <i>a</i><sub>3</sub>.</p>
+            </article>
+            <article>
+              <span>Start at 2:</span>
+              <p><!-- LaTeX: \sum_{i=2}^{4} a_i = a_2 + a_3 + a_4 --><math class="inline-math" aria-label="sum from i equals two through four of a sub i equals a two plus a three plus a four"><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>2</mn></mrow><mn>4</mn></munderover><msub><mi>a</mi><mi>i</mi></msub><mo>=</mo><msub><mi>a</mi><mn>2</mn></msub><mo>+</mo><msub><mi>a</mi><mn>3</mn></msub><mo>+</mo><msub><mi>a</mi><mn>4</mn></msub></mrow></math></p>
+              <p class="bound-readout">Read aloud: Add <i>a</i><sub>2</sub>, then <i>a</i><sub>3</sub> and <i>a</i><sub>4</sub>.</p>
+            </article>
+          </div>
+          <p>Here is a probability preview: <!-- LaTeX: \Pr(A) --><math class="inline-math" aria-label="probability of A"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>A</mi><mo>)</mo></mrow></math> means “the probability that <i>A</i> happens.” Let <i>X</i> be a count that can be any integer from 0 through <i>n</i>; <!-- LaTeX: \Pr(X=k) --><math class="inline-math" aria-label="probability that X equals k"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo>)</mo></mrow></math> is the probability that the count equals <i>k</i>. For a full introduction, see the <a href="probability.html#probability-notation">probability lesson</a>.</p>
+          <p>For “at least 2,” add the probabilities for outcomes 2 through <i>n</i>:</p>
+          <div class="notation-reading-row compact-reading-row">
+            <div class="notation-reading-part"><span class="notation-reading-label">NOTATION</span><p><!-- LaTeX: \Pr(X \ge 2) = \sum_{k=2}^{n} \Pr(X=k) --><math class="inline-math" aria-label="probability of X at least two equals the sum from k equals two through n of the probability X equals k"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>≥</mo><mn>2</mn><mo>)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>2</mn></mrow><mi>n</mi></munderover><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo>)</mo></mrow></math></p></div>
+            <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>The probability that <i>X</i> is at least 2 is the sum of the probabilities that <i>X</i> equals 2, 3, and so on through <i>n</i>.</p></div>
+          </div>
+          <p class="expansion-note">Expanded, that is <!-- LaTeX: \Pr(X=2) + \Pr(X=3) + \cdots + \Pr(X=n) --><math class="inline-math" aria-label="probability X equals two plus probability X equals three and so on through probability X equals n"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mn>2</mn><mo>)</mo><mo>+</mo><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mn>3</mn><mo>)</mo><mo>+</mo><mo>⋯</mo><mo>+</mo><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mi>n</mi><mo>)</mo></mrow></math>. “Exactly 2” is just <!-- LaTeX: \Pr(X=2) --><math class="inline-math" aria-label="probability that X equals two"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mn>2</mn><mo>)</mo></mrow></math>.</p>
+          <p>By contrast, “at most 2” uses outcomes 0 through 2:</p>
+          <div class="notation-reading-row compact-reading-row">
+            <div class="notation-reading-part"><span class="notation-reading-label">NOTATION</span><p><!-- LaTeX: \Pr(X \le 2) = \sum_{k=0}^{2} \Pr(X=k) --><math class="inline-math" aria-label="probability of X at most two equals the sum from k equals zero through two of the probability X equals k"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>≤</mo><mn>2</mn><mo>)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mn>2</mn></munderover><mi mathvariant="normal">P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mi>k</mi><mo>)</mo></mrow></math></p></div>
+            <div class="notation-reading-part spoken-reading"><span class="notation-reading-label">READ IT ALOUD</span><p>The probability that <i>X</i> is at most 2 is the sum of the probabilities that <i>X</i> equals 0, 1, or 2.</p></div>
+          </div>
+          <p>For separated outcomes, sum over a set of indices rather than an interval.</p>
+        </section>
+
+        <div class="expansion">
+          <div>
+            <p class="eyebrow">TRY A SMALL VALUE</p>
+            <h3>Let <i>n</i> = 4</h3>
+          </div>
+          <p class="expanded-formula"><!-- LaTeX: \sum_{i=1}^{4} i = 1 + 2 + 3 + 4 = 10 -->
+            <math display="inline" aria-label="sum from i equals one through four of i equals one plus two plus three plus four equals ten">
+              <mrow>
+                <munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mn>4</mn></munderover>
+                <mi>i</mi><mo>=</mo><mn>1</mn><mo>+</mo><mn>2</mn><mo>+</mo><mn>3</mn><mo>+</mo><mn>4</mn><mo>=</mo><mn class="math-answer">10</mn>
+              </mrow>
+            </math>
+          </p>
+        </div>
+
+        <section class="code-section" aria-labelledby="code-title">
+          <div class="code-heading">
+            <div>
+              <p class="eyebrow">THE SAME STEPS IN PYTHON</p>
+              <h3 id="code-title">Build the total one step at a time</h3>
+            </div>
+            <span class="language-label">Python</span>
+          </div>
+          <p class="code-intro"><code>n</code> is the upper bound, <code>i</code> is the changing index, and <code>total</code> keeps the sum so far. The condition <code>i &lt;= n</code> includes the final value, <code>n</code>. See the <button class="inline-reference-trigger" type="button" data-reference-target="python-reference-title">Python syntax reminder</button>.</p>
+          <div id="python-editor" class="editor-shell" aria-label="Editable Python example"></div>
+          <div class="run-controls">
+            <button id="run-python" type="button">Run Python</button>
+            <button id="reset-python" type="button">Reset to starter code</button>
+            <span id="run-status" role="status" aria-live="polite">Runs in your browser. The first run needs an internet connection to load Python.</span>
+          </div>
+          <div class="output-panel">
+            <div class="output-heading">Output</div>
+            <pre id="python-output" aria-live="polite">Click “Run Python” to run the code above.</pre>
+          </div>
+        </section>
+
+        <section class="shorter-section" aria-labelledby="shorter-title">
+          <p class="eyebrow">THE SHORTER, IDIOMATIC PYTHON VERSION</p>
+          <h3 id="shorter-title">Let Python do the repeated addition</h3>
+          <p>For a simple sum over a sequence, Python’s built-in <code>sum()</code> function is a concise way to add the values:</p>
+          <pre class="short-code"><code>n = 4
+i = 1
+total = sum(range(i, n + 1))
+print(total)</code></pre>
+          <p><code>range(i, n + 1)</code> produces the index values from <code>i</code> through <code>n</code>. Python stops before the range’s end value, so we use <code>n + 1</code> to include <code>n</code>. Then <code>sum()</code> adds those values. It’s the same calculation as the loop above, with the repeated addition tucked into a built-in function.</p>
+          <button class="load-version-button" data-load-code="shorter-python" type="button">Load this version into the editor</button>
+          <template id="shorter-python">n = 4
+i = 1
+total = sum(range(i, n + 1))
+print(total)</template>
+        </section>
+
+        <aside class="later-note">
+          <strong>Where this leads</strong>
+          <p>The same summation notation appears in probability, dot products, and matrix multiplication. We’ll return to those later; for now, we’re practicing how to read the sum itself. The handbook will use English mathematical terminology throughout.</p>
+        </aside>
+      </section>
+      <nav class="page-nav page-nav-bottom" aria-label="Previous and next pages">
+        <a class="page-nav-item" href="letters.html"><span class="page-nav-direction">PREVIOUS</span><span>← Letters and notation</span></a>
+        <a class="page-nav-item page-nav-next" href="products.html"><span class="page-nav-direction">NEXT</span><span>Products and factorials →</span></a>
+      </nav>
+    </main>
+
+    <footer>Made for learning to unpack the math, one step at a time.</footer>
+  </body>
+</html>
