@@ -435,11 +435,18 @@ body.reference-embed .guide-card { margin-bottom: 12px; padding: 22px; }
     left: 0;
     z-index: 30;
     width: min(290px, 86vw);
-    height: auto;
+    height: calc(100vh - var(--header-height));
+    height: calc(100dvh - var(--header-height));
+    overflow-x: hidden;
+    overflow-y: auto;
     padding-top: 24px;
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
     border-right: 1px solid var(--line);
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
     box-shadow: 12px 0 30px rgb(20 35 28 / 10%);
   }
+  body.nav-open { overflow: hidden; }
   body.nav-open .sidebar { display: block; }
   .nav-scrim { position: fixed; inset: var(--header-height) 0 0; z-index: 20; border: 0; background: rgb(18 30 25 / 35%); }
   body.nav-open .nav-scrim { display: block; }
