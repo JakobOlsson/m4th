@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A quick reference for mathematical notation and its Python syntax equivalents.">
     <title>Notation and Python quick reference — Math Refresher</title>
-    <link rel="stylesheet" href="styles.css?v=32">
+    <link rel="stylesheet" href="styles.css?v=36">
     <script src="navigation.js" defer></script>
     <script src="quick-reference.js" defer></script>
   </head>
@@ -79,6 +79,11 @@
                 <td><a href="products.html#factorial-title">Factorials</a></td>
               </tr>
               <tr>
+                <td><!-- LaTeX: x!=\Gamma(x+1) --><math class="inline-math" aria-label="x factorial equals Gamma of x plus one"><mrow><mi>x</mi><mo>!</mo><mo>=</mo><mi>Γ</mi><mo>(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo>)</mo></mrow></math></td>
+                <td>Standard Gamma extension of factorial notation for positive non-integer <i>x</i>; see the graph for how it meets integer factorial values.</td>
+                <td><a href="products.html#gamma-plot">Gamma preview</a></td>
+              </tr>
+              <tr>
                 <td><!-- LaTeX: a_i --><math class="inline-math" aria-label="a sub i"><msub><mi>a</mi><mi>i</mi></msub></math></td>
                 <td>The value at position <i>i</i>; the subscript labels which value.</td>
                 <td><a href="summation.html#sum-index-term">Indices and terms</a></td>
@@ -109,9 +114,29 @@
                 <td><a href="combinations.html#notation-title">Combinations lesson</a></td>
               </tr>
               <tr>
+                <td><!-- LaTeX: P(n,r)=\frac{n!}{(n-r)!} --><math class="inline-math" aria-label="P of n comma r equals n factorial over n minus r factorial"><mrow><mi>P</mi><mo>(</mo><mi>n</mi><mo>,</mo><mi>r</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi>n</mi><mo>!</mo></mrow><mrow><mo>(</mo><mi>n</mi><mo>−</mo><mi>r</mi><mo>)</mo><mo>!</mo></mrow></mfrac></mrow></math></td>
+                <td>Ordered selections of <i>r</i> distinct items from <i>n</i> (where 0 ≤ <i>r</i> ≤ <i>n</i>).</td>
+                <td><a href="products.html#factorial-applications">Permutation example</a></td>
+              </tr>
+              <tr>
+                <td><!-- LaTeX: C(n,r)=\binom{n}{r}=\frac{n!}{r!(n-r)!} --><math class="inline-math" aria-label="C of n comma r equals n choose r equals n factorial over r factorial times n minus r factorial"><mrow><mi>C</mi><mo>(</mo><mi>n</mi><mo>,</mo><mi>r</mi><mo>)</mo><mo>=</mo><mo>(</mo><mfrac linethickness="0"><mi>n</mi><mi>r</mi></mfrac><mo>)</mo><mo>=</mo><mfrac><mrow><mi>n</mi><mo>!</mo></mrow><mrow><mi>r</mi><mo>!</mo><mo>(</mo><mi>n</mi><mo>−</mo><mi>r</mi><mo>)</mo><mo>!</mo></mrow></mfrac></mrow></math></td>
+                <td>Unordered groups of <i>r</i> items from <i>n</i>; the value is a count, not a probability.</td>
+                <td><a href="products.html#factorial-applications">Team-selection example</a></td>
+              </tr>
+              <tr>
                 <td><!-- LaTeX: f(x) --><math class="inline-math" aria-label="f of x"><mrow><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo></mrow></math></td>
                 <td>The output of function <i>f</i> when its input is <i>x</i>.</td>
                 <td><a href="letters.html#functions-title">Function notation</a></td>
+              </tr>
+              <tr>
+                <td><!-- LaTeX: S_K(1)=\sum_{k=0}^{K}\frac{(-1)^k}{(2k+1)!} --><math class="inline-math" aria-label="S sub K of one equals the sum from k zero through K of negative one to the k over two k plus one factorial"><mrow><msub><mi>S</mi><mi>K</mi></msub><mo>(</mo><mn>1</mn><mo>)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mi>K</mi></munderover><mfrac><msup><mrow><mo>(</mo><mo>−</mo><mn>1</mn><mo>)</mo></mrow><mi>k</mi></msup><mrow><mo>(</mo><mn>2</mn><mi>k</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo>!</mo></mrow></mfrac></mrow></math></td>
+                <td>Finite sine-series approximation at 1 radian; <i>K</i> is the last included index, so it contains <i>K</i> + 1 terms.</td>
+                <td><a href="sum-of-factorials.html#sine-series">Taylor-series example</a></td>
+              </tr>
+              <tr>
+                <td><!-- LaTeX: e^x=\sum_{k=0}^{\infty}\frac{x^k}{k!} --><math class="inline-math" aria-label="e to the x equals the sum from k zero to infinity of x to the k over k factorial"><mrow><msup><mi>e</mi><mi>x</mi></msup><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mi>∞</mi></munderover><mfrac><msup><mi>x</mi><mi>k</mi></msup><mrow><mi>k</mi><mo>!</mo></mrow></mfrac></mrow></math></td>
+                <td>A related Taylor series; <i>k</i> runs from zero and factorials appear in the denominators.</td>
+                <td><a href="sum-of-factorials.html#sine-series">Related-series example</a></td>
               </tr>
               <tr>
                 <td><!-- LaTeX: P(A) --><math class="inline-math" aria-label="probability of A"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>A</mi><mo>)</mo></mrow></math></td>
@@ -127,6 +152,11 @@
                 <td><!-- LaTeX: P(A\cup B)\le P(A)+P(B) --><math class="inline-math" aria-label="probability of A union B is at most probability of A plus probability of B"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>A</mi><mo>∪</mo><mi>B</mi><mo>)</mo><mo>≤</mo><mi mathvariant="normal">P</mi><mo>(</mo><mi>A</mi><mo>)</mo><mo>+</mo><mi mathvariant="normal">P</mi><mo>(</mo><mi>B</mi><mo>)</mo></mrow></math></td>
                 <td>Union bound: the probability that at least one event happens is at most the sum of their probabilities.</td>
                 <td><a href="probability-bounds.html#union-bound">Probability-bounds lesson</a></td>
+              </tr>
+              <tr>
+                <td><!-- LaTeX: O(n!) --><math class="inline-math" aria-label="big O of n factorial"><mrow><mi mathvariant="normal">O</mi><mo>(</mo><mi>n</mi><mo>!</mo><mo>)</mo></mrow></math></td>
+                <td>Upper-bound growth associated with algorithms that may examine permutations; it does not mean every algorithm checks exactly <i>n</i>! cases.</td>
+                <td><a href="products.html#factorial-applications">Factorial-growth example</a></td>
               </tr>
               <tr>
                 <td><!-- LaTeX: O(n), O(n^2) --><math class="inline-math" aria-label="big O of n and big O of n squared"><mrow><mi mathvariant="normal">O</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>,</mo><mspace width="0.3em"/><mi mathvariant="normal">O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow></math></td>
