@@ -317,6 +317,12 @@ h2 { margin-bottom: 12px; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.
 .pascal-row { display: flex; justify-content: center; gap: 10px; }
 .pascal-row span { display: grid; width: 42px; height: 36px; place-items: center; border: 1px solid var(--line); border-radius: 7px; background: var(--card); color: var(--green); font-family: ui-serif, Georgia, "Times New Roman", serif; font-size: 1.1rem; font-weight: 700; }
 .table-wrap { overflow-x: auto; margin: 18px 0; }
+.conditional-table { width: 100%; border-collapse: collapse; text-align: center; }
+.conditional-table caption { text-align: left; margin-bottom: 8px; color: var(--muted); }
+.conditional-table th, .conditional-table td { border: 1px solid var(--line); padding: 9px 12px; }
+.conditional-table thead th { background: #edf2eb; }
+.conditional-table tbody th { text-align: left; white-space: nowrap; }
+#conditional-probability .notation-reading-part:first-child { overflow-x: auto; }
 .letter-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 1rem; }
 .letter-table th, .letter-table td { padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
 .letter-table th { color: var(--green); font-size: 0.76rem; letter-spacing: 0.04em; }

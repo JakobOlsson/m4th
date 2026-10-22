@@ -31,7 +31,7 @@
         <a class="nav-link" href="summation.html">Summation (∑)</a>
         <a class="nav-link" href="products.html">Products and factorials</a>
         <p class="sidebar-label">PROBABILITY AND COUNTING</p><a class="nav-link" href="probability.html">Probability</a>
-        <a class="nav-link" href="expectation.html">Expected value</a>
+        <a class="nav-link" href="conditional-probability.html">Conditional probability</a><a class="nav-link" href="expectation.html">Expected value</a>
         <a class="nav-link" href="probability-bounds.html">Probability bounds</a>
         <a class="nav-link" href="counting-work.html">Counting work</a>
         <a class="nav-link" href="combinations.html">Combinations</a>
@@ -103,6 +103,7 @@
                 <td>Union, intersection, the empty set, and the number of members in <i>S</i>.</td>
                 <td><a href="letters.html#combinatorics-terms-title">Set operations</a></td>
               </tr>
+              <tr><td><!-- LaTeX: \{x\in S\mid x>1\} --><math class="inline-math" aria-label="all x in S such that x is greater than one"><mrow><mo>{</mo><mi>x</mi><mo>∈</mo><mi>S</mi><mo>|</mo><mi>x</mi><mo>&gt;</mo><mn>1</mn><mo>}</mo></mrow></math></td><td>Select members of <i>S</i> that satisfy the condition; the bar reads “such that.”</td><td><a href="letters.html#set-builder-title">Set-builder example</a></td></tr>
               <tr>
                 <td><!-- LaTeX: \mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R},\mathbb{C} --><math class="inline-math" aria-label="natural, integer, rational, real, and complex number sets"><mrow><mi>ℕ</mi><mo>,</mo><mi>ℤ</mi><mo>,</mo><mi>ℚ</mi><mo>,</mo><mi>ℝ</mi><mo>,</mo><mi>ℂ</mi></mrow></math></td>
                 <td>Natural numbers, integers, rational numbers, real numbers, and complex numbers.</td>
@@ -148,6 +149,8 @@
                 <td>The probability that event <i>A</i> happens.</td>
                 <td><a href="probability.html#probability-notation">Probability lesson</a></td>
               </tr>
+              <tr><td><!-- LaTeX: P(A\mid B)=\frac{P(A\cap B)}{P(B)} --><math class="inline-math" aria-label="probability A given B equals probability A and B divided by probability B"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>A</mi><mo>|</mo><mi>B</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>A</mi><mo>∩</mo><mi>B</mi><mo>)</mo></mrow><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>B</mi><mo>)</mo></mrow></mfrac></mrow></math></td><td>Chance of <i>A</i> given <i>B</i>; restrict to <i>B</i>, requiring its probability to be positive.</td><td><a href="conditional-probability.html#conditional-rule-title">Conditional probability</a></td></tr>
+              <tr><td><!-- LaTeX: P(R\mid S)=\frac{P(S\mid R)P(R)}{P(S)} --><math class="inline-math" aria-label="probability R given S equals probability S given R times probability R divided by probability S"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>R</mi><mo>|</mo><mi>S</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>S</mi><mo>|</mo><mi>R</mi><mo>)</mo><mi mathvariant="normal">P</mi><mo>(</mo><mi>R</mi><mo>)</mo></mrow><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>S</mi><mo>)</mo></mrow></mfrac></mrow></math></td><td>Bayes’ rule reverses the given question; here <i>R</i> is red and <i>S</i> is star, with both event probabilities positive.</td><td><a href="conditional-probability.html#bayes-example">Bayes’ example</a></td></tr>
               <tr>
                 <td><!-- LaTeX: E[X] --><math class="inline-math" aria-label="expected value of X"><mrow><mi mathvariant="normal">E</mi><mo>[</mo><mi>X</mi><mo>]</mo></mrow></math></td>
                 <td>The expected value, or probability-weighted average, of random variable <i>X</i>. Another letter can name a different result: in the <a href="expectation.html#ticket-expected-value">hypothetical ticket example</a>, <i>Y</i> is net tokens and can be +4 or −2.</td>
@@ -173,6 +176,7 @@
                 <td>One output cell: dot the chosen row of A with the chosen column of B.</td>
                 <td><a href="matrix-multiplication.html#matrix-multiplication">Matrix-multiplication lesson</a></td>
               </tr>
+              <tr><td><!-- LaTeX: AI=A --><math class="inline-math" aria-label="A times I equals A"><mrow><mi>A</mi><mi>I</mi><mo>=</mo><mi>A</mi></mrow></math></td><td><i>I</i> is the square identity of the matching size: ones on the diagonal, zeros elsewhere; multiplying leaves <i>A</i> unchanged.</td><td><a href="matrix-multiplication.html#identity-matrix">Identity matrix</a></td></tr>
               <tr>
                 <td><!-- LaTeX: \operatorname{cosSim}(\mathbf{a},\mathbf{b})=\frac{\mathbf{a}\cdot\mathbf{b}}{\lVert\mathbf{a}\rVert\lVert\mathbf{b}\rVert} --><math class="inline-math" aria-label="cosine similarity of a and b is their dot product divided by the product of their lengths"><mrow><mi mathvariant="normal">cosSim</mi><mo>(</mo><mi mathvariant="bold">a</mi><mo>,</mo><mi mathvariant="bold">b</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi mathvariant="bold">a</mi><mo>·</mo><mi mathvariant="bold">b</mi></mrow><mrow><mo>‖</mo><mi mathvariant="bold">a</mi><mo>‖</mo><mo>‖</mo><mi mathvariant="bold">b</mi><mo>‖</mo></mrow></mfrac></mrow></math></td>
                 <td>Compare two nonzero, same-length vectors built from the same ordered vocabulary; their dot product is divided by both lengths. Not a probability.</td>
