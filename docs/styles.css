@@ -184,7 +184,38 @@ h2 { margin-bottom: 12px; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.
 .worked-math-line { margin: 10px 0 22px; padding: 12px 16px; overflow-x: auto; border-left: 3px solid #8caa96; background: var(--card); font-size: 1.75rem; line-height: 1.45; }
 .worked-math-line math { font-size: inherit; }
 .bounds-guide .explain-grid .short-code { white-space: pre-wrap; overflow-wrap: anywhere; }
+.halving-figure, .spread-figure { margin: 20px 0; padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); }
+.halving-figure figcaption, .spread-figure figcaption { margin-bottom: 15px; color: var(--muted); font-size: 0.93rem; }
+.halving-comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.halving-comparison h4 { margin: 0 0 12px; font-size: 1rem; }
+.halving-comparison p { margin: 9px 0 0; color: var(--ink); }
+.candidate-list { margin: 0; padding: 0; list-style: none; }
+.candidate-list li { display: grid; grid-template-columns: 43px minmax(0, 1fr) 20px; align-items: center; gap: 8px; min-height: 29px; font-variant-numeric: tabular-nums; }
+.candidate-list li > span:first-child { color: var(--muted); font-size: 0.84rem; }
+.candidate-track { display: block; height: 15px; border-radius: 4px; background: #edf2eb; }
+.candidate-track > span { display: block; height: 100%; border-radius: inherit; background: #447d6a; }
+.candidate-list strong { font-size: 0.91rem; }
+.spread-row { margin: 14px 0; }
+.spread-row > strong { display: block; margin-bottom: 6px; font-size: 0.96rem; }
+.spread-axis { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); text-align: center; border-bottom: 2px solid #667c71; }
+.spread-axis > span { display: grid; justify-items: center; padding: 7px 0 4px; font-variant-numeric: tabular-nums; }
+.spread-axis > span:nth-child(3) { outline: 2px dashed #ab803e; outline-offset: -3px; background: #fbf3e5; }
+.spread-dot { display: block; width: 17px; height: 17px; margin-bottom: 6px; border-radius: 50%; background: #276653; }
+.spread-dot.empty-dot { visibility: hidden; }
+#variance-example .notation-reading-part:first-child, #vector-length-notation .notation-reading-part:first-child { overflow-x: auto; }
+#variance-example .variance-reading-row { grid-template-columns: minmax(0, 1fr); }
+#variance-example .variance-reading-row .notation-reading-part + .notation-reading-part { border-left: 0; border-top: 1px solid var(--line); }
+#variance-example .variance-reading-row .inline-math { font-size: 1.5rem; }
 .expansion-note { margin: 8px 0 16px; color: var(--muted); font-size: 0.88rem; font-weight: 400; }
+.notation-extra { margin: 24px 0 4px; border: 1px solid var(--line); border-radius: 10px; background: #f7f9f5; }
+.notation-extra summary { padding: 16px 18px; cursor: pointer; color: var(--green); font-weight: 700; }
+.notation-extra summary:focus-visible { outline: 3px solid #366f9e; outline-offset: 2px; }
+.notation-extra-content { padding: 18px; border-top: 1px solid var(--line); }
+.notation-extra-content h3 { margin: 22px 0 8px; }
+.notation-extra-content h3:first-of-type { margin-top: 12px; }
+.notation-extra-content p { margin-bottom: 14px; }
+.notation-extra .reference-formula { margin: 10px 0 18px; padding: 11px 13px; overflow-x: auto; border-left: 3px solid #8caa96; background: white; }
+.notation-extra .reference-formula math { font-size: 1.35rem; }
 .notation-reading-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); margin: 18px 0 22px; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: #f0f5ef; }
 .notation-reading-part { min-width: 0; padding: 15px 18px; }
 .notation-reading-part + .notation-reading-part { border-left: 1px solid var(--line); background: #f7f9f5; }
@@ -327,6 +358,10 @@ h2 { margin-bottom: 12px; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.
 .letter-table th, .letter-table td { padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
 .letter-table th { color: var(--green); font-size: 0.76rem; letter-spacing: 0.04em; }
 .letter-table td:first-child { min-width: 105px; white-space: nowrap; color: var(--ink); }
+.bar-notation-table caption { margin-bottom: 10px; text-align: left; color: var(--muted); }
+.bar-notation-table tbody th { color: var(--ink); font-size: 0.96rem; font-weight: 600; letter-spacing: normal; white-space: nowrap; }
+.bar-notation-table td:nth-child(2) { white-space: nowrap; }
+.bar-notation-table td:last-child { min-width: 220px; }
 .quick-table code { padding: 2px 4px; border-radius: 4px; background: #edf1eb; color: var(--ink); font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; font-size: 0.84em; }
 .rosetta-table { min-width: 740px; }
 .rosetta-table td { min-width: 195px; }
@@ -505,6 +540,8 @@ body.reference-embed .guide-card { margin-bottom: 12px; padding: 22px; }
   .overview-page .journey-connections, .overview-page .application-grid { grid-template-columns: 1fr; }
   .overview-page .journey-connections article, .overview-page .application-grid article { padding: 17px; }
   .letter-table { min-width: 590px; }
+  .halving-comparison { grid-template-columns: 1fr; }
+  .halving-figure, .spread-figure { padding: 12px; }
   .gamma-figure svg { width: 700px; max-width: none; }
   .practice-page .practice-intro { padding: 42px 4px 24px; }
   .challenge-card { padding: 20px 17px 22px; }
