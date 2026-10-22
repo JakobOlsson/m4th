@@ -39,7 +39,7 @@
         <a class="nav-link" href="matrix-multiplication.html">Matrix multiplication</a>
         <p class="sidebar-label">PROOFS AND ALGORITHMS</p><a class="nav-link" href="program-correctness.html">Program correctness</a>
         <a class="nav-link" href="induction.html">Proof by induction</a>
-        <p class="sidebar-label">SYNTHESIS AND APPLICATIONS</p><a class="nav-link" href="sum-of-factorials.html">A sum of factorials</a><a class="nav-link" href="dice-probability.html">At least two sixes</a><a class="nav-link" href="matrix-product-application.html">Dot products in a matrix product</a><a class="nav-link" href="bezier-curve.html">A Bézier curve</a>
+        <p class="sidebar-label">SYNTHESIS AND APPLICATIONS</p><a class="nav-link" href="sum-of-factorials.html">A sum of factorials</a><a class="nav-link" href="dice-probability.html">At least two sixes</a><a class="nav-link" href="matrix-product-application.html">Dot products in a matrix product</a><a class="nav-link" href="bezier-curve.html">A Bézier curve</a><p class="sidebar-label">MORE WORKED EXAMPLES</p><a class="nav-link" href="monte-carlo-pi.html">Estimate π with random points</a><a class="nav-link" href="text-similarity.html">Compare word-count vectors</a>
         <p class="sidebar-label">PRACTICE</p><a class="nav-link" href="practice.html">Practice sessions</a><a class="nav-link" href="practice-yatzy.html">Yatzy: keep or reroll?</a>
       <p class="sidebar-label reference-nav-label">QUICK REFERENCES</p>
         <a class="nav-link" href="quick-reference.html" aria-current="page">Notation and Python</a>
@@ -139,6 +139,11 @@
                 <td><a href="sum-of-factorials.html#sine-series">Related-series example</a></td>
               </tr>
               <tr>
+                <td><!-- LaTeX: \widehat\pi=4\frac{H}{N} --><math class="inline-math" aria-label="pi estimate equals four times H over N"><mrow><mover><mi>π</mi><mo>^</mo></mover><mo>=</mo><mn>4</mn><mfrac><mi>H</mi><mi>N</mi></mfrac></mrow></math></td>
+                <td>π estimated from <i>H</i> hits among <i>N</i> uniform square samples; <i>N</i> must be positive. The hat marks an estimate, not exact π.</td>
+                <td><a href="monte-carlo-pi.html#count-title">Monte Carlo π example</a></td>
+              </tr>
+              <tr>
                 <td><!-- LaTeX: P(A) --><math class="inline-math" aria-label="probability of A"><mrow><mi mathvariant="normal">P</mi><mo>(</mo><mi>A</mi><mo>)</mo></mrow></math></td>
                 <td>The probability that event <i>A</i> happens.</td>
                 <td><a href="probability.html#probability-notation">Probability lesson</a></td>
@@ -167,6 +172,11 @@
                 <td><!-- LaTeX: C_{r,c}=\sum_{k=1}^{p}A_{r,k}B_{k,c} --><math class="inline-math" aria-label="C row r column c equals sum from k one through p of A row r column k times B row k column c"><mrow><msub><mi>C</mi><mrow><mi>r</mi><mo>,</mo><mi>c</mi></mrow></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></munderover><msub><mi>A</mi><mrow><mi>r</mi><mo>,</mo><mi>k</mi></mrow></msub><mo>×</mo><msub><mi>B</mi><mrow><mi>k</mi><mo>,</mo><mi>c</mi></mrow></msub></mrow></math></td>
                 <td>One output cell: dot the chosen row of A with the chosen column of B.</td>
                 <td><a href="matrix-multiplication.html#matrix-multiplication">Matrix-multiplication lesson</a></td>
+              </tr>
+              <tr>
+                <td><!-- LaTeX: \operatorname{cosSim}(\mathbf{a},\mathbf{b})=\frac{\mathbf{a}\cdot\mathbf{b}}{\lVert\mathbf{a}\rVert\lVert\mathbf{b}\rVert} --><math class="inline-math" aria-label="cosine similarity of a and b is their dot product divided by the product of their lengths"><mrow><mi mathvariant="normal">cosSim</mi><mo>(</mo><mi mathvariant="bold">a</mi><mo>,</mo><mi mathvariant="bold">b</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi mathvariant="bold">a</mi><mo>·</mo><mi mathvariant="bold">b</mi></mrow><mrow><mo>‖</mo><mi mathvariant="bold">a</mi><mo>‖</mo><mo>‖</mo><mi mathvariant="bold">b</mi><mo>‖</mo></mrow></mfrac></mrow></math></td>
+                <td>Compare two nonzero, same-length vectors built from the same ordered vocabulary; their dot product is divided by both lengths. Not a probability.</td>
+                <td><a href="text-similarity.html#cosine-example">Word-count similarity</a></td>
               </tr>
               <tr>
                 <td><!-- LaTeX: i,e,\pi --><math class="inline-math" aria-label="i, e, pi"><mrow><mi>i</mi><mo>,</mo><mi>e</mi><mo>,</mo><mi>π</mi></mrow></math></td>

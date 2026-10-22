@@ -195,6 +195,11 @@ h2 { margin-bottom: 12px; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.
 .compact-reading-row .inline-math { margin: 0; white-space: normal; }
 .formula-stack { display: grid; gap: 10px; }
 .formula-stack math { display: block; width: max-content; max-width: 100%; }
+.worked-application .notation-reading-part:first-child { overflow-x: auto; }
+.worked-application .notation-reading-part .inline-math { font-size: 1.4rem; }
+.application-figure { max-width: 440px; margin: 22px auto; padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+.application-figure svg { display: block; width: 100%; height: auto; }
+.application-figure figcaption { color: var(--muted); font-size: 1rem; }
 
 .expansion { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin: 28px 0 38px; padding: 20px 22px; border-left: 3px solid #b79d5a; background: #f7f1df; }
 .expansion .eyebrow { margin-bottom: 5px; color: #806a36; }
