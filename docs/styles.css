@@ -193,6 +193,8 @@ h2 { margin-bottom: 12px; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.
 .notation-reading-part .formula-card { margin: 8px 0 0; }
 .compact-reading-row .notation-reading-part { display: flex; flex-direction: column; justify-content: center; }
 .compact-reading-row .inline-math { margin: 0; white-space: normal; }
+.formula-stack { display: grid; gap: 10px; }
+.formula-stack math { display: block; width: max-content; max-width: 100%; }
 
 .expansion { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin: 28px 0 38px; padding: 20px 22px; border-left: 3px solid #b79d5a; background: #f7f1df; }
 .expansion .eyebrow { margin-bottom: 5px; color: #806a36; }
@@ -247,6 +249,9 @@ h2 { margin-bottom: 12px; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.
 .shorter-section > p:not(.eyebrow) { max-width: 690px; color: var(--muted); font-size: 1rem; }
 .shorter-section code { font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; }
 .short-code { margin: 14px 0; padding: 16px 18px; overflow-x: auto; border-radius: 8px; background: #17231f; color: #e0eee2; font-size: 0.88rem; line-height: 1.6; }
+.fib-call-figure { margin: 22px 0; }
+.fib-call-figure .short-code { font-size: 0.95rem; }
+.fib-call-figure figcaption { color: var(--muted); font-size: 1rem; }
 .math-note { padding: 13px 16px; border-left: 3px solid #8caa96; background: #f0f5ef; color: var(--ink); font-size: 1rem; }
 .code-variants { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .code-variants-single { grid-template-columns: minmax(0, 1fr); }
@@ -312,6 +317,12 @@ h2 { margin-bottom: 12px; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.
 .letter-table th { color: var(--green); font-size: 0.76rem; letter-spacing: 0.04em; }
 .letter-table td:first-child { min-width: 105px; white-space: nowrap; color: var(--ink); }
 .quick-table code { padding: 2px 4px; border-radius: 4px; background: #edf1eb; color: var(--ink); font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; font-size: 0.84em; }
+.rosetta-table { min-width: 740px; }
+.rosetta-table td { min-width: 195px; }
+.rosetta-table td:first-child { min-width: 170px; }
+.rosetta-table pre { margin: 0 0 8px; white-space: pre; }
+.rosetta-table pre code { display: block; width: max-content; min-width: 100%; padding: 10px; font-size: 0.9rem; line-height: 1.5; }
+.rosetta-table td p { margin: 0; color: var(--muted); font-size: 0.92rem; }
 .syntax-scope-note { margin: 10px 0 0; padding: 10px 12px; border-left: 2px solid #8caa96; background: #f0f5ef; color: var(--muted); font-size: 0.82rem; }
 .summand-expansion { margin: 20px 0; padding: 20px; border: 1px solid var(--line); border-radius: 10px; background: #f7f8f3; }
 .summand-expansion h3 { margin-bottom: 8px; font-size: 1.15rem; }

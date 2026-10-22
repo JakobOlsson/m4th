@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Count the steps in simple and nested loops, then read their growth using Big O notation.">
     <title>Counting work — Math Refresher</title>
-    <link rel="stylesheet" href="styles.css?v=36">
+    <link rel="stylesheet" href="styles.css?v=37">
     <script src="editor.bundle.js?v=3" defer></script>
     <script src="run-python.js?v=7" defer></script>
     <script src="navigation.js" defer></script>
@@ -269,6 +269,24 @@ print("constant-work steps =", count_constant_work(n))</template>
               <p>It keeps only the last two values and advances once per number: <!-- LaTeX: O(n) --><math class="inline-math" aria-label="big O of n"><mrow><mi mathvariant="normal">O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow></math> work with <!-- LaTeX: O(1) --><math class="inline-math" aria-label="big O of one"><mrow><mi mathvariant="normal">O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow></math> extra stored numbers. For <i>n</i> = 40, it uses 40 loop passes. Both versions return <!-- LaTeX: F_{40}=102334155 --><math class="inline-math" aria-label="F forty equals one hundred two million three hundred thirty-four thousand one hundred fifty-five"><mrow><msub><mi>F</mi><mn>40</mn></msub><mo>=</mo><mn>102334155</mn></mrow></math>.</p>
             </article>
           </div>
+          <figure class="fib-call-figure" aria-labelledby="fib-call-caption">
+            <pre class="short-code" aria-label="The full recursion tree for fib_recursive of five, showing repeated fib of three and fib of two calls">fib(5)
+├── fib(4)
+│   ├── fib(3)  ← first time
+│   │   ├── fib(2)
+│   │   │   ├── fib(1)
+│   │   │   └── fib(0)
+│   │   └── fib(1)
+│   └── fib(2)
+│       ├── fib(1)
+│       └── fib(0)
+└── fib(3)      ← recomputed
+    ├── fib(2)
+    │   ├── fib(1)
+    │   └── fib(0)
+    └── fib(1)</pre>
+            <figcaption id="fib-call-caption">Here <code>fib(5)</code> abbreviates <code>fib_recursive(5)</code>, and likewise for each branch. Follow the branches for input 5. Each line is one function call: 15 calls in all, even though the answer is just 5. The two <code>fib(3)</code> branches each repeat their own <code>fib(2)</code> work. The iterative version calculates each step once instead of rebuilding these branches.</figcaption>
+          </figure>
           <p class="math-note">This comparison counts high-level additions and function calls. Python integers can grow to many digits, so each addition eventually costs more than one machine-level step; that detail does not change the contrast between exponential and linear growth here. The recursive code is shorter, but it does much more repeated work.</p>
         </section>
 

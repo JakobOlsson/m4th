@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A quick reference for mathematical notation and its Python syntax equivalents.">
     <title>Notation and Python quick reference — Math Refresher</title>
-    <link rel="stylesheet" href="styles.css?v=36">
+    <link rel="stylesheet" href="styles.css?v=37">
     <script src="navigation.js" defer></script>
     <script src="quick-reference.js" defer></script>
   </head>
@@ -145,7 +145,7 @@
               </tr>
               <tr>
                 <td><!-- LaTeX: E[X] --><math class="inline-math" aria-label="expected value of X"><mrow><mi mathvariant="normal">E</mi><mo>[</mo><mi>X</mi><mo>]</mo></mrow></math></td>
-                <td>The expected value, or probability-weighted average, of random variable <i>X</i>.</td>
+                <td>The expected value, or probability-weighted average, of random variable <i>X</i>. Another letter can name a different result: in the <a href="expectation.html#ticket-expected-value">hypothetical ticket example</a>, <i>Y</i> is net tokens and can be +4 or −2.</td>
                 <td><a href="expectation.html#expected-value-notation">Expected-value lesson</a></td>
               </tr>
               <tr>
@@ -182,6 +182,36 @@
         <p class="eyebrow">MATH NOTATION → PYTHON SYNTAX</p>
         <h2 id="python-reference-title">Same idea, different symbols.</h2>
         <p>This is a reminder for translating the notation used in these lessons—not a full guide to Python operators.</p>
+        <section aria-labelledby="rosetta-title">
+          <h3 id="rosetta-title">Math → plain English → Python</h3>
+          <p>Read and expand the math first; the Python column is an optional check, not the explanation. These are <em>concrete</em> examples, so the numbers in the code come from the bounds and inputs shown on the left. Follow the linked lessons for the explicit loop versions.</p>
+          <div class="table-wrap">
+            <table class="letter-table quick-table rosetta-table">
+              <thead><tr><th scope="col">Math and inputs</th><th scope="col">Say it and expand it</th><th scope="col">Python check</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><!-- LaTeX: \sum_{i=1}^{4} i=10 --><math class="inline-math" aria-label="sum from i one through four of i equals ten"><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mn>4</mn></munderover><mi>i</mi><mo>=</mo><mn>10</mn></mrow></math></td>
+                  <td>Add the integers from 1 through 4: 1 + 2 + 3 + 4 = 10. <a href="summation.html#summation-notation">See the sum unpacked</a>.</td>
+                  <td><pre><code>print(sum(range(1, 5)))  # 10</code></pre><p><code>range</code> stops before 5, so it includes 4.</p></td>
+                </tr>
+                <tr>
+                  <td><!-- LaTeX: 4!=4\times3\times2\times1=24 --><math class="inline-math" aria-label="four factorial equals four times three times two times one equals twenty-four"><mrow><mn>4</mn><mo>!</mo><mo>=</mo><mn>4</mn><mo>×</mo><mn>3</mn><mo>×</mo><mn>2</mn><mo>×</mo><mn>1</mn><mo>=</mo><mn>24</mn></mrow></math></td>
+                  <td>Multiply every positive integer from 4 down to 1. The order of these factors does not change their product. <a href="products.html#factorial-title">See the factorial lesson</a>.</td>
+                  <td><pre><code>import math
+print(math.prod(range(1, 5)))  # 24</code></pre><p>Here <code>math.prod</code> multiplies 1 through 4.</p></td>
+                </tr>
+                <tr>
+                  <td><!-- LaTeX: (2,3)\cdot(4,5)=23 --><math class="inline-math" aria-label="the dot product of two three and four five equals twenty-three"><mrow><mo>(</mo><mn>2</mn><mo>,</mo><mn>3</mn><mo>)</mo><mo>·</mo><mo>(</mo><mn>4</mn><mo>,</mo><mn>5</mn><mo>)</mo><mo>=</mo><mn>23</mn></mrow></math></td>
+                  <td>Multiply matching components, then add: 2 × 4 + 3 × 5 = 23. Both vectors have two components. <a href="vector-dot-product.html#decode-dot-product-title">See the dot product</a>.</td>
+                  <td><pre><code>a = [2, 3]
+b = [4, 5]
+print(sum(a[i] * b[i] for i in range(2)))  # 23</code></pre><p>The index visits positions 0 and 1 in Python lists.</p></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Each snippet prints the value shown after <code>#</code>. These compact checks come <em>after</em> the arithmetic above; follow the lessons to see how a loop carries out each step. For the dot product, both lists must have the same length; this two-component check is not a general-purpose length-safe function.</p>
+        </section>
         <div class="table-wrap">
           <table class="letter-table quick-table">
             <thead>
