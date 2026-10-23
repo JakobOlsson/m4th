@@ -480,6 +480,11 @@ body.reference-embed .guide-card { margin-bottom: 12px; padding: 22px; }
 .reroll-label { margin-left: 9px; color: #813f22; }
 .practice-note { margin-top: 24px; border-left: 5px solid #8b9f76; }
 .practice-note h2, .practice-hub-note h2 { margin-bottom: 10px; }
+.practice-page .optional-code { margin: 24px 0; padding: 22px 26px; border: 1px solid #dfd2bc; border-radius: 13px; background: #fffaf1; }
+.practice-page .optional-code h2 { margin: 0 0 10px; font-family: inherit; font-size: 1.15rem; letter-spacing: 0; }
+.practice-page .optional-code pre { overflow-x: auto; padding: 15px; border-radius: 8px; background: #263238; color: #f7f4ec; font-size: 0.88rem; line-height: 1.55; }
+.practice-page .optional-code code { overflow-wrap: anywhere; }
+.practice-page .optional-code pre code { overflow-wrap: normal; }
 .practice-bottom-nav { display: flex; justify-content: space-between; gap: 16px; margin: 26px 0 10px; }
 .practice-hub { max-width: 840px; }
 .practice-hub-note { margin-bottom: 18px; }
@@ -545,7 +550,7 @@ body.reference-embed .guide-card { margin-bottom: 12px; padding: 22px; }
   .gamma-figure svg { width: 700px; max-width: none; }
   .practice-page .practice-intro { padding: 42px 4px 24px; }
   .challenge-card { padding: 20px 17px 22px; }
-  .practice-rules, .practice-note, .practice-hub-note { padding: 19px 17px; }
+  .practice-rules, .practice-note, .practice-hub-note, .practice-page .optional-code { padding: 19px 17px; }
   .practice-breadcrumb { align-items: flex-start; flex-direction: column; }
   .practice-status { align-items: flex-start; flex-direction: column; }
   .session-card { padding: 20px 17px; }
